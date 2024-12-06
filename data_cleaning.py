@@ -4,12 +4,15 @@ file_path = "kenyan_chess_players_partial.csv"
 
 data = pd.read_csv(file_path)
 
-#Convert Unix timestamps
-data['join_date'] = pd.to_datetime(data['join_date'], unit='s', errors='coerce')
-data['last_online'] = pd.to_datetime(data['last_online'], unit='s', errors='coerce')
+# #Remove last_online
+# if 'last_online' in data.columns:
+#     data = data.drop(columns=['last_online'])
+
 
 #Renaming columns for readability
 renamed_columns = {
+    "username": "Username",
+    "join_date": "Join Date",
     "bullet_rating": "Bullet Rating",
     "blitz_rating": "Blitz Rating",
     "rapid_rating": "Rapid Rating",
@@ -60,7 +63,7 @@ for fmt in formats:
         data[f"{fmt} Draws"] / data[f"Total {fmt} Games"] * 100
     ).fillna(0).round(0).astype(int)
 
-cleaned_file = "cleaned_kenyan_chess_players.csv"
+cleaned_file = "cleaned_chess_players.csv"
 data.to_csv(cleaned_file, index=False)
 print("Success!")
 
