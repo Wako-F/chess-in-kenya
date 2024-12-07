@@ -49,7 +49,7 @@ st.markdown("# Online Chess in Kenya ♚")
 
 # Tabs for Navigation
 
-tab1, tab2, tab3 = st.tabs(["Overview", "Leaderboards", "Search & Comparison"])
+tab1, tab2, tab3 = st.tabs(["Overview", "Leaderboards", "Search"])
 
 # Tab 1: Overview
 with tab1:
@@ -78,37 +78,23 @@ with tab1:
     # st.markdown("<br>", unsafe_allow_html=True)
     # st.markdown("<br>", unsafe_allow_html=True)
 
-    # Add custom CSS for mobile-specific styling
-    st.markdown(
-        """
-        <style>
-        @media only screen and (max-width: 768px) {
-            .mobile-centered {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-            }
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+        # Detect screen width and apply layout dynamically
+    screen_width = st.query_params.get("width", [1200])[0]
 
-    # Wrap the metrics in a div with the "mobile-centered" class
-    st.markdown('<div class="mobile-centered">', unsafe_allow_html=True)
-
-    # Layout for other metrics
-    col1, col2, col3, col4 = st.columns(4)
-
-    # Display metrics
-    col1.metric("Total Players", f"{total_players} ♟️")
-    col2.metric("Avg. Rapid Rating", f"{average_rapid_rating:.0f} 🕐")
-    col3.metric("Avg. Blitz Rating", f"{average_blitz_rating:.0f} ⚡")
-    col4.metric("Avg. Bullet Rating", f"{average_bullet_rating:.0f} 🚀")
-
-    st.markdown('</div>', unsafe_allow_html=True)
+    # Adjust layout for mobile (width < 768px)
+    if int(screen_width) < 768:
+        st.markdown("### Key Metrics (Mobile View)")
+        st.metric("Total Players", f"{total_players} ♟️")
+        st.metric("Avg. Rapid Rating", f"{average_rapid_rating:.0f} 🕐")
+        st.metric("Avg. Blitz Rating", f"{average_blitz_rating:.0f} ⚡")
+        st.metric("Avg. Bullet Rating", f"{average_bullet_rating:.0f} 🚀")
+    else:
+        st.markdown("### Key Metrics")
+        col1, col2, col3, col4 = st.columns(4)
+        col1.metric("Total Players", f"{total_players} ♟️")
+        col2.metric("Avg. Rapid Rating", f"{average_rapid_rating:.0f} 🕐")
+        col3.metric("Avg. Blitz Rating", f"{average_blitz_rating:.0f} ⚡")
+        col4.metric("Avg. Bullet Rating", f"{average_bullet_rating:.0f} 🚀")
 
 
     # st.markdown("<br>", unsafe_allow_html=True)
@@ -256,19 +242,79 @@ with tab2:
 
 # Tab 3: Search & Comparison
 with tab3:
-    st.markdown("## 🔎 Search & Compare Players")
-    # Text inputs for player search
-    col1, col2 = st.columns(2)
-    player1 = col1.text_input("Search Player 1", placeholder="Enter username...")
-    player2 = col2.text_input("Search Player 2", placeholder="Enter username...")
+            # Player Search
+    st.markdown("## 🔎 Search Player Stats")
 
-    if player1 or player2:
-        st.markdown("### 📊 Player Stats")
-        for username in [player1, player2]:
-            if username:
-                player_data = data[data["Username"].str.contains(username, case=False, na=False)]
-                if not player_data.empty:
-                    st.markdown(f"#### Stats for **{username}**")
-                    st.write(player_data.iloc[0])
-                else:
-                    st.error(f"No data found for {username}.")
+    # Text input for searching a player's username
+    search_username = st.text_input("Enter Username to Search", placeholder="Type a username...")
+
+    # Check if the user has entered a username
+    if search_username:
+        # Filter the data for the entered username (case-insensitive)
+        player_data = data[data["Username"].str.contains(search_username, case=False, na=False)]
+
+        if not player_data.empty:
+            # Extract the first matched player's stats
+            player = player_data.iloc[0]
+
+            # Display player's stats with styling
+            st.markdown(f"### 📊 Stats for **{player['Username']}**")
+
+            # Display overall stats in columns
+            st.markdown("#### 🏆 Overview")
+            col1, col2, col3, col4 = st.columns(4)
+            col1.metric("Total Games", f"{int(player['Total Games Played']):,}")
+            col2.metric("Daily Rating", int(player["Daily Rating"]) if player["Daily Rating"] > 0 else "N/A")
+            col3.metric("Rapid Rating", int(player["Rapid Rating"]) if player["Rapid Rating"] > 0 else "N/A")
+            col4.metric("Blitz Rating", int(player["Blitz Rating"]) if player["Blitz Rating"] > 0 else "N/A")
+
+            col5, col6 = st.columns(2)
+            col5.metric("Bullet Rating", int(player["Bullet Rating"]) if player["Bullet Rating"] > 0 else "N/A")
+            col6.metric("Join Date", player["Join Date"].strftime('%Y-%m-%d') if pd.notna(player["Join Date"]) else "Unknown")
+
+            # Display detailed stats for each format
+            st.markdown("#### 🎯 Format-Specific Stats")
+
+            def format_stats(stats_name, games, wins, losses, draws):
+                st.markdown(f"##### {stats_name}")
+                st.write({
+                    "Games Played": int(games),
+                    "Wins": int(wins),
+                    "Losses": int(losses),
+                    "Draws": int(draws),
+                })
+
+            format_stats(
+                "Daily Games",
+                player["Total Daily Games"],
+                player["Daily Wins"],
+                player["Daily Losses"],
+                player["Daily Draws"]
+            )
+
+            format_stats(
+                "Rapid Games",
+                player["Total Rapid Games"],
+                player["Rapid Wins"],
+                player["Rapid Losses"],
+                player["Rapid Draws"]
+            )
+
+            format_stats(
+                "Blitz Games",
+                player["Total Blitz Games"],
+                player["Blitz Wins"],
+                player["Blitz Losses"],
+                player["Blitz Draws"]
+            )
+
+            format_stats(
+                "Bullet Games",
+                player["Total Bullet Games"],
+                player["Bullet Wins"],
+                player["Bullet Losses"],
+                player["Bullet Draws"]
+            )
+        else:
+            st.error(f"No player found with username: {search_username}")
+    
