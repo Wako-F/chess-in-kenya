@@ -78,6 +78,27 @@ with tab1:
     # st.markdown("<br>", unsafe_allow_html=True)
     # st.markdown("<br>", unsafe_allow_html=True)
 
+    # Add custom CSS for mobile-specific styling
+    st.markdown(
+        """
+        <style>
+        @media only screen and (max-width: 768px) {
+            .mobile-centered {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Wrap the metrics in a div with the "mobile-centered" class
+    st.markdown('<div class="mobile-centered">', unsafe_allow_html=True)
+
     # Layout for other metrics
     col1, col2, col3, col4 = st.columns(4)
 
@@ -86,6 +107,9 @@ with tab1:
     col2.metric("Avg. Rapid Rating", f"{average_rapid_rating:.0f} 🕐")
     col3.metric("Avg. Blitz Rating", f"{average_blitz_rating:.0f} ⚡")
     col4.metric("Avg. Bullet Rating", f"{average_bullet_rating:.0f} 🚀")
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
     # st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("---")
