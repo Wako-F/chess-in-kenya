@@ -4,9 +4,9 @@ file_path = "kenyan_chess_players_partial.csv"
 
 data = pd.read_csv(file_path)
 
-# #Remove last_online
-# if 'last_online' in data.columns:
-#     data = data.drop(columns=['last_online'])
+#Remove last_online
+if 'last_online' in data.columns:
+    data = data.drop(columns=['last_online'])
 
 
 #Renaming columns for readability

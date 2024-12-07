@@ -1,0 +1,15 @@
+2024-12-06 21:35:42,780 - INFO - Running script: chess_kenya.py
+2024-12-07 01:07:28,997 - INFO - Successfully ran: chess_kenya.py
+2024-12-07 01:07:29,000 - INFO - Running script: data_cleaning.py
+2024-12-07 01:07:35,971 - INFO - Successfully ran: data_cleaning.py
+2024-12-07 01:07:35,975 - ERROR - Automation failed: [WinError 3] The system cannot find the path specified: '/path/to/your/repository'
+2024-12-07 03:05:35,845 - ERROR - Automation failed: [WinError 123] The filename, directory name, or volume label syntax is incorrect: 'https://github.com/Wako-F/chess-in-kenya'
+2024-12-07 03:08:27,821 - INFO - Adding files to GitHub...
+2024-12-07 03:08:35,028 - INFO - Changes pushed to GitHub successfully.
+2024-12-07 03:08:35,028 - INFO - Automation completed successfully.
+2024-12-07 13:13:00,349 - INFO - Adding files to GitHub...
+2024-12-07 13:13:00,424 - ERROR - Error pushing to GitHub: Command '['git', 'commit', '-m', 'Automated update of chess players data']' returned non-zero exit status 1.
+2024-12-07 13:13:00,424 - ERROR - Automation failed: Command '['git', 'commit', '-m', 'Automated update of chess players data']' returned non-zero exit status 1.
+2024-12-07 13:13:19,933 - INFO - Adding files to GitHub...
+2024-12-07 13:13:20,004 - ERROR - Error pushing to GitHub: Command '['git', 'commit', '-m', 'Automated update of chess players data']' returned non-zero exit status 1.
+2024-12-07 13:13:20,004 - ERROR - Automation failed: Command '['git', 'commit', '-m', 'Automated update of chess players data']' returned non-zero exit status 1.
