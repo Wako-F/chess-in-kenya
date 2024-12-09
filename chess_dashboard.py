@@ -35,11 +35,15 @@ st.markdown(
 
 # Load Data
 @st.cache_data
-def load_data(filename):
-    return pd.read_csv(filename)
+# def load_data(filename):
+#     return pd.read_csv(filename)
 
-data = load_data("cleaned_chess_players.csv")
+# data = load_data("cleaned_chess_players.csv")
 
+def load_data_from_github():
+    url = "https://raw.githubusercontent.com/Wako-F/chess-in-kenya/refs/heads/main/cleaned_chess_players.csv"
+    return pd.read_csv(url)
+data = load_data_from_github()
 # Ensure 'Join Date' is in datetime format
 data['Join Date'] = pd.to_datetime(data['Join Date'], errors='coerce')
 
@@ -78,23 +82,75 @@ with tab1:
     # st.markdown("<br>", unsafe_allow_html=True)
     # st.markdown("<br>", unsafe_allow_html=True)
 
-        # Detect screen width and apply layout dynamically
-    screen_width = st.query_params.get("width", [1200])[0]
+    # Custom CSS for responsive and aligned metrics
+    st.markdown(
+        """
+        <style>
+        /* Responsive container for metrics */
+        .metrics-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .metric-box {
+            
+            border-radius: 10px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .metric-box h3 {
+            margin: 0;
+            font-size: 18px;
+            
+        }
+        .metric-box p {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            
+        }
+        /* Adjust layout for smaller screens */
+        @media (max-width: 768px) {
+            .metrics-container {
+                flex-direction: column;
+            }
+            .metric-box {
+                width: 100%;
+            }
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
-    # Adjust layout for mobile (width < 768px)
-    if int(screen_width) < 768:
-        st.markdown("### Key Metrics (Mobile View)")
-        st.metric("Total Players", f"{total_players} ♟️")
-        st.metric("Avg. Rapid Rating", f"{average_rapid_rating:.0f} 🕐")
-        st.metric("Avg. Blitz Rating", f"{average_blitz_rating:.0f} ⚡")
-        st.metric("Avg. Bullet Rating", f"{average_bullet_rating:.0f} 🚀")
-    else:
-        st.markdown("### Key Metrics")
-        col1, col2, col3, col4 = st.columns(4)
-        col1.metric("Total Players", f"{total_players} ♟️")
-        col2.metric("Avg. Rapid Rating", f"{average_rapid_rating:.0f} 🕐")
-        col3.metric("Avg. Blitz Rating", f"{average_blitz_rating:.0f} ⚡")
-        col4.metric("Avg. Bullet Rating", f"{average_bullet_rating:.0f} 🚀")
+    # HTML structure for metrics
+    st.markdown(
+        f"""
+        <div class="metrics-container">
+            <div class="metric-box">
+                <h3>Recently Active Players ♟️</h3>
+                <p>{total_players:,}</p>
+            </div>
+            <div class="metric-box">
+                <h3>Avg. Rapid Rating 🕐</h3>
+                <p>{average_rapid_rating:.0f}</p>
+            </div>
+            <div class="metric-box">
+                <h3>Avg. Blitz Rating ⚡</h3>
+                <p>{average_blitz_rating:.0f}</p>
+            </div>
+            <div class="metric-box">
+                <h3>Avg. Bullet Rating 🚀</h3>
+                <p>{average_bullet_rating:.0f}</p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 
     # st.markdown("<br>", unsafe_allow_html=True)
@@ -246,7 +302,7 @@ with tab3:
     st.markdown("## 🔎 Search Player Stats")
 
     # Text input for searching a player's username
-    search_username = st.text_input("Enter Username to Search", placeholder="Type a username...")
+    search_username = st.text_input("", placeholder="Type a username...")
 
     # Check if the user has entered a username
     if search_username:
@@ -259,19 +315,141 @@ with tab3:
 
             # Display player's stats with styling
             st.markdown(f"### 📊 Stats for **{player['Username']}**")
+            #Custom css for overview
+            st.markdown(
+                """
+                <style>
+                /* Responsive container for search overview metrics */
+                .search-metrics-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 20px;
+                    margin-bottom: 30px;
+                }
+                .search-metric-box {
+                    
+                    border-radius: 10px;
+                    padding: 15px 20px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    text-align: center;
+                    font-family: Arial, sans-serif;
+                    width: 180px; /* Consistent width for all metric boxes */
+                    max-width: 100%; /* Ensure responsiveness */
+                }
+                .search-metric-box h3 {
+                    margin: 0;
+                    font-size: 18px;
+                    
+                }
+                .search-metric-box p {
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: bold;
+                    
+                }
+                /* Adjust layout for smaller screens */
+                @media (max-width: 768px) {
+                    .search-metrics-container {
+                        justify-content: center; /* Properly center-align all items */
+                        align-items: center; /* Center items vertically */
+                        flex-direction: row; /* Allow row alignment */
+                    }
+                    .search-metric-box {
+                        width: calc(50% - 20px); /* Two columns for mobile */
+                        margin-bottom: 10px;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .search-metric-box {
+                        width: 100%; /* Full width for very small screens */
+                    }
+                }
+                </style>
+                """,
+                unsafe_allow_html=True
+            )
 
-            # Display overall stats in columns
+            # Render the search overview metrics
             st.markdown("#### 🏆 Overview")
-            col1, col2, col3, col4 = st.columns(4)
-            col1.metric("Total Games", f"{int(player['Total Games Played']):,}")
-            col2.metric("Daily Rating", int(player["Daily Rating"]) if player["Daily Rating"] > 0 else "N/A")
-            col3.metric("Rapid Rating", int(player["Rapid Rating"]) if player["Rapid Rating"] > 0 else "N/A")
-            col4.metric("Blitz Rating", int(player["Blitz Rating"]) if player["Blitz Rating"] > 0 else "N/A")
 
-            col5, col6 = st.columns(2)
-            col5.metric("Bullet Rating", int(player["Bullet Rating"]) if player["Bullet Rating"] > 0 else "N/A")
-            col6.metric("Join Date", player["Join Date"].strftime('%Y-%m-%d') if pd.notna(player["Join Date"]) else "Unknown")
+            st.markdown(
+                f"""
+                <div class="search-metrics-container">
+                    <div class="search-metric-box">
+                        <h3>Total Games 🎮</h3>
+                        <p>{int(player["Total Games Played"]):,}</p>
+                    </div>
+                    <div class="search-metric-box">
+                        <h3>Daily Rating ☀️</h3>
+                        <p>{int(player["Daily Rating"]) if player["Daily Rating"] > 0 else "N/A"}</p>
+                    </div>
+                    <div class="search-metric-box">
+                        <h3>Rapid Rating 🕐</h3>
+                        <p>{int(player["Rapid Rating"]) if player["Rapid Rating"] > 0 else "N/A"}</p>
+                    </div>
+                    <div class="search-metric-box">
+                        <h3>Blitz Rating ⚡</h3>
+                        <p>{int(player["Blitz Rating"]) if player["Blitz Rating"] > 0 else "N/A"}</p>
+                    </div>
+                    <div class="search-metric-box">
+                        <h3>Bullet Rating 🚀</h3>
+                        <p>{int(player["Bullet Rating"]) if player["Bullet Rating"] > 0 else "N/A"}</p>
+                    </div>
+                    <div class="search-metric-box">
+                        <h3>Join Date 🗓️</h3>
+                        <p>{player["Join Date"] if pd.notna(player["Join Date"]) else "Unknown"}</p>
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
+
+            st.markdown("---")
+            
+            #Calculate rankings for sentence summary
+            rankings = {}
+            formats = ["Daily Rating", "Rapid Rating", "Blitz Rating", "Bullet Rating"]
+            for fmt in formats:
+                if player[fmt] > 0:
+                    rankings[fmt] = (
+                        data[data[fmt] > 0]
+                        .sort_values(by=fmt, ascending=False)
+                        .reset_index()
+                        .query(f"Username == '{player['Username']}'")
+                        .index[0]
+                        +1
+                    )
+                else:
+                    rankings[fmt] = "N/A"
+            #Rank for total games played
+            total_games_rank = (
+                data.sort_values(by="Total Games Played", ascending=False)
+                .reset_index()
+                .query(f"Username == '{player['Username']}'")
+                .index[0]
+                + 1
+            )
+            #Display one sentence summary
+            summary = (
+                f"{player['Username']} is ranked "
+                f"{total_games_rank} in Total Games Played, "
+                f"{rankings['Daily Rating']} in Daily, "
+                f"{rankings['Rapid Rating']} in Rapid, "
+                f"{rankings['Blitz Rating']} in Blitz, "
+                f"and {rankings['Bullet Rating']} in Bullet."
+            )
+
+            st.markdown(
+                f"""
+                <div style="font-size: 18px; line-height: 1.5; text-align: left;">
+                    🏅 Rankings Summary: {summary}
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            st.markdown("---")
             # Display detailed stats for each format
             st.markdown("#### 🎯 Format-Specific Stats")
 
@@ -317,4 +495,3 @@ with tab3:
             )
         else:
             st.error(f"No player found with username: {search_username}")
-    
