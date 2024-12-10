@@ -1,0 +1,55 @@
+Country Code,ISO-3,Country Name,Player Count
+DZ,DZA,Algeria,7435
+AO,AGO,Angola,812
+BJ,BEN,Benin,128
+BW,BWA,Botswana,758
+BF,BFA,Burkina Faso,117
+BI,BDI,Burundi,60
+CM,CMR,Cameroon,549
+CV,CPV,Cabo Verde,160
+CF,CAF,Central African Republic,42
+TD,TCD,Chad,246
+KM,COM,Comoros,41
+CG,COG,Congo,109
+CD,COD,Congo (DRC),322
+CI,CIV,Côte d'Ivoire,479
+DJ,DJI,Djibouti,173
+EG,EGY,Egypt,10000
+GQ,GNQ,Equatorial Guinea,47
+ER,ERI,Eritrea,104
+SZ,SWZ,Eswatini,162
+ET,ETH,Ethiopia,1445
+GA,GAB,Gabon,125
+GM,GMB,Gambia,66
+GH,GHA,Ghana,967
+GN,GIN,Guinea,46
+GW,GNB,Guinea-Bissau,29
+KE,KEN,Kenya,5805
+LS,LSO,Lesotho,202
+LR,LBR,Liberia,99
+LY,LBY,Libya,1162
+MG,MDG,Madagascar,1189
+MW,MWI,Malawi,375
+ML,MLI,Mali,87
+MR,MRT,Mauritania,190
+MU,MUS,Mauritius,529
+MA,MAR,Morocco,10000
+MZ,MOZ,Mozambique,538
+NA,NAM,Namibia,397
+NE,NER,Niger,320
+NG,NGA,Nigeria,6305
+RW,RWA,Rwanda,184
+ST,STP,Sao Tome and Principe,99
+SN,SEN,Senegal,352
+SC,SYC,Seychelles,338
+SL,SLE,Sierra Leone,85
+SO,SOM,Somalia,626
+ZA,ZAF,South Africa,10000
+SS,SSD,South Sudan,113
+SD,SDN,Sudan,914
+TZ,TZA,Tanzania,330
+TG,TGO,Togo,196
+TN,TUN,Tunisia,5226
+UG,UGA,Uganda,1130
+ZM,ZMB,Zambia,1070
+ZW,ZWE,Zimbabwe,1672
