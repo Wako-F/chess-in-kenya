@@ -41,18 +41,6 @@ def fetch_player_stats(username):
     except Exception as e:
         logging.error(f"Error fetching stats for {username}: {e}")
         return {}
-def fetch_join_date(username):
-    try:
-        profile_url = f"{BASE_URL}/player/{username}"
-        response = requests.get(profile_url, headers=HEADERS, timeout=10)
-        response.raise_for_status()
-        join_date_unix = response.json().get("joined", None)
-        if join_date_unix:
-            return pd.to_datetime(join_date_unix, unit='s')
-        return None
-    except Exception as e:
-        logging.error(f"Error fetching join date for {username}: {e}")
-        return None
 
 # Fetch join date for a player
 def fetch_join_date(username):
@@ -67,12 +55,24 @@ def fetch_join_date(username):
     except Exception as e:
         logging.error(f"Error fetching join date for {username}: {e}")
         return None
+def fetch_last_online(username):
+    try:
+        profile_url = f"{BASE_URL}/player/{username}"
+        response = requests.get(profile_url, headers=HEADERS, timeout=10)
+        response.raise_for_status()
+        last_online_unix = response.json().get("last_online", None)
+        if last_online_unix:
+            return pd.to_datetime(last_online_unix, unit='s')
+        return None
+    except Exception as e:
+        logging.error(f"Error fetching last online for {username}: {e}")
+        return None
 
 # Load existing data
 def load_existing_data(filename):
     if not os.path.exists(filename):
         return pd.DataFrame(columns=[
-            "username", "join_date", "total_games", "total_daily", "total_rapid", "total_bullet", "total_blitz",
+            "username", "join_date", "last_online", "total_games", "total_daily", "total_rapid", "total_bullet", "total_blitz",
             "daily_rating", "rapid_rating", "bullet_rating", "blitz_rating",
             "daily_wins", "daily_losses", "daily_draws",
             "rapid_wins", "rapid_losses", "rapid_draws",
@@ -142,13 +142,15 @@ def main():
 
         # Aggregate total games played
         total_games = total_daily + total_rapid + total_bullet + total_blitz
-         # Fetch join date for the player
+         # Fetch join date and last online for the player
         join_date = fetch_join_date(username)
+        last_online = fetch_last_online(username)
         # Update or add player
         if username in data["username"].values:
             # Update existing player
-            data.loc[data["username"] == username, "total_games"] = total_games
             data.loc[data["username"] == username, "join_date"] = join_date
+            data.loc[data["username"] == username, "last_online"] = last_online
+            data.loc[data["username"] == username, "total_games"] = total_games
             data.loc[data["username"] == username, "total_daily"] = total_daily
             data.loc[data["username"] == username, "total_rapid"] = total_rapid
             data.loc[data["username"] == username, "total_bullet"] = total_bullet
@@ -174,6 +176,7 @@ def main():
             new_row = {
                 "username": username,
                 "join_date": join_date,
+                "last_online": last_online,
                 "total_games": total_games,
                 "total_daily": total_daily,
                 "total_rapid": total_rapid,

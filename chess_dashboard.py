@@ -224,6 +224,53 @@ with tab1:
 
     st.plotly_chart(fig_join_trend, use_container_width=True)
 
+    st.markdown("---")
+    #African players heatmap
+    country_df = pd.read_csv("african_country_player_counts.csv")
+    fig = px.choropleth(
+        country_df,
+        locations="ISO-3",
+        color="Player Count",
+        hover_name="Country Name",
+        hover_data={"Player Count": True, "ISO-3": False},
+        color_continuous_scale="Viridis",
+        locationmode="ISO-3",
+        title="Player Distribution Across Africa",
+    )
+
+    # Update layout for better fit and centering
+    fig.update_geos(
+        showframe=False,
+        showcoastlines=False,
+        projection_type="mercator",
+        center={"lat": 0, "lon": 20},  # Centering on Africa
+        projection_scale=4.5,  # Zoom level
+        bgcolor="rgba(0,0,0,0)"
+    )
+
+    # Update figure layout
+    fig.update_layout(
+        margin={"r": 10, "t": 50, "l": 10, "b": 10},
+        title={
+            "text": "Player Distribution Across Africa",
+            "x": 0.5,
+            "xanchor": "center",
+            "font": dict(size=20),
+        },
+        coloraxis_colorbar=dict(
+            title="Players",
+            title_font=dict(size=14),
+            tickfont=dict(size=12),
+        ),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)"
+    )
+
+    # Display the map
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.markdown("---")
+
     # Games Played Per Format
     st.markdown("### Games Played Per Format")
     game_formats = ["Total Daily Games", "Total Rapid Games", "Total Blitz Games", "Total Bullet Games"]
@@ -252,7 +299,7 @@ with tab1:
 
 # Tab 2: Leaderboards
 with tab2:
-    st.markdown("## 🏆 Leaderboards")
+    st.markdown("## 🏆 Rating Leaderboards")
     # Slider for number of top players
     top_n = st.slider("Select Number of Top Players", 1, 50, 10)
 
@@ -295,6 +342,74 @@ with tab2:
 
     # Display the DataFrame
     st.table(top_players[display_columns])
+
+        # Most Games Played Leaderboard
+    st.markdown("## 🏅 Most Games Played Leaderboard")
+
+    # Select the format for leaderboard
+    game_format = st.selectbox(
+        "Select Game Format for Leaderboard",
+        ["Total Games Played", "Daily Games", "Rapid Games", "Blitz Games", "Bullet Games"]
+    )
+
+    # Map the format to column names
+    format_to_column_map = {
+        "Total Games Played": "Total Games Played",
+        "Daily Games": "Total Daily Games",
+        "Rapid Games": "Total Rapid Games",
+        "Blitz Games": "Total Blitz Games",
+        "Bullet Games": "Total Bullet Games"
+    }
+
+    # Corresponding Win, Loss, and Draw columns for win percentage
+    win_loss_draw_map = {
+        "Total Games Played": None,  # No specific win/loss/draw stats for total games
+        "Daily Games": ["Daily Wins", "Daily Losses", "Daily Draws"],
+        "Rapid Games": ["Rapid Wins", "Rapid Losses", "Rapid Draws"],
+        "Blitz Games": ["Blitz Wins", "Blitz Losses", "Blitz Draws"],
+        "Bullet Games": ["Bullet Wins", "Bullet Losses", "Bullet Draws"]
+    }
+
+    selected_column = format_to_column_map[game_format]
+    win_loss_draw_columns = win_loss_draw_map[game_format]
+
+    # Slider to select the number of top players
+    top_n_games = st.slider(f"Select Number of Top Players by {game_format}", 1, 50, 10)
+
+    # Filter players with at least 10 games played in the selected format
+    valid_players = data[data[selected_column] >= 10]
+
+    # Calculate Win Percentage if applicable
+    if win_loss_draw_columns:
+        valid_players["Win Percentage"] = (
+            valid_players[win_loss_draw_columns[0]] / 
+            (valid_players[win_loss_draw_columns[0]] +
+            valid_players[win_loss_draw_columns[1]] +
+            valid_players[win_loss_draw_columns[2]]) * 100
+        ).fillna(0).round(2)  # Avoid division by zero and round to 2 decimal places
+
+    # Sort by the selected column and pick the top players
+    top_games_players = valid_players.nlargest(top_n_games, selected_column)
+
+    # Add a rank column
+    top_games_players = top_games_players.reset_index(drop=True)
+    top_games_players.index += 1  # Set rank as 1, 2, 3...
+
+    # Columns to display
+    columns_to_display = ["Username", selected_column]
+    if win_loss_draw_columns:
+        columns_to_display += ["Win Percentage"]
+
+    columns_to_display.append("Join Date")  # Add Join Date for context
+
+    # Format numeric columns to display whole numbers
+    top_games_players[selected_column] = top_games_players[selected_column].astype(int)
+    if "Win Percentage" in top_games_players:
+        top_games_players["Win Percentage"] = top_games_players["Win Percentage"].astype(float)
+
+    # Display the leaderboard
+    st.table(top_games_players[columns_to_display])
+
 
 # Tab 3: Search & Comparison
 with tab3:
