@@ -73,7 +73,7 @@ def load_existing_data(filename):
     if not os.path.exists(filename):
         return pd.DataFrame(columns=[
             "username", "join_date", "last_online", "total_games", "total_daily", "total_rapid", "total_bullet", "total_blitz",
-            "daily_rating", "rapid_rating", "bullet_rating", "blitz_rating",
+            "daily_rating", "rapid_rating", "bullet_rating", "blitz_rating", "highest_puzzle_rating", "highest_puzzle_date",
             "daily_wins", "daily_losses", "daily_draws",
             "rapid_wins", "rapid_losses", "rapid_draws",
             "bullet_wins", "bullet_losses", "bullet_draws",
@@ -101,8 +101,11 @@ def extract_data(stats, category):
     losses = record.get("loss", 0)
     draws = record.get("draw", 0)
     rating = last.get("rating", 0)
+    tactics = stats.get("tactics", {})
+    highest_puzzle_rating = tactics.get("highest", {}).get("rating", None)
+    highest_puzzle_date = tactics.get("highest", {}).get("date", None)
     total = wins + losses + draws
-    return total, wins, losses, draws, rating
+    return total, wins, losses, draws, rating, highest_puzzle_rating, highest_puzzle_date
 
 # Main function
 def main():
@@ -139,7 +142,7 @@ def main():
         total_rapid, rapid_wins, rapid_losses, rapid_draws, rapid_rating = extract_data(stats, "chess_rapid")
         total_bullet, bullet_wins, bullet_losses, bullet_draws, bullet_rating = extract_data(stats, "chess_bullet")
         total_blitz, blitz_wins, blitz_losses, blitz_draws, blitz_rating = extract_data(stats, "chess_blitz")
-
+        highest_puzzle_rating, highest_puzzle_date = extract_data(stats, "tactics")
         # Aggregate total games played
         total_games = total_daily + total_rapid + total_bullet + total_blitz
          # Fetch join date and last online for the player
@@ -159,6 +162,8 @@ def main():
             data.loc[data["username"] == username, "rapid_rating"] = rapid_rating
             data.loc[data["username"] == username, "bullet_rating"] = bullet_rating
             data.loc[data["username"] == username, "blitz_rating"] = blitz_rating
+            data.loc[data["username"] == username, "highest_puzzle_rating"] = highest_puzzle_rating
+            data.loc[data["username"] == username, "highest_puzzle_date"] = highest_puzzle_date
             data.loc[data["username"] == username, "daily_wins"] = daily_wins
             data.loc[data["username"] == username, "daily_losses"] = daily_losses
             data.loc[data["username"] == username, "daily_draws"] = daily_draws
@@ -186,6 +191,8 @@ def main():
                 "rapid_rating": rapid_rating,
                 "bullet_rating": bullet_rating,
                 "blitz_rating": blitz_rating,
+                "highest_puzzle_rating": highest_puzzle_rating,
+                "highest_puzzle_date": highest_puzzle_date,
                 "daily_wins": daily_wins,
                 "daily_losses": daily_losses,
                 "daily_draws": daily_draws,
