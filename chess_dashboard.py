@@ -225,6 +225,15 @@ with tab1:
     st.plotly_chart(fig_join_trend, use_container_width=True)
 
     st.markdown("---")
+
+    st.markdown(
+        f"""
+        <div style="font-size: 1.6rem; font-weight: bold; margin-bottom: 1rem;">
+            Player Distribution Across Africa
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     #African players heatmap
     country_df = pd.read_csv("african_country_player_counts.csv")
     fig = px.choropleth(
@@ -252,10 +261,8 @@ with tab1:
     fig.update_layout(
         margin={"r": 10, "t": 50, "l": 10, "b": 10},
         title={
-            "text": "Player Distribution Across Africa",
-            "x": 0.5,
-            "xanchor": "center",
-            "font": dict(size=20),
+            "text": "Number of recently active players per country"
+           
         },
         coloraxis_colorbar=dict(
             title="Players",
@@ -405,10 +412,35 @@ with tab2:
     # Format numeric columns to display whole numbers
     top_games_players[selected_column] = top_games_players[selected_column].astype(int)
     if "Win Percentage" in top_games_players:
-        top_games_players["Win Percentage"] = top_games_players["Win Percentage"].astype(float)
+        top_games_players["Win Percentage"] = top_games_players["Win Percentage"].astype(int)
 
     # Display the leaderboard
     st.table(top_games_players[columns_to_display])
+
+        # Puzzle Rating Leaderboard
+    st.markdown("## 🧩 Puzzle Rating Leaderboard")
+
+    # Slider for number of top players
+    top_n_puzzle = st.slider("Select Number of Top Players", 1, 50, 10, key="puzzle_top_n")
+
+    # Filter players with valid puzzle ratings
+    filtered_puzzle_players = data[data['Puzzle Rating'] > 0]
+
+    # Sort and select the top players by puzzle rating
+    top_puzzle_players = filtered_puzzle_players.nlargest(top_n_puzzle, 'Puzzle Rating')
+
+    # Add a rank column
+    top_puzzle_players = top_puzzle_players.reset_index(drop=True)
+    top_puzzle_players.index += 1  # Set rank as 1, 2, 3...
+
+    # Format numeric columns to display whole numbers
+    top_puzzle_players['Puzzle Rating'] = top_puzzle_players['Puzzle Rating'].astype(int)
+
+    st.table(
+        top_puzzle_players[["Username", "Puzzle Rating", "Date",]]
+
+    )
+
 
 
 # Tab 3: Search & Comparison
@@ -512,8 +544,8 @@ with tab3:
                         <p>{int(player["Bullet Rating"]) if player["Bullet Rating"] > 0 else "N/A"}</p>
                     </div>
                     <div class="search-metric-box">
-                        <h3>Join Date 🗓️</h3>
-                        <p>{player["Join Date"] if pd.notna(player["Join Date"]) else "Unknown"}</p>
+                        <h3>Puzzle Rating 🧩</h3>
+                        <p>{int(player["Puzzle Rating"]) if pd.notna(player["Puzzle Rating"]) else "N/A"}</p>
                     </div>
                 </div>
                 """,
@@ -525,7 +557,7 @@ with tab3:
             
             #Calculate rankings for sentence summary
             rankings = {}
-            formats = ["Daily Rating", "Rapid Rating", "Blitz Rating", "Bullet Rating"]
+            formats = ["Daily Rating", "Rapid Rating", "Blitz Rating", "Bullet Rating", "Puzzle Rating"]
             for fmt in formats:
                 if player[fmt] > 0:
                     rankings[fmt] = (
@@ -553,7 +585,8 @@ with tab3:
                 f"{rankings['Daily Rating']} in Daily, "
                 f"{rankings['Rapid Rating']} in Rapid, "
                 f"{rankings['Blitz Rating']} in Blitz, "
-                f"and {rankings['Bullet Rating']} in Bullet."
+                f" {rankings['Bullet Rating']} in Bullet "
+                f"and {rankings['Puzzle Rating']} in Puzzles."
             )
 
             st.markdown(
