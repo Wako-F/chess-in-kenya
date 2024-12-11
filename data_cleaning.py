@@ -4,15 +4,18 @@ file_path = "kenyan_chess_players_partial.csv"
 
 data = pd.read_csv(file_path)
 
-#Remove last_online
-if 'last_online' in data.columns:
-    data = data.drop(columns=['last_online'])
+# #Remove last_online
+# if 'last_online' in data.columns:
+#     data = data.drop(columns=['last_online'])
 
-
+# Convert 'highest_puzzle_date' from Unix timestamp to readable date
+if 'highest_puzzle_date' in data.columns:
+    data['highest_puzzle_date'] = pd.to_datetime(data['highest_puzzle_date'], unit='s', errors='coerce')
 #Renaming columns for readability
 renamed_columns = {
     "username": "Username",
     "join_date": "Join Date",
+    "last_online": "Last Online",
     "bullet_rating": "Bullet Rating",
     "blitz_rating": "Blitz Rating",
     "rapid_rating": "Rapid Rating",
@@ -22,6 +25,8 @@ renamed_columns = {
     "total_rapid": "Total Rapid Games",
     "total_bullet": "Total Bullet Games",
     "total_blitz": "Total Blitz Games",
+    "highest_puzzle_rating": "Puzzle Rating",
+    "highest_puzzle_date": "Date",
     "daily_wins": "Daily Wins",
     "daily_losses": "Daily Losses",
     "daily_draws": "Daily Draws",
@@ -67,4 +72,4 @@ cleaned_file = "cleaned_chess_players.csv"
 data.to_csv(cleaned_file, index=False)
 print("Success!")
 
-print(data.head())
+# print(data.head())
