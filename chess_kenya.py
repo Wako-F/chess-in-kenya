@@ -101,11 +101,16 @@ def extract_data(stats, category):
     losses = record.get("loss", 0)
     draws = record.get("draw", 0)
     rating = last.get("rating", 0)
-    tactics = stats.get("tactics", {})
-    highest_puzzle_rating = tactics.get("highest", {}).get("rating", None)
-    highest_puzzle_date = tactics.get("highest", {}).get("date", None)
+    
+        # If "tactics" is passed as the category, handle it differently
+    if category == "tactics":
+        tactics = stats.get("tactics", {})
+        highest_puzzle_rating = tactics.get("highest", {}).get("rating", None)
+        highest_puzzle_date = tactics.get("highest", {}).get("date", None)
+        return highest_puzzle_rating, highest_puzzle_date
+    
     total = wins + losses + draws
-    return total, wins, losses, draws, rating, highest_puzzle_rating, highest_puzzle_date
+    return total, wins, losses, draws, rating
 
 # Main function
 def main():
