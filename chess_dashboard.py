@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import time
+import sqlite3
 
 # Custom CSS
 st.markdown(
@@ -35,20 +37,45 @@ st.markdown(
 
 # Load Data
 @st.cache_data
-# def load_data(filename):
-#     return pd.read_csv(filename)
+def load_data(filename):
+    return pd.read_csv(filename)
 
-# data = load_data("cleaned_chess_players.csv")
+data = load_data("cleaned_master_chess_players.csv")
+# # Connect to the database
+# db_file = "chess_players.db"
+# conn = sqlite3.connect(db_file)
 
-def load_data_from_github():
-    url = "https://raw.githubusercontent.com/Wako-F/chess-in-kenya/refs/heads/main/cleaned_chess_players.csv"
-    return pd.read_csv(url)
-data = load_data_from_github()
+# # Query data
+# query = "SELECT * FROM players"
+# data = pd.read_sql_query(query, conn)
+
+# Close the connection
+# # conn.close()
+# # Ensure numeric columns are converted properly
+# numeric_columns = [
+#     "Bullet Rating", "Blitz Rating", "Rapid Rating", "Daily Rating", "Total Games Played",
+#     "Total Daily Games", "Total Rapid Games", "Total Bullet Games", "Total Blitz Games",
+#     "Puzzle Rating", "Daily Wins", "Daily Losses", "Daily Draws", "Rapid Wins", "Rapid Losses",
+#     "Rapid Draws", "Bullet Wins", "Bullet Losses", "Bullet Draws", "Blitz Wins", "Blitz Losses",
+#     "Blitz Draws", "Daily Win Percentage", "Daily Loss Percentage", "Daily Draw Percentage",
+#     "Rapid Win Percentage", "Rapid Loss Percentage", "Rapid Draw Percentage",
+#     "Bullet Win Percentage", "Bullet Loss Percentage", "Bullet Draw Percentage",
+#     "Blitz Win Percentage", "Blitz Loss Percentage", "Blitz Draw Percentage"
+# ]
+
+# # Convert columns to numeric, coercing errors to NaN
+# data[numeric_columns] = data[numeric_columns].apply(pd.to_numeric, errors="coerce")
+
+# data.set_index('Username', inplace=True)
+# def load_data_from_github():
+#     url = "https://raw.githubusercontent.com/Wako-F/chess-in-kenya/refs/heads/main/cleaned_chess_players.csv"
+#     return pd.read_csv(url)
+# data = load_data_from_github()
 # Ensure 'Join Date' is in datetime format
-data['Join Date'] = pd.to_datetime(data['Join Date'], errors='coerce')
+# data['Join Date'] = pd.to_datetime(data['Join Date'], errors='coerce')
 
-# Drop rows with invalid or missing join dates
-data = data.dropna(subset=['Join Date'])
+# # Drop rows with invalid or missing join dates
+# data = data.dropna(subset=['Join Date'])
 st.markdown("# Online Chess in Kenya ♚")
 
 # Tabs for Navigation
@@ -132,7 +159,7 @@ with tab1:
         f"""
         <div class="metrics-container">
             <div class="metric-box">
-                <h3>Recently Active Players ♟️</h3>
+                <h3>Total Players ♟️</h3>
                 <p>{total_players:,}</p>
             </div>
             <div class="metric-box">
@@ -352,10 +379,11 @@ with tab2:
 
         # Most Games Played Leaderboard
     st.markdown("## 🏅 Most Games Played Leaderboard")
-
+    # Slider to select the number of top players
+    top_n_games = st.slider(f"Select Number of Top Players by Games Played", 1, 50, 10)
     # Select the format for leaderboard
     game_format = st.selectbox(
-        "Select Game Format for Leaderboard",
+        "Select Format ",
         ["Total Games Played", "Daily Games", "Rapid Games", "Blitz Games", "Bullet Games"]
     )
 
@@ -380,8 +408,7 @@ with tab2:
     selected_column = format_to_column_map[game_format]
     win_loss_draw_columns = win_loss_draw_map[game_format]
 
-    # Slider to select the number of top players
-    top_n_games = st.slider(f"Select Number of Top Players by {game_format}", 1, 50, 10)
+    
 
     # Filter players with at least 10 games played in the selected format
     valid_players = data[data[selected_column] >= 10]
@@ -445,12 +472,26 @@ with tab2:
 
 # Tab 3: Search & Comparison
 with tab3:
+        # Load data
+    # @st.cache_data
+    # def load_data():
+    #     # Connect to the database and fetch the data
+    #     conn = sqlite3.connect("chess_data.db")
+    #     query = "SELECT * FROM players"
+    #     data = pd.read_sql_query(query, conn)
+    #     conn.close()
+    #     return data
+
+    # data = load_data()
+
+    # Set index for faster searching
+    # data.set_index("Username", inplace=True)
             # Player Search
     st.markdown("## 🔎 Search Player Stats")
 
     # Text input for searching a player's username
-    search_username = st.text_input("", placeholder="Type a username...")
-
+    search_username = st.text_input("", placeholder="Type a username...", key="search")
+    start_time = time.time()
     # Check if the user has entered a username
     if search_username:
         # Filter the data for the entered username (case-insensitive)
@@ -597,6 +638,7 @@ with tab3:
                 """,
                 unsafe_allow_html=True,
             )
+        
             st.markdown("---")
             # Display detailed stats for each format
             st.markdown("#### 🎯 Format-Specific Stats")
@@ -643,3 +685,5 @@ with tab3:
             )
         else:
             st.error(f"No player found with username: {search_username}")
+        end_time = time.time()
+        st.write(f"Search took {end_time - start_time:.2f} seconds")
