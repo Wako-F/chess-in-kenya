@@ -256,7 +256,7 @@ with tab1:
     st.markdown(
         f"""
         <div style="font-size: 1.6rem; font-weight: bold; margin-bottom: 1rem;">
-            Player Distribution Across Africa
+            Recently Active Player Distribution Across Africa
         </div>
         """,
         unsafe_allow_html=True,
@@ -271,7 +271,7 @@ with tab1:
         hover_data={"Player Count": True, "ISO-3": False},
         color_continuous_scale="Viridis",
         locationmode="ISO-3",
-        title="Player Distribution Across Africa",
+        # title="Player Distribution Across Africa",
     )
 
     # Update layout for better fit and centering
@@ -286,9 +286,9 @@ with tab1:
 
     # Update figure layout
     fig.update_layout(
-        margin={"r": 10, "t": 50, "l": 10, "b": 10},
+        # margin={"r": 10, "t": 50, "l": 10, "b": 10},
         title={
-            "text": "Number of recently active players per country"
+            # "text": "Number of recently active players per country"
            
         },
         coloraxis_colorbar=dict(
