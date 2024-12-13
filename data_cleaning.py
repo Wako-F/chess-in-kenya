@@ -1,6 +1,6 @@
 import pandas as pd
 
-file_path = "kenyan_chess_players_partial.csv"
+file_path = "master_chess_players.csv"
 
 data = pd.read_csv(file_path)
 
@@ -42,18 +42,18 @@ renamed_columns = {
 }
 data.rename(columns=renamed_columns, inplace=True)
 
-#Remove players with all zero ratings from these columns:
-rating_columns = ["Bullet Rating", "Blitz Rating", "Rapid Rating", "Daily Rating"]
-game_count_columns = [
-    "Total Games Played",
-    "Total Daily Games",
-    "Total Rapid Games",
-    "Total Bullet Games",
-    "Total Blitz Games",
-]
+# #Remove players with all zero ratings from these columns:
+# rating_columns = ["Bullet Rating", "Blitz Rating", "Rapid Rating", "Daily Rating"]
+# game_count_columns = [
+#     "Total Games Played",
+#     "Total Daily Games",
+#     "Total Rapid Games",
+#     "Total Bullet Games",
+#     "Total Blitz Games",
+# ]
 
-valid_rows = ~((data[rating_columns] == 0).all(axis=1) & (data[game_count_columns] == 0).all(axis=1))
-data = data[valid_rows]
+# valid_rows = ~((data[rating_columns] == 0).all(axis=1) & (data[game_count_columns] == 0).all(axis=1))
+# data = data[valid_rows]
 
 #Some derived metrics
 formats = ["Daily", "Rapid", "Bullet", "Blitz"]
@@ -68,7 +68,7 @@ for fmt in formats:
         data[f"{fmt} Draws"] / data[f"Total {fmt} Games"] * 100
     ).fillna(0).round(0).astype(int)
 
-cleaned_file = "cleaned_chess_players.csv"
+cleaned_file = "cleaned_master_chess_players.csv"
 data.to_csv(cleaned_file, index=False)
 print("Success!")
 
