@@ -687,3 +687,4 @@ with tab3:
             st.error(f"No player found with username: {search_username}")
         end_time = time.time()
         st.write(f"Search took {end_time - start_time:.2f} seconds")
+# Auto-refresh triggered at 2024-12-15T23:37:00.808352
