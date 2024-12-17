@@ -585,7 +585,7 @@ with tab3:
                         <p>{int(player["Bullet Rating"]) if player["Bullet Rating"] > 0 else "N/A"}</p>
                     </div>
                     <div class="search-metric-box">
-                        <h3>Puzzle Rating 🧩</h3>
+                        <h3>Highest Puzzle Rating 🧩</h3>
                         <p>{int(player["Puzzle Rating"]) if pd.notna(player["Puzzle Rating"]) else "N/A"}</p>
                     </div>
                 </div>
@@ -690,3 +690,5 @@ with tab3:
 # Auto-refresh triggered at 2024-12-15T23:37:00.808352
 
 # Auto-refresh triggered at 2024-12-17T03:16:23.135702
+
+# Auto-refresh triggered at 2024-12-18T00:59:14.306297

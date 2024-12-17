@@ -1,55 +1,55 @@
 Country Code,ISO-3,Country Name,Player Count
-DZ,DZA,Algeria,10000
-AO,AGO,Angola,1101
-BJ,BEN,Benin,167
-BW,BWA,Botswana,938
-BF,BFA,Burkina Faso,135
-BI,BDI,Burundi,83
-CM,CMR,Cameroon,749
-CV,CPV,Cabo Verde,228
-CF,CAF,Central African Republic,52
-TD,TCD,Chad,265
-KM,COM,Comoros,57
-CG,COG,Congo,140
-CD,COD,Congo (DRC),479
-CI,CIV,Côte d'Ivoire,640
-DJ,DJI,Djibouti,197
-EG,EGY,Egypt,10000
-GQ,GNQ,Equatorial Guinea,60
-ER,ERI,Eritrea,134
-SZ,SWZ,Eswatini,185
-ET,ETH,Ethiopia,2111
-GA,GAB,Gabon,193
-GM,GMB,Gambia,77
-GH,GHA,Ghana,1293
-GN,GIN,Guinea,73
-GW,GNB,Guinea-Bissau,35
-KE,KEN,Kenya,5556
-LS,LSO,Lesotho,236
-LR,LBR,Liberia,101
-LY,LBY,Libya,1728
-MG,MDG,Madagascar,1600
-MW,MWI,Malawi,499
-ML,MLI,Mali,124
-MR,MRT,Mauritania,255
-MU,MUS,Mauritius,788
-MA,MAR,Morocco,10000
-MZ,MOZ,Mozambique,654
-NA,NAM,Namibia,523
-NE,NER,Niger,444
-NG,NGA,Nigeria,8525
-RW,RWA,Rwanda,261
-ST,STP,Sao Tome and Principe,128
-SN,SEN,Senegal,501
-SC,SYC,Seychelles,340
-SL,SLE,Sierra Leone,91
-SO,SOM,Somalia,801
-ZA,ZAF,South Africa,10000
-SS,SSD,South Sudan,167
-SD,SDN,Sudan,1270
-TZ,TZA,Tanzania,423
-TG,TGO,Togo,253
-TN,TUN,Tunisia,7804
-UG,UGA,Uganda,1457
-ZM,ZMB,Zambia,1471
-ZW,ZWE,Zimbabwe,1992
+DZ,DZA,Algeria,
+AO,AGO,Angola,
+BJ,BEN,Benin,
+BW,BWA,Botswana,
+BF,BFA,Burkina Faso,
+BI,BDI,Burundi,
+CM,CMR,Cameroon,
+CV,CPV,Cabo Verde,
+CF,CAF,Central African Republic,
+TD,TCD,Chad,
+KM,COM,Comoros,
+CG,COG,Congo,
+CD,COD,Congo (DRC),
+CI,CIV,Côte d'Ivoire,
+DJ,DJI,Djibouti,
+EG,EGY,Egypt,
+GQ,GNQ,Equatorial Guinea,
+ER,ERI,Eritrea,
+SZ,SWZ,Eswatini,
+ET,ETH,Ethiopia,
+GA,GAB,Gabon,
+GM,GMB,Gambia,
+GH,GHA,Ghana,
+GN,GIN,Guinea,
+GW,GNB,Guinea-Bissau,
+KE,KEN,Kenya,
+LS,LSO,Lesotho,
+LR,LBR,Liberia,
+LY,LBY,Libya,
+MG,MDG,Madagascar,
+MW,MWI,Malawi,
+ML,MLI,Mali,
+MR,MRT,Mauritania,
+MU,MUS,Mauritius,
+MA,MAR,Morocco,
+MZ,MOZ,Mozambique,
+NA,NAM,Namibia,
+NE,NER,Niger,
+NG,NGA,Nigeria,
+RW,RWA,Rwanda,
+ST,STP,Sao Tome and Principe,
+SN,SEN,Senegal,
+SC,SYC,Seychelles,
+SL,SLE,Sierra Leone,
+SO,SOM,Somalia,
+ZA,ZAF,South Africa,
+SS,SSD,South Sudan,
+SD,SDN,Sudan,
+TZ,TZA,Tanzania,
+TG,TGO,Togo,
+TN,TUN,Tunisia,
+UG,UGA,Uganda,
+ZM,ZMB,Zambia,
+ZW,ZWE,Zimbabwe,
