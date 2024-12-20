@@ -1,8 +1,7 @@
 import subprocess
 import logging
 import os
-import time
-
+from datetime import datetime
 # Configure logging
 logging.basicConfig(
     filename="automation_log.log",
@@ -13,29 +12,33 @@ logging.basicConfig(
 # Define your scripts and files
 SCRIPTS = {
     "update_data": "chess_kenya.py",
-    "clean_data": "data_cleaning.py",
-    # "dashboard": "chess_dashboard.py"
+    "update_master_ledger": "update_master_ledger.py",
+    "update_african_players": "africa_count.py",
+    "clean_data": "data_cleaning.py"
 }
-CLEANED_DATA_FILE = "cleaned_chess_players.csv"
-REPO_PATH = r"C:\Users\Datac\OneDrive\Desktop\New folder (2)"
+CLEANED_DATA_FILE = "cleaned_master_chess_players.csv"
+AFRICA_PLAYER_COUNT = "african_country_player_counts.csv"
+DASHBOARD_FILE= "chess_dashboard.py"
+
 GIT_COMMIT_MESSAGE = "Automated update of chess players data"
 
-def run_script(automation_script):
+
+def run_script(script_name):
     """Run a Python script and log the outcome."""
     try:
-        logging.info(f"Running script: {automation_script}")
-        subprocess.run(["python", automation_script], check=True)
-        logging.info(f"Successfully ran: {automation_script}")
+        logging.info(f"Executing script: {script_name}")
+        subprocess.run(["python", script_name], check=True)
+        logging.info(f"Script executed successfully: {script_name}")
     except subprocess.CalledProcessError as e:
-        logging.error(f"Error running {automation_script}: {e}")
+        logging.error(f"Error executing script {script_name}: {e}")
         raise
+
 
 def push_to_github():
     """Push updated data to GitHub."""
     try:
-        os.chdir(REPO_PATH)
         logging.info("Adding files to GitHub...")
-        subprocess.run(["git", "add", "."], check=True)
+        subprocess.run(["git", "add", CLEANED_DATA_FILE, DASHBOARD_FILE, AFRICA_PLAYER_COUNT], check=True)
         subprocess.run(["git", "commit", "-m", GIT_COMMIT_MESSAGE], check=True)
         subprocess.run(["git", "push"], check=True)
         logging.info("Changes pushed to GitHub successfully.")
@@ -43,20 +46,34 @@ def push_to_github():
         logging.error(f"Error pushing to GitHub: {e}")
         raise
 
+def add_comment_to_dashboard(file_path):
+    """Add a comment to the end of the Streamlit dashboard file to trigger auto-refresh."""
+    try:
+        with open(file_path, "a") as f:
+            f.write(f"\n# Auto-refresh triggered at {datetime.now().isoformat()}\n")
+        logging.info(f"Comment added to {file_path} for auto-refresh.")
+    except Exception as e:
+        logging.error(f"Error adding comment to {file_path}: {e}")
+        raise
+
 def main():
     """Main automation workflow."""
     try:
-        # Step 1: Update Data?
+        # Step 1: Update data
+        run_script(SCRIPTS["update_data"])
+        # Step 2: Update master ledger
+        run_script(SCRIPTS["update_master_ledger"])
+        # Step 3: Update African player count
+        run_script(SCRIPTS["update_african_players"])
+        # Step 4: Clean data
+        run_script(SCRIPTS["clean_data"])
 
-        # Step 3: Run Dashboard (Optional - for local testing)
-        # run_script(SCRIPTS["dashboard"])
+        add_comment_to_dashboard(DASHBOARD_FILE)
 
-        # Step 4: Push to GitHub
+        # Step 5: Push cleaned data to GitHub
         push_to_github()
-
-        logging.info("Automation completed successfully.")
     except Exception as e:
-        logging.error(f"Automation failed: {e}")
+        logging.error(f"Automation workflow failed: {e}")
 
 if __name__ == "__main__":
     main()

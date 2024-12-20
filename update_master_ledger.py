@@ -42,21 +42,26 @@ def update_master_ledger(partial_data, master_ledger):
         if col not in partial_data.columns:
             partial_data[col] = None  # Add missing columns with default None
 
-    # Add `last_online` timestamp to the partial data
-    # partial_data["last_online"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # Align columns
+    partial_data = partial_data[REQUIRED_COLUMNS]
+    master_ledger = master_ledger[REQUIRED_COLUMNS]
 
-    # Set 'username' as the index for both DataFrames to align rows
-    master_ledger = master_ledger.set_index("username")
-    partial_data = partial_data.set_index("username")
+    # Set 'username' as the index for both DataFrames
+    master_ledger.set_index("username", inplace=True)
+    partial_data.set_index("username", inplace=True)
 
-    # Update master ledger with the latest data from partial_data
-    updated_ledger = master_ledger.combine_first(partial_data).reset_index()
+    # Update existing players
+    master_ledger.update(partial_data)
+
+    # Add new players
+    new_players = partial_data.loc[~partial_data.index.isin(master_ledger.index)]
+    updated_ledger = pd.concat([master_ledger, new_players]).reset_index()
 
     # Ensure the updated ledger has all required columns
     updated_ledger = updated_ledger[REQUIRED_COLUMNS]
 
     # Log changes
-    new_players_count = len(updated_ledger) - len(master_ledger)
+    new_players_count = len(new_players)
     logging.info(f"Master ledger updated: {new_players_count} new players added.")
     return updated_ledger, new_players_count
 

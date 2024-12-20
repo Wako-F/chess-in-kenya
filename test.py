@@ -1,9 +1,11 @@
-import requests
+import sqlite3
+import pandas as pd
 
-username = "kunuwako"  # Replace with a valid username
-BASE_URL = "https://api.chess.com/pub"
-HEADERS = {"User-Agent": "Chess-in-Kenya (Contact: wakokunu@gmail.com)"}
+# Connect to the database
+conn = sqlite3.connect("chess_players.db")
 
-stats_url = f"{BASE_URL}/player/{username}/stats"
-response = requests.get(stats_url, headers=HEADERS, timeout=10)
-print(response.json())  # Print the full response
+# Query the data
+df = pd.read_sql_query("SELECT * FROM players", conn)
+print(df.describe())  # Summary statistics
+print(df.head())      # First few rows
+conn.close()

@@ -1,0 +1,904 @@
+2024-12-10 12:15:42,608 - INFO - Fetched 7435 players for DZ.
+2024-12-10 12:15:43,973 - INFO - Fetched 812 players for AO.
+2024-12-10 12:15:45,672 - INFO - Fetched 128 players for BJ.
+2024-12-10 12:15:47,387 - INFO - Fetched 758 players for BW.
+2024-12-10 12:15:48,770 - INFO - Fetched 117 players for BF.
+2024-12-10 12:15:50,635 - INFO - Fetched 60 players for BI.
+2024-12-10 12:15:52,340 - INFO - Fetched 549 players for CM.
+2024-12-10 12:15:54,016 - INFO - Fetched 160 players for CV.
+2024-12-10 12:15:55,710 - INFO - Fetched 42 players for CF.
+2024-12-10 12:15:57,394 - INFO - Fetched 246 players for TD.
+2024-12-10 12:15:58,798 - INFO - Fetched 41 players for KM.
+2024-12-10 12:16:00,229 - INFO - Fetched 109 players for CG.
+2024-12-10 12:16:01,683 - INFO - Fetched 322 players for CD.
+2024-12-10 12:16:03,356 - INFO - Fetched 479 players for CI.
+2024-12-10 12:16:05,042 - INFO - Fetched 173 players for DJ.
+2024-12-10 12:16:06,948 - INFO - Fetched 10000 players for EG.
+2024-12-10 12:16:08,599 - INFO - Fetched 47 players for GQ.
+2024-12-10 12:16:10,288 - INFO - Fetched 104 players for ER.
+2024-12-10 12:16:12,021 - INFO - Fetched 162 players for SZ.
+2024-12-10 12:16:13,757 - INFO - Fetched 1445 players for ET.
+2024-12-10 12:16:15,423 - INFO - Fetched 125 players for GA.
+2024-12-10 12:16:17,371 - INFO - Fetched 66 players for GM.
+2024-12-10 12:16:19,054 - INFO - Fetched 967 players for GH.
+2024-12-10 12:16:20,718 - INFO - Fetched 46 players for GN.
+2024-12-10 12:16:22,123 - INFO - Fetched 29 players for GW.
+2024-12-10 12:16:23,481 - INFO - Fetched 5805 players for KE.
+2024-12-10 12:16:25,165 - INFO - Fetched 202 players for LS.
+2024-12-10 12:16:26,821 - INFO - Fetched 99 players for LR.
+2024-12-10 12:16:28,507 - INFO - Fetched 1162 players for LY.
+2024-12-10 12:16:29,869 - INFO - Fetched 1189 players for MG.
+2024-12-10 12:16:31,541 - INFO - Fetched 375 players for MW.
+2024-12-10 12:16:32,878 - INFO - Fetched 87 players for ML.
+2024-12-10 12:16:34,264 - INFO - Fetched 190 players for MR.
+2024-12-10 12:16:36,115 - INFO - Fetched 529 players for MU.
+2024-12-10 12:16:37,578 - INFO - Fetched 10000 players for MA.
+2024-12-10 12:16:39,310 - INFO - Fetched 538 players for MZ.
+2024-12-10 12:16:40,983 - INFO - Fetched 397 players for NA.
+2024-12-10 12:16:42,669 - INFO - Fetched 320 players for NE.
+2024-12-10 12:16:44,411 - INFO - Fetched 6305 players for NG.
+2024-12-10 12:16:45,749 - INFO - Fetched 184 players for RW.
+2024-12-10 12:16:47,441 - INFO - Fetched 99 players for ST.
+2024-12-10 12:16:49,114 - INFO - Fetched 352 players for SN.
+2024-12-10 12:16:50,855 - INFO - Fetched 338 players for SC.
+2024-12-10 12:16:52,602 - INFO - Fetched 85 players for SL.
+2024-12-10 12:16:54,011 - INFO - Fetched 626 players for SO.
+2024-12-10 12:16:55,839 - INFO - Fetched 10000 players for ZA.
+2024-12-10 12:16:57,171 - INFO - Fetched 113 players for SS.
+2024-12-10 12:16:58,882 - INFO - Fetched 914 players for SD.
+2024-12-10 12:17:00,259 - INFO - Fetched 330 players for TZ.
+2024-12-10 12:17:01,612 - INFO - Fetched 196 players for TG.
+2024-12-10 12:17:03,058 - INFO - Fetched 5226 players for TN.
+2024-12-10 12:17:04,755 - INFO - Fetched 1130 players for UG.
+2024-12-10 12:17:06,512 - INFO - Fetched 1070 players for ZM.
+2024-12-10 12:17:07,898 - INFO - Fetched 1672 players for ZW.
+2024-12-10 12:17:08,956 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-10 13:19:22,755 - INFO - Fetched 7435 players for DZ.
+2024-12-10 13:19:24,424 - INFO - Fetched 812 players for AO.
+2024-12-10 13:19:26,115 - INFO - Fetched 128 players for BJ.
+2024-12-10 13:19:27,810 - INFO - Fetched 758 players for BW.
+2024-12-10 13:19:29,473 - INFO - Fetched 117 players for BF.
+2024-12-10 13:19:31,148 - INFO - Fetched 60 players for BI.
+2024-12-10 13:19:32,793 - INFO - Fetched 549 players for CM.
+2024-12-10 13:19:35,136 - INFO - Fetched 160 players for CV.
+2024-12-10 13:19:36,809 - INFO - Fetched 42 players for CF.
+2024-12-10 13:19:38,497 - INFO - Fetched 246 players for TD.
+2024-12-10 13:19:40,153 - INFO - Fetched 41 players for KM.
+2024-12-10 13:19:41,982 - INFO - Fetched 109 players for CG.
+2024-12-10 13:19:43,621 - INFO - Fetched 322 players for CD.
+2024-12-10 13:19:45,294 - INFO - Fetched 479 players for CI.
+2024-12-10 13:19:46,948 - INFO - Fetched 173 players for DJ.
+2024-12-10 13:19:48,616 - INFO - Fetched 10000 players for EG.
+2024-12-10 13:19:50,255 - INFO - Fetched 47 players for GQ.
+2024-12-10 13:19:51,911 - INFO - Fetched 104 players for ER.
+2024-12-10 13:19:53,585 - INFO - Fetched 162 players for SZ.
+2024-12-10 13:19:55,779 - INFO - Fetched 1445 players for ET.
+2024-12-10 13:19:57,453 - INFO - Fetched 125 players for GA.
+2024-12-10 13:20:00,155 - INFO - Fetched 66 players for GM.
+2024-12-10 13:20:01,828 - INFO - Fetched 967 players for GH.
+2024-12-10 13:20:03,796 - INFO - Fetched 46 players for GN.
+2024-12-10 13:20:05,447 - INFO - Fetched 29 players for GW.
+2024-12-10 13:20:07,254 - INFO - Fetched 5805 players for KE.
+2024-12-10 13:20:08,915 - INFO - Fetched 202 players for LS.
+2024-12-10 13:20:10,996 - INFO - Fetched 99 players for LR.
+2024-12-10 13:20:12,631 - INFO - Fetched 1162 players for LY.
+2024-12-10 13:20:14,284 - INFO - Fetched 1189 players for MG.
+2024-12-10 13:20:15,965 - INFO - Fetched 375 players for MW.
+2024-12-10 13:20:17,624 - INFO - Fetched 87 players for ML.
+2024-12-10 13:20:19,290 - INFO - Fetched 190 players for MR.
+2024-12-10 13:20:21,009 - INFO - Fetched 529 players for MU.
+2024-12-10 13:20:22,657 - INFO - Fetched 10000 players for MA.
+2024-12-10 13:20:24,337 - INFO - Fetched 538 players for MZ.
+2024-12-10 13:20:26,025 - INFO - Fetched 397 players for NA.
+2024-12-10 13:20:27,708 - INFO - Fetched 320 players for NE.
+2024-12-10 13:20:29,391 - INFO - Fetched 6305 players for NG.
+2024-12-10 13:20:31,049 - INFO - Fetched 184 players for RW.
+2024-12-10 13:20:32,938 - INFO - Fetched 99 players for ST.
+2024-12-10 13:20:34,631 - INFO - Fetched 352 players for SN.
+2024-12-10 13:20:36,341 - INFO - Fetched 338 players for SC.
+2024-12-10 13:20:38,057 - INFO - Fetched 85 players for SL.
+2024-12-10 13:20:39,747 - INFO - Fetched 626 players for SO.
+2024-12-10 13:20:41,475 - INFO - Fetched 10000 players for ZA.
+2024-12-10 13:20:43,294 - INFO - Fetched 113 players for SS.
+2024-12-10 13:20:44,963 - INFO - Fetched 914 players for SD.
+2024-12-10 13:20:46,649 - INFO - Fetched 330 players for TZ.
+2024-12-10 13:20:48,340 - INFO - Fetched 196 players for TG.
+2024-12-10 13:20:49,998 - INFO - Fetched 5226 players for TN.
+2024-12-10 13:20:52,022 - INFO - Fetched 1130 players for UG.
+2024-12-10 13:20:53,859 - INFO - Fetched 1070 players for ZM.
+2024-12-10 13:20:55,544 - INFO - Fetched 1672 players for ZW.
+2024-12-10 13:20:56,555 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-10 13:30:30,562 - INFO - Fetched 7435 players for Algeria (DZ).
+2024-12-10 13:30:32,160 - INFO - Fetched 812 players for Angola (AO).
+2024-12-10 13:30:33,738 - INFO - Fetched 128 players for Benin (BJ).
+2024-12-10 13:30:35,292 - INFO - Fetched 758 players for Botswana (BW).
+2024-12-10 13:30:36,867 - INFO - Fetched 117 players for Burkina Faso (BF).
+2024-12-10 13:30:38,424 - INFO - Fetched 60 players for Burundi (BI).
+2024-12-10 13:30:40,000 - INFO - Fetched 549 players for Cameroon (CM).
+2024-12-10 13:30:41,563 - INFO - Fetched 160 players for Cabo Verde (CV).
+2024-12-10 13:30:43,124 - INFO - Fetched 42 players for Central African Republic (CF).
+2024-12-10 13:30:44,698 - INFO - Fetched 246 players for Chad (TD).
+2024-12-10 13:30:46,264 - INFO - Fetched 41 players for Comoros (KM).
+2024-12-10 13:30:47,809 - INFO - Fetched 109 players for Congo (CG).
+2024-12-10 13:30:49,434 - INFO - Fetched 322 players for Congo (DRC) (CD).
+2024-12-10 13:30:51,015 - INFO - Fetched 479 players for Côte d'Ivoire (CI).
+2024-12-10 13:30:52,763 - INFO - Fetched 173 players for Djibouti (DJ).
+2024-12-10 13:30:54,510 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-10 13:30:55,856 - INFO - Fetched 47 players for Equatorial Guinea (GQ).
+2024-12-10 13:30:57,444 - INFO - Fetched 104 players for Eritrea (ER).
+2024-12-10 13:31:00,619 - INFO - Fetched 162 players for Eswatini (SZ).
+2024-12-10 13:31:02,191 - INFO - Fetched 1445 players for Ethiopia (ET).
+2024-12-10 13:31:03,771 - INFO - Fetched 125 players for Gabon (GA).
+2024-12-10 13:31:05,741 - INFO - Fetched 66 players for Gambia (GM).
+2024-12-10 13:31:07,276 - INFO - Fetched 967 players for Ghana (GH).
+2024-12-10 13:31:08,869 - INFO - Fetched 46 players for Guinea (GN).
+2024-12-10 13:31:10,435 - INFO - Fetched 29 players for Guinea-Bissau (GW).
+2024-12-10 13:31:12,052 - INFO - Fetched 5805 players for Kenya (KE).
+2024-12-10 13:31:13,414 - INFO - Fetched 202 players for Lesotho (LS).
+2024-12-10 13:31:14,965 - INFO - Fetched 99 players for Liberia (LR).
+2024-12-10 13:31:16,506 - INFO - Fetched 1162 players for Libya (LY).
+2024-12-10 13:31:18,042 - INFO - Fetched 1189 players for Madagascar (MG).
+2024-12-10 13:31:19,736 - INFO - Fetched 375 players for Malawi (MW).
+2024-12-10 13:31:21,289 - INFO - Fetched 87 players for Mali (ML).
+2024-12-10 13:31:22,842 - INFO - Fetched 190 players for Mauritania (MR).
+2024-12-10 13:31:24,406 - INFO - Fetched 529 players for Mauritius (MU).
+2024-12-10 13:31:26,033 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-10 13:31:27,588 - INFO - Fetched 538 players for Mozambique (MZ).
+2024-12-10 13:31:29,154 - INFO - Fetched 397 players for Namibia (NA).
+2024-12-10 13:31:30,687 - INFO - Fetched 320 players for Niger (NE).
+2024-12-10 13:31:32,231 - INFO - Fetched 6305 players for Nigeria (NG).
+2024-12-10 13:31:33,771 - INFO - Fetched 184 players for Rwanda (RW).
+2024-12-10 13:31:35,311 - INFO - Fetched 99 players for Sao Tome and Principe (ST).
+2024-12-10 13:31:36,860 - INFO - Fetched 352 players for Senegal (SN).
+2024-12-10 13:31:38,444 - INFO - Fetched 338 players for Seychelles (SC).
+2024-12-10 13:31:39,993 - INFO - Fetched 85 players for Sierra Leone (SL).
+2024-12-10 13:31:41,572 - INFO - Fetched 626 players for Somalia (SO).
+2024-12-10 13:31:43,140 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-10 13:31:44,731 - INFO - Fetched 113 players for South Sudan (SS).
+2024-12-10 13:31:46,290 - INFO - Fetched 914 players for Sudan (SD).
+2024-12-10 13:31:47,841 - INFO - Fetched 330 players for Tanzania (TZ).
+2024-12-10 13:31:49,237 - INFO - Fetched 196 players for Togo (TG).
+2024-12-10 13:31:50,784 - INFO - Fetched 5226 players for Tunisia (TN).
+2024-12-10 13:31:52,351 - INFO - Fetched 1130 players for Uganda (UG).
+2024-12-10 13:31:53,919 - INFO - Fetched 1070 players for Zambia (ZM).
+2024-12-10 13:31:55,564 - INFO - Fetched 1672 players for Zimbabwe (ZW).
+2024-12-10 13:31:56,576 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-10 16:19:03,783 - ERROR - Error fetching data for Algeria (DZ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/DZ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CC761580>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:04,789 - ERROR - Error fetching data for Angola (AO): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/AO/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD43BB60>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:05,797 - ERROR - Error fetching data for Benin (BJ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/BJ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD152330>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:06,803 - ERROR - Error fetching data for Botswana (BW): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/BW/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD43AEA0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:07,813 - ERROR - Error fetching data for Burkina Faso (BF): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/BF/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45C320>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:08,815 - ERROR - Error fetching data for Burundi (BI): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/BI/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45CA70>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:09,823 - ERROR - Error fetching data for Cameroon (CM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45D340>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:10,825 - ERROR - Error fetching data for Cabo Verde (CV): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CV/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CCC731D0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:11,827 - ERROR - Error fetching data for Central African Republic (CF): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CF/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD43BEC0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:12,832 - ERROR - Error fetching data for Chad (TD): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/TD/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45D370>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:13,835 - ERROR - Error fetching data for Comoros (KM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/KM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45C860>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:14,838 - ERROR - Error fetching data for Congo (CG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45DC10>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:15,841 - ERROR - Error fetching data for Congo (DRC) (CD): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CD/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45E510>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:16,850 - ERROR - Error fetching data for Côte d'Ivoire (CI): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CI/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45EE10>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:17,856 - ERROR - Error fetching data for Djibouti (DJ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/DJ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD43BB60>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:18,857 - ERROR - Error fetching data for Egypt (EG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/EG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45E570>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:19,863 - ERROR - Error fetching data for Equatorial Guinea (GQ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GQ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45DBB0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:20,871 - ERROR - Error fetching data for Eritrea (ER): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ER/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45CA10>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:21,873 - ERROR - Error fetching data for Eswatini (SZ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/SZ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45D5B0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:22,877 - ERROR - Error fetching data for Ethiopia (ET): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ET/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45F2C0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:23,883 - ERROR - Error fetching data for Gabon (GA): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GA/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD43BC80>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:24,889 - ERROR - Error fetching data for Gambia (GM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45D040>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:25,895 - ERROR - Error fetching data for Ghana (GH): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GH/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45CB60>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:26,896 - ERROR - Error fetching data for Guinea (GN): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GN/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45DC10>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 23:02:04,004 - INFO - Fetched 7435 players for Algeria (DZ).
+2024-12-10 23:02:05,368 - INFO - Fetched 812 players for Angola (AO).
+2024-12-10 23:02:06,730 - INFO - Fetched 128 players for Benin (BJ).
+2024-12-10 23:02:08,445 - INFO - Fetched 758 players for Botswana (BW).
+2024-12-10 23:02:10,271 - INFO - Fetched 117 players for Burkina Faso (BF).
+2024-12-10 23:02:12,787 - INFO - Fetched 60 players for Burundi (BI).
+2024-12-10 23:02:14,620 - INFO - Fetched 549 players for Cameroon (CM).
+2024-12-10 23:02:16,462 - INFO - Fetched 160 players for Cabo Verde (CV).
+2024-12-10 23:02:19,848 - INFO - Fetched 42 players for Central African Republic (CF).
+2024-12-10 23:02:22,474 - INFO - Fetched 246 players for Chad (TD).
+2024-12-10 23:02:24,264 - INFO - Fetched 41 players for Comoros (KM).
+2024-12-10 23:02:26,194 - INFO - Fetched 109 players for Congo (CG).
+2024-12-10 23:02:27,625 - INFO - Fetched 322 players for Congo (DRC) (CD).
+2024-12-10 23:02:29,415 - INFO - Fetched 479 players for Côte d'Ivoire (CI).
+2024-12-10 23:02:31,579 - INFO - Fetched 173 players for Djibouti (DJ).
+2024-12-10 23:02:32,958 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-10 23:02:34,900 - INFO - Fetched 47 players for Equatorial Guinea (GQ).
+2024-12-10 23:02:36,263 - INFO - Fetched 104 players for Eritrea (ER).
+2024-12-10 23:02:38,066 - INFO - Fetched 162 players for Eswatini (SZ).
+2024-12-10 23:02:39,500 - INFO - Fetched 1445 players for Ethiopia (ET).
+2024-12-10 23:02:41,246 - INFO - Fetched 125 players for Gabon (GA).
+2024-12-10 23:02:43,009 - INFO - Fetched 66 players for Gambia (GM).
+2024-12-10 23:02:44,706 - INFO - Fetched 967 players for Ghana (GH).
+2024-12-10 23:02:46,717 - INFO - Fetched 46 players for Guinea (GN).
+2024-12-10 23:02:48,406 - INFO - Fetched 29 players for Guinea-Bissau (GW).
+2024-12-10 23:02:50,262 - INFO - Fetched 5626 players for Kenya (KE).
+2024-12-10 23:02:52,094 - INFO - Fetched 202 players for Lesotho (LS).
+2024-12-10 23:02:53,843 - INFO - Fetched 99 players for Liberia (LR).
+2024-12-10 23:02:55,690 - INFO - Fetched 1162 players for Libya (LY).
+2024-12-10 23:02:57,432 - INFO - Fetched 1189 players for Madagascar (MG).
+2024-12-10 23:02:59,176 - INFO - Fetched 375 players for Malawi (MW).
+2024-12-10 23:03:00,897 - INFO - Fetched 87 players for Mali (ML).
+2024-12-10 23:03:02,773 - INFO - Fetched 190 players for Mauritania (MR).
+2024-12-10 23:03:04,180 - INFO - Fetched 529 players for Mauritius (MU).
+2024-12-10 23:03:06,041 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-10 23:03:07,454 - INFO - Fetched 538 players for Mozambique (MZ).
+2024-12-10 23:03:09,227 - INFO - Fetched 397 players for Namibia (NA).
+2024-12-10 23:03:11,041 - INFO - Fetched 320 players for Niger (NE).
+2024-12-10 23:03:12,889 - INFO - Fetched 6305 players for Nigeria (NG).
+2024-12-10 23:03:14,614 - INFO - Fetched 184 players for Rwanda (RW).
+2024-12-10 23:03:16,377 - INFO - Fetched 99 players for Sao Tome and Principe (ST).
+2024-12-10 23:03:18,097 - INFO - Fetched 352 players for Senegal (SN).
+2024-12-10 23:03:19,856 - INFO - Fetched 338 players for Seychelles (SC).
+2024-12-10 23:03:21,704 - INFO - Fetched 85 players for Sierra Leone (SL).
+2024-12-10 23:03:23,030 - INFO - Fetched 626 players for Somalia (SO).
+2024-12-10 23:03:24,879 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-10 23:03:26,606 - INFO - Fetched 113 players for South Sudan (SS).
+2024-12-10 23:03:28,362 - INFO - Fetched 914 players for Sudan (SD).
+2024-12-10 23:03:30,051 - INFO - Fetched 330 players for Tanzania (TZ).
+2024-12-10 23:03:32,083 - INFO - Fetched 196 players for Togo (TG).
+2024-12-10 23:03:33,763 - INFO - Fetched 5226 players for Tunisia (TN).
+2024-12-10 23:03:35,451 - INFO - Fetched 1130 players for Uganda (UG).
+2024-12-10 23:03:36,816 - INFO - Fetched 1070 players for Zambia (ZM).
+2024-12-10 23:03:38,602 - INFO - Fetched 1672 players for Zimbabwe (ZW).
+2024-12-10 23:03:39,627 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-12 01:07:33,425 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-12 01:07:34,940 - INFO - Fetched 1099 players for Angola (AO).
+2024-12-12 01:07:36,369 - INFO - Fetched 186 players for Benin (BJ).
+2024-12-12 01:07:37,807 - INFO - Fetched 1022 players for Botswana (BW).
+2024-12-12 01:07:39,237 - INFO - Fetched 140 players for Burkina Faso (BF).
+2024-12-12 01:07:40,602 - INFO - Fetched 74 players for Burundi (BI).
+2024-12-12 01:07:42,084 - INFO - Fetched 726 players for Cameroon (CM).
+2024-12-12 01:07:43,448 - INFO - Fetched 228 players for Cabo Verde (CV).
+2024-12-12 01:07:44,869 - INFO - Fetched 57 players for Central African Republic (CF).
+2024-12-12 01:07:46,304 - INFO - Fetched 302 players for Chad (TD).
+2024-12-12 01:07:47,659 - INFO - Fetched 67 players for Comoros (KM).
+2024-12-12 01:07:49,071 - INFO - Fetched 134 players for Congo (CG).
+2024-12-12 01:07:50,504 - INFO - Fetched 447 players for Congo (DRC) (CD).
+2024-12-12 01:07:51,940 - INFO - Fetched 603 players for Côte d'Ivoire (CI).
+2024-12-12 01:07:53,371 - INFO - Fetched 211 players for Djibouti (DJ).
+2024-12-12 01:07:54,918 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-12 01:07:56,338 - INFO - Fetched 56 players for Equatorial Guinea (GQ).
+2024-12-12 01:07:57,700 - INFO - Fetched 125 players for Eritrea (ER).
+2024-12-12 01:07:59,078 - INFO - Fetched 198 players for Eswatini (SZ).
+2024-12-12 01:08:00,460 - INFO - Fetched 1967 players for Ethiopia (ET).
+2024-12-12 01:08:01,846 - INFO - Fetched 162 players for Gabon (GA).
+2024-12-12 01:08:03,302 - INFO - Fetched 91 players for Gambia (GM).
+2024-12-12 01:08:04,636 - INFO - Fetched 1291 players for Ghana (GH).
+2024-12-12 01:08:06,068 - INFO - Fetched 72 players for Guinea (GN).
+2024-12-12 01:08:07,445 - INFO - Fetched 42 players for Guinea-Bissau (GW).
+2024-12-12 01:08:08,772 - INFO - Fetched 5080 players for Kenya (KE).
+2024-12-12 01:08:10,167 - INFO - Fetched 248 players for Lesotho (LS).
+2024-12-12 01:08:11,598 - INFO - Fetched 123 players for Liberia (LR).
+2024-12-12 01:08:13,031 - INFO - Fetched 1597 players for Libya (LY).
+2024-12-12 01:08:14,401 - INFO - Fetched 1570 players for Madagascar (MG).
+2024-12-12 01:08:15,769 - INFO - Fetched 516 players for Malawi (MW).
+2024-12-12 01:08:17,118 - INFO - Fetched 110 players for Mali (ML).
+2024-12-12 01:08:18,563 - INFO - Fetched 243 players for Mauritania (MR).
+2024-12-12 01:08:19,996 - INFO - Fetched 717 players for Mauritius (MU).
+2024-12-12 01:08:21,545 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-12 01:08:22,967 - INFO - Fetched 696 players for Mozambique (MZ).
+2024-12-12 01:08:24,340 - INFO - Fetched 550 players for Namibia (NA).
+2024-12-12 01:08:25,709 - INFO - Fetched 435 players for Niger (NE).
+2024-12-12 01:08:27,177 - INFO - Fetched 8376 players for Nigeria (NG).
+2024-12-12 01:08:28,541 - INFO - Fetched 254 players for Rwanda (RW).
+2024-12-12 01:08:29,926 - INFO - Fetched 117 players for Sao Tome and Principe (ST).
+2024-12-12 01:08:31,362 - INFO - Fetched 423 players for Senegal (SN).
+2024-12-12 01:08:32,749 - INFO - Fetched 395 players for Seychelles (SC).
+2024-12-12 01:08:34,118 - INFO - Fetched 120 players for Sierra Leone (SL).
+2024-12-12 01:08:35,482 - INFO - Fetched 838 players for Somalia (SO).
+2024-12-12 01:08:37,006 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-12 01:08:38,397 - INFO - Fetched 164 players for South Sudan (SS).
+2024-12-12 01:08:39,866 - INFO - Fetched 1238 players for Sudan (SD).
+2024-12-12 01:08:41,293 - INFO - Fetched 461 players for Tanzania (TZ).
+2024-12-12 01:08:42,683 - INFO - Fetched 254 players for Togo (TG).
+2024-12-12 01:08:44,179 - INFO - Fetched 6937 players for Tunisia (TN).
+2024-12-12 01:08:45,544 - INFO - Fetched 1563 players for Uganda (UG).
+2024-12-12 01:08:46,904 - INFO - Fetched 1505 players for Zambia (ZM).
+2024-12-12 01:08:48,360 - INFO - Fetched 2088 players for Zimbabwe (ZW).
+2024-12-12 01:08:49,387 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-12 16:59:26,666 - INFO - Fetched 8497 players for Algeria (DZ).
+2024-12-12 16:59:28,666 - INFO - Fetched 915 players for Angola (AO).
+2024-12-12 16:59:30,071 - INFO - Fetched 141 players for Benin (BJ).
+2024-12-12 16:59:32,151 - INFO - Fetched 855 players for Botswana (BW).
+2024-12-12 16:59:33,571 - INFO - Fetched 127 players for Burkina Faso (BF).
+2024-12-12 16:59:35,735 - INFO - Fetched 74 players for Burundi (BI).
+2024-12-12 16:59:37,168 - INFO - Fetched 643 players for Cameroon (CM).
+2024-12-12 16:59:38,598 - INFO - Fetched 194 players for Cabo Verde (CV).
+2024-12-12 16:59:41,060 - INFO - Fetched 44 players for Central African Republic (CF).
+2024-12-12 16:59:42,489 - INFO - Fetched 286 players for Chad (TD).
+2024-12-12 16:59:43,921 - INFO - Fetched 60 players for Comoros (KM).
+2024-12-12 16:59:46,378 - INFO - Fetched 110 players for Congo (CG).
+2024-12-12 16:59:47,801 - INFO - Fetched 390 players for Congo (DRC) (CD).
+2024-12-12 16:59:49,765 - INFO - Fetched 541 players for Côte d'Ivoire (CI).
+2024-12-12 16:59:51,190 - INFO - Fetched 192 players for Djibouti (DJ).
+2024-12-12 16:59:53,104 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-12 16:59:54,570 - INFO - Fetched 55 players for Equatorial Guinea (GQ).
+2024-12-12 16:59:56,003 - INFO - Fetched 120 players for Eritrea (ER).
+2024-12-12 16:59:57,438 - INFO - Fetched 188 players for Eswatini (SZ).
+2024-12-12 16:59:58,868 - INFO - Fetched 1677 players for Ethiopia (ET).
+2024-12-12 17:00:00,264 - INFO - Fetched 138 players for Gabon (GA).
+2024-12-12 17:00:02,307 - INFO - Fetched 82 players for Gambia (GM).
+2024-12-12 17:00:03,684 - INFO - Fetched 1121 players for Ghana (GH).
+2024-12-12 17:00:05,071 - INFO - Fetched 58 players for Guinea (GN).
+2024-12-12 17:00:06,548 - INFO - Fetched 35 players for Guinea-Bissau (GW).
+2024-12-12 17:00:07,993 - INFO - Fetched 4298 players for Kenya (KE).
+2024-12-12 17:00:09,397 - INFO - Fetched 198 players for Lesotho (LS).
+2024-12-12 17:00:10,828 - INFO - Fetched 104 players for Liberia (LR).
+2024-12-12 17:00:12,221 - INFO - Fetched 1378 players for Libya (LY).
+2024-12-12 17:00:13,626 - INFO - Fetched 1395 players for Madagascar (MG).
+2024-12-12 17:00:15,001 - INFO - Fetched 452 players for Malawi (MW).
+2024-12-12 17:00:16,362 - INFO - Fetched 89 players for Mali (ML).
+2024-12-12 17:00:18,326 - INFO - Fetched 183 players for Mauritania (MR).
+2024-12-12 17:00:19,734 - INFO - Fetched 619 players for Mauritius (MU).
+2024-12-12 17:00:21,619 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-12 17:00:23,040 - INFO - Fetched 567 players for Mozambique (MZ).
+2024-12-12 17:00:24,471 - INFO - Fetched 467 players for Namibia (NA).
+2024-12-12 17:00:26,510 - INFO - Fetched 377 players for Niger (NE).
+2024-12-12 17:00:28,463 - INFO - Fetched 7194 players for Nigeria (NG).
+2024-12-12 17:00:30,311 - INFO - Fetched 222 players for Rwanda (RW).
+2024-12-12 17:00:31,680 - INFO - Fetched 102 players for Sao Tome and Principe (ST).
+2024-12-12 17:00:33,029 - INFO - Fetched 360 players for Senegal (SN).
+2024-12-12 17:00:34,908 - INFO - Fetched 359 players for Seychelles (SC).
+2024-12-12 17:00:36,682 - INFO - Fetched 107 players for Sierra Leone (SL).
+2024-12-12 17:00:38,049 - INFO - Fetched 712 players for Somalia (SO).
+2024-12-12 17:00:39,635 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-12 17:00:41,443 - INFO - Fetched 151 players for South Sudan (SS).
+2024-12-12 17:00:43,293 - INFO - Fetched 1079 players for Sudan (SD).
+2024-12-12 17:00:44,668 - INFO - Fetched 400 players for Tanzania (TZ).
+2024-12-12 17:00:46,030 - INFO - Fetched 220 players for Togo (TG).
+2024-12-12 17:00:47,521 - INFO - Fetched 5880 players for Tunisia (TN).
+2024-12-12 17:00:48,950 - INFO - Fetched 1350 players for Uganda (UG).
+2024-12-12 17:00:50,338 - INFO - Fetched 1267 players for Zambia (ZM).
+2024-12-12 17:00:51,813 - INFO - Fetched 1874 players for Zimbabwe (ZW).
+2024-12-12 17:00:52,818 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-13 08:17:25,746 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-13 08:17:27,143 - INFO - Fetched 1156 players for Angola (AO).
+2024-12-13 08:17:28,549 - INFO - Fetched 187 players for Benin (BJ).
+2024-12-13 08:17:30,280 - INFO - Fetched 1051 players for Botswana (BW).
+2024-12-13 08:17:31,679 - INFO - Fetched 162 players for Burkina Faso (BF).
+2024-12-13 08:17:33,054 - INFO - Fetched 98 players for Burundi (BI).
+2024-12-13 08:17:34,461 - INFO - Fetched 845 players for Cameroon (CM).
+2024-12-13 08:17:35,856 - INFO - Fetched 242 players for Cabo Verde (CV).
+2024-12-13 08:17:37,238 - INFO - Fetched 56 players for Central African Republic (CF).
+2024-12-13 08:17:38,652 - INFO - Fetched 343 players for Chad (TD).
+2024-12-13 08:17:40,491 - INFO - Fetched 68 players for Comoros (KM).
+2024-12-13 08:17:41,927 - INFO - Fetched 148 players for Congo (CG).
+2024-12-13 08:17:43,288 - INFO - Fetched 491 players for Congo (DRC) (CD).
+2024-12-13 08:17:44,714 - INFO - Fetched 696 players for Côte d'Ivoire (CI).
+2024-12-13 08:17:46,222 - INFO - Fetched 230 players for Djibouti (DJ).
+2024-12-13 08:17:47,731 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-13 08:17:49,142 - INFO - Fetched 67 players for Equatorial Guinea (GQ).
+2024-12-13 08:17:50,538 - INFO - Fetched 145 players for Eritrea (ER).
+2024-12-13 08:17:51,967 - INFO - Fetched 230 players for Eswatini (SZ).
+2024-12-13 08:17:53,381 - INFO - Fetched 2129 players for Ethiopia (ET).
+2024-12-13 08:17:54,803 - INFO - Fetched 174 players for Gabon (GA).
+2024-12-13 08:17:56,193 - INFO - Fetched 94 players for Gambia (GM).
+2024-12-13 08:17:57,580 - INFO - Fetched 1423 players for Ghana (GH).
+2024-12-13 08:17:58,937 - INFO - Fetched 68 players for Guinea (GN).
+2024-12-13 08:18:00,328 - INFO - Fetched 42 players for Guinea-Bissau (GW).
+2024-12-13 08:18:01,711 - INFO - Fetched 5788 players for Kenya (KE).
+2024-12-13 08:18:03,109 - INFO - Fetched 247 players for Lesotho (LS).
+2024-12-13 08:18:04,450 - INFO - Fetched 127 players for Liberia (LR).
+2024-12-13 08:18:05,860 - INFO - Fetched 1895 players for Libya (LY).
+2024-12-13 08:18:07,324 - INFO - Fetched 1711 players for Madagascar (MG).
+2024-12-13 08:18:08,778 - INFO - Fetched 567 players for Malawi (MW).
+2024-12-13 08:18:10,189 - INFO - Fetched 110 players for Mali (ML).
+2024-12-13 08:18:11,591 - INFO - Fetched 259 players for Mauritania (MR).
+2024-12-13 08:18:12,961 - INFO - Fetched 738 players for Mauritius (MU).
+2024-12-13 08:18:14,505 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-13 08:18:15,913 - INFO - Fetched 717 players for Mozambique (MZ).
+2024-12-13 08:18:17,318 - INFO - Fetched 589 players for Namibia (NA).
+2024-12-13 08:18:18,729 - INFO - Fetched 488 players for Niger (NE).
+2024-12-13 08:18:20,172 - INFO - Fetched 9285 players for Nigeria (NG).
+2024-12-13 08:18:21,539 - INFO - Fetched 284 players for Rwanda (RW).
+2024-12-13 08:18:22,916 - INFO - Fetched 124 players for Sao Tome and Principe (ST).
+2024-12-13 08:18:24,297 - INFO - Fetched 484 players for Senegal (SN).
+2024-12-13 08:18:25,710 - INFO - Fetched 421 players for Seychelles (SC).
+2024-12-13 08:18:27,065 - INFO - Fetched 130 players for Sierra Leone (SL).
+2024-12-13 08:18:28,459 - INFO - Fetched 909 players for Somalia (SO).
+2024-12-13 08:18:29,964 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-13 08:18:31,349 - INFO - Fetched 183 players for South Sudan (SS).
+2024-12-13 08:18:32,709 - INFO - Fetched 1404 players for Sudan (SD).
+2024-12-13 08:18:34,176 - INFO - Fetched 494 players for Tanzania (TZ).
+2024-12-13 08:18:35,501 - INFO - Fetched 286 players for Togo (TG).
+2024-12-13 08:18:36,943 - INFO - Fetched 7650 players for Tunisia (TN).
+2024-12-13 08:18:38,339 - INFO - Fetched 1680 players for Uganda (UG).
+2024-12-13 08:18:39,844 - INFO - Fetched 1592 players for Zambia (ZM).
+2024-12-13 08:18:41,251 - INFO - Fetched 2307 players for Zimbabwe (ZW).
+2024-12-13 08:18:42,270 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-13 19:22:59,242 - INFO - Fetched 9940 players for Algeria (DZ).
+2024-12-13 19:23:00,634 - INFO - Fetched 1008 players for Angola (AO).
+2024-12-13 19:23:01,985 - INFO - Fetched 188 players for Benin (BJ).
+2024-12-13 19:23:03,402 - INFO - Fetched 869 players for Botswana (BW).
+2024-12-13 19:23:04,723 - INFO - Fetched 130 players for Burkina Faso (BF).
+2024-12-13 19:23:06,152 - INFO - Fetched 86 players for Burundi (BI).
+2024-12-13 19:23:07,583 - INFO - Fetched 723 players for Cameroon (CM).
+2024-12-13 19:23:09,015 - INFO - Fetched 203 players for Cabo Verde (CV).
+2024-12-13 19:23:10,451 - INFO - Fetched 51 players for Central African Republic (CF).
+2024-12-13 19:23:11,795 - INFO - Fetched 286 players for Chad (TD).
+2024-12-13 19:23:13,216 - INFO - Fetched 51 players for Comoros (KM).
+2024-12-13 19:23:14,600 - INFO - Fetched 129 players for Congo (CG).
+2024-12-13 19:23:15,981 - INFO - Fetched 416 players for Congo (DRC) (CD).
+2024-12-13 19:23:17,351 - INFO - Fetched 590 players for Côte d'Ivoire (CI).
+2024-12-13 19:23:18,745 - INFO - Fetched 193 players for Djibouti (DJ).
+2024-12-13 19:23:20,294 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-13 19:23:21,714 - INFO - Fetched 67 players for Equatorial Guinea (GQ).
+2024-12-13 19:23:23,150 - INFO - Fetched 112 players for Eritrea (ER).
+2024-12-13 19:23:24,534 - INFO - Fetched 199 players for Eswatini (SZ).
+2024-12-13 19:23:25,909 - INFO - Fetched 1924 players for Ethiopia (ET).
+2024-12-13 19:23:27,346 - INFO - Fetched 138 players for Gabon (GA).
+2024-12-13 19:23:28,734 - INFO - Fetched 81 players for Gambia (GM).
+2024-12-13 19:23:30,549 - INFO - Fetched 1231 players for Ghana (GH).
+2024-12-13 19:23:31,922 - INFO - Fetched 49 players for Guinea (GN).
+2024-12-13 19:23:33,385 - INFO - Fetched 35 players for Guinea-Bissau (GW).
+2024-12-13 19:23:34,727 - INFO - Fetched 4868 players for Kenya (KE).
+2024-12-13 19:23:36,074 - INFO - Fetched 219 players for Lesotho (LS).
+2024-12-13 19:23:37,485 - INFO - Fetched 108 players for Liberia (LR).
+2024-12-13 19:23:38,879 - INFO - Fetched 1576 players for Libya (LY).
+2024-12-13 19:23:40,253 - INFO - Fetched 1512 players for Madagascar (MG).
+2024-12-13 19:23:41,684 - INFO - Fetched 507 players for Malawi (MW).
+2024-12-13 19:23:43,120 - INFO - Fetched 89 players for Mali (ML).
+2024-12-13 19:23:44,548 - INFO - Fetched 229 players for Mauritania (MR).
+2024-12-13 19:23:45,920 - INFO - Fetched 673 players for Mauritius (MU).
+2024-12-13 19:23:47,452 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-13 19:23:48,855 - INFO - Fetched 597 players for Mozambique (MZ).
+2024-12-13 19:23:50,288 - INFO - Fetched 515 players for Namibia (NA).
+2024-12-13 19:23:51,720 - INFO - Fetched 427 players for Niger (NE).
+2024-12-13 19:23:53,167 - INFO - Fetched 8002 players for Nigeria (NG).
+2024-12-13 19:23:54,591 - INFO - Fetched 261 players for Rwanda (RW).
+2024-12-13 19:23:56,010 - INFO - Fetched 111 players for Sao Tome and Principe (ST).
+2024-12-13 19:23:57,409 - INFO - Fetched 424 players for Senegal (SN).
+2024-12-13 19:23:58,754 - INFO - Fetched 330 players for Seychelles (SC).
+2024-12-13 19:24:00,209 - INFO - Fetched 94 players for Sierra Leone (SL).
+2024-12-13 19:24:01,874 - INFO - Fetched 760 players for Somalia (SO).
+2024-12-13 19:24:03,511 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-13 19:24:05,034 - INFO - Fetched 155 players for South Sudan (SS).
+2024-12-13 19:24:06,437 - INFO - Fetched 1218 players for Sudan (SD).
+2024-12-13 19:24:07,801 - INFO - Fetched 424 players for Tanzania (TZ).
+2024-12-13 19:24:09,228 - INFO - Fetched 243 players for Togo (TG).
+2024-12-13 19:24:10,670 - INFO - Fetched 6502 players for Tunisia (TN).
+2024-12-13 19:24:12,098 - INFO - Fetched 1449 players for Uganda (UG).
+2024-12-13 19:24:13,531 - INFO - Fetched 1355 players for Zambia (ZM).
+2024-12-13 19:24:14,962 - INFO - Fetched 1974 players for Zimbabwe (ZW).
+2024-12-13 19:24:15,997 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-14 07:38:31,384 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-14 07:38:32,759 - INFO - Fetched 1189 players for Angola (AO).
+2024-12-14 07:38:34,104 - INFO - Fetched 221 players for Benin (BJ).
+2024-12-14 07:38:35,466 - INFO - Fetched 994 players for Botswana (BW).
+2024-12-14 07:38:36,826 - INFO - Fetched 157 players for Burkina Faso (BF).
+2024-12-14 07:38:38,169 - INFO - Fetched 105 players for Burundi (BI).
+2024-12-14 07:38:39,535 - INFO - Fetched 844 players for Cameroon (CM).
+2024-12-14 07:38:40,875 - INFO - Fetched 230 players for Cabo Verde (CV).
+2024-12-14 07:38:42,217 - INFO - Fetched 64 players for Central African Republic (CF).
+2024-12-14 07:38:43,575 - INFO - Fetched 326 players for Chad (TD).
+2024-12-14 07:38:44,884 - INFO - Fetched 58 players for Comoros (KM).
+2024-12-14 07:38:46,248 - INFO - Fetched 154 players for Congo (CG).
+2024-12-14 07:38:47,583 - INFO - Fetched 494 players for Congo (DRC) (CD).
+2024-12-14 07:38:48,941 - INFO - Fetched 698 players for Côte d'Ivoire (CI).
+2024-12-14 07:38:50,293 - INFO - Fetched 227 players for Djibouti (DJ).
+2024-12-14 07:38:51,743 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-14 07:38:53,131 - INFO - Fetched 80 players for Equatorial Guinea (GQ).
+2024-12-14 07:38:54,477 - INFO - Fetched 134 players for Eritrea (ER).
+2024-12-14 07:38:55,824 - INFO - Fetched 218 players for Eswatini (SZ).
+2024-12-14 07:38:57,206 - INFO - Fetched 2234 players for Ethiopia (ET).
+2024-12-14 07:38:58,552 - INFO - Fetched 177 players for Gabon (GA).
+2024-12-14 07:38:59,896 - INFO - Fetched 92 players for Gambia (GM).
+2024-12-14 07:39:01,229 - INFO - Fetched 1471 players for Ghana (GH).
+2024-12-14 07:39:02,587 - INFO - Fetched 67 players for Guinea (GN).
+2024-12-14 07:39:03,972 - INFO - Fetched 37 players for Guinea-Bissau (GW).
+2024-12-14 07:39:05,315 - INFO - Fetched 5931 players for Kenya (KE).
+2024-12-14 07:39:06,643 - INFO - Fetched 236 players for Lesotho (LS).
+2024-12-14 07:39:08,006 - INFO - Fetched 122 players for Liberia (LR).
+2024-12-14 07:39:09,356 - INFO - Fetched 1940 players for Libya (LY).
+2024-12-14 07:39:10,745 - INFO - Fetched 1664 players for Madagascar (MG).
+2024-12-14 07:39:12,130 - INFO - Fetched 586 players for Malawi (MW).
+2024-12-14 07:39:13,489 - INFO - Fetched 110 players for Mali (ML).
+2024-12-14 07:39:14,836 - INFO - Fetched 292 players for Mauritania (MR).
+2024-12-14 07:39:16,213 - INFO - Fetched 759 players for Mauritius (MU).
+2024-12-14 07:39:17,721 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-14 07:39:19,097 - INFO - Fetched 689 players for Mozambique (MZ).
+2024-12-14 07:39:20,457 - INFO - Fetched 583 players for Namibia (NA).
+2024-12-14 07:39:21,825 - INFO - Fetched 502 players for Niger (NE).
+2024-12-14 07:39:23,282 - INFO - Fetched 9511 players for Nigeria (NG).
+2024-12-14 07:39:24,635 - INFO - Fetched 290 players for Rwanda (RW).
+2024-12-14 07:39:25,981 - INFO - Fetched 128 players for Sao Tome and Principe (ST).
+2024-12-14 07:39:27,336 - INFO - Fetched 507 players for Senegal (SN).
+2024-12-14 07:39:28,676 - INFO - Fetched 370 players for Seychelles (SC).
+2024-12-14 07:39:30,059 - INFO - Fetched 115 players for Sierra Leone (SL).
+2024-12-14 07:39:31,425 - INFO - Fetched 879 players for Somalia (SO).
+2024-12-14 07:39:32,879 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-14 07:39:34,220 - INFO - Fetched 176 players for South Sudan (SS).
+2024-12-14 07:39:35,592 - INFO - Fetched 1417 players for Sudan (SD).
+2024-12-14 07:39:36,912 - INFO - Fetched 481 players for Tanzania (TZ).
+2024-12-14 07:39:38,247 - INFO - Fetched 297 players for Togo (TG).
+2024-12-14 07:39:39,665 - INFO - Fetched 7843 players for Tunisia (TN).
+2024-12-14 07:39:41,046 - INFO - Fetched 1627 players for Uganda (UG).
+2024-12-14 07:39:42,424 - INFO - Fetched 1573 players for Zambia (ZM).
+2024-12-14 07:39:43,802 - INFO - Fetched 2269 players for Zimbabwe (ZW).
+2024-12-14 07:39:44,838 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-15 09:05:58,369 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-15 09:05:59,765 - INFO - Fetched 1122 players for Angola (AO).
+2024-12-15 09:06:01,223 - INFO - Fetched 210 players for Benin (BJ).
+2024-12-15 09:06:02,652 - INFO - Fetched 896 players for Botswana (BW).
+2024-12-15 09:06:04,096 - INFO - Fetched 162 players for Burkina Faso (BF).
+2024-12-15 09:06:05,532 - INFO - Fetched 87 players for Burundi (BI).
+2024-12-15 09:06:06,959 - INFO - Fetched 773 players for Cameroon (CM).
+2024-12-15 09:06:08,400 - INFO - Fetched 222 players for Cabo Verde (CV).
+2024-12-15 09:06:09,770 - INFO - Fetched 62 players for Central African Republic (CF).
+2024-12-15 09:06:11,189 - INFO - Fetched 314 players for Chad (TD).
+2024-12-15 09:06:12,595 - INFO - Fetched 66 players for Comoros (KM).
+2024-12-15 09:06:13,976 - INFO - Fetched 146 players for Congo (CG).
+2024-12-15 09:06:15,362 - INFO - Fetched 467 players for Congo (DRC) (CD).
+2024-12-15 09:06:16,747 - INFO - Fetched 659 players for Côte d'Ivoire (CI).
+2024-12-15 09:06:18,114 - INFO - Fetched 203 players for Djibouti (DJ).
+2024-12-15 09:06:19,591 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-15 09:06:20,941 - INFO - Fetched 78 players for Equatorial Guinea (GQ).
+2024-12-15 09:06:22,426 - INFO - Fetched 131 players for Eritrea (ER).
+2024-12-15 09:06:23,780 - INFO - Fetched 210 players for Eswatini (SZ).
+2024-12-15 09:06:25,170 - INFO - Fetched 2264 players for Ethiopia (ET).
+2024-12-15 09:06:26,615 - INFO - Fetched 194 players for Gabon (GA).
+2024-12-15 09:06:28,056 - INFO - Fetched 95 players for Gambia (GM).
+2024-12-15 09:06:29,492 - INFO - Fetched 1345 players for Ghana (GH).
+2024-12-15 09:06:30,865 - INFO - Fetched 77 players for Guinea (GN).
+2024-12-15 09:06:32,222 - INFO - Fetched 33 players for Guinea-Bissau (GW).
+2024-12-15 09:06:33,594 - INFO - Fetched 5576 players for Kenya (KE).
+2024-12-15 09:06:34,997 - INFO - Fetched 209 players for Lesotho (LS).
+2024-12-15 09:06:36,456 - INFO - Fetched 97 players for Liberia (LR).
+2024-12-15 09:06:37,823 - INFO - Fetched 1851 players for Libya (LY).
+2024-12-15 09:06:39,222 - INFO - Fetched 1526 players for Madagascar (MG).
+2024-12-15 09:06:40,615 - INFO - Fetched 535 players for Malawi (MW).
+2024-12-15 09:06:41,992 - INFO - Fetched 122 players for Mali (ML).
+2024-12-15 09:06:43,397 - INFO - Fetched 287 players for Mauritania (MR).
+2024-12-15 09:06:44,756 - INFO - Fetched 781 players for Mauritius (MU).
+2024-12-15 09:06:46,266 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-15 09:06:47,647 - INFO - Fetched 631 players for Mozambique (MZ).
+2024-12-15 09:06:49,055 - INFO - Fetched 530 players for Namibia (NA).
+2024-12-15 09:06:50,475 - INFO - Fetched 471 players for Niger (NE).
+2024-12-15 09:06:52,028 - INFO - Fetched 8879 players for Nigeria (NG).
+2024-12-15 09:06:53,457 - INFO - Fetched 255 players for Rwanda (RW).
+2024-12-15 09:06:54,809 - INFO - Fetched 118 players for Sao Tome and Principe (ST).
+2024-12-15 09:06:56,222 - INFO - Fetched 500 players for Senegal (SN).
+2024-12-15 09:06:57,655 - INFO - Fetched 350 players for Seychelles (SC).
+2024-12-15 09:06:59,007 - INFO - Fetched 113 players for Sierra Leone (SL).
+2024-12-15 09:07:00,417 - INFO - Fetched 849 players for Somalia (SO).
+2024-12-15 09:07:02,070 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-15 09:07:03,416 - INFO - Fetched 167 players for South Sudan (SS).
+2024-12-15 09:07:04,792 - INFO - Fetched 1339 players for Sudan (SD).
+2024-12-15 09:07:06,168 - INFO - Fetched 454 players for Tanzania (TZ).
+2024-12-15 09:07:07,528 - INFO - Fetched 275 players for Togo (TG).
+2024-12-15 09:07:09,025 - INFO - Fetched 7774 players for Tunisia (TN).
+2024-12-15 09:07:10,456 - INFO - Fetched 1531 players for Uganda (UG).
+2024-12-15 09:07:11,837 - INFO - Fetched 1525 players for Zambia (ZM).
+2024-12-15 09:07:13,315 - INFO - Fetched 2035 players for Zimbabwe (ZW).
+2024-12-15 09:07:14,330 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-15 23:35:38,784 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-15 23:35:40,161 - INFO - Fetched 1002 players for Angola (AO).
+2024-12-15 23:35:41,640 - INFO - Fetched 151 players for Benin (BJ).
+2024-12-15 23:35:43,376 - INFO - Fetched 779 players for Botswana (BW).
+2024-12-15 23:35:44,775 - INFO - Fetched 141 players for Burkina Faso (BF).
+2024-12-15 23:35:46,213 - INFO - Fetched 75 players for Burundi (BI).
+2024-12-15 23:35:47,640 - INFO - Fetched 664 players for Cameroon (CM).
+2024-12-15 23:35:49,079 - INFO - Fetched 190 players for Cabo Verde (CV).
+2024-12-15 23:35:50,513 - INFO - Fetched 50 players for Central African Republic (CF).
+2024-12-15 23:35:51,880 - INFO - Fetched 280 players for Chad (TD).
+2024-12-15 23:35:53,276 - INFO - Fetched 64 players for Comoros (KM).
+2024-12-15 23:35:54,711 - INFO - Fetched 130 players for Congo (CG).
+2024-12-15 23:35:56,081 - INFO - Fetched 420 players for Congo (DRC) (CD).
+2024-12-15 23:35:57,476 - INFO - Fetched 576 players for Côte d'Ivoire (CI).
+2024-12-15 23:35:58,870 - INFO - Fetched 159 players for Djibouti (DJ).
+2024-12-15 23:36:00,410 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-15 23:36:01,784 - INFO - Fetched 60 players for Equatorial Guinea (GQ).
+2024-12-15 23:36:03,485 - INFO - Fetched 119 players for Eritrea (ER).
+2024-12-15 23:36:04,951 - INFO - Fetched 171 players for Eswatini (SZ).
+2024-12-15 23:36:07,107 - INFO - Fetched 2107 players for Ethiopia (ET).
+2024-12-15 23:36:08,474 - INFO - Fetched 179 players for Gabon (GA).
+2024-12-15 23:36:09,851 - INFO - Fetched 76 players for Gambia (GM).
+2024-12-15 23:36:11,256 - INFO - Fetched 1153 players for Ghana (GH).
+2024-12-15 23:36:12,629 - INFO - Fetched 67 players for Guinea (GN).
+2024-12-15 23:36:14,073 - INFO - Fetched 30 players for Guinea-Bissau (GW).
+2024-12-15 23:36:15,805 - INFO - Fetched 4580 players for Kenya (KE).
+2024-12-15 23:36:17,176 - INFO - Fetched 199 players for Lesotho (LS).
+2024-12-15 23:36:18,571 - INFO - Fetched 77 players for Liberia (LR).
+2024-12-15 23:36:20,304 - INFO - Fetched 1571 players for Libya (LY).
+2024-12-15 23:36:21,747 - INFO - Fetched 1355 players for Madagascar (MG).
+2024-12-15 23:36:23,175 - INFO - Fetched 459 players for Malawi (MW).
+2024-12-15 23:36:24,612 - INFO - Fetched 117 players for Mali (ML).
+2024-12-15 23:36:25,978 - INFO - Fetched 249 players for Mauritania (MR).
+2024-12-15 23:36:27,360 - INFO - Fetched 714 players for Mauritius (MU).
+2024-12-15 23:36:28,852 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-15 23:36:30,253 - INFO - Fetched 579 players for Mozambique (MZ).
+2024-12-15 23:36:31,673 - INFO - Fetched 450 players for Namibia (NA).
+2024-12-15 23:36:33,110 - INFO - Fetched 381 players for Niger (NE).
+2024-12-15 23:36:34,591 - INFO - Fetched 7680 players for Nigeria (NG).
+2024-12-15 23:36:35,977 - INFO - Fetched 217 players for Rwanda (RW).
+2024-12-15 23:36:37,351 - INFO - Fetched 104 players for Sao Tome and Principe (ST).
+2024-12-15 23:36:38,744 - INFO - Fetched 442 players for Senegal (SN).
+2024-12-15 23:36:40,462 - INFO - Fetched 316 players for Seychelles (SC).
+2024-12-15 23:36:41,869 - INFO - Fetched 88 players for Sierra Leone (SL).
+2024-12-15 23:36:43,662 - INFO - Fetched 772 players for Somalia (SO).
+2024-12-15 23:36:45,142 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-15 23:36:46,520 - INFO - Fetched 162 players for South Sudan (SS).
+2024-12-15 23:36:47,912 - INFO - Fetched 1177 players for Sudan (SD).
+2024-12-15 23:36:49,290 - INFO - Fetched 401 players for Tanzania (TZ).
+2024-12-15 23:36:50,724 - INFO - Fetched 239 players for Togo (TG).
+2024-12-15 23:36:52,265 - INFO - Fetched 7247 players for Tunisia (TN).
+2024-12-15 23:36:53,796 - INFO - Fetched 1380 players for Uganda (UG).
+2024-12-15 23:36:55,231 - INFO - Fetched 1358 players for Zambia (ZM).
+2024-12-15 23:36:56,598 - INFO - Fetched 1742 players for Zimbabwe (ZW).
+2024-12-15 23:36:57,621 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-17 03:15:03,242 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-17 03:15:04,670 - INFO - Fetched 1101 players for Angola (AO).
+2024-12-17 03:15:06,127 - INFO - Fetched 167 players for Benin (BJ).
+2024-12-17 03:15:07,534 - INFO - Fetched 938 players for Botswana (BW).
+2024-12-17 03:15:08,969 - INFO - Fetched 135 players for Burkina Faso (BF).
+2024-12-17 03:15:10,405 - INFO - Fetched 83 players for Burundi (BI).
+2024-12-17 03:15:11,838 - INFO - Fetched 749 players for Cameroon (CM).
+2024-12-17 03:15:13,270 - INFO - Fetched 228 players for Cabo Verde (CV).
+2024-12-17 03:15:14,705 - INFO - Fetched 52 players for Central African Republic (CF).
+2024-12-17 03:15:16,111 - INFO - Fetched 265 players for Chad (TD).
+2024-12-17 03:15:17,466 - INFO - Fetched 57 players for Comoros (KM).
+2024-12-17 03:15:18,904 - INFO - Fetched 140 players for Congo (CG).
+2024-12-17 03:15:20,338 - INFO - Fetched 479 players for Congo (DRC) (CD).
+2024-12-17 03:15:21,767 - INFO - Fetched 640 players for Côte d'Ivoire (CI).
+2024-12-17 03:15:23,103 - INFO - Fetched 197 players for Djibouti (DJ).
+2024-12-17 03:15:24,649 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-17 03:15:26,073 - INFO - Fetched 60 players for Equatorial Guinea (GQ).
+2024-12-17 03:15:27,516 - INFO - Fetched 134 players for Eritrea (ER).
+2024-12-17 03:15:28,861 - INFO - Fetched 185 players for Eswatini (SZ).
+2024-12-17 03:15:30,273 - INFO - Fetched 2111 players for Ethiopia (ET).
+2024-12-17 03:15:31,624 - INFO - Fetched 193 players for Gabon (GA).
+2024-12-17 03:15:32,964 - INFO - Fetched 77 players for Gambia (GM).
+2024-12-17 03:15:34,367 - INFO - Fetched 1293 players for Ghana (GH).
+2024-12-17 03:15:35,706 - INFO - Fetched 73 players for Guinea (GN).
+2024-12-17 03:15:37,051 - INFO - Fetched 35 players for Guinea-Bissau (GW).
+2024-12-17 03:15:38,475 - INFO - Fetched 5556 players for Kenya (KE).
+2024-12-17 03:15:39,896 - INFO - Fetched 236 players for Lesotho (LS).
+2024-12-17 03:15:41,329 - INFO - Fetched 101 players for Liberia (LR).
+2024-12-17 03:15:42,765 - INFO - Fetched 1728 players for Libya (LY).
+2024-12-17 03:15:44,131 - INFO - Fetched 1600 players for Madagascar (MG).
+2024-12-17 03:15:45,528 - INFO - Fetched 499 players for Malawi (MW).
+2024-12-17 03:15:46,961 - INFO - Fetched 124 players for Mali (ML).
+2024-12-17 03:15:48,392 - INFO - Fetched 255 players for Mauritania (MR).
+2024-12-17 03:15:50,758 - INFO - Fetched 788 players for Mauritius (MU).
+2024-12-17 03:15:52,501 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-17 03:15:53,926 - INFO - Fetched 654 players for Mozambique (MZ).
+2024-12-17 03:15:55,259 - INFO - Fetched 523 players for Namibia (NA).
+2024-12-17 03:15:56,624 - INFO - Fetched 444 players for Niger (NE).
+2024-12-17 03:15:58,045 - INFO - Fetched 8525 players for Nigeria (NG).
+2024-12-17 03:15:59,455 - INFO - Fetched 261 players for Rwanda (RW).
+2024-12-17 03:16:00,792 - INFO - Fetched 128 players for Sao Tome and Principe (ST).
+2024-12-17 03:16:02,218 - INFO - Fetched 501 players for Senegal (SN).
+2024-12-17 03:16:03,647 - INFO - Fetched 340 players for Seychelles (SC).
+2024-12-17 03:16:04,984 - INFO - Fetched 91 players for Sierra Leone (SL).
+2024-12-17 03:16:06,415 - INFO - Fetched 801 players for Somalia (SO).
+2024-12-17 03:16:07,973 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-17 03:16:09,369 - INFO - Fetched 167 players for South Sudan (SS).
+2024-12-17 03:16:11,231 - INFO - Fetched 1270 players for Sudan (SD).
+2024-12-17 03:16:12,604 - INFO - Fetched 423 players for Tanzania (TZ).
+2024-12-17 03:16:13,994 - INFO - Fetched 253 players for Togo (TG).
+2024-12-17 03:16:15,511 - INFO - Fetched 7804 players for Tunisia (TN).
+2024-12-17 03:16:16,876 - INFO - Fetched 1457 players for Uganda (UG).
+2024-12-17 03:16:18,296 - INFO - Fetched 1471 players for Zambia (ZM).
+2024-12-17 03:16:19,730 - INFO - Fetched 1992 players for Zimbabwe (ZW).
+2024-12-17 03:16:20,754 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-18 00:58:17,238 - ERROR - Error fetching data for Algeria (DZ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/DZ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A99FF54D70>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:18,254 - ERROR - Error fetching data for Angola (AO): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/AO/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023B980>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:19,255 - ERROR - Error fetching data for Benin (BJ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/BJ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A99FAF0C20>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:20,261 - ERROR - Error fetching data for Botswana (BW): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/BW/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023B770>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:21,270 - ERROR - Error fetching data for Burkina Faso (BF): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/BF/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C140>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:22,272 - ERROR - Error fetching data for Burundi (BI): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/BI/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C710>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:23,278 - ERROR - Error fetching data for Cameroon (CM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025D100>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:24,292 - ERROR - Error fetching data for Cabo Verde (CV): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CV/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A99FF560F0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:25,295 - ERROR - Error fetching data for Central African Republic (CF): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CF/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023B8F0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:26,302 - ERROR - Error fetching data for Chad (TD): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/TD/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025D5B0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:27,306 - ERROR - Error fetching data for Comoros (KM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/KM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C710>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:28,330 - ERROR - Error fetching data for Congo (CG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025D970>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:29,343 - ERROR - Error fetching data for Congo (DRC) (CD): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CD/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025E270>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:30,353 - ERROR - Error fetching data for Côte d'Ivoire (CI): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CI/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025EB70>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:31,362 - ERROR - Error fetching data for Djibouti (DJ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/DJ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023AE70>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:32,371 - ERROR - Error fetching data for Egypt (EG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/EG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025DA30>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:33,372 - ERROR - Error fetching data for Equatorial Guinea (GQ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GQ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C3E0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:34,378 - ERROR - Error fetching data for Eritrea (ER): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ER/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C6E0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:35,384 - ERROR - Error fetching data for Eswatini (SZ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/SZ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025D370>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:36,394 - ERROR - Error fetching data for Ethiopia (ET): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ET/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025F020>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:37,396 - ERROR - Error fetching data for Gabon (GA): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GA/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023BB60>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:38,399 - ERROR - Error fetching data for Gambia (GM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025CCB0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:39,403 - ERROR - Error fetching data for Ghana (GH): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GH/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C470>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:40,414 - ERROR - Error fetching data for Guinea (GN): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GN/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025DAF0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:41,418 - ERROR - Error fetching data for Guinea-Bissau (GW): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GW/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025F1D0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:42,447 - ERROR - Error fetching data for Kenya (KE): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/KE/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025FAD0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:43,449 - ERROR - Error fetching data for Lesotho (LS): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/LS/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023BB60>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:44,459 - ERROR - Error fetching data for Liberia (LR): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/LR/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025F1A0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:45,468 - ERROR - Error fetching data for Libya (LY): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/LY/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025DB50>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:46,470 - ERROR - Error fetching data for Madagascar (MG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/MG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C200>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:47,476 - ERROR - Error fetching data for Malawi (MW): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/MW/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025FCB0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:48,486 - ERROR - Error fetching data for Mali (ML): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ML/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A02985C0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:49,495 - ERROR - Error fetching data for Mauritania (MR): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/MR/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023BC20>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:50,497 - ERROR - Error fetching data for Mauritius (MU): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/MU/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025FC20>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:51,503 - ERROR - Error fetching data for Morocco (MA): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/MA/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C7A0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:52,511 - ERROR - Error fetching data for Mozambique (MZ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/MZ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C0E0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:53,516 - ERROR - Error fetching data for Namibia (NA): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/NA/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A02987A0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:54,534 - ERROR - Error fetching data for Niger (NE): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/NE/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A02990A0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:55,535 - ERROR - Error fetching data for Nigeria (NG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/NG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023BE30>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:56,538 - ERROR - Error fetching data for Rwanda (RW): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/RW/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025FB60>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:57,569 - ERROR - Error fetching data for Sao Tome and Principe (ST): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ST/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025E180>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:58,574 - ERROR - Error fetching data for Senegal (SN): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/SN/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025F500>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:59,579 - ERROR - Error fetching data for Seychelles (SC): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/SC/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025F530>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:00,590 - ERROR - Error fetching data for Sierra Leone (SL): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/SL/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025D640>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:01,594 - ERROR - Error fetching data for Somalia (SO): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/SO/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023B0B0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:02,603 - ERROR - Error fetching data for South Africa (ZA): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ZA/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025F320>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:03,612 - ERROR - Error fetching data for South Sudan (SS): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/SS/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025CCB0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:04,617 - ERROR - Error fetching data for Sudan (SD): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/SD/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025D3A0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:05,624 - ERROR - Error fetching data for Tanzania (TZ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/TZ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025F170>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:06,631 - ERROR - Error fetching data for Togo (TG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/TG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025FFE0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:07,636 - ERROR - Error fetching data for Tunisia (TN): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/TN/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A99F55E780>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:08,641 - ERROR - Error fetching data for Uganda (UG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/UG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023B7D0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:09,647 - ERROR - Error fetching data for Zambia (ZM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ZM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025D100>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:10,654 - ERROR - Error fetching data for Zimbabwe (ZW): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/ZW/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C1A0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:59:11,677 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-18 10:23:59,112 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-18 10:24:00,518 - INFO - Fetched 1219 players for Angola (AO).
+2024-12-18 10:24:01,886 - INFO - Fetched 206 players for Benin (BJ).
+2024-12-18 10:24:03,256 - INFO - Fetched 1033 players for Botswana (BW).
+2024-12-18 10:24:04,656 - INFO - Fetched 151 players for Burkina Faso (BF).
+2024-12-18 10:24:06,030 - INFO - Fetched 95 players for Burundi (BI).
+2024-12-18 10:24:07,386 - INFO - Fetched 870 players for Cameroon (CM).
+2024-12-18 10:24:08,815 - INFO - Fetched 253 players for Cabo Verde (CV).
+2024-12-18 10:24:10,177 - INFO - Fetched 61 players for Central African Republic (CF).
+2024-12-18 10:24:11,547 - INFO - Fetched 302 players for Chad (TD).
+2024-12-18 10:24:12,936 - INFO - Fetched 62 players for Comoros (KM).
+2024-12-18 10:24:14,342 - INFO - Fetched 143 players for Congo (CG).
+2024-12-18 10:24:15,700 - INFO - Fetched 553 players for Congo (DRC) (CD).
+2024-12-18 10:24:17,054 - INFO - Fetched 697 players for Côte d'Ivoire (CI).
+2024-12-18 10:24:18,459 - INFO - Fetched 222 players for Djibouti (DJ).
+2024-12-18 10:24:19,979 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-18 10:24:21,367 - INFO - Fetched 78 players for Equatorial Guinea (GQ).
+2024-12-18 10:24:22,716 - INFO - Fetched 140 players for Eritrea (ER).
+2024-12-18 10:24:24,054 - INFO - Fetched 212 players for Eswatini (SZ).
+2024-12-18 10:24:25,455 - INFO - Fetched 2262 players for Ethiopia (ET).
+2024-12-18 10:24:26,791 - INFO - Fetched 217 players for Gabon (GA).
+2024-12-18 10:24:28,132 - INFO - Fetched 96 players for Gambia (GM).
+2024-12-18 10:24:29,493 - INFO - Fetched 1483 players for Ghana (GH).
+2024-12-18 10:24:30,894 - INFO - Fetched 77 players for Guinea (GN).
+2024-12-18 10:24:32,238 - INFO - Fetched 36 players for Guinea-Bissau (GW).
+2024-12-18 10:24:33,633 - INFO - Fetched 6254 players for Kenya (KE).
+2024-12-18 10:24:35,434 - INFO - Fetched 261 players for Lesotho (LS).
+2024-12-18 10:24:36,788 - INFO - Fetched 113 players for Liberia (LR).
+2024-12-18 10:24:38,128 - INFO - Fetched 1920 players for Libya (LY).
+2024-12-18 10:24:39,475 - INFO - Fetched 1811 players for Madagascar (MG).
+2024-12-18 10:24:40,830 - INFO - Fetched 557 players for Malawi (MW).
+2024-12-18 10:24:42,153 - INFO - Fetched 127 players for Mali (ML).
+2024-12-18 10:24:43,504 - INFO - Fetched 295 players for Mauritania (MR).
+2024-12-18 10:24:44,846 - INFO - Fetched 846 players for Mauritius (MU).
+2024-12-18 10:24:46,296 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-18 10:24:47,654 - INFO - Fetched 714 players for Mozambique (MZ).
+2024-12-18 10:24:49,019 - INFO - Fetched 556 players for Namibia (NA).
+2024-12-18 10:24:50,383 - INFO - Fetched 511 players for Niger (NE).
+2024-12-18 10:24:51,955 - INFO - Fetched 9787 players for Nigeria (NG).
+2024-12-18 10:24:53,369 - INFO - Fetched 274 players for Rwanda (RW).
+2024-12-18 10:24:54,757 - INFO - Fetched 129 players for Sao Tome and Principe (ST).
+2024-12-18 10:24:56,110 - INFO - Fetched 536 players for Senegal (SN).
+2024-12-18 10:24:57,509 - INFO - Fetched 388 players for Seychelles (SC).
+2024-12-18 10:24:58,855 - INFO - Fetched 128 players for Sierra Leone (SL).
+2024-12-18 10:25:00,236 - INFO - Fetched 875 players for Somalia (SO).
+2024-12-18 10:25:01,702 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-18 10:25:03,062 - INFO - Fetched 165 players for South Sudan (SS).
+2024-12-18 10:25:04,425 - INFO - Fetched 1395 players for Sudan (SD).
+2024-12-18 10:25:05,754 - INFO - Fetched 469 players for Tanzania (TZ).
+2024-12-18 10:25:07,141 - INFO - Fetched 282 players for Togo (TG).
+2024-12-18 10:25:08,593 - INFO - Fetched 8183 players for Tunisia (TN).
+2024-12-18 10:25:10,005 - INFO - Fetched 1604 players for Uganda (UG).
+2024-12-18 10:25:11,399 - INFO - Fetched 1683 players for Zambia (ZM).
+2024-12-18 10:25:12,803 - INFO - Fetched 2236 players for Zimbabwe (ZW).
+2024-12-18 10:25:13,810 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-19 09:13:47,807 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-19 09:13:49,170 - INFO - Fetched 1212 players for Angola (AO).
+2024-12-19 09:13:50,532 - INFO - Fetched 221 players for Benin (BJ).
+2024-12-19 09:13:51,879 - INFO - Fetched 964 players for Botswana (BW).
+2024-12-19 09:13:53,884 - INFO - Fetched 158 players for Burkina Faso (BF).
+2024-12-19 09:13:55,231 - INFO - Fetched 95 players for Burundi (BI).
+2024-12-19 09:13:56,567 - INFO - Fetched 875 players for Cameroon (CM).
+2024-12-19 09:13:57,931 - INFO - Fetched 224 players for Cabo Verde (CV).
+2024-12-19 09:13:59,288 - INFO - Fetched 59 players for Central African Republic (CF).
+2024-12-19 09:14:00,678 - INFO - Fetched 319 players for Chad (TD).
+2024-12-19 09:14:02,008 - INFO - Fetched 61 players for Comoros (KM).
+2024-12-19 09:14:03,348 - INFO - Fetched 154 players for Congo (CG).
+2024-12-19 09:14:04,728 - INFO - Fetched 556 players for Congo (DRC) (CD).
+2024-12-19 09:14:06,089 - INFO - Fetched 705 players for Côte d'Ivoire (CI).
+2024-12-19 09:14:07,438 - INFO - Fetched 213 players for Djibouti (DJ).
+2024-12-19 09:14:08,918 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-19 09:14:10,259 - INFO - Fetched 81 players for Equatorial Guinea (GQ).
+2024-12-19 09:14:11,608 - INFO - Fetched 147 players for Eritrea (ER).
+2024-12-19 09:14:12,938 - INFO - Fetched 202 players for Eswatini (SZ).
+2024-12-19 09:14:14,310 - INFO - Fetched 2263 players for Ethiopia (ET).
+2024-12-19 09:14:15,653 - INFO - Fetched 204 players for Gabon (GA).
+2024-12-19 09:14:16,991 - INFO - Fetched 92 players for Gambia (GM).
+2024-12-19 09:14:18,348 - INFO - Fetched 1525 players for Ghana (GH).
+2024-12-19 09:14:19,683 - INFO - Fetched 82 players for Guinea (GN).
+2024-12-19 09:14:21,005 - INFO - Fetched 36 players for Guinea-Bissau (GW).
+2024-12-19 09:14:22,331 - INFO - Fetched 6036 players for Kenya (KE).
+2024-12-19 09:14:23,688 - INFO - Fetched 258 players for Lesotho (LS).
+2024-12-19 09:14:25,031 - INFO - Fetched 111 players for Liberia (LR).
+2024-12-19 09:14:26,378 - INFO - Fetched 1904 players for Libya (LY).
+2024-12-19 09:14:27,748 - INFO - Fetched 1711 players for Madagascar (MG).
+2024-12-19 09:14:29,095 - INFO - Fetched 547 players for Malawi (MW).
+2024-12-19 09:14:30,428 - INFO - Fetched 144 players for Mali (ML).
+2024-12-19 09:14:31,788 - INFO - Fetched 291 players for Mauritania (MR).
+2024-12-19 09:14:33,148 - INFO - Fetched 809 players for Mauritius (MU).
+2024-12-19 09:14:34,580 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-19 09:14:35,958 - INFO - Fetched 736 players for Mozambique (MZ).
+2024-12-19 09:14:37,298 - INFO - Fetched 546 players for Namibia (NA).
+2024-12-19 09:14:38,668 - INFO - Fetched 494 players for Niger (NE).
+2024-12-19 09:14:40,138 - INFO - Fetched 9601 players for Nigeria (NG).
+2024-12-19 09:14:41,508 - INFO - Fetched 270 players for Rwanda (RW).
+2024-12-19 09:14:42,834 - INFO - Fetched 123 players for Sao Tome and Principe (ST).
+2024-12-19 09:14:44,206 - INFO - Fetched 544 players for Senegal (SN).
+2024-12-19 09:14:45,548 - INFO - Fetched 387 players for Seychelles (SC).
+2024-12-19 09:14:46,893 - INFO - Fetched 127 players for Sierra Leone (SL).
+2024-12-19 09:14:48,221 - INFO - Fetched 884 players for Somalia (SO).
+2024-12-19 09:14:49,638 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-19 09:14:50,990 - INFO - Fetched 171 players for South Sudan (SS).
+2024-12-19 09:14:52,340 - INFO - Fetched 1380 players for Sudan (SD).
+2024-12-19 09:14:53,678 - INFO - Fetched 450 players for Tanzania (TZ).
+2024-12-19 09:14:55,071 - INFO - Fetched 300 players for Togo (TG).
+2024-12-19 09:14:56,498 - INFO - Fetched 7992 players for Tunisia (TN).
+2024-12-19 09:14:57,868 - INFO - Fetched 1597 players for Uganda (UG).
+2024-12-19 09:14:59,218 - INFO - Fetched 1619 players for Zambia (ZM).
+2024-12-19 09:15:00,572 - INFO - Fetched 2195 players for Zimbabwe (ZW).
+2024-12-19 09:15:01,601 - INFO - Player counts saved to african_country_player_counts.csv
+2024-12-20 04:44:10,236 - INFO - Fetched 10000 players for Algeria (DZ).
+2024-12-20 04:44:11,632 - INFO - Fetched 1149 players for Angola (AO).
+2024-12-20 04:44:13,090 - INFO - Fetched 217 players for Benin (BJ).
+2024-12-20 04:44:14,466 - INFO - Fetched 953 players for Botswana (BW).
+2024-12-20 04:44:15,846 - INFO - Fetched 148 players for Burkina Faso (BF).
+2024-12-20 04:44:17,211 - INFO - Fetched 90 players for Burundi (BI).
+2024-12-20 04:44:18,578 - INFO - Fetched 828 players for Cameroon (CM).
+2024-12-20 04:44:19,957 - INFO - Fetched 211 players for Cabo Verde (CV).
+2024-12-20 04:44:21,307 - INFO - Fetched 67 players for Central African Republic (CF).
+2024-12-20 04:44:22,707 - INFO - Fetched 319 players for Chad (TD).
+2024-12-20 04:44:24,060 - INFO - Fetched 64 players for Comoros (KM).
+2024-12-20 04:44:25,403 - INFO - Fetched 141 players for Congo (CG).
+2024-12-20 04:44:26,757 - INFO - Fetched 513 players for Congo (DRC) (CD).
+2024-12-20 04:44:28,128 - INFO - Fetched 674 players for Côte d'Ivoire (CI).
+2024-12-20 04:44:29,568 - INFO - Fetched 207 players for Djibouti (DJ).
+2024-12-20 04:44:31,078 - INFO - Fetched 10000 players for Egypt (EG).
+2024-12-20 04:44:32,447 - INFO - Fetched 66 players for Equatorial Guinea (GQ).
+2024-12-20 04:44:34,255 - INFO - Fetched 145 players for Eritrea (ER).
+2024-12-20 04:44:35,720 - INFO - Fetched 208 players for Eswatini (SZ).
+2024-12-20 04:44:37,156 - INFO - Fetched 2139 players for Ethiopia (ET).
+2024-12-20 04:44:38,511 - INFO - Fetched 181 players for Gabon (GA).
+2024-12-20 04:44:39,833 - INFO - Fetched 85 players for Gambia (GM).
+2024-12-20 04:44:41,635 - INFO - Fetched 1416 players for Ghana (GH).
+2024-12-20 04:44:42,991 - INFO - Fetched 81 players for Guinea (GN).
+2024-12-20 04:44:44,331 - INFO - Fetched 36 players for Guinea-Bissau (GW).
+2024-12-20 04:44:45,638 - INFO - Fetched 5802 players for Kenya (KE).
+2024-12-20 04:44:47,029 - INFO - Fetched 243 players for Lesotho (LS).
+2024-12-20 04:44:48,394 - INFO - Fetched 107 players for Liberia (LR).
+2024-12-20 04:44:49,780 - INFO - Fetched 1781 players for Libya (LY).
+2024-12-20 04:44:51,145 - INFO - Fetched 1580 players for Madagascar (MG).
+2024-12-20 04:44:52,513 - INFO - Fetched 526 players for Malawi (MW).
+2024-12-20 04:44:53,949 - INFO - Fetched 132 players for Mali (ML).
+2024-12-20 04:44:55,278 - INFO - Fetched 254 players for Mauritania (MR).
+2024-12-20 04:44:56,671 - INFO - Fetched 749 players for Mauritius (MU).
+2024-12-20 04:44:58,155 - INFO - Fetched 10000 players for Morocco (MA).
+2024-12-20 04:44:59,546 - INFO - Fetched 701 players for Mozambique (MZ).
+2024-12-20 04:45:00,910 - INFO - Fetched 532 players for Namibia (NA).
+2024-12-20 04:45:02,259 - INFO - Fetched 457 players for Niger (NE).
+2024-12-20 04:45:03,682 - INFO - Fetched 8814 players for Nigeria (NG).
+2024-12-20 04:45:05,105 - INFO - Fetched 287 players for Rwanda (RW).
+2024-12-20 04:45:06,459 - INFO - Fetched 126 players for Sao Tome and Principe (ST).
+2024-12-20 04:45:07,875 - INFO - Fetched 522 players for Senegal (SN).
+2024-12-20 04:45:09,240 - INFO - Fetched 363 players for Seychelles (SC).
+2024-12-20 04:45:10,592 - INFO - Fetched 115 players for Sierra Leone (SL).
+2024-12-20 04:45:11,961 - INFO - Fetched 846 players for Somalia (SO).
+2024-12-20 04:45:13,470 - INFO - Fetched 10000 players for South Africa (ZA).
+2024-12-20 04:45:14,827 - INFO - Fetched 155 players for South Sudan (SS).
+2024-12-20 04:45:16,203 - INFO - Fetched 1293 players for Sudan (SD).
+2024-12-20 04:45:17,569 - INFO - Fetched 441 players for Tanzania (TZ).
+2024-12-20 04:45:18,932 - INFO - Fetched 279 players for Togo (TG).
+2024-12-20 04:45:20,478 - INFO - Fetched 7524 players for Tunisia (TN).
+2024-12-20 04:45:21,842 - INFO - Fetched 1554 players for Uganda (UG).
+2024-12-20 04:45:23,194 - INFO - Fetched 1548 players for Zambia (ZM).
+2024-12-20 04:45:24,567 - INFO - Fetched 2096 players for Zimbabwe (ZW).
+2024-12-20 04:45:25,594 - INFO - Player counts saved to african_country_player_counts.csv
