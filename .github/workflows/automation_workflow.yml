@@ -1,9 +1,12 @@
-name: Chess Data Automation
-
 on:
   schedule:
-    - cron: '10 16 * * *' # Runs daily at midnight UTC
-  workflow_dispatch: # Allows manual runs
+    - cron: '10 16 * * *'
+  workflow_dispatch:
+    inputs:
+      push_files:
+        description: 'Restart at the file push step'
+        required: true
+        default: 'false'
 
 jobs:
   automate:
@@ -27,11 +30,12 @@ jobs:
       run: python automation_script.py
 
     - name: Push updated data to GitHub
+      if: ${{ inputs.push_files == 'true' }}
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add .
         git commit -m "Automated data update"
-        git push
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
