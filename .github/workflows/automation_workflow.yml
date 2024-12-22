@@ -1,48 +1,66 @@
+name: Daily Data Processing Pipeline
+
 on:
   schedule:
-    - cron: '10 16 * * *' # Runs daily at 16:10 UTC
-  workflow_dispatch:
-    inputs:
-      push_files:
-        description: 'Restart at the file push step'
-        required: false
-        default: 'false'
+    - cron: '10 16 * * *'  # Runs at 16:10 UTC daily
+  workflow_dispatch:        # Enables manual triggering
 
 jobs:
-  automate:
+  process-data:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write      # Required for pushing changes
+    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run automation script
-      run: python automation_script.py
-
-    - name: Debug Git Configuration
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --get user.name
-        git config --get user.email
-
-    - name: Push updated data and logs to GitHub
-      if: ${{ github.event.inputs.push_files == 'true' }}
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add *.csv *.log
-        git commit -m "Automated data and log update" || echo "No changes to commit"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Fetches all history for all branches and tags
+      
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Run data processing script
+        run: python automation_script.py
+        
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+      # Debug step to verify Git configuration
+      - name: Verify Git configuration
+        run: |
+          echo "Current Git configuration:"
+          git config --list
+          echo "Repository status:"
+          git status
+          
+      - name: Commit and push changes
+        run: |
+          # Stage all CSV and log files
+          git add "*.csv" "*.log"
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            # Commit and push changes
+            git commit -m "Auto-update: Data processing results [skip ci]"
+            
+            # Debug: Show what's being committed
+            echo "Files being committed:"
+            git diff --name-status HEAD^1 HEAD
+            
+            # Push changes using GITHUB_TOKEN
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
