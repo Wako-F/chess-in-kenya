@@ -1,11 +1,11 @@
 on:
   schedule:
-    - cron: '10 16 * * *'
+    - cron: '10 16 * * *' # Runs daily at 16:10 UTC
   workflow_dispatch:
     inputs:
       push_files:
         description: 'Restart at the file push step'
-        required: true
+        required: false
         default: 'false'
 
 jobs:
@@ -29,13 +29,13 @@ jobs:
     - name: Run automation script
       run: python automation_script.py
 
-    - name: Push updated data to GitHub
-      if: ${{ inputs.push_files == 'true' }}
+    - name: Push updated data and logs to GitHub
+      if: ${{ github.event.inputs.push_files == 'true' }}
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add .
-        git commit -m "Automated data update"
+        git add *.csv *.log
+        git commit -m "Automated data and log update"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
