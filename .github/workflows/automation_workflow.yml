@@ -29,8 +29,12 @@ jobs:
     - name: Run automation script
       run: python automation_script.py
 
-    - name: Debug Git Remote URL
-      run: git remote -v
+    - name: Debug Git Configuration
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --get user.name
+        git config --get user.email
 
     - name: Push updated data and logs to GitHub
       if: ${{ github.event.inputs.push_files == 'true' }}
