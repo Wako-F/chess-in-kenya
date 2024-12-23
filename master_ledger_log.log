@@ -43,12 +43,9 @@
 2024-12-19 09:13:45,944 - INFO - Master ledger saved. Total players: 16102, New players added: 1127
 2024-12-20 04:44:06,720 - INFO - Master ledger updated: 892 new players added.
 2024-12-20 04:44:07,322 - INFO - Master ledger saved. Total players: 16994, New players added: 892
-<<<<<<< Updated upstream
 2024-12-22 21:21:50,279 - INFO - Master ledger updated: 1466 new players added.
 2024-12-22 21:21:50,500 - INFO - Master ledger saved. Total players: 18460, New players added: 1466
-=======
 2024-12-21 04:44:54,599 - INFO - Master ledger updated: 597 new players added.
 2024-12-21 04:44:55,052 - INFO - Master ledger saved. Total players: 17591, New players added: 597
 2024-12-22 09:09:48,413 - INFO - Master ledger updated: 863 new players added.
 2024-12-22 09:09:48,839 - INFO - Master ledger saved. Total players: 18454, New players added: 863
->>>>>>> Stashed changes

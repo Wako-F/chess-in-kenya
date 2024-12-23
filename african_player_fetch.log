@@ -121,7 +121,7 @@
 2024-12-10 13:30:46,264 - INFO - Fetched 41 players for Comoros (KM).
 2024-12-10 13:30:47,809 - INFO - Fetched 109 players for Congo (CG).
 2024-12-10 13:30:49,434 - INFO - Fetched 322 players for Congo (DRC) (CD).
-2024-12-10 13:30:51,015 - INFO - Fetched 479 players for Côte d'Ivoire (CI).
+2024-12-10 13:30:51,015 - INFO - Fetched 479 players for Cï¿½te d'Ivoire (CI).
 2024-12-10 13:30:52,763 - INFO - Fetched 173 players for Djibouti (DJ).
 2024-12-10 13:30:54,510 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-10 13:30:55,856 - INFO - Fetched 47 players for Equatorial Guinea (GQ).
@@ -176,7 +176,7 @@
 2024-12-10 16:19:13,835 - ERROR - Error fetching data for Comoros (KM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/KM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45C860>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-10 16:19:14,838 - ERROR - Error fetching data for Congo (CG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45DC10>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-10 16:19:15,841 - ERROR - Error fetching data for Congo (DRC) (CD): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CD/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45E510>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
-2024-12-10 16:19:16,850 - ERROR - Error fetching data for Côte d'Ivoire (CI): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CI/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45EE10>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-10 16:19:16,850 - ERROR - Error fetching data for Cï¿½te d'Ivoire (CI): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CI/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45EE10>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-10 16:19:17,856 - ERROR - Error fetching data for Djibouti (DJ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/DJ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD43BB60>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-10 16:19:18,857 - ERROR - Error fetching data for Egypt (EG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/EG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45E570>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-10 16:19:19,863 - ERROR - Error fetching data for Equatorial Guinea (GQ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GQ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000239CD45DBB0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
@@ -200,7 +200,7 @@
 2024-12-10 23:02:24,264 - INFO - Fetched 41 players for Comoros (KM).
 2024-12-10 23:02:26,194 - INFO - Fetched 109 players for Congo (CG).
 2024-12-10 23:02:27,625 - INFO - Fetched 322 players for Congo (DRC) (CD).
-2024-12-10 23:02:29,415 - INFO - Fetched 479 players for Côte d'Ivoire (CI).
+2024-12-10 23:02:29,415 - INFO - Fetched 479 players for Cï¿½te d'Ivoire (CI).
 2024-12-10 23:02:31,579 - INFO - Fetched 173 players for Djibouti (DJ).
 2024-12-10 23:02:32,958 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-10 23:02:34,900 - INFO - Fetched 47 players for Equatorial Guinea (GQ).
@@ -255,7 +255,7 @@
 2024-12-12 01:07:47,659 - INFO - Fetched 67 players for Comoros (KM).
 2024-12-12 01:07:49,071 - INFO - Fetched 134 players for Congo (CG).
 2024-12-12 01:07:50,504 - INFO - Fetched 447 players for Congo (DRC) (CD).
-2024-12-12 01:07:51,940 - INFO - Fetched 603 players for Côte d'Ivoire (CI).
+2024-12-12 01:07:51,940 - INFO - Fetched 603 players for Cï¿½te d'Ivoire (CI).
 2024-12-12 01:07:53,371 - INFO - Fetched 211 players for Djibouti (DJ).
 2024-12-12 01:07:54,918 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-12 01:07:56,338 - INFO - Fetched 56 players for Equatorial Guinea (GQ).
@@ -310,7 +310,7 @@
 2024-12-12 16:59:43,921 - INFO - Fetched 60 players for Comoros (KM).
 2024-12-12 16:59:46,378 - INFO - Fetched 110 players for Congo (CG).
 2024-12-12 16:59:47,801 - INFO - Fetched 390 players for Congo (DRC) (CD).
-2024-12-12 16:59:49,765 - INFO - Fetched 541 players for Côte d'Ivoire (CI).
+2024-12-12 16:59:49,765 - INFO - Fetched 541 players for Cï¿½te d'Ivoire (CI).
 2024-12-12 16:59:51,190 - INFO - Fetched 192 players for Djibouti (DJ).
 2024-12-12 16:59:53,104 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-12 16:59:54,570 - INFO - Fetched 55 players for Equatorial Guinea (GQ).
@@ -365,7 +365,7 @@
 2024-12-13 08:17:40,491 - INFO - Fetched 68 players for Comoros (KM).
 2024-12-13 08:17:41,927 - INFO - Fetched 148 players for Congo (CG).
 2024-12-13 08:17:43,288 - INFO - Fetched 491 players for Congo (DRC) (CD).
-2024-12-13 08:17:44,714 - INFO - Fetched 696 players for Côte d'Ivoire (CI).
+2024-12-13 08:17:44,714 - INFO - Fetched 696 players for Cï¿½te d'Ivoire (CI).
 2024-12-13 08:17:46,222 - INFO - Fetched 230 players for Djibouti (DJ).
 2024-12-13 08:17:47,731 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-13 08:17:49,142 - INFO - Fetched 67 players for Equatorial Guinea (GQ).
@@ -420,7 +420,7 @@
 2024-12-13 19:23:13,216 - INFO - Fetched 51 players for Comoros (KM).
 2024-12-13 19:23:14,600 - INFO - Fetched 129 players for Congo (CG).
 2024-12-13 19:23:15,981 - INFO - Fetched 416 players for Congo (DRC) (CD).
-2024-12-13 19:23:17,351 - INFO - Fetched 590 players for Côte d'Ivoire (CI).
+2024-12-13 19:23:17,351 - INFO - Fetched 590 players for Cï¿½te d'Ivoire (CI).
 2024-12-13 19:23:18,745 - INFO - Fetched 193 players for Djibouti (DJ).
 2024-12-13 19:23:20,294 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-13 19:23:21,714 - INFO - Fetched 67 players for Equatorial Guinea (GQ).
@@ -475,7 +475,7 @@
 2024-12-14 07:38:44,884 - INFO - Fetched 58 players for Comoros (KM).
 2024-12-14 07:38:46,248 - INFO - Fetched 154 players for Congo (CG).
 2024-12-14 07:38:47,583 - INFO - Fetched 494 players for Congo (DRC) (CD).
-2024-12-14 07:38:48,941 - INFO - Fetched 698 players for Côte d'Ivoire (CI).
+2024-12-14 07:38:48,941 - INFO - Fetched 698 players for Cï¿½te d'Ivoire (CI).
 2024-12-14 07:38:50,293 - INFO - Fetched 227 players for Djibouti (DJ).
 2024-12-14 07:38:51,743 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-14 07:38:53,131 - INFO - Fetched 80 players for Equatorial Guinea (GQ).
@@ -530,7 +530,7 @@
 2024-12-15 09:06:12,595 - INFO - Fetched 66 players for Comoros (KM).
 2024-12-15 09:06:13,976 - INFO - Fetched 146 players for Congo (CG).
 2024-12-15 09:06:15,362 - INFO - Fetched 467 players for Congo (DRC) (CD).
-2024-12-15 09:06:16,747 - INFO - Fetched 659 players for Côte d'Ivoire (CI).
+2024-12-15 09:06:16,747 - INFO - Fetched 659 players for Cï¿½te d'Ivoire (CI).
 2024-12-15 09:06:18,114 - INFO - Fetched 203 players for Djibouti (DJ).
 2024-12-15 09:06:19,591 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-15 09:06:20,941 - INFO - Fetched 78 players for Equatorial Guinea (GQ).
@@ -585,7 +585,7 @@
 2024-12-15 23:35:53,276 - INFO - Fetched 64 players for Comoros (KM).
 2024-12-15 23:35:54,711 - INFO - Fetched 130 players for Congo (CG).
 2024-12-15 23:35:56,081 - INFO - Fetched 420 players for Congo (DRC) (CD).
-2024-12-15 23:35:57,476 - INFO - Fetched 576 players for Côte d'Ivoire (CI).
+2024-12-15 23:35:57,476 - INFO - Fetched 576 players for Cï¿½te d'Ivoire (CI).
 2024-12-15 23:35:58,870 - INFO - Fetched 159 players for Djibouti (DJ).
 2024-12-15 23:36:00,410 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-15 23:36:01,784 - INFO - Fetched 60 players for Equatorial Guinea (GQ).
@@ -640,7 +640,7 @@
 2024-12-17 03:15:17,466 - INFO - Fetched 57 players for Comoros (KM).
 2024-12-17 03:15:18,904 - INFO - Fetched 140 players for Congo (CG).
 2024-12-17 03:15:20,338 - INFO - Fetched 479 players for Congo (DRC) (CD).
-2024-12-17 03:15:21,767 - INFO - Fetched 640 players for Côte d'Ivoire (CI).
+2024-12-17 03:15:21,767 - INFO - Fetched 640 players for Cï¿½te d'Ivoire (CI).
 2024-12-17 03:15:23,103 - INFO - Fetched 197 players for Djibouti (DJ).
 2024-12-17 03:15:24,649 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-17 03:15:26,073 - INFO - Fetched 60 players for Equatorial Guinea (GQ).
@@ -695,7 +695,7 @@
 2024-12-18 00:58:27,306 - ERROR - Error fetching data for Comoros (KM): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/KM/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C710>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-18 00:58:28,330 - ERROR - Error fetching data for Congo (CG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025D970>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-18 00:58:29,343 - ERROR - Error fetching data for Congo (DRC) (CD): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CD/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025E270>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
-2024-12-18 00:58:30,353 - ERROR - Error fetching data for Côte d'Ivoire (CI): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CI/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025EB70>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
+2024-12-18 00:58:30,353 - ERROR - Error fetching data for Cï¿½te d'Ivoire (CI): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/CI/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025EB70>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-18 00:58:31,362 - ERROR - Error fetching data for Djibouti (DJ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/DJ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A023AE70>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-18 00:58:32,371 - ERROR - Error fetching data for Egypt (EG): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/EG/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025DA30>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
 2024-12-18 00:58:33,372 - ERROR - Error fetching data for Equatorial Guinea (GQ): HTTPSConnectionPool(host='api.chess.com', port=443): Max retries exceeded with url: /pub/country/GQ/players (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001A9A025C3E0>: Failed to resolve 'api.chess.com' ([Errno 11001] getaddrinfo failed)"))
@@ -750,7 +750,7 @@
 2024-12-18 10:24:12,936 - INFO - Fetched 62 players for Comoros (KM).
 2024-12-18 10:24:14,342 - INFO - Fetched 143 players for Congo (CG).
 2024-12-18 10:24:15,700 - INFO - Fetched 553 players for Congo (DRC) (CD).
-2024-12-18 10:24:17,054 - INFO - Fetched 697 players for Côte d'Ivoire (CI).
+2024-12-18 10:24:17,054 - INFO - Fetched 697 players for Cï¿½te d'Ivoire (CI).
 2024-12-18 10:24:18,459 - INFO - Fetched 222 players for Djibouti (DJ).
 2024-12-18 10:24:19,979 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-18 10:24:21,367 - INFO - Fetched 78 players for Equatorial Guinea (GQ).
@@ -805,7 +805,7 @@
 2024-12-19 09:14:02,008 - INFO - Fetched 61 players for Comoros (KM).
 2024-12-19 09:14:03,348 - INFO - Fetched 154 players for Congo (CG).
 2024-12-19 09:14:04,728 - INFO - Fetched 556 players for Congo (DRC) (CD).
-2024-12-19 09:14:06,089 - INFO - Fetched 705 players for Côte d'Ivoire (CI).
+2024-12-19 09:14:06,089 - INFO - Fetched 705 players for Cï¿½te d'Ivoire (CI).
 2024-12-19 09:14:07,438 - INFO - Fetched 213 players for Djibouti (DJ).
 2024-12-19 09:14:08,918 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-19 09:14:10,259 - INFO - Fetched 81 players for Equatorial Guinea (GQ).
@@ -860,7 +860,7 @@
 2024-12-20 04:44:24,060 - INFO - Fetched 64 players for Comoros (KM).
 2024-12-20 04:44:25,403 - INFO - Fetched 141 players for Congo (CG).
 2024-12-20 04:44:26,757 - INFO - Fetched 513 players for Congo (DRC) (CD).
-2024-12-20 04:44:28,128 - INFO - Fetched 674 players for Côte d'Ivoire (CI).
+2024-12-20 04:44:28,128 - INFO - Fetched 674 players for Cï¿½te d'Ivoire (CI).
 2024-12-20 04:44:29,568 - INFO - Fetched 207 players for Djibouti (DJ).
 2024-12-20 04:44:31,078 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-20 04:44:32,447 - INFO - Fetched 66 players for Equatorial Guinea (GQ).
@@ -902,7 +902,6 @@
 2024-12-20 04:45:23,194 - INFO - Fetched 1548 players for Zambia (ZM).
 2024-12-20 04:45:24,567 - INFO - Fetched 2096 players for Zimbabwe (ZW).
 2024-12-20 04:45:25,594 - INFO - Player counts saved to african_country_player_counts.csv
-<<<<<<< Updated upstream
 2024-12-22 21:21:51,098 - INFO - Fetched 10000 players for Algeria (DZ).
 2024-12-22 21:21:52,238 - INFO - Fetched 991 players for Angola (AO).
 2024-12-22 21:21:53,359 - INFO - Fetched 173 players for Benin (BJ).
@@ -958,7 +957,6 @@
 2024-12-22 21:22:50,188 - INFO - Fetched 1259 players for Zambia (ZM).
 2024-12-22 21:22:51,318 - INFO - Fetched 1701 players for Zimbabwe (ZW).
 2024-12-22 21:22:52,321 - INFO - Player counts saved to african_country_player_counts.csv
-=======
 2024-12-21 04:44:57,939 - INFO - Fetched 10000 players for Algeria (DZ).
 2024-12-21 04:44:59,273 - INFO - Fetched 1029 players for Angola (AO).
 2024-12-21 04:45:00,743 - INFO - Fetched 183 players for Benin (BJ).
@@ -972,7 +970,7 @@
 2024-12-21 04:45:11,594 - INFO - Fetched 55 players for Comoros (KM).
 2024-12-21 04:45:12,987 - INFO - Fetched 130 players for Congo (CG).
 2024-12-21 04:45:14,364 - INFO - Fetched 462 players for Congo (DRC) (CD).
-2024-12-21 04:45:15,712 - INFO - Fetched 582 players for Côte d'Ivoire (CI).
+2024-12-21 04:45:15,712 - INFO - Fetched 582 players for Cï¿½te d'Ivoire (CI).
 2024-12-21 04:45:17,074 - INFO - Fetched 176 players for Djibouti (DJ).
 2024-12-21 04:45:18,460 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-21 04:45:19,844 - INFO - Fetched 69 players for Equatorial Guinea (GQ).
@@ -1027,7 +1025,7 @@
 2024-12-22 09:10:06,681 - INFO - Fetched 57 players for Comoros (KM).
 2024-12-22 09:10:08,116 - INFO - Fetched 159 players for Congo (CG).
 2024-12-22 09:10:09,549 - INFO - Fetched 507 players for Congo (DRC) (CD).
-2024-12-22 09:10:10,940 - INFO - Fetched 691 players for Côte d'Ivoire (CI).
+2024-12-22 09:10:10,940 - INFO - Fetched 691 players for Cï¿½te d'Ivoire (CI).
 2024-12-22 09:10:12,322 - INFO - Fetched 187 players for Djibouti (DJ).
 2024-12-22 09:10:14,063 - INFO - Fetched 10000 players for Egypt (EG).
 2024-12-22 09:10:15,481 - INFO - Fetched 72 players for Equatorial Guinea (GQ).
@@ -1069,4 +1067,3 @@
 2024-12-22 09:11:07,265 - INFO - Fetched 1498 players for Zambia (ZM).
 2024-12-22 09:11:08,652 - INFO - Fetched 2006 players for Zimbabwe (ZW).
 2024-12-22 09:11:09,666 - INFO - Player counts saved to african_country_player_counts.csv
->>>>>>> Stashed changes
