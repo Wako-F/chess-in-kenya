@@ -6,7 +6,8 @@ data = pd.read_csv(file_path)
 
 #Sort according to format ratings
 
-bullet_players = data.sort_values(by="Bullet Rating", ascending=False)
+
+bullet_players = data.sort_values(by="Bullet Rating", ascending=False).to_csv("rapid_players_sorted.csv", index=False)
 rapid_players = data.sort_values(by="Rapid Rating", ascending=False)
 blitz_players = data.sort_values(by="Blitz Rating", ascending=False)
 daily_players = data.sort_values(by="Daily Rating", ascending=False)

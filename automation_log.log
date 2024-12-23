@@ -219,6 +219,7 @@
 2024-12-20 04:45:28,775 - INFO - Comment added to chess_dashboard.py for auto-refresh.
 2024-12-20 04:45:28,775 - INFO - Adding files to GitHub...
 2024-12-20 04:45:36,329 - INFO - Changes pushed to GitHub successfully.
+<<<<<<< Updated upstream
 2024-12-22 19:17:00,889 - INFO - Executing script: chess_kenya.py
 2024-12-22 21:21:49,859 - INFO - Script executed successfully: chess_kenya.py
 2024-12-22 21:21:49,859 - INFO - Executing script: update_master_ledger.py
@@ -231,3 +232,28 @@
 2024-12-22 21:22:53,051 - INFO - Adding files to GitHub...
 2024-12-22 21:22:53,154 - ERROR - Error pushing to GitHub: Command '['git', 'commit', '-m', 'Automated update of chess players data']' returned non-zero exit status 128.
 2024-12-22 21:22:53,154 - ERROR - Automation workflow failed: Command '['git', 'commit', '-m', 'Automated update of chess players data']' returned non-zero exit status 128.
+=======
+2024-12-21 01:49:45,897 - INFO - Executing script: chess_kenya.py
+2024-12-21 04:44:49,041 - INFO - Script executed successfully: chess_kenya.py
+2024-12-21 04:44:49,041 - INFO - Executing script: update_master_ledger.py
+2024-12-21 04:44:55,198 - INFO - Script executed successfully: update_master_ledger.py
+2024-12-21 04:44:55,198 - INFO - Executing script: africa_count.py
+2024-12-21 04:46:11,628 - INFO - Script executed successfully: africa_count.py
+2024-12-21 04:46:11,628 - INFO - Executing script: data_cleaning.py
+2024-12-21 04:46:14,036 - INFO - Script executed successfully: data_cleaning.py
+2024-12-21 04:46:14,041 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2024-12-21 04:46:14,041 - INFO - Adding files to GitHub...
+2024-12-21 04:46:18,435 - ERROR - Error pushing to GitHub: Command '['git', 'push']' returned non-zero exit status 1.
+2024-12-21 04:46:18,435 - ERROR - Automation workflow failed: Command '['git', 'push']' returned non-zero exit status 1.
+2024-12-22 06:14:59,563 - INFO - Executing script: chess_kenya.py
+2024-12-22 09:09:42,708 - INFO - Script executed successfully: chess_kenya.py
+2024-12-22 09:09:42,708 - INFO - Executing script: update_master_ledger.py
+2024-12-22 09:09:48,982 - INFO - Script executed successfully: update_master_ledger.py
+2024-12-22 09:09:48,982 - INFO - Executing script: africa_count.py
+2024-12-22 09:11:09,837 - INFO - Script executed successfully: africa_count.py
+2024-12-22 09:11:09,837 - INFO - Executing script: data_cleaning.py
+2024-12-22 09:11:13,326 - INFO - Script executed successfully: data_cleaning.py
+2024-12-22 09:11:13,350 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2024-12-22 09:11:13,350 - INFO - Adding files to GitHub...
+2024-12-22 09:11:20,994 - INFO - Changes pushed to GitHub successfully.
+>>>>>>> Stashed changes

@@ -28,6 +28,8 @@ def create_database():
     cursor.execute("DROP TABLE IF EXISTS players")
 
     # Create the table with the exact column names
+
+    
     cursor.execute(f"""
         CREATE TABLE players (
             {", ".join([f'"{col}" TEXT' for col in COLUMNS])}
