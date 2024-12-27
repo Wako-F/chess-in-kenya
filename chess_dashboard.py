@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import time
+from datetime import datetime
 
 # Custom CSS
 st.markdown(
@@ -76,6 +77,13 @@ data = load_data("cleaned_master_chess_players.csv")
 # # Drop rows with invalid or missing join dates
 # data = data.dropna(subset=['Join Date'])
 st.markdown("# Online Chess in Kenya ♚")
+try:
+    with open("last_update.txt", "r") as f:
+        last_update = f.read().strip()
+except FileNotFoundError:
+    last_update = "Unknown (no update record found)"
+
+st.caption(f"Last updated on {last_update}")
 
 # Tabs for Navigation
 

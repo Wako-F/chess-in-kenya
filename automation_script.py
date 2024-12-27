@@ -55,6 +55,15 @@ def add_comment_to_dashboard(file_path):
     except Exception as e:
         logging.error(f"Error adding comment to {file_path}: {e}")
         raise
+def save_last_update_timestamp(file_path="last_update.txt"):
+    """Save the current timestamp to a file."""
+    try:
+        with open(file_path, "w") as f:
+            f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        logging.info(f"Last update timestamp saved to {file_path}.")
+    except Exception as e:
+        logging.error(f"Error saving timestamp: {e}")
+        raise
 
 def main():
     """Main automation workflow."""
@@ -69,6 +78,7 @@ def main():
         run_script(SCRIPTS["clean_data"])
 
         add_comment_to_dashboard(DASHBOARD_FILE)
+        save_last_update_timestamp()
 
         # Step 5: Push cleaned data to GitHub
         push_to_github()
