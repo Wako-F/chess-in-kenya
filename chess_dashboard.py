@@ -3,6 +3,8 @@ import pandas as pd
 import plotly.express as px
 import time
 from datetime import datetime
+import os
+from streamlit_autorefresh import st_autorefresh
 
 # Custom CSS
 st.markdown(
@@ -77,6 +79,7 @@ data = load_data("cleaned_master_chess_players.csv")
 # # Drop rows with invalid or missing join dates
 # data = data.dropna(subset=['Join Date'])
 st.markdown("# Online Chess in Kenya ♚")
+#Last update caption
 try:
     with open("last_update.txt", "r") as f:
         last_update = f.read().strip()
@@ -84,6 +87,22 @@ except FileNotFoundError:
     last_update = "Unknown (no update record found)"
 
 st.caption(f"Last updated on {last_update}")
+
+#Auto refresh
+refresh_flag = "refresh.flag"
+
+# Function to get the last modified time of a file
+def get_last_modified_time(file_path):
+    return os.path.getmtime(file_path) if os.path.exists(file_path) else 0
+
+# Monitor the refresh flag for changes
+last_refresh_time = st.session_state.get("last_refresh_time", 0)
+current_refresh_time = get_last_modified_time(refresh_flag)
+
+if current_refresh_time > last_refresh_time:
+    st.session_state["last_refresh_time"] = current_refresh_time
+    st.rerun()  # Trigger a refresh when the marker file updates
+
 
 # Tabs for Navigation
 
