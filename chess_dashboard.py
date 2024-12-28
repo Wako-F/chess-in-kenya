@@ -79,14 +79,6 @@ data = load_data("cleaned_master_chess_players.csv")
 # # Drop rows with invalid or missing join dates
 # data = data.dropna(subset=['Join Date'])
 st.markdown("# Online Chess in Kenya ♚")
-#Last update caption
-try:
-    with open("last_update.txt", "r") as f:
-        last_update = f.read().strip()
-except FileNotFoundError:
-    last_update = "Unknown (no update record found)"
-
-st.caption(f"Last updated on {last_update}")
 
 #Auto refresh
 refresh_flag = "refresh.flag"
@@ -103,7 +95,14 @@ if current_refresh_time > last_refresh_time:
     st.session_state["last_refresh_time"] = current_refresh_time
     st.rerun()  # Trigger a refresh when the marker file updates
 
+#Last update caption
+try:
+    with open("refresh.flag", "r") as f:
+        last_update = f.read().strip()
+except FileNotFoundError:
+    last_update = "Unknown (no update record found)"
 
+st.caption(f"{last_update}")
 # Tabs for Navigation
 
 tab1, tab2, tab3 = st.tabs(["Overview", "Leaderboards", "Search"])
