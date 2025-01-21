@@ -26,7 +26,7 @@ SAVE_INTERVAL = 100  # Save progress every 100 players
 RATE_LIMIT_DELAY = 2  # Increased delay between requests
 
 # Add new constants
-MAX_WORKERS = 10  # Reduced from 10 to lower concurrent requests
+MAX_WORKERS = 5  # Reduced from 10 to lower concurrent requests
 MASTER_CSV_FILENAME = "master_chess_players.csv"
 REQUEST_TIMEOUT = 30  # Increased timeout
 MAX_RETRIES = 3
