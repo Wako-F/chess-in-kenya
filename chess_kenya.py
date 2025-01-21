@@ -23,40 +23,40 @@ HEADERS = {
     "User-Agent": "Chess-in-Kenya (Contact: wakokunu@gmail.com)"
 }
 SAVE_INTERVAL = 100  # Save progress every 100 players
-RATE_LIMIT_DELAY = 1  # Delay between API calls to respect rate limits
+RATE_LIMIT_DELAY = 2  # Increased delay between requests
 
 # Add new constants
-MAX_WORKERS = 10  # Number of concurrent threads
+MAX_WORKERS = 10  # Reduced from 10 to lower concurrent requests
 MASTER_CSV_FILENAME = "master_chess_players.csv"
-REQUEST_TIMEOUT = 10
+REQUEST_TIMEOUT = 30  # Increased timeout
 MAX_RETRIES = 3
 FULL_UPDATE = False  # Set to True for monthly full updates
 LAST_FULL_UPDATE_FILE = "last_full_update.txt"
 
 class RateLimiter:
-    def __init__(self, calls_per_second=1):
+    def __init__(self, calls_per_second=0.5):  # Reduced to 1 request per 2 seconds
         self.calls_per_second = calls_per_second
         self.timestamps = Queue()
         
     def wait(self):
         current_time = time.time()
         
-        # Remove timestamps older than 1 second
+        # Remove timestamps older than 2 seconds
         while not self.timestamps.empty():
-            if current_time - self.timestamps.queue[0] >= 1:
+            if current_time - self.timestamps.queue[0] >= (1/self.calls_per_second):
                 self.timestamps.get()
             else:
                 break
                 
-        # If we've made too many calls in the last second, wait
-        if self.timestamps.qsize() >= self.calls_per_second:
-            sleep_time = 1 - (current_time - self.timestamps.queue[0])
+        # If we've made too many calls, wait
+        if self.timestamps.qsize() >= 1:
+            sleep_time = (1/self.calls_per_second) - (current_time - self.timestamps.queue[0])
             if sleep_time > 0:
                 time.sleep(sleep_time)
                 
         self.timestamps.put(time.time())
 
-rate_limiter = RateLimiter(calls_per_second=3)  # Allow 3 requests per second
+rate_limiter = RateLimiter(calls_per_second=0.5)  # One request per 2 seconds
 
 def fetch_with_retry(url, max_retries=MAX_RETRIES):
     for attempt in range(max_retries):
@@ -252,21 +252,24 @@ def record_full_update():
 def main():
     logging.info("Starting data collection process")
     
-    # Determine if we should do a full update
+    # Determine update mode
     run_full_update = FULL_UPDATE or should_run_full_update()
+    logging.info(f"Running {'full' if run_full_update else 'partial'} update")
     
+    # Initialize player set
+    all_usernames = set()
+    
+    # Load players based on update type
     if run_full_update:
-        logging.info("Running full update of all players")
         # Load master data for full update
-        master_data = pd.read_csv(MASTER_CSV_FILENAME) if os.path.exists(MASTER_CSV_FILENAME) else pd.DataFrame()
-        all_usernames = set(master_data['username'].unique()) if not master_data.empty else set()
-    else:
-        logging.info("Running update for current Kenyan players only")
-        all_usernames = set()
+        if os.path.exists(MASTER_CSV_FILENAME):
+            master_df = pd.read_csv(MASTER_CSV_FILENAME)
+            all_usernames.update(master_df['username'].unique())
+            logging.info(f"Loaded {len(all_usernames)} players from master file")
     
     # Always fetch current Kenyan players
     kenyan_players = set(fetch_kenyan_players())
-    all_usernames = all_usernames.union(kenyan_players)
+    all_usernames.update(kenyan_players)
     
     logging.info(f"Total players to process: {len(all_usernames)}")
     
@@ -308,27 +311,22 @@ def main():
     if processed_data:
         final_df = pd.DataFrame(processed_data)
         
+        # Update both files for full updates
         if run_full_update:
-            # Update master file only during full updates
-            if os.path.exists(MASTER_CSV_FILENAME):
-                master_df = pd.read_csv(MASTER_CSV_FILENAME)
-                master_df = master_df[~master_df['username'].isin(deleted_users)]
-                master_df = pd.concat([master_df, final_df], ignore_index=True).drop_duplicates(subset=['username'])
-                save_to_csv(master_df, MASTER_CSV_FILENAME)
-                record_full_update()
-            else:
-                save_to_csv(final_df, MASTER_CSV_FILENAME)
-                record_full_update()
+            save_to_csv(final_df, MASTER_CSV_FILENAME)
+            record_full_update()
+            logging.info("Full update completed and recorded")
             
         # Always update current file
         save_to_csv(final_df, CSV_FILENAME)
         
         logging.info(f"Successfully processed {len(processed_data)} active players")
-        logging.info(f"Removed {len(deleted_users)} deleted accounts")
+        logging.info(f"Found {len(deleted_users)} deleted accounts")
         
         if deleted_users:
-            with open('deleted_users.txt', 'w') as f:
-                f.write('\n'.join(deleted_users))
+            with open('deleted_users.txt', 'a') as f:
+                f.write(f"\n# Deleted users found on {datetime.now().isoformat()}\n")
+                f.write('\n'.join(deleted_users) + '\n')
     else:
         logging.error("No data was processed successfully")
 
