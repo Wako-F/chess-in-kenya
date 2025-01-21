@@ -70,8 +70,8 @@ def main():
     try:
         # Step 1: Update data
         run_script(SCRIPTS["update_data"])
-        # Step 2: Update master ledger
-        run_script(SCRIPTS["update_master_ledger"])
+        # # Step 2: Update master ledger
+        # run_script(SCRIPTS["update_master_ledger"])
         # Step 3: Update African player count
         run_script(SCRIPTS["update_african_players"])
         # Step 4: Clean data
@@ -81,7 +81,7 @@ def main():
         save_last_update_timestamp()
 
         # Step 5: Push cleaned data to GitHub
-        push_to_github()
+        # push_to_github()
     except Exception as e:
         logging.error(f"Automation workflow failed: {e}")
 
