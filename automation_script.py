@@ -71,7 +71,7 @@ def main():
         # Step 1: Update data
         run_script(SCRIPTS["update_data"])
         # # Step 2: Update master ledger
-        # run_script(SCRIPTS["update_master_ledger"])
+        run_script(SCRIPTS["update_master_ledger"])
         # Step 3: Update African player count
         run_script(SCRIPTS["update_african_players"])
         # Step 4: Clean data
