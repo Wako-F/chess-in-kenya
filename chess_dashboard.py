@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 import os
 from streamlit_autorefresh import st_autorefresh
+import plotly.graph_objects as go
 
 # Custom CSS
 st.markdown(
@@ -497,85 +498,50 @@ with tab2:
 
 # Tab 3: Search & Comparison
 with tab3:
-        # Load data
-    # @st.cache_data
-    # def load_data():
-    #     # Connect to the database and fetch the data
-    #     conn = sqlite3.connect("chess_data.db")
-    #     query = "SELECT * FROM players"
-    #     data = pd.read_sql_query(query, conn)
-    #     conn.close()
-    #     return data
-
-    # data = load_data()
-
-    # Set index for faster searching
-    # data.set_index("Username", inplace=True)
-            # Player Search
     st.markdown("## 🔎 Search Player Stats")
-
+    
     # Text input for searching a player's username
     search_username = st.text_input("", placeholder="Type a username...", key="search")
     start_time = time.time()
-    # Check if the user has entered a username
+    
     if search_username:
-        # Filter the data for the entered username (case-insensitive)
         player_data = data[data["Username"].str.contains(search_username, case=False, na=False)]
-
+        
         if not player_data.empty:
-            # Extract the first matched player's stats
             player = player_data.iloc[0]
-
-            # Display player's stats with styling
-            st.markdown(f"### 📊 Stats for **{player['Username']}**")
-            #Custom css for overview
+            
+            # Quick Ratings Overview using the same CSS as tab1
             st.markdown(
                 """
                 <style>
-                /* Responsive container for search overview metrics */
-                .search-metrics-container {
+                .metrics-container {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
                     gap: 20px;
                     margin-bottom: 30px;
                 }
-                .search-metric-box {
-                    
+                .metric-box {
                     border-radius: 10px;
                     padding: 15px 20px;
                     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                     text-align: center;
-                    font-family: Arial, sans-serif;
-                    width: 180px; /* Consistent width for all metric boxes */
-                    max-width: 100%; /* Ensure responsiveness */
+                    flex: 1;
+                    min-width: 120px;
                 }
-                .search-metric-box h3 {
+                .metric-box h3 {
                     margin: 0;
-                    font-size: 18px;
-                    
+                    color: #666;
+                    font-size: 1em;
                 }
-                .search-metric-box p {
-                    margin: 0;
-                    font-size: 24px;
-                    font-weight: bold;
+                .metric-box h2 {
+                    margin: 5px 0;
                     
+                    font-size: 1.5em;
                 }
-                /* Adjust layout for smaller screens */
                 @media (max-width: 768px) {
-                    .search-metrics-container {
-                        justify-content: center; /* Properly center-align all items */
-                        align-items: center; /* Center items vertically */
-                        flex-direction: row; /* Allow row alignment */
-                    }
-                    .search-metric-box {
-                        width: calc(50% - 20px); /* Two columns for mobile */
-                        margin-bottom: 10px;
-                    }
-                }
-                @media (max-width: 480px) {
-                    .search-metric-box {
-                        width: 100%; /* Full width for very small screens */
+                    .metric-box {
+                        min-width: 100px;
                     }
                 }
                 </style>
@@ -583,207 +549,252 @@ with tab3:
                 unsafe_allow_html=True
             )
 
-            # Render the search overview metrics
-            st.markdown("#### 🏆 Overview")
-
+            # Display ratings using the same style as tab1
             st.markdown(
                 f"""
-                <div class="search-metrics-container">
-                    <div class="search-metric-box">
-                        <h3>Total Games 🎮</h3>
-                        <p>{int(player["Total Games Played"]):,}</p>
+                <div class="metrics-container">
+                    <div class="metric-box">
+                        <h3>Bullet</h3>
+                        <h2>{int(player['Bullet Rating']) if player['Bullet Rating'] > 0 else 'N/A'}</h2>
                     </div>
-                    <div class="search-metric-box">
-                        <h3>Daily Rating ☀️</h3>
-                        <p>{int(player["Daily Rating"]) if player["Daily Rating"] > 0 else "N/A"}</p>
+                    <div class="metric-box">
+                        <h3>Blitz</h3>
+                        <h2>{int(player['Blitz Rating']) if player['Blitz Rating'] > 0 else 'N/A'}</h2>
                     </div>
-                    <div class="search-metric-box">
-                        <h3>Rapid Rating 🕐</h3>
-                        <p>{int(player["Rapid Rating"]) if player["Rapid Rating"] > 0 else "N/A"}</p>
+                    <div class="metric-box">
+                        <h3>Rapid</h3>
+                        <h2>{int(player['Rapid Rating']) if player['Rapid Rating'] > 0 else 'N/A'}</h2>
                     </div>
-                    <div class="search-metric-box">
-                        <h3>Blitz Rating ⚡</h3>
-                        <p>{int(player["Blitz Rating"]) if player["Blitz Rating"] > 0 else "N/A"}</p>
+                    <div class="metric-box">
+                        <h3>Daily</h3>
+                        <h2>{int(player['Daily Rating']) if player['Daily Rating'] > 0 else 'N/A'}</h2>
                     </div>
-                    <div class="search-metric-box">
-                        <h3>Bullet Rating 🚀</h3>
-                        <p>{int(player["Bullet Rating"]) if player["Bullet Rating"] > 0 else "N/A"}</p>
-                    </div>
-                    <div class="search-metric-box">
-                        <h3>Highest Puzzle Rating 🧩</h3>
-                        <p>{int(player["Puzzle Rating"]) if pd.notna(player["Puzzle Rating"]) else "N/A"}</p>
+                    <div class="metric-box">
+                        <h3>Puzzle</h3>
+                        <h2>{int(player['Puzzle Rating']) if player['Puzzle Rating'] > 0 else 'N/A'}</h2>
                     </div>
                 </div>
                 """,
                 unsafe_allow_html=True
             )
-
-
-            st.markdown("---")
             
-            #Calculate rankings for sentence summary
-            rankings = {}
-            formats = ["Daily Rating", "Rapid Rating", "Blitz Rating", "Bullet Rating", "Puzzle Rating"]
-            for fmt in formats:
-                if player[fmt] > 0:
-                    rankings[fmt] = (
-                        data[data[fmt] > 0]
-                        .sort_values(by=fmt, ascending=False)
-                        .reset_index()
-                        .query(f"Username == '{player['Username']}'")
-                        .index[0]
-                        +1
-                    )
+            # Player Rankings Summary
+            def get_ranking(username, column):
+                # Filter for valid ratings and sort in descending order
+                valid_data = data[data[column] > 0].sort_values(column, ascending=False)
+                # Get the player's position
+                player_data = valid_data[valid_data['Username'] == username]
+                if not player_data.empty and player_data[column].iloc[0] > 0:
+                    rank = valid_data.index.get_loc(player_data.index[0]) + 1
+                    return (rank, len(valid_data))
+                return (None, len(valid_data))
+
+            # Games ranking needs special handling
+            def get_games_ranking(username):
+                games_data = data.sort_values('Total Games Played', ascending=False)
+                player_data = games_data[games_data['Username'] == username]
+                if not player_data.empty:
+                    rank = games_data.index.get_loc(player_data.index[0]) + 1
+                    return rank, len(games_data)
+                return None, len(data)
+
+            def format_ranking(rank, total, format_name):
+                if rank:
+                    percentile = 100 * ((total - rank + 1) / total)
+                    return f"{rank} in {format_name} (Top {percentile:.1f}% of {total:,} players)"
+                return None
+
+            # Get rankings
+            bullet_rank, bullet_total = get_ranking(player['Username'], 'Bullet Rating')
+            blitz_rank, blitz_total = get_ranking(player['Username'], 'Blitz Rating')
+            rapid_rank, rapid_total = get_ranking(player['Username'], 'Rapid Rating')
+            daily_rank, daily_total = get_ranking(player['Username'], 'Daily Rating')
+            puzzle_rank, puzzle_total = get_ranking(player['Username'], 'Puzzle Rating')
+            games_rank, total_players = get_games_ranking(player['Username'])
+
+            # Create ranking summary
+            rankings = []
+            if bullet_rank:
+                rankings.append(format_ranking(bullet_rank, bullet_total, "Bullet"))
+            if blitz_rank:
+                rankings.append(format_ranking(blitz_rank, blitz_total, "Blitz"))
+            if rapid_rank:
+                rankings.append(format_ranking(rapid_rank, rapid_total, "Rapid"))
+            if daily_rank:
+                rankings.append(format_ranking(daily_rank, daily_total, "Daily"))
+            if puzzle_rank:
+                rankings.append(format_ranking(puzzle_rank, puzzle_total, "Puzzles"))
+            if games_rank:
+                rankings.append(format_ranking(games_rank, total_players, "total games played"))
+
+            # Display summary if there are any rankings
+            if rankings:
+                summary = f"{player['Username']} is ranked: "
+                if len(rankings) > 1:
+                    summary += ", ".join(rankings[:-1]) + f", and {rankings[-1]}"
                 else:
-                    rankings[fmt] = "N/A"
-            #Rank for total games played
-            total_games_rank = (
-                data.sort_values(by="Total Games Played", ascending=False)
-                .reset_index()
-                .query(f"Username == '{player['Username']}'")
-                .index[0]
-                + 1
-            )
-            #Display one sentence summary
-            summary = (
-                f"{player['Username']} is ranked "
-                f"{total_games_rank} in Total Games Played, "
-                f"{rankings['Daily Rating']} in Daily, "
-                f"{rankings['Rapid Rating']} in Rapid, "
-                f"{rankings['Blitz Rating']} in Blitz, "
-                f" {rankings['Bullet Rating']} in Bullet "
-                f"and {rankings['Puzzle Rating']} in Puzzles."
-            )
-
-            st.markdown(
-                f"""
-                <div style="font-size: 18px; line-height: 1.5; text-align: left;">
-                    🏅 Rankings Summary: {summary}
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        
-            st.markdown("---")
-            # Display detailed stats for each format
-            st.markdown("#### 🎯 Format-Specific Stats")
-
-            def format_stats(stats_name, games, wins, losses, draws):
-                st.markdown(f"##### {stats_name}")
-                st.write({
-                    "Games Played": int(games),
-                    "Wins": int(wins),
-                    "Losses": int(losses),
-                    "Draws": int(draws),
+                    summary += rankings[0]
+                
+                st.markdown(
+                    f"""
+                    <div style='padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 20px 0;'>
+                        <h4>🏆 Rankings Summary</h4>
+                        <p style='font-size: 1.1em; line-height: 1.5;'>
+                            {summary}
+                        </p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            
+            # Create two columns for layout
+            col1, col2 = st.columns([2, 1])
+            
+            with col1:
+                st.markdown(f"### 📊 Stats for {player['Username']}")
+                
+                # Rating Overview - Radar Chart
+                ratings = {
+                    'Bullet': player['Bullet Rating'],
+                    'Blitz': player['Blitz Rating'],
+                    'Rapid': player['Rapid Rating'],
+                    'Daily': player['Daily Rating'],
+                    'Puzzle': player['Puzzle Rating']
+                }
+                
+                # Filter out zero ratings
+                ratings = {k: v for k, v in ratings.items() if v > 0}
+                
+                if ratings:
+                    fig_radar = go.Figure()
+                    fig_radar.add_trace(go.Scatterpolar(
+                        r=list(ratings.values()),
+                        theta=list(ratings.keys()),
+                        fill='toself',
+                        name='Ratings'
+                    ))
+                    
+                    fig_radar.update_layout(
+                        polar=dict(
+                            radialaxis=dict(
+                                visible=True,
+                                range=[0, max(ratings.values()) * 1.1]
+                            )
+                        ),
+                        showlegend=False,
+                        title="Rating Overview"
+                    )
+                    st.plotly_chart(fig_radar, use_container_width=True)
+            
+            with col2:
+                # Join Date and Total Games
+                st.markdown(
+                    f"""
+                    <div style='padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
+                        <h4>Profile Overview</h4>
+                        <p>📅 Joined: {player['Join Date']}</p>
+                        <p>🎮 Total Games: {player['Total Games Played']:,}</p>
+                        <p>🧩 Puzzle Rating: {int(player['Puzzle Rating']) if player['Puzzle Rating'] > 0 else 'N/A'}</p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            
+            # Performance Charts
+            st.markdown("### 📈 Performance Analysis")
+            
+            # Create tabs for different performance views
+            perf_tab1, perf_tab2 = st.tabs(["Game Distribution", "Win Rates"])
+            
+            with perf_tab1:
+                # Games Distribution Pie Chart
+                games_data = {
+                    'Bullet': player['Total Bullet Games'],
+                    'Blitz': player['Total Blitz Games'],
+                    'Rapid': player['Total Rapid Games'],
+                    'Daily': player['Total Daily Games']
+                }
+                
+                fig_games = px.pie(
+                    values=list(games_data.values()),
+                    names=list(games_data.keys()),
+                    title="Games Distribution by Format",
+                    template="plotly_white"
+                )
+                fig_games.update_traces(textposition='inside', textinfo='percent+label')
+                st.plotly_chart(fig_games, use_container_width=True)
+            
+            with perf_tab2:
+                # Win rates bar chart
+                formats = ['Bullet', 'Blitz', 'Rapid', 'Daily']
+                win_rates = []
+                
+                for fmt in formats:
+                    wins = player[f'{fmt} Wins']
+                    total = player[f'Total {fmt} Games']
+                    win_rate = (wins / total * 100) if total > 0 else 0
+                    win_rates.append(win_rate)
+                
+                fig_wins = go.Figure()
+                fig_wins.add_trace(go.Bar(
+                    x=formats,
+                    y=win_rates,
+                    text=[f"{rate:.1f}%" for rate in win_rates],
+                    textposition='auto',
+                ))
+                
+                fig_wins.update_layout(
+                    title="Win Rates by Format",
+                    yaxis_title="Win Rate (%)",
+                    yaxis_range=[0, 100],
+                    template="plotly_white"
+                )
+                st.plotly_chart(fig_wins, use_container_width=True)
+            
+            # Detailed Stats Tables
+            st.markdown("### 📊 Detailed Statistics")
+            
+            def format_stats(format_name, total, wins, losses, draws):
+                win_rate = (wins / total * 100) if total > 0 else 0
+                loss_rate = (losses / total * 100) if total > 0 else 0
+                draw_rate = (draws / total * 100) if total > 0 else 0
+                
+                return pd.DataFrame({
+                    'Metric': ['Total Games', 'Wins', 'Losses', 'Draws', 'Win Rate', 'Loss Rate', 'Draw Rate'],
+                    'Value': [
+                        f"{total:,}",
+                        f"{wins:,}",
+                        f"{losses:,}",
+                        f"{draws:,}",
+                        f"{win_rate:.1f}%",
+                        f"{loss_rate:.1f}%",
+                        f"{draw_rate:.1f}%"
+                    ]
                 })
-
-            format_stats(
-                "Daily Games",
-                player["Total Daily Games"],
-                player["Daily Wins"],
-                player["Daily Losses"],
-                player["Daily Draws"]
-            )
-
-            format_stats(
-                "Rapid Games",
-                player["Total Rapid Games"],
-                player["Rapid Wins"],
-                player["Rapid Losses"],
-                player["Rapid Draws"]
-            )
-
-            format_stats(
-                "Blitz Games",
-                player["Total Blitz Games"],
-                player["Blitz Wins"],
-                player["Blitz Losses"],
-                player["Blitz Draws"]
-            )
-
-            format_stats(
-                "Bullet Games",
-                player["Total Bullet Games"],
-                player["Bullet Wins"],
-                player["Bullet Losses"],
-                player["Bullet Draws"]
-            )
+            
+            # Create tabs for different game formats
+            stat_tabs = st.tabs(['Bullet', 'Blitz', 'Rapid', 'Daily'])
+            
+            for tab, format_name in zip(stat_tabs, ['Bullet', 'Blitz', 'Rapid', 'Daily']):
+                with tab:
+                    stats_df = format_stats(
+                        format_name,
+                        player[f'Total {format_name} Games'],
+                        player[f'{format_name} Wins'],
+                        player[f'{format_name} Losses'],
+                        player[f'{format_name} Draws']
+                    )
+                    
+                    st.dataframe(
+                        stats_df,
+                        column_config={
+                            "Metric": st.column_config.TextColumn("Metric", width="medium"),
+                            "Value": st.column_config.TextColumn("Value", width="medium")
+                        },
+                        hide_index=True
+                    )
+            
+            end_time = time.time()
+            st.caption(f"Search completed in {end_time - start_time:.2f} seconds")
         else:
             st.error(f"No player found with username: {search_username}")
-        end_time = time.time()
-        st.write(f"Search took {end_time - start_time:.2f} seconds")
-# Auto-refresh triggered at 2024-12-15T23:37:00.808352
-
-# Auto-refresh triggered at 2024-12-17T03:16:23.135702
-
-# Auto-refresh triggered at 2024-12-18T00:59:14.306297
-
-# Auto-refresh triggered at 2024-12-18T10:25:15.123585
-
-# Auto-refresh triggered at 2024-12-19T09:15:03.063216
-
-# Auto-refresh triggered at 2024-12-20T04:45:28.775464
-
-# Auto-refresh triggered at 2024-12-21T04:46:14.041515
-
-# Auto-refresh triggered at 2024-12-22T09:11:13.326303
-
-# Auto-refresh triggered at 2024-12-22T21:22:53.051670
-
-# Auto-refresh triggered at 2024-12-24T04:16:37.287637
-
-# Auto-refresh triggered at 2024-12-25T03:49:57.997236
-
-# Auto-refresh triggered at 2024-12-26T03:53:16.834780
-
-# Auto-refresh triggered at 2024-12-27T03:36:45.826971
-
-# Auto-refresh triggered at 2024-12-28T03:50:43.164594
-
-# Auto-refresh triggered at 2024-12-29T04:21:30.503951
-
-# Auto-refresh triggered at 2024-12-30T03:49:57.302019
-
-# Auto-refresh triggered at 2024-12-31T03:52:42.923649
-
-# Auto-refresh triggered at 2025-01-01T03:57:35.414424
-
-# Auto-refresh triggered at 2025-01-02T03:45:41.976792
-
-# Auto-refresh triggered at 2025-01-03T03:48:57.335567
-
-# Auto-refresh triggered at 2025-01-04T03:53:30.918932
-
-# Auto-refresh triggered at 2025-01-05T04:01:01.860758
-
-# Auto-refresh triggered at 2025-01-06T04:20:38.360329
-
-# Auto-refresh triggered at 2025-01-07T03:56:35.051018
-
-# Auto-refresh triggered at 2025-01-08T04:06:45.389795
-
-# Auto-refresh triggered at 2025-01-09T04:07:07.290045
-
-# Auto-refresh triggered at 2025-01-10T04:13:24.332199
-
-# Auto-refresh triggered at 2025-01-11T03:44:36.934951
-
-# Auto-refresh triggered at 2025-01-12T03:56:28.327135
-
-# Auto-refresh triggered at 2025-01-13T04:11:30.059862
-
-# Auto-refresh triggered at 2025-01-14T03:37:23.955980
-
-# Auto-refresh triggered at 2025-01-15T03:43:37.786382
-
-# Auto-refresh triggered at 2025-01-16T03:44:52.888278
-
-# Auto-refresh triggered at 2025-01-17T03:42:33.185100
-
-# Auto-refresh triggered at 2025-01-18T03:55:11.259067
-
-# Auto-refresh triggered at 2025-01-19T03:55:55.174637
-
-# Auto-refresh triggered at 2025-01-20T04:01:33.117038
-
-# Auto-refresh triggered at 2025-01-21T02:44:15.526358
