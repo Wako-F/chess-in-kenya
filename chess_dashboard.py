@@ -39,11 +39,30 @@ st.markdown(
 )
 
 # Load Data
-@st.cache_data
+@st.cache_data(ttl=300)  # Cache data for 5 minutes
 def load_data(filename):
-    return pd.read_csv(filename)
+    try:
+        # Add timestamp to URL to prevent caching
+        timestamp = int(time.time())
+        url = f"https://raw.githubusercontent.com/Wako-F/chess-in-kenya/main/cleaned_master_chess_players.csv?t={timestamp}"
+        return pd.read_csv(url)
+    except Exception as e:
+        st.error(f"Error loading data: {e}")
+        # Fallback to local file if GitHub fetch fails
+        return pd.read_csv(filename)
 
-data = load_data("cleaned_master_chess_players.csv")
+# Get current refresh time
+refresh_flag = "refresh.flag"
+current_refresh_time = os.path.getmtime(refresh_flag) if os.path.exists(refresh_flag) else 0
+
+# Clear cache and reload data when refresh flag changes
+if "last_refresh_time" not in st.session_state or current_refresh_time > st.session_state["last_refresh_time"]:
+    st.cache_data.clear()
+    data = load_data("cleaned_master_chess_players.csv")
+    st.session_state["last_refresh_time"] = current_refresh_time
+else:
+    data = load_data("cleaned_master_chess_players.csv")
+
 # # Connect to the database
 # db_file = "chess_players.db"
 # conn = sqlite3.connect(db_file)
@@ -501,7 +520,7 @@ with tab3:
     st.markdown("## 🔎 Search Player Stats")
     
     # Text input for searching a player's username
-    search_username = st.text_input("", placeholder="Type a username...", key="search")
+    search_username = st.text_input("Search username", placeholder="Type a username...", key="search", label_visibility="collapsed")
     start_time = time.time()
     
     if search_username:
