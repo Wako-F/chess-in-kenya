@@ -1,55 +1,55 @@
 Country Code,ISO-3,Country Name,Player Count
-DZ,DZA,Algeria,10000
-AO,AGO,Angola,1199
-BJ,BEN,Benin,249
-BW,BWA,Botswana,1040
-BF,BFA,Burkina Faso,163
-BI,BDI,Burundi,104
-CM,CMR,Cameroon,989
-CV,CPV,Cabo Verde,220
-CF,CAF,Central African Republic,64
-TD,TCD,Chad,287
-KM,COM,Comoros,71
-CG,COG,Congo,160
-CD,COD,Congo (DRC),566
-CI,CIV,Côte d'Ivoire,785
-DJ,DJI,Djibouti,236
-EG,EGY,Egypt,10000
-GQ,GNQ,Equatorial Guinea,55
-ER,ERI,Eritrea,140
-SZ,SWZ,Eswatini,209
-ET,ETH,Ethiopia,2485
-GA,GAB,Gabon,229
-GM,GMB,Gambia,82
-GH,GHA,Ghana,1290
-GN,GIN,Guinea,74
-GW,GNB,Guinea-Bissau,40
-KE,KEN,Kenya,5597
-LS,LSO,Lesotho,235
-LR,LBR,Liberia,127
-LY,LBY,Libya,1855
-MG,MDG,Madagascar,2002
-MW,MWI,Malawi,580
-ML,MLI,Mali,138
-MR,MRT,Mauritania,252
-MU,MUS,Mauritius,925
-MA,MAR,Morocco,10000
-MZ,MOZ,Mozambique,727
-NA,NAM,Namibia,559
-NE,NER,Niger,527
-NG,NGA,Nigeria,9017
-RW,RWA,Rwanda,280
-ST,STP,Sao Tome and Principe,141
-SN,SEN,Senegal,632
-SC,SYC,Seychelles,391
-SL,SLE,Sierra Leone,96
-SO,SOM,Somalia,949
-ZA,ZAF,South Africa,10000
-SS,SSD,South Sudan,153
-SD,SDN,Sudan,1231
-TZ,TZA,Tanzania,453
-TG,TGO,Togo,305
-TN,TUN,Tunisia,8156
-UG,UGA,Uganda,1381
-ZM,ZMB,Zambia,1646
-ZW,ZWE,Zimbabwe,2299
+DZ,DZA,Algeria,10000.0
+AO,AGO,Angola,1199.0
+BJ,BEN,Benin,249.0
+BW,BWA,Botswana,1040.0
+BF,BFA,Burkina Faso,163.0
+BI,BDI,Burundi,104.0
+CM,CMR,Cameroon,989.0
+CV,CPV,Cabo Verde,220.0
+CF,CAF,Central African Republic,64.0
+TD,TCD,Chad,287.0
+KM,COM,Comoros,71.0
+CG,COG,Congo,160.0
+CD,COD,Congo (DRC),566.0
+CI,CIV,Côte d'Ivoire,785.0
+DJ,DJI,Djibouti,236.0
+EG,EGY,Egypt,10000.0
+GQ,GNQ,Equatorial Guinea,
+ER,ERI,Eritrea,140.0
+SZ,SWZ,Eswatini,209.0
+ET,ETH,Ethiopia,2485.0
+GA,GAB,Gabon,229.0
+GM,GMB,Gambia,82.0
+GH,GHA,Ghana,1290.0
+GN,GIN,Guinea,74.0
+GW,GNB,Guinea-Bissau,40.0
+KE,KEN,Kenya,4538.0
+LS,LSO,Lesotho,235.0
+LR,LBR,Liberia,127.0
+LY,LBY,Libya,1855.0
+MG,MDG,Madagascar,2002.0
+MW,MWI,Malawi,580.0
+ML,MLI,Mali,138.0
+MR,MRT,Mauritania,252.0
+MU,MUS,Mauritius,925.0
+MA,MAR,Morocco,10000.0
+MZ,MOZ,Mozambique,727.0
+NA,NAM,Namibia,559.0
+NE,NER,Niger,527.0
+NG,NGA,Nigeria,9017.0
+RW,RWA,Rwanda,280.0
+ST,STP,Sao Tome and Principe,141.0
+SN,SEN,Senegal,632.0
+SC,SYC,Seychelles,391.0
+SL,SLE,Sierra Leone,96.0
+SO,SOM,Somalia,949.0
+ZA,ZAF,South Africa,10000.0
+SS,SSD,South Sudan,153.0
+SD,SDN,Sudan,1231.0
+TZ,TZA,Tanzania,453.0
+TG,TGO,Togo,305.0
+TN,TUN,Tunisia,8156.0
+UG,UGA,Uganda,1381.0
+ZM,ZMB,Zambia,1646.0
+ZW,ZWE,Zimbabwe,2299.0
