@@ -817,3 +817,5 @@ with tab3:
             st.caption(f"Search completed in {end_time - start_time:.2f} seconds")
         else:
             st.error(f"No player found with username: {search_username}")
+
+# Auto-refresh triggered at 2025-03-05T06:13:59.318427
