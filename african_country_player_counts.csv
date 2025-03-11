@@ -1,21 +1,21 @@
 Country Code,ISO-3,Country Name,Player Count
-DZ,DZA,Algeria,10000
+DZ,DZA,Algeria,9775
 AO,AGO,Angola,1149
 BJ,BEN,Benin,234
 BW,BWA,Botswana,988
 BF,BFA,Burkina Faso,202
-BI,BDI,Burundi,95
+BI,BDI,Burundi,85
 CM,CMR,Cameroon,981
 CV,CPV,Cabo Verde,250
 CF,CAF,Central African Republic,61
 TD,TCD,Chad,294
 KM,COM,Comoros,75
 CG,COG,Congo,158
-CD,COD,Congo (DRC),585
-CI,CIV,Côte d'Ivoire,813
+CD,COD,Congo (DRC),445
+CI,CIV,Côte d'Ivoire,634
 DJ,DJI,Djibouti,242
 EG,EGY,Egypt,10000
-GQ,GNQ,Equatorial Guinea,66
+GQ,GNQ,Equatorial Guinea,54
 ER,ERI,Eritrea,130
 SZ,SWZ,Eswatini,214
 ET,ETH,Ethiopia,2608
@@ -24,14 +24,14 @@ GM,GMB,Gambia,85
 GH,GHA,Ghana,1316
 GN,GIN,Guinea,79
 GW,GNB,Guinea-Bissau,41
-KE,KEN,Kenya,5663
+KE,KEN,Kenya,4750
 LS,LSO,Lesotho,270
 LR,LBR,Liberia,104
 LY,LBY,Libya,1713
 MG,MDG,Madagascar,2122
 MW,MWI,Malawi,548
 ML,MLI,Mali,144
-MR,MRT,Mauritania,256
+MR,MRT,Mauritania,190
 MU,MUS,Mauritius,929
 MA,MAR,Morocco,10000
 MZ,MOZ,Mozambique,709
@@ -41,7 +41,7 @@ NG,NGA,Nigeria,9342
 RW,RWA,Rwanda,297
 ST,STP,Sao Tome and Principe,126
 SN,SEN,Senegal,719
-SC,SYC,Seychelles,340
+SC,SYC,Seychelles,294
 SL,SLE,Sierra Leone,111
 SO,SOM,Somalia,963
 ZA,ZAF,South Africa,10000
@@ -50,6 +50,6 @@ SD,SDN,Sudan,1350
 TZ,TZA,Tanzania,465
 TG,TGO,Togo,357
 TN,TUN,Tunisia,7924
-UG,UGA,Uganda,1275
+UG,UGA,Uganda,1078
 ZM,ZMB,Zambia,1679
-ZW,ZWE,Zimbabwe,2230
+ZW,ZWE,Zimbabwe,1973
