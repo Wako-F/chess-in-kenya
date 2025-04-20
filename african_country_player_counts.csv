@@ -1,55 +1,55 @@
 Country Code,ISO-3,Country Name,Player Count
-DZ,DZA,Algeria,10000
-AO,AGO,Angola,1184
-BJ,BEN,Benin,279
-BW,BWA,Botswana,1104
-BF,BFA,Burkina Faso,217
-BI,BDI,Burundi,87
-CM,CMR,Cameroon,1087
-CV,CPV,Cabo Verde,225
-CF,CAF,Central African Republic,64
-TD,TCD,Chad,286
-KM,COM,Comoros,91
-CG,COG,Congo,191
-CD,COD,Congo (DRC),673
-CI,CIV,Côte d'Ivoire,923
-DJ,DJI,Djibouti,271
+DZ,DZA,Algeria,9778
+AO,AGO,Angola,742
+BJ,BEN,Benin,176
+BW,BWA,Botswana,658
+BF,BFA,Burkina Faso,160
+BI,BDI,Burundi,42
+CM,CMR,Cameroon,726
+CV,CPV,Cabo Verde,157
+CF,CAF,Central African Republic,40
+TD,TCD,Chad,194
+KM,COM,Comoros,44
+CG,COG,Congo,145
+CD,COD,Congo (DRC),439
+CI,CIV,Côte d'Ivoire,693
+DJ,DJI,Djibouti,176
 EG,EGY,Egypt,10000
-GQ,GNQ,Equatorial Guinea,70
-ER,ERI,Eritrea,124
-SZ,SWZ,Eswatini,221
-ET,ETH,Ethiopia,2683
-GA,GAB,Gabon,289
-GM,GMB,Gambia,81
-GH,GHA,Ghana,1325
-GN,GIN,Guinea,85
-GW,GNB,Guinea-Bissau,35
-KE,KEN,Kenya,7605
-LS,LSO,Lesotho,293
-LR,LBR,Liberia,118
-LY,LBY,Libya,1781
-MG,MDG,Madagascar,2452
-MW,MWI,Malawi,663
-ML,MLI,Mali,158
-MR,MRT,Mauritania,299
-MU,MUS,Mauritius,1035
+GQ,GNQ,Equatorial Guinea,35
+ER,ERI,Eritrea,84
+SZ,SWZ,Eswatini,141
+ET,ETH,Ethiopia,2070
+GA,GAB,Gabon,183
+GM,GMB,Gambia,61
+GH,GHA,Ghana,924
+GN,GIN,Guinea,47
+GW,GNB,Guinea-Bissau,22
+KE,KEN,Kenya,4617
+LS,LSO,Lesotho,197
+LR,LBR,Liberia,81
+LY,LBY,Libya,1260
+MG,MDG,Madagascar,1636
+MW,MWI,Malawi,422
+ML,MLI,Mali,129
+MR,MRT,Mauritania,227
+MU,MUS,Mauritius,648
 MA,MAR,Morocco,10000
-MZ,MOZ,Mozambique,725
-NA,NAM,Namibia,657
-NE,NER,Niger,531
-NG,NGA,Nigeria,10000
-RW,RWA,Rwanda,344
-ST,STP,Sao Tome and Principe,115
-SN,SEN,Senegal,774
-SC,SYC,Seychelles,352
-SL,SLE,Sierra Leone,123
-SO,SOM,Somalia,1025
+MZ,MOZ,Mozambique,449
+NA,NAM,Namibia,404
+NE,NER,Niger,280
+NG,NGA,Nigeria,6542
+RW,RWA,Rwanda,212
+ST,STP,Sao Tome and Principe,71
+SN,SEN,Senegal,526
+SC,SYC,Seychelles,176
+SL,SLE,Sierra Leone,90
+SO,SOM,Somalia,681
 ZA,ZAF,South Africa,10000
-SS,SSD,South Sudan,147
-SD,SDN,Sudan,1376
-TZ,TZA,Tanzania,443
-TG,TGO,Togo,370
-TN,TUN,Tunisia,8211
-UG,UGA,Uganda,1432
-ZM,ZMB,Zambia,1802
-ZW,ZWE,Zimbabwe,2462
+SS,SSD,South Sudan,108
+SD,SDN,Sudan,882
+TZ,TZA,Tanzania,290
+TG,TGO,Togo,242
+TN,TUN,Tunisia,5580
+UG,UGA,Uganda,891
+ZM,ZMB,Zambia,1212
+ZW,ZWE,Zimbabwe,1523

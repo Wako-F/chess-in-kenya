@@ -32,6 +32,7 @@ REQUEST_TIMEOUT = 30  # Increased timeout
 MAX_RETRIES = 3
 FULL_UPDATE = False  # Set to True for monthly full updates
 LAST_FULL_UPDATE_FILE = "last_full_update.txt"
+PROGRESS_FILE = "data_collection_progress.txt"  # To store processing progress
 
 class RateLimiter:
     def __init__(self, calls_per_second=0.5):  # Reduced to 1 request per 2 seconds
@@ -277,10 +278,31 @@ def main():
     processed_data = []
     deleted_users = []
     
+    # Load already processed users if exists
+    processed_usernames = set()
+    if os.path.exists(PROGRESS_FILE):
+        try:
+            with open(PROGRESS_FILE, 'r') as f:
+                processed_usernames = set(line.strip() for line in f.readlines())
+            logging.info(f"Resuming from previous run. Already processed {len(processed_usernames)} users.")
+            
+            # Also load partial data if available
+            if os.path.exists(CSV_FILENAME):
+                partial_df = pd.read_csv(CSV_FILENAME)
+                processed_data = partial_df.to_dict('records')
+                logging.info(f"Loaded {len(processed_data)} records from partial data file.")
+        except Exception as e:
+            logging.error(f"Error loading progress data: {e}")
+            processed_usernames = set()
+    
+    # Filter out already processed usernames
+    usernames_to_process = all_usernames - processed_usernames
+    logging.info(f"Remaining users to process: {len(usernames_to_process)}")
+    
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         future_to_username = {
             executor.submit(process_player, username): username 
-            for username in all_usernames
+            for username in usernames_to_process
         }
         
         completed = 0
@@ -294,9 +316,13 @@ def main():
                     else:
                         processed_data.append(player_data)
                 
+                # Record this username as processed
+                with open(PROGRESS_FILE, 'a') as f:
+                    f.write(f"{username}\n")
+                
                 completed += 1
                 if completed % 50 == 0:
-                    logging.info(f"Processed {completed}/{len(all_usernames)} players")
+                    logging.info(f"Processed {completed}/{len(usernames_to_process)} players")
                     logging.info(f"Found {len(deleted_users)} deleted accounts so far")
                     
                     # Create intermediate DataFrame and save
@@ -329,6 +355,14 @@ def main():
                 f.write('\n'.join(deleted_users) + '\n')
     else:
         logging.error("No data was processed successfully")
+    
+    # After successful completion, clear the progress file
+    if os.path.exists(PROGRESS_FILE) and completed == len(usernames_to_process):
+        try:
+            os.remove(PROGRESS_FILE)
+            logging.info("Cleared progress file after successful completion")
+        except Exception as e:
+            logging.error(f"Error removing progress file: {e}")
 
 if __name__ == "__main__":
     main()
