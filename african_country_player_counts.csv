@@ -1,11 +1,11 @@
 Country Code,ISO-3,Country Name,Player Count
 DZ,DZA,Algeria,10000
-AO,AGO,Angola,1084
+AO,AGO,Angola,967
 BJ,BEN,Benin,299
 BW,BWA,Botswana,1168
 BF,BFA,Burkina Faso,219
 BI,BDI,Burundi,78
-CM,CMR,Cameroon,948
+CM,CMR,Cameroon,871
 CV,CPV,Cabo Verde,224
 CF,CAF,Central African Republic,64
 TD,TCD,Chad,285
@@ -26,7 +26,7 @@ GN,GIN,Guinea,80
 GW,GNB,Guinea-Bissau,34
 KE,KEN,Kenya,7345
 LS,LSO,Lesotho,285
-LR,LBR,Liberia,92
+LR,LBR,Liberia,88
 LY,LBY,Libya,2029
 MG,MDG,Madagascar,2632
 MW,MWI,Malawi,612
@@ -40,10 +40,10 @@ NE,NER,Niger,502
 NG,NGA,Nigeria,10000
 RW,RWA,Rwanda,303
 ST,STP,Sao Tome and Principe,95
-SN,SEN,Senegal,671
-SC,SYC,Seychelles,282
+SN,SEN,Senegal,579
+SC,SYC,Seychelles,258
 SL,SLE,Sierra Leone,133
-SO,SOM,Somalia,932
+SO,SOM,Somalia,815
 ZA,ZAF,South Africa,10000
 SS,SSD,South Sudan,154
 SD,SDN,Sudan,1420
@@ -51,5 +51,5 @@ TZ,TZA,Tanzania,497
 TG,TGO,Togo,390
 TN,TUN,Tunisia,8457
 UG,UGA,Uganda,1352
-ZM,ZMB,Zambia,1744
+ZM,ZMB,Zambia,1563
 ZW,ZWE,Zimbabwe,2575
