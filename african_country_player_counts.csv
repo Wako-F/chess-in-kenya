@@ -1,55 +1,55 @@
 Country Code,ISO-3,Country Name,Player Count
 DZ,DZA,Algeria,10000
 AO,AGO,Angola,1228
-BJ,BEN,Benin,258
-BW,BWA,Botswana,1057
-BF,BFA,Burkina Faso,200
+BJ,BEN,Benin,257
+BW,BWA,Botswana,966
+BF,BFA,Burkina Faso,192
 BI,BDI,Burundi,86
 CM,CMR,Cameroon,1059
-CV,CPV,Cabo Verde,203
-CF,CAF,Central African Republic,53
-TD,TCD,Chad,263
-KM,COM,Comoros,70
-CG,COG,Congo,174
-CD,COD,Congo (DRC),568
-CI,CIV,Côte d'Ivoire,951
-DJ,DJI,Djibouti,219
+CV,CPV,Cabo Verde,179
+CF,CAF,Central African Republic,51
+TD,TCD,Chad,235
+KM,COM,Comoros,71
+CG,COG,Congo,162
+CD,COD,Congo (DRC),526
+CI,CIV,Côte d'Ivoire,829
+DJ,DJI,Djibouti,197
 EG,EGY,Egypt,10000
 GQ,GNQ,Equatorial Guinea,51
-ER,ERI,Eritrea,131
-SZ,SWZ,Eswatini,233
-ET,ETH,Ethiopia,2585
-GA,GAB,Gabon,240
-GM,GMB,Gambia,73
-GH,GHA,Ghana,1282
+ER,ERI,Eritrea,116
+SZ,SWZ,Eswatini,203
+ET,ETH,Ethiopia,2211
+GA,GAB,Gabon,202
+GM,GMB,Gambia,74
+GH,GHA,Ghana,1119
 GN,GIN,Guinea,70
-GW,GNB,Guinea-Bissau,36
-KE,KEN,Kenya,6593
-LS,LSO,Lesotho,241
+GW,GNB,Guinea-Bissau,35
+KE,KEN,Kenya,5857
+LS,LSO,Lesotho,218
 LR,LBR,Liberia,110
-LY,LBY,Libya,1658
-MG,MDG,Madagascar,2441
-MW,MWI,Malawi,581
-ML,MLI,Mali,136
-MR,MRT,Mauritania,252
-MU,MUS,Mauritius,991
+LY,LBY,Libya,1503
+MG,MDG,Madagascar,2193
+MW,MWI,Malawi,533
+ML,MLI,Mali,120
+MR,MRT,Mauritania,232
+MU,MUS,Mauritius,869
 MA,MAR,Morocco,10000
-MZ,MOZ,Mozambique,642
-NA,NAM,Namibia,579
-NE,NER,Niger,444
-NG,NGA,Nigeria,8938
-RW,RWA,Rwanda,282
-ST,STP,Sao Tome and Principe,91
+MZ,MOZ,Mozambique,567
+NA,NAM,Namibia,487
+NE,NER,Niger,416
+NG,NGA,Nigeria,7970
+RW,RWA,Rwanda,256
+ST,STP,Sao Tome and Principe,86
 SN,SEN,Senegal,795
 SC,SYC,Seychelles,297
-SL,SLE,Sierra Leone,108
+SL,SLE,Sierra Leone,87
 SO,SOM,Somalia,1021
 ZA,ZAF,South Africa,10000
-SS,SSD,South Sudan,143
-SD,SDN,Sudan,1241
-TZ,TZA,Tanzania,426
-TG,TGO,Togo,351
-TN,TUN,Tunisia,7120
-UG,UGA,Uganda,1274
+SS,SSD,South Sudan,128
+SD,SDN,Sudan,1064
+TZ,TZA,Tanzania,399
+TG,TGO,Togo,306
+TN,TUN,Tunisia,6485
+UG,UGA,Uganda,1251
 ZM,ZMB,Zambia,1909
-ZW,ZWE,Zimbabwe,2370
+ZW,ZWE,Zimbabwe,2101
