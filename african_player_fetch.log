@@ -14762,3 +14762,58 @@
 2025-06-08 13:28:47,399 - INFO - Fetched 2049 players for Zambia (ZM).
 2025-06-08 13:28:48,461 - INFO - Fetched 2581 players for Zimbabwe (ZW).
 2025-06-08 13:28:49,464 - INFO - Player counts saved to african_country_player_counts.csv
+2025-06-09 17:03:36,048 - INFO - Fetched 10000 players for Algeria (DZ).
+2025-06-09 17:03:37,318 - INFO - Fetched 1088 players for Angola (AO).
+2025-06-09 17:03:48,349 - ERROR - Error fetching data for Benin (BJ): HTTPSConnectionPool(host='api.chess.com', port=443): Read timed out. (read timeout=10)
+2025-06-09 17:03:49,544 - INFO - Fetched 948 players for Botswana (BW).
+2025-06-09 17:03:50,639 - INFO - Fetched 199 players for Burkina Faso (BF).
+2025-06-09 17:03:51,729 - INFO - Fetched 78 players for Burundi (BI).
+2025-06-09 17:03:52,843 - INFO - Fetched 987 players for Cameroon (CM).
+2025-06-09 17:04:03,868 - ERROR - Error fetching data for Cabo Verde (CV): HTTPSConnectionPool(host='api.chess.com', port=443): Read timed out. (read timeout=10)
+2025-06-09 17:04:04,960 - INFO - Fetched 67 players for Central African Republic (CF).
+2025-06-09 17:04:06,039 - INFO - Fetched 256 players for Chad (TD).
+2025-06-09 17:04:07,148 - INFO - Fetched 65 players for Comoros (KM).
+2025-06-09 17:04:08,233 - INFO - Fetched 199 players for Congo (CG).
+2025-06-09 17:04:09,312 - INFO - Fetched 659 players for Congo (DRC) (CD).
+2025-06-09 17:04:10,402 - INFO - Fetched 916 players for Côte d'Ivoire (CI).
+2025-06-09 17:04:11,494 - INFO - Fetched 217 players for Djibouti (DJ).
+2025-06-09 17:04:12,681 - INFO - Fetched 10000 players for Egypt (EG).
+2025-06-09 17:04:13,769 - INFO - Fetched 56 players for Equatorial Guinea (GQ).
+2025-06-09 17:04:14,846 - INFO - Fetched 119 players for Eritrea (ER).
+2025-06-09 17:04:15,949 - INFO - Fetched 203 players for Eswatini (SZ).
+2025-06-09 17:04:17,103 - INFO - Fetched 2857 players for Ethiopia (ET).
+2025-06-09 17:04:18,176 - INFO - Fetched 263 players for Gabon (GA).
+2025-06-09 17:04:19,269 - INFO - Fetched 77 players for Gambia (GM).
+2025-06-09 17:04:20,387 - INFO - Fetched 1222 players for Ghana (GH).
+2025-06-09 17:04:21,486 - INFO - Fetched 72 players for Guinea (GN).
+2025-06-09 17:04:22,577 - INFO - Fetched 32 players for Guinea-Bissau (GW).
+2025-06-09 17:04:23,710 - INFO - Fetched 5676 players for Kenya (KE).
+2025-06-09 17:04:24,788 - INFO - Fetched 245 players for Lesotho (LS).
+2025-06-09 17:04:25,891 - INFO - Fetched 92 players for Liberia (LR).
+2025-06-09 17:04:26,986 - INFO - Fetched 2197 players for Libya (LY).
+2025-06-09 17:04:28,084 - INFO - Fetched 2629 players for Madagascar (MG).
+2025-06-09 17:04:29,161 - INFO - Fetched 586 players for Malawi (MW).
+2025-06-09 17:04:30,234 - INFO - Fetched 152 players for Mali (ML).
+2025-06-09 17:04:31,332 - INFO - Fetched 301 players for Mauritania (MR).
+2025-06-09 17:04:32,422 - INFO - Fetched 1014 players for Mauritius (MU).
+2025-06-09 17:04:43,441 - ERROR - Error fetching data for Morocco (MA): HTTPSConnectionPool(host='api.chess.com', port=443): Read timed out. (read timeout=10)
+2025-06-09 17:04:44,535 - INFO - Fetched 639 players for Mozambique (MZ).
+2025-06-09 17:04:45,636 - INFO - Fetched 597 players for Namibia (NA).
+2025-06-09 17:04:46,707 - INFO - Fetched 345 players for Niger (NE).
+2025-06-09 17:04:47,876 - INFO - Fetched 9920 players for Nigeria (NG).
+2025-06-09 17:04:48,957 - INFO - Fetched 284 players for Rwanda (RW).
+2025-06-09 17:04:50,064 - INFO - Fetched 82 players for Sao Tome and Principe (ST).
+2025-06-09 17:04:51,142 - INFO - Fetched 709 players for Senegal (SN).
+2025-06-09 17:04:52,235 - INFO - Fetched 293 players for Seychelles (SC).
+2025-06-09 17:04:53,339 - INFO - Fetched 104 players for Sierra Leone (SL).
+2025-06-09 17:05:04,362 - ERROR - Error fetching data for Somalia (SO): HTTPSConnectionPool(host='api.chess.com', port=443): Read timed out. (read timeout=10)
+2025-06-09 17:05:05,681 - INFO - Fetched 10000 players for South Africa (ZA).
+2025-06-09 17:05:06,780 - INFO - Fetched 126 players for South Sudan (SS).
+2025-06-09 17:05:07,890 - INFO - Fetched 1330 players for Sudan (SD).
+2025-06-09 17:05:08,990 - INFO - Fetched 421 players for Tanzania (TZ).
+2025-06-09 17:05:10,061 - INFO - Fetched 330 players for Togo (TG).
+2025-06-09 17:05:11,208 - INFO - Fetched 8069 players for Tunisia (TN).
+2025-06-09 17:05:12,303 - INFO - Fetched 1310 players for Uganda (UG).
+2025-06-09 17:05:13,432 - INFO - Fetched 1712 players for Zambia (ZM).
+2025-06-09 17:05:14,544 - INFO - Fetched 2164 players for Zimbabwe (ZW).
+2025-06-09 17:05:15,548 - INFO - Player counts saved to african_country_player_counts.csv
