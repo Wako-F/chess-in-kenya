@@ -1,55 +1,55 @@
 Country Code,ISO-3,Country Name,Player Count
-DZ,DZA,Algeria,10000.0
-AO,AGO,Angola,1088.0
-BJ,BEN,Benin,
-BW,BWA,Botswana,948.0
-BF,BFA,Burkina Faso,199.0
-BI,BDI,Burundi,78.0
-CM,CMR,Cameroon,987.0
-CV,CPV,Cabo Verde,
-CF,CAF,Central African Republic,67.0
-TD,TCD,Chad,256.0
-KM,COM,Comoros,65.0
-CG,COG,Congo,199.0
-CD,COD,Congo (DRC),659.0
-CI,CIV,Côte d'Ivoire,916.0
-DJ,DJI,Djibouti,217.0
-EG,EGY,Egypt,10000.0
-GQ,GNQ,Equatorial Guinea,56.0
-ER,ERI,Eritrea,119.0
-SZ,SWZ,Eswatini,203.0
-ET,ETH,Ethiopia,2857.0
-GA,GAB,Gabon,263.0
-GM,GMB,Gambia,77.0
-GH,GHA,Ghana,1222.0
-GN,GIN,Guinea,72.0
-GW,GNB,Guinea-Bissau,32.0
-KE,KEN,Kenya,5676.0
-LS,LSO,Lesotho,245.0
-LR,LBR,Liberia,92.0
-LY,LBY,Libya,2197.0
-MG,MDG,Madagascar,2629.0
-MW,MWI,Malawi,586.0
-ML,MLI,Mali,152.0
-MR,MRT,Mauritania,301.0
-MU,MUS,Mauritius,1014.0
-MA,MAR,Morocco,
-MZ,MOZ,Mozambique,639.0
-NA,NAM,Namibia,597.0
-NE,NER,Niger,345.0
-NG,NGA,Nigeria,9920.0
-RW,RWA,Rwanda,284.0
-ST,STP,Sao Tome and Principe,82.0
-SN,SEN,Senegal,709.0
-SC,SYC,Seychelles,293.0
-SL,SLE,Sierra Leone,104.0
-SO,SOM,Somalia,
-ZA,ZAF,South Africa,10000.0
-SS,SSD,South Sudan,126.0
-SD,SDN,Sudan,1330.0
-TZ,TZA,Tanzania,421.0
-TG,TGO,Togo,330.0
-TN,TUN,Tunisia,8069.0
-UG,UGA,Uganda,1310.0
-ZM,ZMB,Zambia,1712.0
-ZW,ZWE,Zimbabwe,2164.0
+DZ,DZA,Algeria,10000
+AO,AGO,Angola,1088
+BJ,BEN,Benin,271
+BW,BWA,Botswana,948
+BF,BFA,Burkina Faso,199
+BI,BDI,Burundi,78
+CM,CMR,Cameroon,987
+CV,CPV,Cabo Verde,194
+CF,CAF,Central African Republic,67
+TD,TCD,Chad,256
+KM,COM,Comoros,65
+CG,COG,Congo,199
+CD,COD,Congo (DRC),659
+CI,CIV,Côte d'Ivoire,916
+DJ,DJI,Djibouti,217
+EG,EGY,Egypt,10000
+GQ,GNQ,Equatorial Guinea,56
+ER,ERI,Eritrea,119
+SZ,SWZ,Eswatini,203
+ET,ETH,Ethiopia,2857
+GA,GAB,Gabon,263
+GM,GMB,Gambia,77
+GH,GHA,Ghana,1222
+GN,GIN,Guinea,72
+GW,GNB,Guinea-Bissau,32
+KE,KEN,Kenya,5676
+LS,LSO,Lesotho,245
+LR,LBR,Liberia,92
+LY,LBY,Libya,2197
+MG,MDG,Madagascar,2629
+MW,MWI,Malawi,586
+ML,MLI,Mali,152
+MR,MRT,Mauritania,301
+MU,MUS,Mauritius,1014
+MA,MAR,Morocco,10000
+MZ,MOZ,Mozambique,639
+NA,NAM,Namibia,597
+NE,NER,Niger,345
+NG,NGA,Nigeria,9920
+RW,RWA,Rwanda,284
+ST,STP,Sao Tome and Principe,82
+SN,SEN,Senegal,709
+SC,SYC,Seychelles,293
+SL,SLE,Sierra Leone,104
+SO,SOM,Somalia,944
+ZA,ZAF,South Africa,10000
+SS,SSD,South Sudan,126
+SD,SDN,Sudan,1330
+TZ,TZA,Tanzania,421
+TG,TGO,Togo,330
+TN,TUN,Tunisia,8069
+UG,UGA,Uganda,1310
+ZM,ZMB,Zambia,1712
+ZW,ZWE,Zimbabwe,2164
