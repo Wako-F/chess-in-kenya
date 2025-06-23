@@ -3068,3 +3068,16 @@
 2025-06-21 02:36:15,014 - INFO - Script executed successfully: data_cleaning.py
 2025-06-21 02:36:15,015 - INFO - Comment added to chess_dashboard.py for auto-refresh.
 2025-06-21 02:36:15,015 - INFO - Last update timestamp saved to last_update.txt.
+2025-06-22 21:53:14,440 - INFO - Executing script: chess_kenya.py
+2025-06-23 03:03:44,448 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1073807364.
+2025-06-23 03:03:44,450 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1073807364.
+2025-06-23 04:21:40,732 - INFO - Executing script: chess_kenya.py
+2025-06-23 16:57:05,352 - INFO - Script executed successfully: chess_kenya.py
+2025-06-23 16:57:05,352 - INFO - Executing script: update_master_ledger.py
+2025-06-23 16:57:30,028 - INFO - Script executed successfully: update_master_ledger.py
+2025-06-23 16:57:30,028 - INFO - Executing script: africa_count.py
+2025-06-23 16:59:20,744 - INFO - Script executed successfully: africa_count.py
+2025-06-23 16:59:20,744 - INFO - Executing script: data_cleaning.py
+2025-06-23 16:59:28,078 - INFO - Script executed successfully: data_cleaning.py
+2025-06-23 16:59:28,082 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-06-23 16:59:28,086 - INFO - Last update timestamp saved to last_update.txt.
