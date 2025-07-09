@@ -10,8 +10,8 @@ CV,CPV,Cabo Verde,213
 CF,CAF,Central African Republic,65
 TD,TCD,Chad,277
 KM,COM,Comoros,82
-CG,COG,Congo,210
-CD,COD,Congo (DRC),741
+CG,COG,Congo,175
+CD,COD,Congo (DRC),562
 CI,CIV,Côte d'Ivoire,1027
 DJ,DJI,Djibouti,238
 EG,EGY,Egypt,10000
@@ -22,8 +22,8 @@ ET,ETH,Ethiopia,3008
 GA,GAB,Gabon,305
 GM,GMB,Gambia,91
 GH,GHA,Ghana,1457
-GN,GIN,Guinea,102
-GW,GNB,Guinea-Bissau,29
+GN,GIN,Guinea,69
+GW,GNB,Guinea-Bissau,27
 KE,KEN,Kenya,6509
 LS,LSO,Lesotho,279
 LR,LBR,Liberia,108
@@ -51,5 +51,5 @@ TZ,TZA,Tanzania,489
 TG,TGO,Togo,417
 TN,TUN,Tunisia,8714
 UG,UGA,Uganda,1478
-ZM,ZMB,Zambia,1867
+ZM,ZMB,Zambia,1465
 ZW,ZWE,Zimbabwe,2567
