@@ -7,25 +7,25 @@ BF,BFA,Burkina Faso,205
 BI,BDI,Burundi,101
 CM,CMR,Cameroon,1162
 CV,CPV,Cabo Verde,179
-CF,CAF,Central African Republic,64
-TD,TCD,Chad,240
-KM,COM,Comoros,74
+CF,CAF,Central African Republic,42
+TD,TCD,Chad,180
+KM,COM,Comoros,60
 CG,COG,Congo,202
 CD,COD,Congo (DRC),719
 CI,CIV,Côte d'Ivoire,907
 DJ,DJI,Djibouti,205
 EG,EGY,Egypt,10000
-GQ,GNQ,Equatorial Guinea,68
+GQ,GNQ,Equatorial Guinea,51
 ER,ERI,Eritrea,143
 SZ,SWZ,Eswatini,196
 ET,ETH,Ethiopia,2889
-GA,GAB,Gabon,291
-GM,GMB,Gambia,77
+GA,GAB,Gabon,218
+GM,GMB,Gambia,64
 GH,GHA,Ghana,1452
-GN,GIN,Guinea,87
-GW,GNB,Guinea-Bissau,43
+GN,GIN,Guinea,73
+GW,GNB,Guinea-Bissau,26
 KE,KEN,Kenya,6301
-LS,LSO,Lesotho,263
+LS,LSO,Lesotho,210
 LR,LBR,Liberia,107
 LY,LBY,Libya,2421
 MG,MDG,Madagascar,2664
@@ -34,22 +34,22 @@ ML,MLI,Mali,159
 MR,MRT,Mauritania,351
 MU,MUS,Mauritius,948
 MA,MAR,Morocco,10000
-MZ,MOZ,Mozambique,734
-NA,NAM,Namibia,603
+MZ,MOZ,Mozambique,578
+NA,NAM,Namibia,428
 NE,NER,Niger,351
 NG,NGA,Nigeria,10000
-RW,RWA,Rwanda,296
+RW,RWA,Rwanda,235
 ST,STP,Sao Tome and Principe,97
-SN,SEN,Senegal,689
+SN,SEN,Senegal,550
 SC,SYC,Seychelles,278
 SL,SLE,Sierra Leone,128
 SO,SOM,Somalia,1104
 ZA,ZAF,South Africa,10000
 SS,SSD,South Sudan,158
-SD,SDN,Sudan,1596
-TZ,TZA,Tanzania,407
-TG,TGO,Togo,347
-TN,TUN,Tunisia,7610
+SD,SDN,Sudan,1307
+TZ,TZA,Tanzania,323
+TG,TGO,Togo,269
+TN,TUN,Tunisia,6145
 UG,UGA,Uganda,1415
 ZM,ZMB,Zambia,1930
 ZW,ZWE,Zimbabwe,2344
