@@ -5,10 +5,10 @@ BJ,BEN,Benin,385
 BW,BWA,Botswana,1323
 BF,BFA,Burkina Faso,282
 BI,BDI,Burundi,123
-CM,CMR,Cameroon,1517
+CM,CMR,Cameroon,1228
 CV,CPV,Cabo Verde,281
-CF,CAF,Central African Republic,82
-TD,TCD,Chad,304
+CF,CAF,Central African Republic,77
+TD,TCD,Chad,250
 KM,COM,Comoros,103
 CG,COG,Congo,231
 CD,COD,Congo (DRC),974
@@ -28,7 +28,7 @@ KE,KEN,Kenya,7770
 LS,LSO,Lesotho,322
 LR,LBR,Liberia,158
 LY,LBY,Libya,3553
-MG,MDG,Madagascar,3189
+MG,MDG,Madagascar,2582
 MW,MWI,Malawi,950
 ML,MLI,Mali,215
 MR,MRT,Mauritania,507
@@ -40,7 +40,7 @@ NE,NER,Niger,409
 NG,NGA,Nigeria,10000
 RW,RWA,Rwanda,396
 ST,STP,Sao Tome and Principe,115
-SN,SEN,Senegal,972
+SN,SEN,Senegal,743
 SC,SYC,Seychelles,394
 SL,SLE,Sierra Leone,135
 SO,SOM,Somalia,1436
@@ -49,7 +49,7 @@ SS,SSD,South Sudan,207
 SD,SDN,Sudan,2367
 TZ,TZA,Tanzania,581
 TG,TGO,Togo,457
-TN,TUN,Tunisia,10000
+TN,TUN,Tunisia,8033
 UG,UGA,Uganda,1809
 ZM,ZMB,Zambia,2690
 ZW,ZWE,Zimbabwe,2934
