@@ -18,10 +18,10 @@ EG,EGY,Egypt,10000
 GQ,GNQ,Equatorial Guinea,201
 ER,ERI,Eritrea,440
 SZ,SWZ,Eswatini,621
-ET,ETH,Ethiopia,7182
+ET,ETH,Ethiopia,6583
 GA,GAB,Gabon,873
 GM,GMB,Gambia,267
-GH,GHA,Ghana,4320
+GH,GHA,Ghana,3891
 GN,GIN,Guinea,287
 GW,GNB,Guinea-Bissau,92
 KE,KEN,Kenya,10000
@@ -40,7 +40,7 @@ NE,NER,Niger,1020
 NG,NGA,Nigeria,10000
 RW,RWA,Rwanda,844
 ST,STP,Sao Tome and Principe,252
-SN,SEN,Senegal,2238
+SN,SEN,Senegal,2084
 SC,SYC,Seychelles,968
 SL,SLE,Sierra Leone,371
 SO,SOM,Somalia,3724
@@ -50,6 +50,6 @@ SD,SDN,Sudan,6624
 TZ,TZA,Tanzania,1359
 TG,TGO,Togo,1002
 TN,TUN,Tunisia,10000
-UG,UGA,Uganda,3749
+UG,UGA,Uganda,3385
 ZM,ZMB,Zambia,6481
 ZW,ZWE,Zimbabwe,6934
