@@ -9,7 +9,7 @@ CM,CMR,Cameroon,3620
 CV,CPV,Cabo Verde,646
 CF,CAF,Central African Republic,233
 TD,TCD,Chad,751
-KM,COM,Comoros,251
+KM,COM,Comoros,235
 CG,COG,Congo,576
 CD,COD,Congo (DRC),2466
 CI,CIV,Côte d'Ivoire,2988
@@ -28,7 +28,7 @@ KE,KEN,Kenya,10000
 LS,LSO,Lesotho,702
 LR,LBR,Liberia,385
 LY,LBY,Libya,10000
-MG,MDG,Madagascar,6933
+MG,MDG,Madagascar,6364
 MW,MWI,Malawi,2187
 ML,MLI,Mali,547
 MR,MRT,Mauritania,1321
@@ -43,13 +43,13 @@ ST,STP,Sao Tome and Principe,243
 SN,SEN,Senegal,2407
 SC,SYC,Seychelles,991
 SL,SLE,Sierra Leone,371
-SO,SOM,Somalia,3658
+SO,SOM,Somalia,3311
 ZA,ZAF,South Africa,10000
 SS,SSD,South Sudan,510
-SD,SDN,Sudan,6553
-TZ,TZA,Tanzania,1351
+SD,SDN,Sudan,5930
+TZ,TZA,Tanzania,1227
 TG,TGO,Togo,984
 TN,TUN,Tunisia,10000
 UG,UGA,Uganda,3821
 ZM,ZMB,Zambia,6475
-ZW,ZWE,Zimbabwe,6902
+ZW,ZWE,Zimbabwe,6274
