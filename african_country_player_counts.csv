@@ -1,13 +1,13 @@
 Country Code,ISO-3,Country Name,Player Count
 DZ,DZA,Algeria,10000
-AO,AGO,Angola,3411
+AO,AGO,Angola,3238
 BJ,BEN,Benin,886
 BW,BWA,Botswana,2521
-BF,BFA,Burkina Faso,622
+BF,BFA,Burkina Faso,617
 BI,BDI,Burundi,246
-CM,CMR,Cameroon,3374
+CM,CMR,Cameroon,3178
 CV,CPV,Cabo Verde,663
-CF,CAF,Central African Republic,225
+CF,CAF,Central African Republic,211
 TD,TCD,Chad,741
 KM,COM,Comoros,242
 CG,COG,Congo,585
@@ -29,18 +29,18 @@ LS,LSO,Lesotho,702
 LR,LBR,Liberia,380
 LY,LBY,Libya,10000
 MG,MDG,Madagascar,6759
-MW,MWI,Malawi,2080
-ML,MLI,Mali,519
+MW,MWI,Malawi,1942
+ML,MLI,Mali,488
 MR,MRT,Mauritania,1300
 MU,MUS,Mauritius,2932
 MA,MAR,Morocco,10000
-MZ,MOZ,Mozambique,2201
+MZ,MOZ,Mozambique,2120
 NA,NAM,Namibia,1754
 NE,NER,Niger,1047
 NG,NGA,Nigeria,10000
 RW,RWA,Rwanda,826
 ST,STP,Sao Tome and Principe,237
-SN,SEN,Senegal,2202
+SN,SEN,Senegal,2044
 SC,SYC,Seychelles,915
 SL,SLE,Sierra Leone,367
 SO,SOM,Somalia,3666
@@ -50,6 +50,6 @@ SD,SDN,Sudan,6753
 TZ,TZA,Tanzania,1391
 TG,TGO,Togo,957
 TN,TUN,Tunisia,10000
-UG,UGA,Uganda,3744
+UG,UGA,Uganda,3481
 ZM,ZMB,Zambia,6519
 ZW,ZWE,Zimbabwe,6602
