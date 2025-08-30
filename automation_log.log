@@ -3681,6 +3681,7 @@
 2025-07-25 13:46:51,385 - INFO - Script executed successfully: data_cleaning.py
 2025-07-25 13:46:51,396 - INFO - Comment added to chess_dashboard.py for auto-refresh.
 2025-07-25 13:46:51,400 - INFO - Last update timestamp saved to last_update.txt.
+<<<<<<< HEAD
 2025-08-27 20:49:46,002 - INFO - Executing script: chess_kenya.py
 2025-08-27 20:49:46,746 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
 2025-08-27 20:49:46,747 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
@@ -3718,3 +3719,605 @@
 2025-08-30 20:26:01,332 - INFO - Script executed successfully: data_cleaning.py
 2025-08-30 20:26:01,336 - INFO - Comment added to chess_dashboard.py for auto-refresh.
 2025-08-30 20:26:01,337 - INFO - Last update timestamp saved to last_update.txt.
+=======
+2025-07-26 01:58:56,357 - INFO - Executing script: chess_kenya.py
+2025-07-26 03:05:54,464 - INFO - Script executed successfully: chess_kenya.py
+2025-07-26 03:05:54,464 - INFO - Executing script: update_master_ledger.py
+2025-07-26 03:05:55,945 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-26 03:05:55,945 - INFO - Executing script: africa_count.py
+2025-07-26 03:06:57,262 - INFO - Script executed successfully: africa_count.py
+2025-07-26 03:06:57,262 - INFO - Executing script: data_cleaning.py
+2025-07-26 03:06:58,767 - INFO - Script executed successfully: data_cleaning.py
+2025-07-26 03:06:58,767 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-26 03:06:58,768 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-26 12:47:34,021 - INFO - Executing script: chess_kenya.py
+2025-07-26 13:54:23,746 - INFO - Script executed successfully: chess_kenya.py
+2025-07-26 13:54:23,746 - INFO - Executing script: update_master_ledger.py
+2025-07-26 13:54:25,296 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-26 13:54:25,297 - INFO - Executing script: africa_count.py
+2025-07-26 13:55:23,929 - INFO - Script executed successfully: africa_count.py
+2025-07-26 13:55:23,929 - INFO - Executing script: data_cleaning.py
+2025-07-26 13:55:25,542 - INFO - Script executed successfully: data_cleaning.py
+2025-07-26 13:55:25,543 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-26 13:55:25,543 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-27 02:12:11,335 - INFO - Executing script: chess_kenya.py
+2025-07-27 03:18:57,642 - INFO - Script executed successfully: chess_kenya.py
+2025-07-27 03:18:57,642 - INFO - Executing script: update_master_ledger.py
+2025-07-27 03:18:59,084 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-27 03:18:59,084 - INFO - Executing script: africa_count.py
+2025-07-27 03:19:59,762 - INFO - Script executed successfully: africa_count.py
+2025-07-27 03:19:59,762 - INFO - Executing script: data_cleaning.py
+2025-07-27 03:20:01,304 - INFO - Script executed successfully: data_cleaning.py
+2025-07-27 03:20:01,304 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-27 03:20:01,304 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-27 12:49:10,836 - INFO - Executing script: chess_kenya.py
+2025-07-27 13:55:55,068 - INFO - Script executed successfully: chess_kenya.py
+2025-07-27 13:55:55,068 - INFO - Executing script: update_master_ledger.py
+2025-07-27 13:55:56,506 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-27 13:55:56,506 - INFO - Executing script: africa_count.py
+2025-07-27 13:56:54,982 - INFO - Script executed successfully: africa_count.py
+2025-07-27 13:56:54,982 - INFO - Executing script: data_cleaning.py
+2025-07-27 13:56:56,501 - INFO - Script executed successfully: data_cleaning.py
+2025-07-27 13:56:56,501 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-27 13:56:56,501 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-28 02:10:02,429 - INFO - Executing script: chess_kenya.py
+2025-07-28 03:16:48,882 - INFO - Script executed successfully: chess_kenya.py
+2025-07-28 03:16:48,882 - INFO - Executing script: update_master_ledger.py
+2025-07-28 03:16:50,337 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-28 03:16:50,337 - INFO - Executing script: africa_count.py
+2025-07-28 03:17:50,449 - INFO - Script executed successfully: africa_count.py
+2025-07-28 03:17:50,449 - INFO - Executing script: data_cleaning.py
+2025-07-28 03:17:52,015 - INFO - Script executed successfully: data_cleaning.py
+2025-07-28 03:17:52,015 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-28 03:17:52,015 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-28 12:54:16,917 - INFO - Executing script: chess_kenya.py
+2025-07-28 14:01:23,158 - INFO - Script executed successfully: chess_kenya.py
+2025-07-28 14:01:23,158 - INFO - Executing script: update_master_ledger.py
+2025-07-28 14:01:24,733 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-28 14:01:24,733 - INFO - Executing script: africa_count.py
+2025-07-28 14:02:28,590 - INFO - Script executed successfully: africa_count.py
+2025-07-28 14:02:28,591 - INFO - Executing script: data_cleaning.py
+2025-07-28 14:02:30,163 - INFO - Script executed successfully: data_cleaning.py
+2025-07-28 14:02:30,163 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-28 14:02:30,163 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-29 02:21:03,379 - INFO - Executing script: chess_kenya.py
+2025-07-29 03:27:52,023 - INFO - Script executed successfully: chess_kenya.py
+2025-07-29 03:27:52,023 - INFO - Executing script: update_master_ledger.py
+2025-07-29 03:27:53,474 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-29 03:27:53,474 - INFO - Executing script: africa_count.py
+2025-07-29 03:29:01,780 - INFO - Script executed successfully: africa_count.py
+2025-07-29 03:29:01,780 - INFO - Executing script: data_cleaning.py
+2025-07-29 03:29:03,310 - INFO - Script executed successfully: data_cleaning.py
+2025-07-29 03:29:03,310 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-29 03:29:03,311 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-29 12:54:34,612 - INFO - Executing script: chess_kenya.py
+2025-07-29 14:01:21,383 - INFO - Script executed successfully: chess_kenya.py
+2025-07-29 14:01:21,384 - INFO - Executing script: update_master_ledger.py
+2025-07-29 14:01:22,844 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-29 14:01:22,845 - INFO - Executing script: africa_count.py
+2025-07-29 14:02:22,629 - INFO - Script executed successfully: africa_count.py
+2025-07-29 14:02:22,629 - INFO - Executing script: data_cleaning.py
+2025-07-29 14:02:24,144 - INFO - Script executed successfully: data_cleaning.py
+2025-07-29 14:02:24,144 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-29 14:02:24,144 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-30 02:05:53,367 - INFO - Executing script: chess_kenya.py
+2025-07-30 03:13:12,151 - INFO - Script executed successfully: chess_kenya.py
+2025-07-30 03:13:12,151 - INFO - Executing script: update_master_ledger.py
+2025-07-30 03:13:13,607 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-30 03:13:13,608 - INFO - Executing script: africa_count.py
+2025-07-30 03:14:27,125 - INFO - Script executed successfully: africa_count.py
+2025-07-30 03:14:27,125 - INFO - Executing script: data_cleaning.py
+2025-07-30 03:14:28,676 - INFO - Script executed successfully: data_cleaning.py
+2025-07-30 03:14:28,676 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-30 03:14:28,677 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-30 12:54:35,229 - INFO - Executing script: chess_kenya.py
+2025-07-30 14:02:03,978 - INFO - Script executed successfully: chess_kenya.py
+2025-07-30 14:02:03,979 - INFO - Executing script: update_master_ledger.py
+2025-07-30 14:02:05,577 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-30 14:02:05,577 - INFO - Executing script: africa_count.py
+2025-07-30 14:03:11,966 - INFO - Script executed successfully: africa_count.py
+2025-07-30 14:03:11,966 - INFO - Executing script: data_cleaning.py
+2025-07-30 14:03:13,616 - INFO - Script executed successfully: data_cleaning.py
+2025-07-30 14:03:13,616 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-30 14:03:13,616 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-31 02:05:18,763 - INFO - Executing script: chess_kenya.py
+2025-07-31 03:12:24,280 - INFO - Script executed successfully: chess_kenya.py
+2025-07-31 03:12:24,280 - INFO - Executing script: update_master_ledger.py
+2025-07-31 03:12:25,770 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-31 03:12:25,770 - INFO - Executing script: africa_count.py
+2025-07-31 03:13:25,616 - INFO - Script executed successfully: africa_count.py
+2025-07-31 03:13:25,617 - INFO - Executing script: data_cleaning.py
+2025-07-31 03:13:27,142 - INFO - Script executed successfully: data_cleaning.py
+2025-07-31 03:13:27,142 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-31 03:13:27,143 - INFO - Last update timestamp saved to last_update.txt.
+2025-07-31 12:53:06,254 - INFO - Executing script: chess_kenya.py
+2025-07-31 14:00:00,858 - INFO - Script executed successfully: chess_kenya.py
+2025-07-31 14:00:00,859 - INFO - Executing script: update_master_ledger.py
+2025-07-31 14:00:02,332 - INFO - Script executed successfully: update_master_ledger.py
+2025-07-31 14:00:02,332 - INFO - Executing script: africa_count.py
+2025-07-31 14:01:04,308 - INFO - Script executed successfully: africa_count.py
+2025-07-31 14:01:04,308 - INFO - Executing script: data_cleaning.py
+2025-07-31 14:01:05,843 - INFO - Script executed successfully: data_cleaning.py
+2025-07-31 14:01:05,843 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-07-31 14:01:05,843 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-01 02:22:07,317 - INFO - Executing script: chess_kenya.py
+2025-08-01 03:28:53,772 - INFO - Script executed successfully: chess_kenya.py
+2025-08-01 03:28:53,773 - INFO - Executing script: update_master_ledger.py
+2025-08-01 03:28:55,217 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-01 03:28:55,217 - INFO - Executing script: africa_count.py
+2025-08-01 03:30:01,327 - INFO - Script executed successfully: africa_count.py
+2025-08-01 03:30:01,327 - INFO - Executing script: data_cleaning.py
+2025-08-01 03:30:02,873 - INFO - Script executed successfully: data_cleaning.py
+2025-08-01 03:30:02,873 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-01 03:30:02,873 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-01 12:53:32,077 - INFO - Executing script: chess_kenya.py
+2025-08-01 14:00:30,342 - INFO - Script executed successfully: chess_kenya.py
+2025-08-01 14:00:30,342 - INFO - Executing script: update_master_ledger.py
+2025-08-01 14:00:31,843 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-01 14:00:31,843 - INFO - Executing script: africa_count.py
+2025-08-01 14:01:34,957 - INFO - Script executed successfully: africa_count.py
+2025-08-01 14:01:34,958 - INFO - Executing script: data_cleaning.py
+2025-08-01 14:01:36,506 - INFO - Script executed successfully: data_cleaning.py
+2025-08-01 14:01:36,506 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-01 14:01:36,506 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-02 01:59:44,308 - INFO - Executing script: chess_kenya.py
+2025-08-02 03:06:28,857 - INFO - Script executed successfully: chess_kenya.py
+2025-08-02 03:06:28,857 - INFO - Executing script: update_master_ledger.py
+2025-08-02 03:06:30,325 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-02 03:06:30,325 - INFO - Executing script: africa_count.py
+2025-08-02 03:07:30,517 - INFO - Script executed successfully: africa_count.py
+2025-08-02 03:07:30,517 - INFO - Executing script: data_cleaning.py
+2025-08-02 03:07:32,054 - INFO - Script executed successfully: data_cleaning.py
+2025-08-02 03:07:32,054 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-02 03:07:32,054 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-02 12:48:19,224 - INFO - Executing script: chess_kenya.py
+2025-08-02 13:55:09,212 - INFO - Script executed successfully: chess_kenya.py
+2025-08-02 13:55:09,212 - INFO - Executing script: update_master_ledger.py
+2025-08-02 13:55:10,710 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-02 13:55:10,710 - INFO - Executing script: africa_count.py
+2025-08-02 13:56:09,505 - INFO - Script executed successfully: africa_count.py
+2025-08-02 13:56:09,505 - INFO - Executing script: data_cleaning.py
+2025-08-02 13:56:11,082 - INFO - Script executed successfully: data_cleaning.py
+2025-08-02 13:56:11,082 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-02 13:56:11,082 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-03 02:20:27,250 - INFO - Executing script: chess_kenya.py
+2025-08-03 03:27:19,715 - INFO - Script executed successfully: chess_kenya.py
+2025-08-03 03:27:19,715 - INFO - Executing script: update_master_ledger.py
+2025-08-03 03:27:21,203 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-03 03:27:21,203 - INFO - Executing script: africa_count.py
+2025-08-03 03:28:22,988 - INFO - Script executed successfully: africa_count.py
+2025-08-03 03:28:22,988 - INFO - Executing script: data_cleaning.py
+2025-08-03 03:28:24,530 - INFO - Script executed successfully: data_cleaning.py
+2025-08-03 03:28:24,530 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-03 03:28:24,530 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-03 12:51:17,791 - INFO - Executing script: chess_kenya.py
+2025-08-03 13:58:23,094 - INFO - Script executed successfully: chess_kenya.py
+2025-08-03 13:58:23,094 - INFO - Executing script: update_master_ledger.py
+2025-08-03 13:58:24,557 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-03 13:58:24,557 - INFO - Executing script: africa_count.py
+2025-08-03 13:59:29,876 - INFO - Script executed successfully: africa_count.py
+2025-08-03 13:59:29,876 - INFO - Executing script: data_cleaning.py
+2025-08-03 13:59:31,403 - INFO - Script executed successfully: data_cleaning.py
+2025-08-03 13:59:31,403 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-03 13:59:31,403 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-04 02:20:25,561 - INFO - Executing script: chess_kenya.py
+2025-08-04 03:27:25,856 - INFO - Script executed successfully: chess_kenya.py
+2025-08-04 03:27:25,857 - INFO - Executing script: update_master_ledger.py
+2025-08-04 03:27:27,318 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-04 03:27:27,318 - INFO - Executing script: africa_count.py
+2025-08-04 03:28:33,525 - INFO - Script executed successfully: africa_count.py
+2025-08-04 03:28:33,525 - INFO - Executing script: data_cleaning.py
+2025-08-04 03:28:35,071 - INFO - Script executed successfully: data_cleaning.py
+2025-08-04 03:28:35,072 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-04 03:28:35,072 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-04 12:55:11,313 - INFO - Executing script: chess_kenya.py
+2025-08-04 14:02:18,168 - INFO - Script executed successfully: chess_kenya.py
+2025-08-04 14:02:18,168 - INFO - Executing script: update_master_ledger.py
+2025-08-04 14:02:19,662 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-04 14:02:19,662 - INFO - Executing script: africa_count.py
+2025-08-04 14:03:22,816 - INFO - Script executed successfully: africa_count.py
+2025-08-04 14:03:22,816 - INFO - Executing script: data_cleaning.py
+2025-08-04 14:03:24,350 - INFO - Script executed successfully: data_cleaning.py
+2025-08-04 14:03:24,351 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-04 14:03:24,351 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-05 02:08:22,552 - INFO - Executing script: chess_kenya.py
+2025-08-05 03:15:12,355 - INFO - Script executed successfully: chess_kenya.py
+2025-08-05 03:15:12,355 - INFO - Executing script: update_master_ledger.py
+2025-08-05 03:15:13,820 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-05 03:15:13,820 - INFO - Executing script: africa_count.py
+2025-08-05 03:16:15,098 - INFO - Script executed successfully: africa_count.py
+2025-08-05 03:16:15,098 - INFO - Executing script: data_cleaning.py
+2025-08-05 03:16:16,643 - INFO - Script executed successfully: data_cleaning.py
+2025-08-05 03:16:16,644 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-05 03:16:16,644 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-05 12:55:24,837 - INFO - Executing script: chess_kenya.py
+2025-08-05 14:02:11,527 - INFO - Script executed successfully: chess_kenya.py
+2025-08-05 14:02:11,527 - INFO - Executing script: update_master_ledger.py
+2025-08-05 14:02:13,076 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-05 14:02:13,076 - INFO - Executing script: africa_count.py
+2025-08-05 14:03:12,720 - INFO - Script executed successfully: africa_count.py
+2025-08-05 14:03:12,720 - INFO - Executing script: data_cleaning.py
+2025-08-05 14:03:14,267 - INFO - Script executed successfully: data_cleaning.py
+2025-08-05 14:03:14,267 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-05 14:03:14,267 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-06 02:06:31,709 - INFO - Executing script: chess_kenya.py
+2025-08-06 03:13:21,745 - INFO - Script executed successfully: chess_kenya.py
+2025-08-06 03:13:21,745 - INFO - Executing script: update_master_ledger.py
+2025-08-06 03:13:23,303 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-06 03:13:23,303 - INFO - Executing script: africa_count.py
+2025-08-06 03:14:23,259 - INFO - Script executed successfully: africa_count.py
+2025-08-06 03:14:23,259 - INFO - Executing script: data_cleaning.py
+2025-08-06 03:14:24,909 - INFO - Script executed successfully: data_cleaning.py
+2025-08-06 03:14:24,909 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-06 03:14:24,909 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-06 12:55:14,887 - INFO - Executing script: chess_kenya.py
+2025-08-06 14:02:30,437 - INFO - Script executed successfully: chess_kenya.py
+2025-08-06 14:02:30,437 - INFO - Executing script: update_master_ledger.py
+2025-08-06 14:02:31,893 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-06 14:02:31,893 - INFO - Executing script: africa_count.py
+2025-08-06 14:03:39,708 - INFO - Script executed successfully: africa_count.py
+2025-08-06 14:03:39,708 - INFO - Executing script: data_cleaning.py
+2025-08-06 14:03:41,242 - INFO - Script executed successfully: data_cleaning.py
+2025-08-06 14:03:41,242 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-06 14:03:41,242 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-07 02:07:03,709 - INFO - Executing script: chess_kenya.py
+2025-08-07 03:13:50,361 - INFO - Script executed successfully: chess_kenya.py
+2025-08-07 03:13:50,362 - INFO - Executing script: update_master_ledger.py
+2025-08-07 03:13:51,931 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-07 03:13:51,931 - INFO - Executing script: africa_count.py
+2025-08-07 03:14:52,256 - INFO - Script executed successfully: africa_count.py
+2025-08-07 03:14:52,256 - INFO - Executing script: data_cleaning.py
+2025-08-07 03:14:53,822 - INFO - Script executed successfully: data_cleaning.py
+2025-08-07 03:14:53,822 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-07 03:14:53,822 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-07 12:54:42,351 - INFO - Executing script: chess_kenya.py
+2025-08-07 14:01:39,919 - INFO - Script executed successfully: chess_kenya.py
+2025-08-07 14:01:39,920 - INFO - Executing script: update_master_ledger.py
+2025-08-07 14:01:41,392 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-07 14:01:41,392 - INFO - Executing script: africa_count.py
+2025-08-07 14:02:49,766 - INFO - Script executed successfully: africa_count.py
+2025-08-07 14:02:49,767 - INFO - Executing script: data_cleaning.py
+2025-08-07 14:02:51,364 - INFO - Script executed successfully: data_cleaning.py
+2025-08-07 14:02:51,364 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-07 14:02:51,364 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-08 02:06:24,964 - INFO - Executing script: chess_kenya.py
+2025-08-08 03:13:14,010 - INFO - Script executed successfully: chess_kenya.py
+2025-08-08 03:13:14,010 - INFO - Executing script: update_master_ledger.py
+2025-08-08 03:13:15,577 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-08 03:13:15,577 - INFO - Executing script: africa_count.py
+2025-08-08 03:14:15,462 - INFO - Script executed successfully: africa_count.py
+2025-08-08 03:14:15,462 - INFO - Executing script: data_cleaning.py
+2025-08-08 03:14:17,017 - INFO - Script executed successfully: data_cleaning.py
+2025-08-08 03:14:17,018 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-08 03:14:17,018 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-08 12:53:58,427 - INFO - Executing script: chess_kenya.py
+2025-08-08 14:00:48,013 - INFO - Script executed successfully: chess_kenya.py
+2025-08-08 14:00:48,013 - INFO - Executing script: update_master_ledger.py
+2025-08-08 14:00:49,585 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-08 14:00:49,585 - INFO - Executing script: africa_count.py
+2025-08-08 14:01:48,279 - INFO - Script executed successfully: africa_count.py
+2025-08-08 14:01:48,279 - INFO - Executing script: data_cleaning.py
+2025-08-08 14:01:49,905 - INFO - Script executed successfully: data_cleaning.py
+2025-08-08 14:01:49,905 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-08 14:01:49,905 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-09 01:55:44,204 - INFO - Executing script: chess_kenya.py
+2025-08-09 03:02:58,352 - INFO - Script executed successfully: chess_kenya.py
+2025-08-09 03:02:58,352 - INFO - Executing script: update_master_ledger.py
+2025-08-09 03:02:59,860 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-09 03:02:59,860 - INFO - Executing script: africa_count.py
+2025-08-09 03:04:04,715 - INFO - Script executed successfully: africa_count.py
+2025-08-09 03:04:04,716 - INFO - Executing script: data_cleaning.py
+2025-08-09 03:04:06,273 - INFO - Script executed successfully: data_cleaning.py
+2025-08-09 03:04:06,273 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-09 03:04:06,273 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-09 12:47:13,673 - INFO - Executing script: chess_kenya.py
+2025-08-09 13:54:02,341 - INFO - Script executed successfully: chess_kenya.py
+2025-08-09 13:54:02,341 - INFO - Executing script: update_master_ledger.py
+2025-08-09 13:54:03,939 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-09 13:54:03,939 - INFO - Executing script: africa_count.py
+2025-08-09 13:55:07,963 - INFO - Script executed successfully: africa_count.py
+2025-08-09 13:55:07,964 - INFO - Executing script: data_cleaning.py
+2025-08-09 13:55:09,618 - INFO - Script executed successfully: data_cleaning.py
+2025-08-09 13:55:09,618 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-09 13:55:09,618 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-10 02:10:14,280 - INFO - Executing script: chess_kenya.py
+2025-08-10 03:16:58,684 - INFO - Script executed successfully: chess_kenya.py
+2025-08-10 03:16:58,684 - INFO - Executing script: update_master_ledger.py
+2025-08-10 03:17:00,152 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-10 03:17:00,152 - INFO - Executing script: africa_count.py
+2025-08-10 03:18:05,438 - INFO - Script executed successfully: africa_count.py
+2025-08-10 03:18:05,438 - INFO - Executing script: data_cleaning.py
+2025-08-10 03:18:07,011 - INFO - Script executed successfully: data_cleaning.py
+2025-08-10 03:18:07,011 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-10 03:18:07,011 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-10 12:48:00,870 - INFO - Executing script: chess_kenya.py
+2025-08-10 13:54:51,242 - INFO - Script executed successfully: chess_kenya.py
+2025-08-10 13:54:51,242 - INFO - Executing script: update_master_ledger.py
+2025-08-10 13:54:52,743 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-10 13:54:52,743 - INFO - Executing script: africa_count.py
+2025-08-10 13:55:55,250 - INFO - Script executed successfully: africa_count.py
+2025-08-10 13:55:55,250 - INFO - Executing script: data_cleaning.py
+2025-08-10 13:55:56,813 - INFO - Script executed successfully: data_cleaning.py
+2025-08-10 13:55:56,813 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-10 13:55:56,813 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-11 02:06:31,691 - INFO - Executing script: chess_kenya.py
+2025-08-11 03:13:37,223 - INFO - Script executed successfully: chess_kenya.py
+2025-08-11 03:13:37,224 - INFO - Executing script: update_master_ledger.py
+2025-08-11 03:13:38,702 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-11 03:13:38,702 - INFO - Executing script: africa_count.py
+2025-08-11 03:14:43,065 - INFO - Script executed successfully: africa_count.py
+2025-08-11 03:14:43,065 - INFO - Executing script: data_cleaning.py
+2025-08-11 03:14:44,631 - INFO - Script executed successfully: data_cleaning.py
+2025-08-11 03:14:44,632 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-11 03:14:44,632 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-11 12:53:14,560 - INFO - Executing script: chess_kenya.py
+2025-08-11 14:00:04,255 - INFO - Script executed successfully: chess_kenya.py
+2025-08-11 14:00:04,255 - INFO - Executing script: update_master_ledger.py
+2025-08-11 14:00:05,775 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-11 14:00:05,775 - INFO - Executing script: africa_count.py
+2025-08-11 14:01:05,510 - INFO - Script executed successfully: africa_count.py
+2025-08-11 14:01:05,510 - INFO - Executing script: data_cleaning.py
+2025-08-11 14:01:07,067 - INFO - Script executed successfully: data_cleaning.py
+2025-08-11 14:01:07,067 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-11 14:01:07,067 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-12 01:54:43,227 - INFO - Executing script: chess_kenya.py
+2025-08-12 03:01:40,428 - INFO - Script executed successfully: chess_kenya.py
+2025-08-12 03:01:40,428 - INFO - Executing script: update_master_ledger.py
+2025-08-12 03:01:41,929 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-12 03:01:41,929 - INFO - Executing script: africa_count.py
+2025-08-12 03:02:42,834 - INFO - Script executed successfully: africa_count.py
+2025-08-12 03:02:42,834 - INFO - Executing script: data_cleaning.py
+2025-08-12 03:02:44,391 - INFO - Script executed successfully: data_cleaning.py
+2025-08-12 03:02:44,391 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-12 03:02:44,392 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-12 12:50:34,818 - INFO - Executing script: chess_kenya.py
+2025-08-12 13:57:27,258 - INFO - Script executed successfully: chess_kenya.py
+2025-08-12 13:57:27,258 - INFO - Executing script: update_master_ledger.py
+2025-08-12 13:57:28,809 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-12 13:57:28,809 - INFO - Executing script: africa_count.py
+2025-08-12 13:58:32,416 - INFO - Script executed successfully: africa_count.py
+2025-08-12 13:58:32,417 - INFO - Executing script: data_cleaning.py
+2025-08-12 13:58:34,054 - INFO - Script executed successfully: data_cleaning.py
+2025-08-12 13:58:34,055 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-12 13:58:34,055 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-13 01:56:49,989 - INFO - Executing script: chess_kenya.py
+2025-08-13 03:03:36,384 - INFO - Script executed successfully: chess_kenya.py
+2025-08-13 03:03:36,384 - INFO - Executing script: update_master_ledger.py
+2025-08-13 03:03:37,855 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-13 03:03:37,855 - INFO - Executing script: africa_count.py
+2025-08-13 03:04:39,796 - INFO - Script executed successfully: africa_count.py
+2025-08-13 03:04:39,796 - INFO - Executing script: data_cleaning.py
+2025-08-13 03:04:41,341 - INFO - Script executed successfully: data_cleaning.py
+2025-08-13 03:04:41,341 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-13 03:04:41,341 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-13 12:51:21,083 - INFO - Executing script: chess_kenya.py
+2025-08-13 13:58:13,679 - INFO - Script executed successfully: chess_kenya.py
+2025-08-13 13:58:13,679 - INFO - Executing script: update_master_ledger.py
+2025-08-13 13:58:15,225 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-13 13:58:15,225 - INFO - Executing script: africa_count.py
+2025-08-13 13:59:14,120 - INFO - Script executed successfully: africa_count.py
+2025-08-13 13:59:14,120 - INFO - Executing script: data_cleaning.py
+2025-08-13 13:59:15,707 - INFO - Script executed successfully: data_cleaning.py
+2025-08-13 13:59:15,707 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-13 13:59:15,707 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-14 01:57:06,902 - INFO - Executing script: chess_kenya.py
+2025-08-14 03:04:32,751 - INFO - Script executed successfully: chess_kenya.py
+2025-08-14 03:04:32,751 - INFO - Executing script: update_master_ledger.py
+2025-08-14 03:04:34,246 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-14 03:04:34,246 - INFO - Executing script: africa_count.py
+2025-08-14 03:05:34,980 - INFO - Script executed successfully: africa_count.py
+2025-08-14 03:05:34,980 - INFO - Executing script: data_cleaning.py
+2025-08-14 03:05:36,554 - INFO - Script executed successfully: data_cleaning.py
+2025-08-14 03:05:36,554 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-14 03:05:36,554 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-14 12:52:09,425 - INFO - Executing script: chess_kenya.py
+2025-08-14 13:59:54,773 - INFO - Script executed successfully: chess_kenya.py
+2025-08-14 13:59:54,773 - INFO - Executing script: update_master_ledger.py
+2025-08-14 13:59:56,387 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-14 13:59:56,387 - INFO - Executing script: africa_count.py
+2025-08-14 14:01:02,937 - INFO - Script executed successfully: africa_count.py
+2025-08-14 14:01:02,937 - INFO - Executing script: data_cleaning.py
+2025-08-14 14:01:04,606 - INFO - Script executed successfully: data_cleaning.py
+2025-08-14 14:01:04,606 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-14 14:01:04,606 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-15 01:57:49,098 - INFO - Executing script: chess_kenya.py
+2025-08-15 03:04:50,968 - INFO - Script executed successfully: chess_kenya.py
+2025-08-15 03:04:50,968 - INFO - Executing script: update_master_ledger.py
+2025-08-15 03:04:52,536 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-15 03:04:52,536 - INFO - Executing script: africa_count.py
+2025-08-15 03:06:01,086 - INFO - Script executed successfully: africa_count.py
+2025-08-15 03:06:01,086 - INFO - Executing script: data_cleaning.py
+2025-08-15 03:06:02,707 - INFO - Script executed successfully: data_cleaning.py
+2025-08-15 03:06:02,708 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-15 03:06:02,708 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-15 12:47:58,909 - INFO - Executing script: chess_kenya.py
+2025-08-15 13:54:49,511 - INFO - Script executed successfully: chess_kenya.py
+2025-08-15 13:54:49,511 - INFO - Executing script: update_master_ledger.py
+2025-08-15 13:54:51,011 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-15 13:54:51,011 - INFO - Executing script: africa_count.py
+2025-08-15 13:55:51,238 - INFO - Script executed successfully: africa_count.py
+2025-08-15 13:55:51,238 - INFO - Executing script: data_cleaning.py
+2025-08-15 13:55:52,813 - INFO - Script executed successfully: data_cleaning.py
+2025-08-15 13:55:52,813 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-15 13:55:52,814 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-16 01:52:01,646 - INFO - Executing script: chess_kenya.py
+2025-08-16 02:58:46,370 - INFO - Script executed successfully: chess_kenya.py
+2025-08-16 02:58:46,370 - INFO - Executing script: update_master_ledger.py
+2025-08-16 02:58:47,881 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-16 02:58:47,881 - INFO - Executing script: africa_count.py
+2025-08-16 02:59:49,187 - INFO - Script executed successfully: africa_count.py
+2025-08-16 02:59:49,187 - INFO - Executing script: data_cleaning.py
+2025-08-16 02:59:50,760 - INFO - Script executed successfully: data_cleaning.py
+2025-08-16 02:59:50,760 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-16 02:59:50,760 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-16 12:44:47,540 - INFO - Executing script: chess_kenya.py
+2025-08-16 13:51:32,168 - INFO - Script executed successfully: chess_kenya.py
+2025-08-16 13:51:32,168 - INFO - Executing script: update_master_ledger.py
+2025-08-16 13:51:33,676 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-16 13:51:33,676 - INFO - Executing script: africa_count.py
+2025-08-16 13:52:31,457 - INFO - Script executed successfully: africa_count.py
+2025-08-16 13:52:31,457 - INFO - Executing script: data_cleaning.py
+2025-08-16 13:52:33,004 - INFO - Script executed successfully: data_cleaning.py
+2025-08-16 13:52:33,004 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-16 13:52:33,004 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-17 02:03:34,719 - INFO - Executing script: chess_kenya.py
+2025-08-17 03:10:29,781 - INFO - Script executed successfully: chess_kenya.py
+2025-08-17 03:10:29,781 - INFO - Executing script: update_master_ledger.py
+2025-08-17 03:10:31,295 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-17 03:10:31,295 - INFO - Executing script: africa_count.py
+2025-08-17 03:11:33,307 - INFO - Script executed successfully: africa_count.py
+2025-08-17 03:11:33,307 - INFO - Executing script: data_cleaning.py
+2025-08-17 03:11:34,873 - INFO - Script executed successfully: data_cleaning.py
+2025-08-17 03:11:34,873 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-17 03:11:34,873 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-17 12:45:54,728 - INFO - Executing script: chess_kenya.py
+2025-08-17 13:52:39,353 - INFO - Script executed successfully: chess_kenya.py
+2025-08-17 13:52:39,354 - INFO - Executing script: update_master_ledger.py
+2025-08-17 13:52:40,890 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-17 13:52:40,890 - INFO - Executing script: africa_count.py
+2025-08-17 13:53:38,826 - INFO - Script executed successfully: africa_count.py
+2025-08-17 13:53:38,826 - INFO - Executing script: data_cleaning.py
+2025-08-17 13:53:40,391 - INFO - Script executed successfully: data_cleaning.py
+2025-08-17 13:53:40,391 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-17 13:53:40,392 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-18 02:04:33,839 - INFO - Executing script: chess_kenya.py
+2025-08-18 03:11:20,460 - INFO - Script executed successfully: chess_kenya.py
+2025-08-18 03:11:20,460 - INFO - Executing script: update_master_ledger.py
+2025-08-18 03:11:21,965 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-18 03:11:21,966 - INFO - Executing script: africa_count.py
+2025-08-18 03:12:24,763 - INFO - Script executed successfully: africa_count.py
+2025-08-18 03:12:24,763 - INFO - Executing script: data_cleaning.py
+2025-08-18 03:12:26,363 - INFO - Script executed successfully: data_cleaning.py
+2025-08-18 03:12:26,364 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-18 03:12:26,364 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-18 12:52:31,486 - INFO - Executing script: chess_kenya.py
+2025-08-18 13:59:17,591 - INFO - Script executed successfully: chess_kenya.py
+2025-08-18 13:59:17,591 - INFO - Executing script: update_master_ledger.py
+2025-08-18 13:59:19,171 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-18 13:59:19,171 - INFO - Executing script: africa_count.py
+2025-08-18 14:00:30,226 - INFO - Script executed successfully: africa_count.py
+2025-08-18 14:00:30,226 - INFO - Executing script: data_cleaning.py
+2025-08-18 14:00:31,905 - INFO - Script executed successfully: data_cleaning.py
+2025-08-18 14:00:31,905 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-18 14:00:31,905 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-19 01:51:08,729 - INFO - Executing script: chess_kenya.py
+2025-08-19 02:58:01,973 - INFO - Script executed successfully: chess_kenya.py
+2025-08-19 02:58:01,974 - INFO - Executing script: update_master_ledger.py
+2025-08-19 02:58:03,503 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-19 02:58:03,503 - INFO - Executing script: africa_count.py
+2025-08-19 02:59:03,804 - INFO - Script executed successfully: africa_count.py
+2025-08-19 02:59:03,804 - INFO - Executing script: data_cleaning.py
+2025-08-19 02:59:05,394 - INFO - Script executed successfully: data_cleaning.py
+2025-08-19 02:59:05,395 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-19 02:59:05,395 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-19 12:47:01,979 - INFO - Executing script: chess_kenya.py
+2025-08-19 13:53:55,685 - INFO - Script executed successfully: chess_kenya.py
+2025-08-19 13:53:55,685 - INFO - Executing script: update_master_ledger.py
+2025-08-19 13:53:57,173 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-19 13:53:57,173 - INFO - Executing script: africa_count.py
+2025-08-19 13:55:00,729 - INFO - Script executed successfully: africa_count.py
+2025-08-19 13:55:00,729 - INFO - Executing script: data_cleaning.py
+2025-08-19 13:55:02,331 - INFO - Script executed successfully: data_cleaning.py
+2025-08-19 13:55:02,331 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-19 13:55:02,331 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-20 01:49:44,723 - INFO - Executing script: chess_kenya.py
+2025-08-20 02:56:40,555 - INFO - Script executed successfully: chess_kenya.py
+2025-08-20 02:56:40,555 - INFO - Executing script: update_master_ledger.py
+2025-08-20 02:56:42,018 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-20 02:56:42,018 - INFO - Executing script: africa_count.py
+2025-08-20 02:57:50,558 - INFO - Script executed successfully: africa_count.py
+2025-08-20 02:57:50,558 - INFO - Executing script: data_cleaning.py
+2025-08-20 02:57:52,116 - INFO - Script executed successfully: data_cleaning.py
+2025-08-20 02:57:52,116 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-20 02:57:52,116 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-20 12:48:16,083 - INFO - Executing script: chess_kenya.py
+2025-08-20 13:55:49,413 - INFO - Script executed successfully: chess_kenya.py
+2025-08-20 13:55:49,413 - INFO - Executing script: update_master_ledger.py
+2025-08-20 13:55:50,955 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-20 13:55:50,955 - INFO - Executing script: africa_count.py
+2025-08-20 13:56:54,632 - INFO - Script executed successfully: africa_count.py
+2025-08-20 13:56:54,632 - INFO - Executing script: data_cleaning.py
+2025-08-20 13:56:56,268 - INFO - Script executed successfully: data_cleaning.py
+2025-08-20 13:56:56,269 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-20 13:56:56,269 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-21 01:48:30,372 - INFO - Executing script: chess_kenya.py
+2025-08-21 02:55:20,633 - INFO - Script executed successfully: chess_kenya.py
+2025-08-21 02:55:20,633 - INFO - Executing script: update_master_ledger.py
+2025-08-21 02:55:22,207 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-21 02:55:22,207 - INFO - Executing script: africa_count.py
+2025-08-21 02:56:25,976 - INFO - Script executed successfully: africa_count.py
+2025-08-21 02:56:25,976 - INFO - Executing script: data_cleaning.py
+2025-08-21 02:56:27,552 - INFO - Script executed successfully: data_cleaning.py
+2025-08-21 02:56:27,552 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-21 02:56:27,552 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-21 12:47:39,257 - INFO - Executing script: chess_kenya.py
+2025-08-21 13:54:29,163 - INFO - Script executed successfully: chess_kenya.py
+2025-08-21 13:54:29,164 - INFO - Executing script: update_master_ledger.py
+2025-08-21 13:54:30,687 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-21 13:54:30,687 - INFO - Executing script: africa_count.py
+2025-08-21 13:55:29,400 - INFO - Script executed successfully: africa_count.py
+2025-08-21 13:55:29,400 - INFO - Executing script: data_cleaning.py
+2025-08-21 13:55:30,996 - INFO - Script executed successfully: data_cleaning.py
+2025-08-21 13:55:30,996 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-21 13:55:30,996 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-22 01:49:03,508 - INFO - Executing script: chess_kenya.py
+2025-08-22 02:55:53,052 - INFO - Script executed successfully: chess_kenya.py
+2025-08-22 02:55:53,052 - INFO - Executing script: update_master_ledger.py
+2025-08-22 02:55:54,583 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-22 02:55:54,584 - INFO - Executing script: africa_count.py
+2025-08-22 02:56:56,625 - INFO - Script executed successfully: africa_count.py
+2025-08-22 02:56:56,625 - INFO - Executing script: data_cleaning.py
+2025-08-22 02:56:58,214 - INFO - Script executed successfully: data_cleaning.py
+2025-08-22 02:56:58,215 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-22 02:56:58,215 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-22 12:45:40,393 - INFO - Executing script: chess_kenya.py
+2025-08-22 13:52:49,362 - INFO - Script executed successfully: chess_kenya.py
+2025-08-22 13:52:49,362 - INFO - Executing script: update_master_ledger.py
+2025-08-22 13:52:50,921 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-22 13:52:50,921 - INFO - Executing script: africa_count.py
+2025-08-22 13:53:50,168 - INFO - Script executed successfully: africa_count.py
+2025-08-22 13:53:50,168 - INFO - Executing script: data_cleaning.py
+2025-08-22 13:53:51,747 - INFO - Script executed successfully: data_cleaning.py
+2025-08-22 13:53:51,747 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-22 13:53:51,747 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-23 01:45:10,621 - INFO - Executing script: chess_kenya.py
+2025-08-23 02:51:58,941 - INFO - Script executed successfully: chess_kenya.py
+2025-08-23 02:51:58,941 - INFO - Executing script: update_master_ledger.py
+2025-08-23 02:52:00,451 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-23 02:52:00,451 - INFO - Executing script: africa_count.py
+2025-08-23 02:53:06,462 - INFO - Script executed successfully: africa_count.py
+2025-08-23 02:53:06,462 - INFO - Executing script: data_cleaning.py
+2025-08-23 02:53:08,049 - INFO - Script executed successfully: data_cleaning.py
+2025-08-23 02:53:08,049 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-23 02:53:08,049 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-23 12:42:13,704 - INFO - Executing script: chess_kenya.py
+2025-08-23 13:48:58,372 - INFO - Script executed successfully: chess_kenya.py
+2025-08-23 13:48:58,372 - INFO - Executing script: update_master_ledger.py
+2025-08-23 13:48:59,902 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-23 13:48:59,902 - INFO - Executing script: africa_count.py
+2025-08-23 13:49:58,841 - INFO - Script executed successfully: africa_count.py
+2025-08-23 13:49:58,841 - INFO - Executing script: data_cleaning.py
+2025-08-23 13:50:00,432 - INFO - Script executed successfully: data_cleaning.py
+2025-08-23 13:50:00,433 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-23 13:50:00,433 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-24 01:59:01,841 - INFO - Executing script: chess_kenya.py
+2025-08-24 03:05:46,674 - INFO - Script executed successfully: chess_kenya.py
+2025-08-24 03:05:46,674 - INFO - Executing script: update_master_ledger.py
+2025-08-24 03:05:48,221 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-24 03:05:48,221 - INFO - Executing script: africa_count.py
+2025-08-24 03:06:48,710 - INFO - Script executed successfully: africa_count.py
+2025-08-24 03:06:48,710 - INFO - Executing script: data_cleaning.py
+2025-08-24 03:06:50,308 - INFO - Script executed successfully: data_cleaning.py
+2025-08-24 03:06:50,308 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-24 03:06:50,308 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-24 12:42:35,089 - INFO - Executing script: chess_kenya.py
+2025-08-24 13:49:30,753 - INFO - Script executed successfully: chess_kenya.py
+2025-08-24 13:49:30,753 - INFO - Executing script: update_master_ledger.py
+2025-08-24 13:49:32,282 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-24 13:49:32,282 - INFO - Executing script: africa_count.py
+2025-08-24 13:50:30,875 - INFO - Script executed successfully: africa_count.py
+2025-08-24 13:50:30,875 - INFO - Executing script: data_cleaning.py
+2025-08-24 13:50:32,464 - INFO - Script executed successfully: data_cleaning.py
+2025-08-24 13:50:32,465 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-24 13:50:32,465 - INFO - Last update timestamp saved to last_update.txt.
+>>>>>>> 4ea6b4d08c3ef5119234cd87e943a55f2fe6593c
