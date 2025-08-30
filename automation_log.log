@@ -3681,3 +3681,40 @@
 2025-07-25 13:46:51,385 - INFO - Script executed successfully: data_cleaning.py
 2025-07-25 13:46:51,396 - INFO - Comment added to chess_dashboard.py for auto-refresh.
 2025-07-25 13:46:51,400 - INFO - Last update timestamp saved to last_update.txt.
+2025-08-27 20:49:46,002 - INFO - Executing script: chess_kenya.py
+2025-08-27 20:49:46,746 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:49:46,747 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:50:53,961 - INFO - Executing script: chess_kenya.py
+2025-08-27 20:50:54,547 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:50:54,547 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:51:56,248 - INFO - Executing script: chess_kenya.py
+2025-08-27 20:51:56,308 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:51:56,308 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:52:32,858 - INFO - Executing script: chess_kenya.py
+2025-08-27 20:52:32,894 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:52:32,894 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:54:17,109 - INFO - Executing script: chess_kenya.py
+2025-08-27 20:54:17,147 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 20:54:17,147 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 21:54:43,092 - INFO - Executing script: chess_kenya.py
+2025-08-27 21:54:44,921 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 21:54:44,921 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 21:55:12,842 - INFO - Executing script: chess_kenya.py
+2025-08-27 21:55:15,894 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-27 21:55:15,894 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-28 18:34:25,872 - INFO - Executing script: chess_kenya.py
+2025-08-28 18:34:26,137 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-28 18:34:26,138 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-28 19:11:54,269 - INFO - Executing script: chess_kenya.py
+2025-08-28 19:11:54,523 - ERROR - Error executing script chess_kenya.py: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-28 19:11:54,524 - ERROR - Automation workflow failed: Command '['python', 'chess_kenya.py']' returned non-zero exit status 1.
+2025-08-28 19:13:20,280 - INFO - Executing script: chess_kenya.py
+2025-08-30 20:23:46,969 - INFO - Script executed successfully: chess_kenya.py
+2025-08-30 20:23:46,975 - INFO - Executing script: update_master_ledger.py
+2025-08-30 20:23:55,733 - INFO - Script executed successfully: update_master_ledger.py
+2025-08-30 20:23:55,734 - INFO - Executing script: africa_count.py
+2025-08-30 20:25:58,597 - INFO - Script executed successfully: africa_count.py
+2025-08-30 20:25:58,598 - INFO - Executing script: data_cleaning.py
+2025-08-30 20:26:01,332 - INFO - Script executed successfully: data_cleaning.py
+2025-08-30 20:26:01,336 - INFO - Comment added to chess_dashboard.py for auto-refresh.
+2025-08-30 20:26:01,337 - INFO - Last update timestamp saved to last_update.txt.
