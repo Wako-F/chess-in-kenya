@@ -23510,3 +23510,58 @@
 2025-09-06 02:48:22,513 - INFO - Fetched 6872 players for Zambia (ZM).
 2025-09-06 02:48:23,680 - INFO - Fetched 7395 players for Zimbabwe (ZW).
 2025-09-06 02:48:24,684 - INFO - Player counts saved to african_country_player_counts.csv
+2025-09-06 13:46:05,818 - INFO - Fetched 10000 players for Algeria (DZ).
+2025-09-06 13:46:06,905 - INFO - Fetched 3816 players for Angola (AO).
+2025-09-06 13:46:07,985 - INFO - Fetched 923 players for Benin (BJ).
+2025-09-06 13:46:09,052 - INFO - Fetched 2781 players for Botswana (BW).
+2025-09-06 13:46:10,172 - INFO - Fetched 715 players for Burkina Faso (BF).
+2025-09-06 13:46:11,294 - INFO - Fetched 274 players for Burundi (BI).
+2025-09-06 13:46:12,387 - INFO - Fetched 3712 players for Cameroon (CM).
+2025-09-06 13:46:13,492 - INFO - Fetched 661 players for Cabo Verde (CV).
+2025-09-06 13:46:14,589 - INFO - Fetched 239 players for Central African Republic (CF).
+2025-09-06 13:46:15,670 - INFO - Fetched 819 players for Chad (TD).
+2025-09-06 13:46:16,753 - INFO - Fetched 242 players for Comoros (KM).
+2025-09-06 13:46:17,821 - INFO - Fetched 576 players for Congo (CG).
+2025-09-06 13:46:18,914 - INFO - Fetched 2537 players for Congo (DRC) (CD).
+2025-09-06 13:46:19,988 - INFO - Fetched 3040 players for Côte d'Ivoire (CI).
+2025-09-06 13:46:21,072 - INFO - Fetched 746 players for Djibouti (DJ).
+2025-09-06 13:46:22,302 - INFO - Fetched 10000 players for Egypt (EG).
+2025-09-06 13:46:23,397 - INFO - Fetched 198 players for Equatorial Guinea (GQ).
+2025-09-06 13:46:24,476 - INFO - Fetched 451 players for Eritrea (ER).
+2025-09-06 13:46:25,555 - INFO - Fetched 607 players for Eswatini (SZ).
+2025-09-06 13:46:26,653 - INFO - Fetched 7591 players for Ethiopia (ET).
+2025-09-06 13:46:27,729 - INFO - Fetched 865 players for Gabon (GA).
+2025-09-06 13:46:28,802 - INFO - Fetched 268 players for Gambia (GM).
+2025-09-06 13:46:29,878 - INFO - Fetched 4593 players for Ghana (GH).
+2025-09-06 13:46:30,965 - INFO - Fetched 302 players for Guinea (GN).
+2025-09-06 13:46:32,059 - INFO - Fetched 101 players for Guinea-Bissau (GW).
+2025-09-06 13:46:33,245 - INFO - Fetched 10000 players for Kenya (KE).
+2025-09-06 13:46:34,319 - INFO - Fetched 723 players for Lesotho (LS).
+2025-09-06 13:46:35,390 - INFO - Fetched 387 players for Liberia (LR).
+2025-09-06 13:46:36,465 - INFO - Fetched 10000 players for Libya (LY).
+2025-09-06 13:46:37,546 - INFO - Fetched 6856 players for Madagascar (MG).
+2025-09-06 13:46:38,640 - INFO - Fetched 2303 players for Malawi (MW).
+2025-09-06 13:46:39,789 - INFO - Fetched 574 players for Mali (ML).
+2025-09-06 13:46:40,894 - INFO - Fetched 1362 players for Mauritania (MR).
+2025-09-06 13:46:41,970 - INFO - Fetched 2851 players for Mauritius (MU).
+2025-09-06 13:46:43,052 - INFO - Fetched 10000 players for Morocco (MA).
+2025-09-06 13:46:44,142 - INFO - Fetched 2444 players for Mozambique (MZ).
+2025-09-06 13:46:45,277 - INFO - Fetched 1908 players for Namibia (NA).
+2025-09-06 13:46:46,350 - INFO - Fetched 1193 players for Niger (NE).
+2025-09-06 13:46:47,436 - INFO - Fetched 10000 players for Nigeria (NG).
+2025-09-06 13:46:48,522 - INFO - Fetched 901 players for Rwanda (RW).
+2025-09-06 13:46:49,596 - INFO - Fetched 245 players for Sao Tome and Principe (ST).
+2025-09-06 13:46:50,664 - INFO - Fetched 2328 players for Senegal (SN).
+2025-09-06 13:46:51,751 - INFO - Fetched 988 players for Seychelles (SC).
+2025-09-06 13:46:52,826 - INFO - Fetched 353 players for Sierra Leone (SL).
+2025-09-06 13:46:53,905 - INFO - Fetched 3695 players for Somalia (SO).
+2025-09-06 13:46:54,993 - INFO - Fetched 10000 players for South Africa (ZA).
+2025-09-06 13:46:56,083 - INFO - Fetched 544 players for South Sudan (SS).
+2025-09-06 13:46:57,209 - INFO - Fetched 6956 players for Sudan (SD).
+2025-09-06 13:46:58,295 - INFO - Fetched 1463 players for Tanzania (TZ).
+2025-09-06 13:46:59,403 - INFO - Fetched 1009 players for Togo (TG).
+2025-09-06 13:47:00,498 - INFO - Fetched 10000 players for Tunisia (TN).
+2025-09-06 13:47:01,573 - INFO - Fetched 4787 players for Uganda (UG).
+2025-09-06 13:47:02,668 - INFO - Fetched 6872 players for Zambia (ZM).
+2025-09-06 13:47:03,783 - INFO - Fetched 7395 players for Zimbabwe (ZW).
+2025-09-06 13:47:04,787 - INFO - Player counts saved to african_country_player_counts.csv
