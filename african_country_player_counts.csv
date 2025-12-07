@@ -11,7 +11,7 @@ CF,CAF,Central African Republic,264
 TD,TCD,Chad,794
 KM,COM,Comoros,261
 CG,COG,Congo,644
-CD,COD,Congo (DRC),2661
+CD,COD,Congo (DRC),2308
 CI,CIV,Côte d'Ivoire,3069
 DJ,DJI,Djibouti,771
 EG,EGY,Egypt,10000
@@ -19,11 +19,11 @@ GQ,GNQ,Equatorial Guinea,205
 ER,ERI,Eritrea,447
 SZ,SWZ,Eswatini,600
 ET,ETH,Ethiopia,8251
-GA,GAB,Gabon,860
+GA,GAB,Gabon,732
 GM,GMB,Gambia,300
 GH,GHA,Ghana,5124
 GN,GIN,Guinea,297
-GW,GNB,Guinea-Bissau,95
+GW,GNB,Guinea-Bissau,89
 KE,KEN,Kenya,10000
 LS,LSO,Lesotho,729
 LR,LBR,Liberia,395
@@ -36,17 +36,17 @@ MU,MUS,Mauritius,2545
 MA,MAR,Morocco,10000
 MZ,MOZ,Mozambique,2401
 NA,NAM,Namibia,1825
-NE,NER,Niger,1215
+NE,NER,Niger,970
 NG,NGA,Nigeria,10000
 RW,RWA,Rwanda,876
 ST,STP,Sao Tome and Principe,278
-SN,SEN,Senegal,2264
+SN,SEN,Senegal,1949
 SC,SYC,Seychelles,1027
 SL,SLE,Sierra Leone,368
 SO,SOM,Somalia,3584
 ZA,ZAF,South Africa,10000
 SS,SSD,South Sudan,566
-SD,SDN,Sudan,7347
+SD,SDN,Sudan,6580
 TZ,TZA,Tanzania,1455
 TG,TGO,Togo,1017
 TN,TUN,Tunisia,10000
