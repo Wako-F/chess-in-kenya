@@ -1,6 +1,6 @@
 Country Code,ISO-3,Country Name,Player Count
 DZ,DZA,Algeria,10000
-AO,AGO,Angola,3968
+AO,AGO,Angola,3568
 BJ,BEN,Benin,959
 BW,BWA,Botswana,2750
 BF,BFA,Burkina Faso,740
@@ -8,37 +8,37 @@ BI,BDI,Burundi,293
 CM,CMR,Cameroon,4030
 CV,CPV,Cabo Verde,689
 CF,CAF,Central African Republic,253
-TD,TCD,Chad,723
-KM,COM,Comoros,276
+TD,TCD,Chad,652
+KM,COM,Comoros,236
 CG,COG,Congo,672
 CD,COD,Congo (DRC),2697
-CI,CIV,Côte d'Ivoire,3059
+CI,CIV,Côte d'Ivoire,2627
 DJ,DJI,Djibouti,778
 EG,EGY,Egypt,10000
 GQ,GNQ,Equatorial Guinea,209
 ER,ERI,Eritrea,473
-SZ,SWZ,Eswatini,601
-ET,ETH,Ethiopia,8417
+SZ,SWZ,Eswatini,549
+ET,ETH,Ethiopia,7670
 GA,GAB,Gabon,843
 GM,GMB,Gambia,298
 GH,GHA,Ghana,5093
-GN,GIN,Guinea,298
+GN,GIN,Guinea,270
 GW,GNB,Guinea-Bissau,111
 KE,KEN,Kenya,10000
-LS,LSO,Lesotho,738
+LS,LSO,Lesotho,672
 LR,LBR,Liberia,401
 LY,LBY,Libya,10000
 MG,MDG,Madagascar,7109
-MW,MWI,Malawi,2361
+MW,MWI,Malawi,2157
 ML,MLI,Mali,581
-MR,MRT,Mauritania,1480
-MU,MUS,Mauritius,2506
+MR,MRT,Mauritania,1277
+MU,MUS,Mauritius,2266
 MA,MAR,Morocco,10000
 MZ,MOZ,Mozambique,2389
-NA,NAM,Namibia,1751
-NE,NER,Niger,1131
+NA,NAM,Namibia,1611
+NE,NER,Niger,1078
 NG,NGA,Nigeria,10000
-RW,RWA,Rwanda,908
+RW,RWA,Rwanda,838
 ST,STP,Sao Tome and Principe,268
 SN,SEN,Senegal,2338
 SC,SYC,Seychelles,1008
@@ -47,9 +47,9 @@ SO,SOM,Somalia,3589
 ZA,ZAF,South Africa,10000
 SS,SSD,South Sudan,585
 SD,SDN,Sudan,7485
-TZ,TZA,Tanzania,1519
+TZ,TZA,Tanzania,1393
 TG,TGO,Togo,1039
 TN,TUN,Tunisia,10000
 UG,UGA,Uganda,5115
-ZM,ZMB,Zambia,6968
-ZW,ZWE,Zimbabwe,7212
+ZM,ZMB,Zambia,6329
+ZW,ZWE,Zimbabwe,6681
