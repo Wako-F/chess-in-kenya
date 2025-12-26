@@ -1,7 +1,7 @@
 Country Code,ISO-3,Country Name,Player Count
 DZ,DZA,Algeria,10000
 AO,AGO,Angola,4134
-BJ,BEN,Benin,981
+BJ,BEN,Benin,864
 BW,BWA,Botswana,2562
 BF,BFA,Burkina Faso,756
 BI,BDI,Burundi,294
@@ -12,13 +12,13 @@ TD,TCD,Chad,786
 KM,COM,Comoros,269
 CG,COG,Congo,673
 CD,COD,Congo (DRC),2858
-CI,CIV,Côte d'Ivoire,3064
-DJ,DJI,Djibouti,777
+CI,CIV,Côte d'Ivoire,2693
+DJ,DJI,Djibouti,681
 EG,EGY,Egypt,10000
 GQ,GNQ,Equatorial Guinea,218
 ER,ERI,Eritrea,455
 SZ,SWZ,Eswatini,605
-ET,ETH,Ethiopia,8563
+ET,ETH,Ethiopia,7750
 GA,GAB,Gabon,887
 GM,GMB,Gambia,281
 GH,GHA,Ghana,5473
@@ -26,7 +26,7 @@ GN,GIN,Guinea,319
 GW,GNB,Guinea-Bissau,92
 KE,KEN,Kenya,10000
 LS,LSO,Lesotho,703
-LR,LBR,Liberia,411
+LR,LBR,Liberia,386
 LY,LBY,Libya,10000
 MG,MDG,Madagascar,7402
 MW,MWI,Malawi,2539
@@ -48,8 +48,8 @@ ZA,ZAF,South Africa,10000
 SS,SSD,South Sudan,600
 SD,SDN,Sudan,7737
 TZ,TZA,Tanzania,1527
-TG,TGO,Togo,1083
+TG,TGO,Togo,952
 TN,TUN,Tunisia,10000
 UG,UGA,Uganda,5186
-ZM,ZMB,Zambia,7149
+ZM,ZMB,Zambia,6392
 ZW,ZWE,Zimbabwe,7375
