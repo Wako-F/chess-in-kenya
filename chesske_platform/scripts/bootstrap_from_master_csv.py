@@ -1,0 +1,142 @@
+import argparse
+import os
+from datetime import datetime, timezone
+
+import pandas as pd
+
+from chesske_platform.chesske.config import Settings
+from chesske_platform.chesske.db import get_conn, init_db
+from chesske_platform.chesske.repository import upsert_user_and_stats
+
+
+def _to_iso(value):
+    if pd.isna(value):
+        return None
+    parsed = pd.to_datetime(value, errors="coerce", utc=True)
+    if pd.isna(parsed):
+        return None
+    return parsed.to_pydatetime().isoformat()
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Bootstrap ChessKE DB from master CSV.")
+    parser.add_argument(
+        "--csv",
+        default="master_chess_players.csv",
+        help="Path to legacy master csv",
+    )
+    parser.add_argument(
+        "--reset-db",
+        action="store_true",
+        help="Delete existing database before bootstrap.",
+    )
+    args = parser.parse_args()
+
+    settings = Settings()
+    reset_via_truncate = False
+    if args.reset_db and settings.resolved_db_path.exists():
+        try:
+            os.remove(settings.resolved_db_path)
+        except PermissionError:
+            reset_via_truncate = True
+    init_db(settings)
+
+    df = pd.read_csv(args.csv, low_memory=False)
+    for col in [
+        "username",
+        "join_date",
+        "last_online",
+        "total_games",
+        "total_daily",
+        "total_rapid",
+        "total_bullet",
+        "total_blitz",
+        "daily_rating",
+        "rapid_rating",
+        "bullet_rating",
+        "blitz_rating",
+        "highest_puzzle_rating",
+        "highest_puzzle_date",
+        "daily_wins",
+        "daily_losses",
+        "daily_draws",
+        "rapid_wins",
+        "rapid_losses",
+        "rapid_draws",
+        "bullet_wins",
+        "bullet_losses",
+        "bullet_draws",
+        "blitz_wins",
+        "blitz_losses",
+        "blitz_draws",
+    ]:
+        if col not in df.columns:
+            df[col] = None
+
+    df["username"] = df["username"].astype(str).str.strip().str.lower()
+    df = df[df["username"].ne("")]
+    df = df[~df["username"].str.contains(r"<<<<<<<|=======|>>>>>>>", regex=True, na=False)]
+    df["_last_online_sort"] = pd.to_datetime(df["last_online"], errors="coerce", utc=True)
+    df = df.sort_values(["username", "_last_online_sort"], ascending=[True, False])
+    df = df.drop_duplicates(subset=["username"], keep="first")
+
+    loaded = 0
+    with get_conn(settings) as conn:
+        if reset_via_truncate:
+            conn.executescript(
+                """
+                DELETE FROM run_errors;
+                DELETE FROM pipeline_runs;
+                DELETE FROM country_active_snapshots;
+                DELETE FROM user_stats_latest;
+                DELETE FROM users;
+                """
+            )
+            conn.commit()
+        conn.execute("PRAGMA journal_mode = WAL")
+        conn.execute("PRAGMA synchronous = NORMAL")
+        conn.execute("BEGIN")
+        for _, row in df.iterrows():
+            record = {
+                "join_date": _to_iso(row.get("join_date")),
+                "last_online": _to_iso(row.get("last_online")),
+                "total_games": row.get("total_games"),
+                "total_daily": row.get("total_daily"),
+                "total_rapid": row.get("total_rapid"),
+                "total_bullet": row.get("total_bullet"),
+                "total_blitz": row.get("total_blitz"),
+                "daily_rating": row.get("daily_rating"),
+                "rapid_rating": row.get("rapid_rating"),
+                "bullet_rating": row.get("bullet_rating"),
+                "blitz_rating": row.get("blitz_rating"),
+                "highest_puzzle_rating": row.get("highest_puzzle_rating"),
+                "highest_puzzle_date": _to_iso(row.get("highest_puzzle_date")),
+                "daily_wins": row.get("daily_wins"),
+                "daily_losses": row.get("daily_losses"),
+                "daily_draws": row.get("daily_draws"),
+                "rapid_wins": row.get("rapid_wins"),
+                "rapid_losses": row.get("rapid_losses"),
+                "rapid_draws": row.get("rapid_draws"),
+                "bullet_wins": row.get("bullet_wins"),
+                "bullet_losses": row.get("bullet_losses"),
+                "bullet_draws": row.get("bullet_draws"),
+                "blitz_wins": row.get("blitz_wins"),
+                "blitz_losses": row.get("blitz_losses"),
+                "blitz_draws": row.get("blitz_draws"),
+            }
+            upsert_user_and_stats(conn, row["username"], record, seen_in_active=False, commit=False)
+            loaded += 1
+            if loaded % 2000 == 0:
+                conn.commit()
+                conn.execute("BEGIN")
+            if loaded % 10000 == 0:
+                print(f"Loaded {loaded} users...")
+        conn.commit()
+
+    print(
+        f"Bootstrap complete: {loaded} users loaded at {datetime.now(timezone.utc).isoformat()}"
+    )
+
+
+if __name__ == "__main__":
+    main()

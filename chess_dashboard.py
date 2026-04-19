@@ -42,14 +42,13 @@ st.markdown(
 @st.cache_data(ttl=300)  # Cache data for 5 minutes
 def load_data(filename):
     try:
-        # Add timestamp to URL to prevent caching
+        return pd.read_csv(filename)
+    except Exception as e:
+        st.error(f"Error loading local data: {e}")
+        # Optional remote fallback for hosted environments without local files.
         timestamp = int(time.time())
         url = f"https://raw.githubusercontent.com/Wako-F/chess-in-kenya/main/cleaned_master_chess_players.csv?t={timestamp}"
         return pd.read_csv(url)
-    except Exception as e:
-        st.error(f"Error loading data: {e}")
-        # Fallback to local file if GitHub fetch fails
-        return pd.read_csv(filename)
 
 # Get current refresh time
 refresh_flag = "refresh.flag"
@@ -818,14 +817,3 @@ with tab3:
         else:
             st.error(f"No player found with username: {search_username}")
 
-# Auto-refresh triggered at 2025-03-05T06:13:59.318427
-
-# Auto-refresh triggered at 2025-04-20T09:36:24.699877
-
-# Auto-refresh triggered at 2025-05-22T09:38:41.912160
-
-# Auto-refresh triggered at 2025-06-23T16:59:28.081312
-
-# Auto-refresh triggered at 2025-07-25T13:46:51.396020
-
-# Auto-refresh triggered at 2025-08-30T20:26:01.335565

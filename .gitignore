@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local runtime artifacts
+*.log
+*.db
+*.sqlite
+rolling_update_progress.txt
+*.progress.csv
+data/
+
+# Derived CSV artifacts (keep canonical master/partial/cleaned_master only)
+*_players_sorted.csv
+games_played_sorted.csv
+join_date_sorted.csv
+cleaned_chess_players.csv
+cleaned_kenyan_chess_players.csv
+kenyan_players.csv
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

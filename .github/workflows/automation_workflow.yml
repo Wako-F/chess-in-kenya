@@ -29,8 +29,6 @@ jobs:
           
       - name: Run data processing script
         run: python automation_script.py
-      - name: Create refresh marker file
-        run: echo "Refreshed at $(date)" > refresh.flag
         
       - name: Configure Git
         run: |
@@ -47,8 +45,8 @@ jobs:
           
       - name: Commit and push changes
         run: |
-          # Stage all CSV and log files
-          git add "*.csv" "*.log" "refresh.flag"
+          # Stage canonical outputs only.
+          git add "master_chess_players.csv" "kenyan_chess_players_partial.csv" "cleaned_master_chess_players.csv" "african_country_player_counts.csv" "deleted_users.txt" "last_update.txt" "refresh.flag"
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then

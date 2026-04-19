@@ -1,30 +1,50 @@
 import pandas as pd
 
-file_path = "master_chess_players.csv"
+MASTER_FILE = "master_chess_players.csv"
+OUTPUT_FILE = "cleaned_master_chess_players.csv"
 
-data = pd.read_csv(file_path)
+SOURCE_COLUMNS = [
+    "username",
+    "join_date",
+    "last_online",
+    "total_games",
+    "total_daily",
+    "total_rapid",
+    "total_bullet",
+    "total_blitz",
+    "daily_rating",
+    "rapid_rating",
+    "bullet_rating",
+    "blitz_rating",
+    "highest_puzzle_rating",
+    "highest_puzzle_date",
+    "daily_wins",
+    "daily_losses",
+    "daily_draws",
+    "rapid_wins",
+    "rapid_losses",
+    "rapid_draws",
+    "bullet_wins",
+    "bullet_losses",
+    "bullet_draws",
+    "blitz_wins",
+    "blitz_losses",
+    "blitz_draws",
+]
 
-# #Remove last_online
-# if 'last_online' in data.columns:
-#     data = data.drop(columns=['last_online'])
-
-# Convert 'highest_puzzle_date' from Unix timestamp to readable date
-if 'highest_puzzle_date' in data.columns:
-    data['highest_puzzle_date'] = pd.to_datetime(data['highest_puzzle_date'], unit='s', errors='coerce')
-#Renaming columns for readability
-renamed_columns = {
+RENAMED_COLUMNS = {
     "username": "Username",
     "join_date": "Join Date",
     "last_online": "Last Online",
-    "bullet_rating": "Bullet Rating",
-    "blitz_rating": "Blitz Rating",
-    "rapid_rating": "Rapid Rating",
-    "daily_rating": "Daily Rating",
     "total_games": "Total Games Played",
     "total_daily": "Total Daily Games",
     "total_rapid": "Total Rapid Games",
     "total_bullet": "Total Bullet Games",
     "total_blitz": "Total Blitz Games",
+    "daily_rating": "Daily Rating",
+    "rapid_rating": "Rapid Rating",
+    "bullet_rating": "Bullet Rating",
+    "blitz_rating": "Blitz Rating",
     "highest_puzzle_rating": "Puzzle Rating",
     "highest_puzzle_date": "Date",
     "daily_wins": "Daily Wins",
@@ -40,36 +60,55 @@ renamed_columns = {
     "blitz_losses": "Blitz Losses",
     "blitz_draws": "Blitz Draws",
 }
-data.rename(columns=renamed_columns, inplace=True)
 
-# #Remove players with all zero ratings from these columns:
-# rating_columns = ["Bullet Rating", "Blitz Rating", "Rapid Rating", "Daily Rating"]
-# game_count_columns = [
-#     "Total Games Played",
-#     "Total Daily Games",
-#     "Total Rapid Games",
-#     "Total Bullet Games",
-#     "Total Blitz Games",
-# ]
 
-# valid_rows = ~((data[rating_columns] == 0).all(axis=1) & (data[game_count_columns] == 0).all(axis=1))
-# data = data[valid_rows]
+def _sanitize_source(df: pd.DataFrame) -> pd.DataFrame:
+    for col in SOURCE_COLUMNS:
+        if col not in df.columns:
+            df[col] = None
+    df = df[SOURCE_COLUMNS].copy()
 
-#Some derived metrics
-formats = ["Daily", "Rapid", "Bullet", "Blitz"]
-for fmt in formats:
-    data[f"{fmt} Win Percentage"] = (
-        data[f"{fmt} Wins"] / data[f"Total {fmt} Games"] * 100
-    ).fillna(0).round(0).astype(int)
-    data[f"{fmt} Loss Percentage"] = (
-        data[f"{fmt} Losses"] / data[f"Total {fmt} Games"] * 100
-    ).fillna(0).round(0).astype(int)
-    data[f"{fmt} Draw Percentage"] = (
-        data[f"{fmt} Draws"] / data[f"Total {fmt} Games"] * 100
-    ).fillna(0).round(0).astype(int)
+    df["username"] = df["username"].astype(str).str.strip().str.lower()
+    df = df[df["username"].ne("")]
+    df = df[~df["username"].str.contains(r"<<<<<<<|=======|>>>>>>>", regex=True, na=False)]
 
-cleaned_file = "cleaned_master_chess_players.csv"
-data.to_csv(cleaned_file, index=False)
-print("Success!")
+    last_online_dt = pd.to_datetime(df["last_online"], errors="coerce")
+    df = df.assign(_last_online=last_online_dt)
+    df = df.sort_values(["username", "_last_online"], ascending=[True, False])
+    df = df.drop_duplicates(subset=["username"], keep="first").drop(columns=["_last_online"])
+    return df
 
-# print(data.head())
+
+def main() -> None:
+    data = pd.read_csv(MASTER_FILE)
+    data = _sanitize_source(data)
+
+    if "highest_puzzle_date" in data.columns:
+        data["highest_puzzle_date"] = pd.to_datetime(
+            data["highest_puzzle_date"], errors="coerce"
+        )
+
+    data.rename(columns=RENAMED_COLUMNS, inplace=True)
+
+    for fmt in ["Daily", "Rapid", "Bullet", "Blitz"]:
+        total_col = f"Total {fmt} Games"
+        wins_col = f"{fmt} Wins"
+        losses_col = f"{fmt} Losses"
+        draws_col = f"{fmt} Draws"
+
+        total = pd.to_numeric(data[total_col], errors="coerce").fillna(0)
+        wins = pd.to_numeric(data[wins_col], errors="coerce").fillna(0)
+        losses = pd.to_numeric(data[losses_col], errors="coerce").fillna(0)
+        draws = pd.to_numeric(data[draws_col], errors="coerce").fillna(0)
+
+        data[f"{fmt} Win Percentage"] = ((wins / total.replace(0, pd.NA)) * 100).fillna(0).round(0).astype(int)
+        data[f"{fmt} Loss Percentage"] = ((losses / total.replace(0, pd.NA)) * 100).fillna(0).round(0).astype(int)
+        data[f"{fmt} Draw Percentage"] = ((draws / total.replace(0, pd.NA)) * 100).fillna(0).round(0).astype(int)
+
+    data = data.sort_values("Username").reset_index(drop=True)
+    data.to_csv(OUTPUT_FILE, index=False)
+    print(f"Wrote {len(data)} rows to {OUTPUT_FILE}")
+
+
+if __name__ == "__main__":
+    main()
