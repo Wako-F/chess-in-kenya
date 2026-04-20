@@ -1,6 +1,7 @@
 import argparse
 import os
 from datetime import datetime, timezone
+from typing import Optional
 
 import pandas as pd
 
@@ -18,30 +19,21 @@ def _to_iso(value):
     return parsed.to_pydatetime().isoformat()
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Bootstrap ChessKE DB from master CSV.")
-    parser.add_argument(
-        "--csv",
-        default="master_chess_players.csv",
-        help="Path to legacy master csv",
-    )
-    parser.add_argument(
-        "--reset-db",
-        action="store_true",
-        help="Delete existing database before bootstrap.",
-    )
-    args = parser.parse_args()
-
-    settings = Settings()
+def bootstrap_from_csv(
+    settings: Settings,
+    csv_path: str,
+    reset_db: bool = False,
+    limit: Optional[int] = None,
+) -> int:
     reset_via_truncate = False
-    if args.reset_db and settings.resolved_db_path.exists():
+    if reset_db and settings.resolved_db_path.exists():
         try:
             os.remove(settings.resolved_db_path)
         except PermissionError:
             reset_via_truncate = True
     init_db(settings)
 
-    df = pd.read_csv(args.csv, low_memory=False)
+    df = pd.read_csv(csv_path, low_memory=False)
     for col in [
         "username",
         "join_date",
@@ -79,6 +71,8 @@ def main() -> None:
     df["_last_online_sort"] = pd.to_datetime(df["last_online"], errors="coerce", utc=True)
     df = df.sort_values(["username", "_last_online_sort"], ascending=[True, False])
     df = df.drop_duplicates(subset=["username"], keep="first")
+    if limit is not None and limit > 0:
+        df = df.head(limit)
 
     loaded = 0
     with get_conn(settings) as conn:
@@ -133,6 +127,36 @@ def main() -> None:
                 print(f"Loaded {loaded} users...")
         conn.commit()
 
+    return loaded
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Bootstrap ChessKE DB from master CSV.")
+    parser.add_argument(
+        "--csv",
+        default="master_chess_players.csv",
+        help="Path to legacy master csv",
+    )
+    parser.add_argument(
+        "--reset-db",
+        action="store_true",
+        help="Delete existing database before bootstrap.",
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=0,
+        help="Optional maximum number of deduplicated users to load (0 = all).",
+    )
+    args = parser.parse_args()
+
+    settings = Settings()
+    loaded = bootstrap_from_csv(
+        settings,
+        csv_path=args.csv,
+        reset_db=args.reset_db,
+        limit=(args.limit if args.limit and args.limit > 0 else None),
+    )
     print(
         f"Bootstrap complete: {loaded} users loaded at {datetime.now(timezone.utc).isoformat()}"
     )

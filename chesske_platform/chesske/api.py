@@ -1,4 +1,6 @@
 import os
+import threading
+from pathlib import Path
 from typing import Dict, List, Literal, Optional
 
 import numpy as np
@@ -31,6 +33,26 @@ def _rows_to_frame(rows: List[object], required_cols: List[str]) -> pd.DataFrame
     return df
 
 
+def _env_enabled(name: str, default: bool = True) -> bool:
+    raw = os.getenv(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() not in {"0", "false", "no", "off"}
+
+
+def _resolve_bootstrap_csv(settings: Settings) -> Optional[Path]:
+    configured = os.getenv("CHESSKE_BOOTSTRAP_CSV", "").strip()
+    candidates = [configured] if configured else []
+    candidates.extend(["cleaned_master_chess_players.csv", "master_chess_players.csv"])
+    for candidate in candidates:
+        p = Path(candidate)
+        if not p.is_absolute():
+            p = settings.base_dir / p
+        if p.exists():
+            return p
+    return None
+
+
 def create_app(settings: Optional[Settings] = None) -> FastAPI:
     settings = settings or Settings()
     init_db(settings)
@@ -48,6 +70,34 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    @app.on_event("startup")
+    def start_bootstrap_if_empty() -> None:
+        if not _env_enabled("CHESSKE_AUTO_BOOTSTRAP", default=True):
+            return
+        with get_conn(settings) as conn:
+            row = query_one(conn, "SELECT COUNT(*) AS n FROM users")
+        if row and int(row["n"] or 0) > 0:
+            return
+        csv_path = _resolve_bootstrap_csv(settings)
+        if not csv_path:
+            print("[chesske] Auto-bootstrap skipped: no CSV found.")
+            return
+
+        limit_raw = os.getenv("CHESSKE_BOOTSTRAP_LIMIT", "0").strip()
+        limit = int(limit_raw) if limit_raw.isdigit() and int(limit_raw) > 0 else None
+
+        def worker() -> None:
+            try:
+                from chesske_platform.scripts.bootstrap_from_master_csv import bootstrap_from_csv
+
+                print(f"[chesske] Auto-bootstrap started from {csv_path}")
+                loaded = bootstrap_from_csv(settings, csv_path=str(csv_path), reset_db=False, limit=limit)
+                print(f"[chesske] Auto-bootstrap complete: loaded {loaded} users")
+            except Exception as exc:
+                print(f"[chesske] Auto-bootstrap failed: {exc}")
+
+        threading.Thread(target=worker, daemon=True, name="chesske-auto-bootstrap").start()
 
     @app.get("/health")
     def health() -> Dict[str, str]:

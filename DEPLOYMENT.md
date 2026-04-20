@@ -50,6 +50,17 @@ Optional:
 - `CHESSKE_REFRESH_LIMIT`
 - `CHESSKE_MAX_ACTIVE_PLAYERS`
 - timeout/retry knobs in `chesske_platform/chesske/config.py`
+- `CHESSKE_AUTO_BOOTSTRAP` (`1` by default)
+- `CHESSKE_BOOTSTRAP_CSV` (optional override path for bootstrap csv)
+- `CHESSKE_BOOTSTRAP_LIMIT` (`0` = full csv; set a smaller number on free tier for faster warmup)
+
+### Free tier note (no persistent disk)
+
+If using Render free tier, keep `CHESSKE_DB_PATH` inside writable ephemeral storage, for example:
+
+- `CHESSKE_DB_PATH=data/chesske.db`
+
+On free tier, the DB resets on restarts/redeploys. The API now auto-bootstraps from CSV when empty.
 
 ## 4) Deploy frontend on Vercel
 
@@ -79,4 +90,3 @@ If any endpoint is red:
 - check backend CORS (`CHESSKE_CORS_ORIGINS`)
 - check API base URL env in Vercel
 - check backend logs for endpoint errors
-
