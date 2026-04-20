@@ -1,10 +1,43 @@
 import pandas as pd
 
 from chesske_platform.chesske.config import Settings
-from chesske_platform.chesske.db import get_conn, init_db
+from chesske_platform.chesske.db import DBConn, get_conn, init_db
 
 
 LEDGER_PATH = "cleaned_master_chess_players.csv"
+EXPORT_SQL = """
+SELECT
+    u.username AS "Username",
+    u.joined_at AS "Join Date",
+    u.last_online AS "Last Online",
+    s.total_games AS "Total Games Played",
+    s.total_daily AS "Total Daily Games",
+    s.total_rapid AS "Total Rapid Games",
+    s.total_bullet AS "Total Bullet Games",
+    s.total_blitz AS "Total Blitz Games",
+    s.daily_rating AS "Daily Rating",
+    s.rapid_rating AS "Rapid Rating",
+    s.bullet_rating AS "Bullet Rating",
+    s.blitz_rating AS "Blitz Rating",
+    s.highest_puzzle_rating AS "Puzzle Rating",
+    s.highest_puzzle_date AS "Date",
+    s.daily_wins AS "Daily Wins",
+    s.daily_losses AS "Daily Losses",
+    s.daily_draws AS "Daily Draws",
+    s.rapid_wins AS "Rapid Wins",
+    s.rapid_losses AS "Rapid Losses",
+    s.rapid_draws AS "Rapid Draws",
+    s.bullet_wins AS "Bullet Wins",
+    s.bullet_losses AS "Bullet Losses",
+    s.bullet_draws AS "Bullet Draws",
+    s.blitz_wins AS "Blitz Wins",
+    s.blitz_losses AS "Blitz Losses",
+    s.blitz_draws AS "Blitz Draws"
+FROM users u
+JOIN user_stats_latest s ON s.username = u.username
+WHERE u.status = 'active'
+ORDER BY u.username
+"""
 
 
 def _merge_with_existing_ledger(fresh_df: pd.DataFrame, ledger_path: str = LEDGER_PATH) -> pd.DataFrame:
@@ -47,46 +80,18 @@ def _merge_with_existing_ledger(fresh_df: pd.DataFrame, ledger_path: str = LEDGE
     return merged
 
 
+def _load_export_frame(conn: DBConn) -> pd.DataFrame:
+    cursor = conn.execute(EXPORT_SQL)
+    rows = cursor.fetchall()
+    columns = [col[0] for col in (cursor.description or [])]
+    return pd.DataFrame.from_records(rows, columns=columns)
+
+
 def main() -> None:
     settings = Settings()
     init_db(settings)
     with get_conn(settings) as conn:
-        df = pd.read_sql_query(
-            """
-            SELECT
-                u.username AS "Username",
-                u.joined_at AS "Join Date",
-                u.last_online AS "Last Online",
-                s.total_games AS "Total Games Played",
-                s.total_daily AS "Total Daily Games",
-                s.total_rapid AS "Total Rapid Games",
-                s.total_bullet AS "Total Bullet Games",
-                s.total_blitz AS "Total Blitz Games",
-                s.daily_rating AS "Daily Rating",
-                s.rapid_rating AS "Rapid Rating",
-                s.bullet_rating AS "Bullet Rating",
-                s.blitz_rating AS "Blitz Rating",
-                s.highest_puzzle_rating AS "Puzzle Rating",
-                s.highest_puzzle_date AS "Date",
-                s.daily_wins AS "Daily Wins",
-                s.daily_losses AS "Daily Losses",
-                s.daily_draws AS "Daily Draws",
-                s.rapid_wins AS "Rapid Wins",
-                s.rapid_losses AS "Rapid Losses",
-                s.rapid_draws AS "Rapid Draws",
-                s.bullet_wins AS "Bullet Wins",
-                s.bullet_losses AS "Bullet Losses",
-                s.bullet_draws AS "Bullet Draws",
-                s.blitz_wins AS "Blitz Wins",
-                s.blitz_losses AS "Blitz Losses",
-                s.blitz_draws AS "Blitz Draws"
-            FROM users u
-            JOIN user_stats_latest s ON s.username = u.username
-            WHERE u.status = 'active'
-            ORDER BY u.username
-            """,
-            conn,
-        )
+        df = _load_export_frame(conn)
 
     for fmt in ["Daily", "Rapid", "Bullet", "Blitz"]:
         total_col = f"Total {fmt} Games"
