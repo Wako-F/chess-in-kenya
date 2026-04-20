@@ -245,7 +245,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
             rows = query_all(
                 conn,
                 """
-                SELECT strftime('%Y-%m', joined_at) AS month, COUNT(*) AS players
+                SELECT SUBSTR(joined_at, 1, 7) AS month, COUNT(*) AS players
                 FROM users
                 WHERE status='active' AND joined_at IS NOT NULL
                 GROUP BY month
@@ -259,17 +259,18 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
     @app.get("/trends/discovery")
     def discovery_trend(days: int = Query(default=60, ge=1, le=365)) -> Dict[str, List[Dict[str, object]]]:
+        cutoff_date = (pd.Timestamp.utcnow() - pd.Timedelta(days=days)).date().isoformat()
         with get_conn(settings) as conn:
             rows = query_all(
                 conn,
                 """
                 SELECT snapshot_date AS day, COUNT(*) AS active_players
                 FROM country_active_snapshots
-                WHERE snapshot_date >= date('now', ?)
+                WHERE snapshot_date >= ?
                 GROUP BY snapshot_date
                 ORDER BY snapshot_date
                 """,
-                (f"-{days} day",),
+                (cutoff_date,),
             )
         return {"items": [dict(r) for r in rows]}
 

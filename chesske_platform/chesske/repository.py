@@ -1,7 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
-
-import sqlite3
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 from .db import utc_now_iso
 
@@ -10,20 +8,24 @@ def _iso_after(days: int) -> str:
     return (datetime.now(timezone.utc) + timedelta(days=days)).isoformat()
 
 
-def start_run(conn: sqlite3.Connection, notes: str = "") -> int:
+def start_run(conn: Any, notes: str = "") -> int:
     cur = conn.execute(
         """
         INSERT INTO pipeline_runs (started_at, status, notes)
         VALUES (?, 'running', ?)
+        RETURNING id
         """,
         (utc_now_iso(), notes),
     )
+    row = cur.fetchone()
     conn.commit()
-    return int(cur.lastrowid)
+    if row is None:
+        raise RuntimeError("Failed to start run: no id returned")
+    return int(row["id"] if isinstance(row, dict) else row[0])
 
 
 def finish_run(
-    conn: sqlite3.Connection,
+    conn: Any,
     run_id: int,
     status: str,
     active_count: int,
@@ -53,7 +55,7 @@ def finish_run(
     conn.commit()
 
 
-def log_run_error(conn: sqlite3.Connection, run_id: int, stage: str, error: str, username: Optional[str] = None) -> None:
+def log_run_error(conn: Any, run_id: int, stage: str, error: str, username: Optional[str] = None) -> None:
     conn.execute(
         """
         INSERT INTO run_errors (run_id, username, stage, error, created_at)
@@ -64,12 +66,13 @@ def log_run_error(conn: sqlite3.Connection, run_id: int, stage: str, error: str,
     conn.commit()
 
 
-def upsert_active_snapshot(conn: sqlite3.Connection, snapshot_date: str, usernames: Sequence[str]) -> None:
+def upsert_active_snapshot(conn: Any, snapshot_date: str, usernames: Sequence[str]) -> None:
     inserted_at = utc_now_iso()
     conn.executemany(
         """
-        INSERT OR IGNORE INTO country_active_snapshots (snapshot_date, username, inserted_at)
+        INSERT INTO country_active_snapshots (snapshot_date, username, inserted_at)
         VALUES (?, ?, ?)
+        ON CONFLICT (snapshot_date, username) DO NOTHING
         """,
         [(snapshot_date, u, inserted_at) for u in usernames],
     )
@@ -77,7 +80,7 @@ def upsert_active_snapshot(conn: sqlite3.Connection, snapshot_date: str, usernam
 
 
 def upsert_user_and_stats(
-    conn: sqlite3.Connection,
+    conn: Any,
     username: str,
     record: Dict,
     seen_in_active: bool,
@@ -182,7 +185,7 @@ def upsert_user_and_stats(
         conn.commit()
 
 
-def mark_user_deleted(conn: sqlite3.Connection, username: str, commit: bool = True) -> None:
+def mark_user_deleted(conn: Any, username: str, commit: bool = True) -> None:
     conn.execute(
         """
         UPDATE users
@@ -195,7 +198,7 @@ def mark_user_deleted(conn: sqlite3.Connection, username: str, commit: bool = Tr
         conn.commit()
 
 
-def get_refresh_candidates(conn: sqlite3.Connection, exclude_usernames: Iterable[str], limit: int) -> List[str]:
+def get_refresh_candidates(conn: Any, exclude_usernames: Iterable[str], limit: int) -> List[str]:
     exclusions = tuple(set(exclude_usernames))
     sql = """
         SELECT username
@@ -216,10 +219,10 @@ def get_refresh_candidates(conn: sqlite3.Connection, exclude_usernames: Iterable
     return [str(row["username"]) for row in rows]
 
 
-def query_one(conn: sqlite3.Connection, sql: str, params: Tuple = ()) -> Optional[sqlite3.Row]:
+def query_one(conn: Any, sql: str, params: Tuple = ()) -> Optional[Any]:
     row = conn.execute(sql, params).fetchone()
     return row
 
 
-def query_all(conn: sqlite3.Connection, sql: str, params: Tuple = ()) -> List[sqlite3.Row]:
+def query_all(conn: Any, sql: str, params: Tuple = ()) -> List[Any]:
     return conn.execute(sql, params).fetchall()

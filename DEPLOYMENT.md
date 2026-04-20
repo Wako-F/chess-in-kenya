@@ -39,7 +39,8 @@ Deploy `chesske_platform/chesske/api.py` app with your Python host.
 
 Required backend env vars:
 
-- `CHESSKE_DB_PATH` (for example `/data/chesske.db`)
+- `DATABASE_URL` (PostgreSQL connection URL; preferred for production)
+- `CHESSKE_DB_PATH` (SQLite fallback when `DATABASE_URL` is not set)
 - `CHESSKE_CORS_ORIGINS` (comma-separated)
   - local dev: `http://localhost:3000,http://127.0.0.1:3000`
   - add your Vercel domain after deploy, for example:
@@ -61,6 +62,18 @@ If using Render free tier, keep `CHESSKE_DB_PATH` inside writable ephemeral stor
 - `CHESSKE_DB_PATH=data/chesske.db`
 
 On free tier, the DB resets on restarts/redeploys. The API now auto-bootstraps from CSV when empty.
+
+### Postgres cutover (Aiven + Render)
+
+When `DATABASE_URL` is set, the backend now uses PostgreSQL automatically.
+
+Recommended Render env for Postgres mode:
+
+- `DATABASE_URL=postgres://...`
+- `CHESSKE_AUTO_BOOTSTRAP=0`
+- keep `CHESSKE_CORS_ORIGINS` with your Vercel domains
+
+Optional: keep `CHESSKE_DB_PATH` for local fallback only.
 
 ## 4) Deploy frontend on Vercel
 

@@ -155,8 +155,9 @@ def bootstrap_from_csv(
                 """
             )
             conn.commit()
-        conn.execute("PRAGMA journal_mode = WAL")
-        conn.execute("PRAGMA synchronous = NORMAL")
+        if getattr(conn, "backend", "sqlite") == "sqlite":
+            conn.execute("PRAGMA journal_mode = WAL")
+            conn.execute("PRAGMA synchronous = NORMAL")
         conn.execute("BEGIN")
         for _, row in df.iterrows():
             record = {
