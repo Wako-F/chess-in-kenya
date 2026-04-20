@@ -13,6 +13,7 @@ import type {
   Quality,
   RatingScatterResponse,
   RunResponse,
+  StoryReport,
   TrendResponse,
 } from "@/lib/types";
 
@@ -137,6 +138,14 @@ export async function getPercentileBands(): Promise<PercentileBandResponse | nul
 export async function getCohortRetention(months = 24): Promise<CohortResponse | null> {
   try {
     return await fetchJson<CohortResponse>(`/stats/cohort-retention?months=${months}`);
+  } catch {
+    return null;
+  }
+}
+
+export async function getStoryReport(): Promise<StoryReport | null> {
+  try {
+    return await fetchJson<StoryReport>("/stats/story-report");
   } catch {
     return null;
   }
