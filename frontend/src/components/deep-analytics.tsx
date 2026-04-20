@@ -63,6 +63,10 @@ export function DeepAnalytics({
           <h3>Rating Correlation Matrix</h3>
           <span className="pill">DEPENDENCY MAP</span>
         </div>
+        <p>
+          Correlation is not causation, but it does show which skill domains tend to travel together.
+          In this dataset, puzzle and rapid tend to move together more tightly than puzzle and bullet.
+        </p>
         {keys.length ? (
           <div className="heatmap">
             <table className="heat-table">
@@ -108,6 +112,10 @@ export function DeepAnalytics({
           <h3>Percentile Rating Curves</h3>
           <span className="pill">DISTRIBUTION BANDS</span>
         </div>
+        <p>
+          Percentile curves are a better trust layer than averages. They show what median, upper-tier,
+          and elite-local performance actually look like in each format.
+        </p>
         {pctData.length ? (
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={300}>
@@ -135,6 +143,10 @@ export function DeepAnalytics({
           <h3>Cohort Retention (90-day active)</h3>
           <span className="pill">LONGITUDINAL</span>
         </div>
+        <p>
+          Read this as a proxy for observed recency, not a definitive retention measure. It is directionally useful,
+          but it is sensitive to pipeline freshness and to Chess.com&apos;s recency-capped country roster.
+        </p>
         {cohorts.length ? (
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={300}>

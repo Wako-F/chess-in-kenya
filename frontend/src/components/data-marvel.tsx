@@ -62,6 +62,10 @@ export function DataMarvel({
           <h3>Format Rating Radar</h3>
           <span className="pill">SKILL TOPOLOGY</span>
         </div>
+        <p>
+          This is a quick read on the ecosystem&apos;s average skill shape. It is useful for comparing formats,
+          but not for describing the typical player, because the underlying rating distributions are heavily skewed.
+        </p>
         {radar.length ? (
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={300}>
@@ -83,6 +87,10 @@ export function DataMarvel({
           <h3>Game Volume Composition</h3>
           <span className="pill">FORMAT SHARE</span>
         </div>
+        <p>
+          Format share shows where raw play volume sits. Read it alongside the specialization view above:
+          rapid wins both as the largest format and as the default home for committed specialists.
+        </p>
         {gamesPie.length ? (
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={300}>
@@ -106,6 +114,10 @@ export function DataMarvel({
           <h3>Player Activity Distribution</h3>
           <span className="pill">ENGAGEMENT</span>
         </div>
+        <p>
+          These buckets show how quickly the player base thins out as activity increases. The jump from
+          casual to committed play is steep, which is why percentile context matters more than averages.
+        </p>
         {activityData.length ? (
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={280}>
@@ -128,6 +140,10 @@ export function DataMarvel({
           <h3>Rapid vs Blitz Rating Space</h3>
           <span className="pill">SCATTER MAP</span>
         </div>
+        <p>
+          Each point maps a player with both rapid and blitz ratings. The visible tilt below the diagonal
+          supports the same story seen in the gap metrics: rapid tends to outperform blitz for most dual-format players.
+        </p>
         {scatterData.length ? (
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={280}>

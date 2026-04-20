@@ -162,6 +162,94 @@ export type CohortResponse = {
   items: CohortPoint[];
 };
 
+export type StorySnapshot = {
+  tracked_players: number;
+  total_games: number;
+  median_games: number;
+  mean_games: number;
+  p90_games: number;
+  p99_games: number;
+  active_7d: number;
+  active_30d: number;
+  active_90d: number;
+  dormant_365d: number;
+  active_share_90d: number;
+};
+
+export type StoryCountPoint = {
+  label?: string;
+  tier?: string;
+  format?: string;
+  segment?: string;
+  formats?: string;
+  players: number;
+  share?: number;
+};
+
+export type StorySharePoint = {
+  group: string;
+  share: number;
+};
+
+export type StoryCurvePoint = {
+  player_percentile: number;
+  game_share: number;
+};
+
+export type RapidBlitzGap = {
+  median_gap: number;
+  blitz_200_plus: number;
+  rapid_200_plus: number;
+};
+
+export type StoryCohortPoint = {
+  cohort: string;
+  players: number;
+  median_games: number;
+  active_90d: number;
+  active_rate_90d: number;
+};
+
+export type PuzzleCorrelationPoint = {
+  format: string;
+  correlation: number;
+};
+
+export type StoryArchetype = {
+  name: string;
+  count: number;
+  description: string;
+};
+
+export type OutcomeStylePoint = {
+  format: string;
+  median_win_rate: number;
+  median_draw_rate: number;
+};
+
+export type StoryReport = {
+  snapshot: StorySnapshot;
+  recency_buckets: StoryCountPoint[];
+  concentration: {
+    top_shares: StorySharePoint[];
+    curve: StoryCurvePoint[];
+    volume_tiers: StoryCountPoint[];
+  };
+  format_identity: {
+    participation: StoryCountPoint[];
+    dominance: StoryCountPoint[];
+    format_mix: StoryCountPoint[];
+    rapid_blitz_gap: RapidBlitzGap;
+  };
+  cohorts: StoryCohortPoint[];
+  puzzle_culture: {
+    segments: StoryCountPoint[];
+    correlations: PuzzleCorrelationPoint[];
+  };
+  archetypes: StoryArchetype[];
+  outcome_style: OutcomeStylePoint[];
+};
+
 export type PlayerBenchmarkMetric = {
   value: number;
   percentile: number | null;

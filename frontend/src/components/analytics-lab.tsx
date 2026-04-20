@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { DataMarvel } from "@/components/data-marvel";
 import { DeepAnalytics } from "@/components/deep-analytics";
 import { RatingDistribution } from "@/components/rating-distribution";
+import { StoryMarvel } from "@/components/story-marvel";
 import type {
   ActivityBucketPoint,
   CohortPoint,
@@ -13,6 +14,7 @@ import type {
   FormatSummaryPoint,
   PercentileBandPoint,
   RatingScatterPoint,
+  StoryReport,
 } from "@/lib/types";
 
 type AnalyticsPayload = {
@@ -23,6 +25,7 @@ type AnalyticsPayload = {
   correlation: CorrelationPoint[];
   percentileBands: PercentileBandPoint[];
   cohorts: CohortPoint[];
+  story: StoryReport | null;
 };
 
 type EndpointStatus = {
@@ -51,6 +54,7 @@ export function AnalyticsLab() {
     correlation: [],
     percentileBands: [],
     cohorts: [],
+    story: null,
   });
   const [loading, setLoading] = useState(true);
   const [statuses, setStatuses] = useState<EndpointStatus[]>([]);
@@ -67,6 +71,7 @@ export function AnalyticsLab() {
         { key: "correlation", label: "correlation-matrix", path: "/stats/correlation-matrix" },
         { key: "percentileBands", label: "percentile-bands", path: "/stats/percentile-bands" },
         { key: "cohorts", label: "cohort-retention", path: "/stats/cohort-retention?months=24" },
+        { key: "story", label: "story-report", path: "/stats/story-report" },
       ] as const;
 
       const nextStatuses: EndpointStatus[] = [];
@@ -78,6 +83,7 @@ export function AnalyticsLab() {
         correlation: [],
         percentileBands: [],
         cohorts: [],
+        story: null,
       };
 
       function setDataKey<K extends keyof AnalyticsPayload>(key: K, items: AnalyticsPayload[K]) {
@@ -123,9 +129,19 @@ export function AnalyticsLab() {
               nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
               return;
             }
-            const items = await fetchItems<CohortPoint>(d.path);
-            setDataKey(d.key, items);
-            nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
+            if (d.key === "cohorts") {
+              const items = await fetchItems<CohortPoint>(d.path);
+              setDataKey(d.key, items);
+              nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
+              return;
+            }
+            const res = await fetch(`${API_BASE}${d.path}`, { cache: "no-store" });
+            if (!res.ok) {
+              throw new Error(`${d.path} -> ${res.status}`);
+            }
+            const story = (await res.json()) as StoryReport;
+            setDataKey(d.key, story);
+            nextStatuses.push({ label: d.label, ok: true, detail: "derived metrics ready" });
           } catch (err) {
             nextStatuses.push({
               label: d.label,
@@ -151,6 +167,8 @@ export function AnalyticsLab() {
 
   return (
     <>
+      <StoryMarvel report={data.story} />
+
       <section className="panel stagger">
         <div className="panel-head">
           <h3>Analytics Engine Status</h3>
@@ -166,6 +184,17 @@ export function AnalyticsLab() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="panel stagger">
+        <div className="panel-head">
+          <h3>Statistical Lab</h3>
+          <span className="pill">SUPPORTING EVIDENCE</span>
+        </div>
+        <p>
+          The charts below back up the headline story with distribution, skill-shape, and cohort structure.
+          They are most useful when read after the narrative modules above, not before them.
+        </p>
       </section>
 
       <RatingDistribution points={data.distribution} />

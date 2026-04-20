@@ -256,6 +256,119 @@ body {
   grid-template-columns: 1fr 1fr;
 }
 
+.story-hero-grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.story-callout {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1rem 1.05rem;
+  background: linear-gradient(145deg, rgba(255, 253, 247, 0.98), rgba(245, 234, 221, 0.95));
+  box-shadow: 0 10px 22px rgba(31, 20, 8, 0.07);
+}
+
+.story-callout h3,
+.archetype-card h4 {
+  margin: 0.35rem 0 0.45rem;
+  font-size: 1.02rem;
+}
+
+.story-callout p:last-child {
+  margin-top: 0;
+}
+
+.note-panel {
+  margin-top: 1rem;
+  background: linear-gradient(145deg, rgba(255, 251, 243, 0.98), rgba(255, 240, 226, 0.94));
+}
+
+.story-grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.snapshot-grid,
+.micro-grid,
+.share-row,
+.archetype-grid {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.snapshot-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.micro-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.share-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.snapshot-stat,
+.micro-card,
+.share-card,
+.archetype-card {
+  border: 1px solid #e6d5bf;
+  border-radius: 16px;
+  padding: 0.8rem 0.85rem;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.snapshot-stat span,
+.micro-card span,
+.share-card span,
+.mini-row span {
+  display: block;
+  font-size: 0.77rem;
+  color: var(--ink-700);
+}
+
+.snapshot-stat strong,
+.micro-card strong,
+.share-card strong,
+.mini-row strong {
+  display: block;
+  margin-top: 0.18rem;
+  font-size: 1.2rem;
+}
+
+.share-card small {
+  color: var(--ink-700);
+  font-size: 0.74rem;
+}
+
+.mini-table {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.mini-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  border-bottom: 1px solid #eadfce;
+  padding-bottom: 0.4rem;
+}
+
+.archetype-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.archetype-card p:last-child {
+  margin-top: 0.2rem;
+}
+
 .chart-wrap {
   margin-top: 0.8rem;
   width: 100%;
@@ -572,15 +685,23 @@ button:disabled {
   .metrics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .story-hero-grid,
   .route-cards {
     grid-template-columns: 1fr;
   }
+  .story-grid,
   .charts-grid,
   .marvel-grid,
   .deep-grid,
   .boards-grid,
   .obs-grid {
     grid-template-columns: 1fr;
+  }
+  .snapshot-grid,
+  .micro-grid,
+  .share-row,
+  .archetype-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .player-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -605,6 +726,12 @@ button:disabled {
     padding: 1.2rem;
   }
   .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .snapshot-grid,
+  .micro-grid,
+  .share-row,
+  .archetype-grid {
     grid-template-columns: 1fr;
   }
   .search-row {

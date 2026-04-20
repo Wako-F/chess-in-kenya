@@ -43,8 +43,8 @@ export default async function Home() {
         <p className="eyebrow">Kenya Chess Intelligence Platform</p>
         <h1>ChessKE Atlas</h1>
         <p className="lead">
-          A production-grade, API-driven intelligence interface for tracking growth, performance,
-          and competitive shape across Kenya&apos;s online chess community.
+          A production-grade, API-driven intelligence interface that turns Kenya&apos;s online chess data
+          into a readable story about growth, activity, specialization, and competitive depth.
         </p>
         <div className="run-meta">
           <span className="pill">{latestRun ? `RUN #${latestRun.id}` : "NO RUN DATA"}</span>
@@ -72,8 +72,9 @@ export default async function Home() {
         </div>
         <p>
           This frontend is fully decoupled from raw CSV files. It consumes the production API backed
-          by your rolling discovery ledger and refresh queue. Recruiters get a clear signal that this
-          project is engineered as a data product, not a one-off dashboard.
+          by your rolling discovery ledger and refresh queue. The objective is no longer just to show
+          charts. It is to explain what kind of ecosystem Kenya has, who carries it, and where growth
+          is still shallow.
         </p>
       </section>
 
