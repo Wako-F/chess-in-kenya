@@ -6,7 +6,7 @@ from typing import Optional
 import pandas as pd
 
 from chesske_platform.chesske.config import Settings
-from chesske_platform.chesske.db import get_conn, init_db
+from chesske_platform.chesske.db import get_conn, init_db, utc_now_iso
 from chesske_platform.chesske.repository import upsert_user_and_stats
 
 
@@ -193,6 +193,35 @@ def bootstrap_from_csv(
                 conn.execute("BEGIN")
             if loaded % 10000 == 0:
                 print(f"Loaded {loaded} users...")
+        snapshot_date = datetime.now(timezone.utc).date().isoformat()
+        inserted_at = utc_now_iso()
+        conn.execute(
+            """
+            INSERT OR IGNORE INTO country_active_snapshots (snapshot_date, username, inserted_at)
+            SELECT ?, username, ?
+            FROM users
+            WHERE status = 'active'
+            """,
+            (snapshot_date, inserted_at),
+        )
+        active_users = conn.execute("SELECT COUNT(*) AS c FROM users WHERE status='active'").fetchone()["c"]
+        started_at = utc_now_iso()
+        ended_at = utc_now_iso()
+        conn.execute(
+            """
+            INSERT INTO pipeline_runs (
+                started_at, ended_at, status, active_count, updated_count,
+                deleted_count, refresh_count, error_count, notes
+            ) VALUES (?, ?, 'success', ?, ?, 0, 0, 0, ?)
+            """,
+            (
+                started_at,
+                ended_at,
+                int(active_users or 0),
+                int(loaded or 0),
+                f"bootstrap_from_csv:{csv_path}",
+            ),
+        )
         conn.commit()
 
     return loaded

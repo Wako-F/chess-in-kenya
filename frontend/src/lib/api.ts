@@ -20,7 +20,7 @@ const API_BASE = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "http://127.0.0.1:8
 
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
-    next: { revalidate: 300 },
+    cache: "no-store",
   });
   if (!res.ok) {
     throw new Error(`API ${path} failed with ${res.status}`);

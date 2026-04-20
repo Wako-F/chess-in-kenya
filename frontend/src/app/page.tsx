@@ -12,6 +12,8 @@ import {
   getQuality,
 } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
+
 function fmt(n: number | null | undefined) {
   if (n === null || n === undefined) return "N/A";
   return n.toLocaleString();
