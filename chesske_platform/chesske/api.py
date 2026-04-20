@@ -13,16 +13,34 @@ from .quality import compute_quality_report
 from .repository import query_all, query_one
 
 
+RATING_COLUMNS = [
+    "rapid_rating",
+    "blitz_rating",
+    "bullet_rating",
+    "daily_rating",
+    "highest_puzzle_rating",
+]
+
+
+def _rows_to_frame(rows: List[object], required_cols: List[str]) -> pd.DataFrame:
+    df = pd.DataFrame([dict(r) for r in rows])
+    for col in required_cols:
+        if col not in df.columns:
+            df[col] = pd.Series(dtype="float64")
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    return df
+
+
 def create_app(settings: Optional[Settings] = None) -> FastAPI:
     settings = settings or Settings()
     init_db(settings)
     app = FastAPI(title="ChessKE Data API", version="1.0.0")
 
-    cors_origins = os.getenv(
-        "CHESSKE_CORS_ORIGINS",
-        "http://localhost:3000,http://127.0.0.1:3000",
-    )
-    allow_origins = [o.strip() for o in cors_origins.split(",") if o.strip()]
+    cors_origins = os.getenv("CHESSKE_CORS_ORIGINS", "*").strip()
+    if cors_origins == "*":
+        allow_origins = ["*"]
+    else:
+        allow_origins = [o.strip() for o in cors_origins.split(",") if o.strip()]
     app.add_middleware(
         CORSMiddleware,
         allow_origins=allow_origins,
@@ -327,15 +345,11 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
                 WHERE u.status='active'
                 """
             )
-        df = pd.DataFrame([dict(r) for r in rows])
-        cols = ["rapid_rating", "blitz_rating", "bullet_rating", "daily_rating", "highest_puzzle_rating"]
-        for col in cols:
-            if col in df.columns:
-                df[col] = pd.to_numeric(df[col], errors="coerce")
-        corr = df[cols].corr(method="pearson").fillna(0.0)
+        df = _rows_to_frame(rows, RATING_COLUMNS)
+        corr = df[RATING_COLUMNS].corr(method="pearson").fillna(0.0)
         matrix: List[Dict[str, object]] = []
-        for r in cols:
-            for c in cols:
+        for r in RATING_COLUMNS:
+            for c in RATING_COLUMNS:
                 matrix.append({"x": r, "y": c, "value": round(float(corr.loc[r, c]), 4)})
         return {"items": matrix}
 
@@ -356,7 +370,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
                 WHERE u.status='active'
                 """
             )
-        df = pd.DataFrame([dict(r) for r in rows])
+        df = _rows_to_frame(rows, RATING_COLUMNS)
         pct_points = [10, 25, 50, 75, 90, 99]
         out: List[Dict[str, object]] = []
         mapping = {
@@ -367,7 +381,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
             "highest_puzzle_rating": "puzzle",
         }
         for col, name in mapping.items():
-            values = pd.to_numeric(df[col], errors="coerce")
+            values = df[col]
             values = values[values > 0].dropna()
             if len(values) == 0:
                 continue

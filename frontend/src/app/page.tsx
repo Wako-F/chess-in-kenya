@@ -49,7 +49,9 @@ export default async function Home() {
           <span className="mono">
             {latestRun?.ended_at
               ? `Last sync ${new Date(latestRun.ended_at).toLocaleString()}`
-              : "Backend API offline or not yet synced"}
+              : overview || quality
+                ? "No pipeline run recorded yet"
+                : "Backend API offline or not yet synced"}
           </span>
         </div>
       </section>
