@@ -34,16 +34,18 @@ type EndpointStatus = {
   detail: string;
 };
 
-const API_BASE = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "http://127.0.0.1:8000";
+type AnalyticsPackResponse = {
+  distribution?: { items?: DistributionPoint[] };
+  formatSummary?: { items?: FormatSummaryPoint[] };
+  activityBuckets?: { items?: ActivityBucketPoint[] };
+  scatter?: { items?: RatingScatterPoint[] };
+  correlation?: { items?: CorrelationPoint[] };
+  percentileBands?: { items?: PercentileBandPoint[] };
+  cohorts?: { items?: CohortPoint[] };
+  story?: StoryReport | null;
+};
 
-async function fetchItems<T>(path: string): Promise<T[]> {
-  const res = await fetch(`${API_BASE}${path}`, { cache: "no-store" });
-  if (!res.ok) {
-    throw new Error(`${path} -> ${res.status}`);
-  }
-  const json = (await res.json()) as { items?: T[] };
-  return json.items ?? [];
-}
+const API_BASE = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "http://127.0.0.1:8000";
 
 export function AnalyticsLab() {
   const [data, setData] = useState<AnalyticsPayload>({
@@ -63,18 +65,6 @@ export function AnalyticsLab() {
     let mounted = true;
     async function load() {
       setLoading(true);
-      const defs = [
-        { key: "distribution", label: "distribution", path: "/stats/distribution?bucket_size=100" },
-        { key: "formatSummary", label: "format-summary", path: "/stats/format-summary" },
-        { key: "activityBuckets", label: "activity-buckets", path: "/stats/activity-buckets" },
-        { key: "scatter", label: "rating-scatter", path: "/stats/rating-scatter?limit=1200" },
-        { key: "correlation", label: "correlation-matrix", path: "/stats/correlation-matrix" },
-        { key: "percentileBands", label: "percentile-bands", path: "/stats/percentile-bands" },
-        { key: "cohorts", label: "cohort-retention", path: "/stats/cohort-retention?months=24" },
-        { key: "story", label: "story-report", path: "/stats/story-report" },
-      ] as const;
-
-      const nextStatuses: EndpointStatus[] = [];
       const nextData: AnalyticsPayload = {
         distribution: [],
         formatSummary: [],
@@ -85,72 +75,42 @@ export function AnalyticsLab() {
         cohorts: [],
         story: null,
       };
+      let nextStatuses: EndpointStatus[] = [];
 
-      function setDataKey<K extends keyof AnalyticsPayload>(key: K, items: AnalyticsPayload[K]) {
-        nextData[key] = items;
+      try {
+        const res = await fetch(`${API_BASE}/stats/analytics-pack`, { cache: "default" });
+        if (!res.ok) {
+          throw new Error(`/stats/analytics-pack -> ${res.status}`);
+        }
+        const pack = (await res.json()) as AnalyticsPackResponse;
+        nextData.distribution = pack.distribution?.items ?? [];
+        nextData.formatSummary = pack.formatSummary?.items ?? [];
+        nextData.activityBuckets = pack.activityBuckets?.items ?? [];
+        nextData.scatter = pack.scatter?.items ?? [];
+        nextData.correlation = pack.correlation?.items ?? [];
+        nextData.percentileBands = pack.percentileBands?.items ?? [];
+        nextData.cohorts = pack.cohorts?.items ?? [];
+        nextData.story = pack.story ?? null;
+        nextStatuses = [
+          { label: "analytics-pack", ok: true, detail: "1 request collapsed from 8 endpoints" },
+          { label: "distribution", ok: true, detail: `${nextData.distribution.length} rows` },
+          { label: "format-summary", ok: true, detail: `${nextData.formatSummary.length} rows` },
+          { label: "activity-buckets", ok: true, detail: `${nextData.activityBuckets.length} rows` },
+          { label: "rating-scatter", ok: true, detail: `${nextData.scatter.length} rows` },
+          { label: "correlation-matrix", ok: true, detail: `${nextData.correlation.length} rows` },
+          { label: "percentile-bands", ok: true, detail: `${nextData.percentileBands.length} rows` },
+          { label: "cohort-retention", ok: true, detail: `${nextData.cohorts.length} rows` },
+          { label: "story-report", ok: true, detail: nextData.story ? "derived metrics ready" : "no data" },
+        ];
+      } catch (err) {
+        nextStatuses = [
+          {
+            label: "analytics-pack",
+            ok: false,
+            detail: err instanceof Error ? err.message : "fetch failed",
+          },
+        ];
       }
-
-      await Promise.all(
-        defs.map(async (d) => {
-          try {
-            if (d.key === "distribution") {
-              const items = await fetchItems<DistributionPoint>(d.path);
-              setDataKey(d.key, items);
-              nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
-              return;
-            }
-            if (d.key === "formatSummary") {
-              const items = await fetchItems<FormatSummaryPoint>(d.path);
-              setDataKey(d.key, items);
-              nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
-              return;
-            }
-            if (d.key === "activityBuckets") {
-              const items = await fetchItems<ActivityBucketPoint>(d.path);
-              setDataKey(d.key, items);
-              nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
-              return;
-            }
-            if (d.key === "scatter") {
-              const items = await fetchItems<RatingScatterPoint>(d.path);
-              setDataKey(d.key, items);
-              nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
-              return;
-            }
-            if (d.key === "correlation") {
-              const items = await fetchItems<CorrelationPoint>(d.path);
-              setDataKey(d.key, items);
-              nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
-              return;
-            }
-            if (d.key === "percentileBands") {
-              const items = await fetchItems<PercentileBandPoint>(d.path);
-              setDataKey(d.key, items);
-              nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
-              return;
-            }
-            if (d.key === "cohorts") {
-              const items = await fetchItems<CohortPoint>(d.path);
-              setDataKey(d.key, items);
-              nextStatuses.push({ label: d.label, ok: true, detail: `${items.length} rows` });
-              return;
-            }
-            const res = await fetch(`${API_BASE}${d.path}`, { cache: "no-store" });
-            if (!res.ok) {
-              throw new Error(`${d.path} -> ${res.status}`);
-            }
-            const story = (await res.json()) as StoryReport;
-            setDataKey(d.key, story);
-            nextStatuses.push({ label: d.label, ok: true, detail: "derived metrics ready" });
-          } catch (err) {
-            nextStatuses.push({
-              label: d.label,
-              ok: false,
-              detail: err instanceof Error ? err.message : "fetch failed",
-            });
-          }
-        }),
-      );
 
       if (!mounted) return;
       setData(nextData);

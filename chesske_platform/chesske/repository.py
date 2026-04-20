@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta, timezone
+import json
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 from .db import utc_now_iso
@@ -198,24 +199,24 @@ def mark_user_deleted(conn: Any, username: str, commit: bool = True) -> None:
         conn.commit()
 
 
-def get_refresh_candidates(conn: Any, exclude_usernames: Iterable[str], limit: int) -> List[str]:
-    exclusions = tuple(set(exclude_usernames))
-    sql = """
-        SELECT username
-        FROM users
-        WHERE status = 'active'
-          AND (next_refresh_at IS NULL OR next_refresh_at <= ?)
-    """
-    params: List[object] = [utc_now_iso()]
-
-    if exclusions:
-        placeholders = ",".join(["?"] * len(exclusions))
-        sql += f" AND username NOT IN ({placeholders})"
-        params.extend(exclusions)
-
-    sql += " ORDER BY COALESCE(last_online, '1970-01-01T00:00:00+00:00') DESC LIMIT ?"
-    params.append(limit)
-    rows = conn.execute(sql, tuple(params)).fetchall()
+def get_refresh_candidates(conn: Any, snapshot_date: str, limit: int) -> List[str]:
+    rows = conn.execute(
+        """
+        SELECT u.username
+        FROM users u
+        WHERE u.status = 'active'
+          AND (u.next_refresh_at IS NULL OR u.next_refresh_at <= ?)
+          AND NOT EXISTS (
+              SELECT 1
+              FROM country_active_snapshots s
+              WHERE s.snapshot_date = ?
+                AND s.username = u.username
+          )
+        ORDER BY COALESCE(u.last_online, '1970-01-01T00:00:00+00:00') DESC
+        LIMIT ?
+        """,
+        (utc_now_iso(), snapshot_date, limit),
+    ).fetchall()
     return [str(row["username"]) for row in rows]
 
 
@@ -226,3 +227,45 @@ def query_one(conn: Any, sql: str, params: Tuple = ()) -> Optional[Any]:
 
 def query_all(conn: Any, sql: str, params: Tuple = ()) -> List[Any]:
     return conn.execute(sql, params).fetchall()
+
+
+def get_cached_payload(conn: Any, cache_key: str) -> Optional[Dict[str, Any]]:
+    row = conn.execute(
+        """
+        SELECT payload_json, updated_at, source
+        FROM analytics_cache
+        WHERE cache_key = ?
+        """,
+        (cache_key,),
+    ).fetchone()
+    if not row:
+        return None
+    payload = json.loads(row["payload_json"])
+    return {
+        "payload": payload,
+        "updated_at": row["updated_at"],
+        "source": row["source"],
+    }
+
+
+def upsert_cached_payload(
+    conn: Any,
+    cache_key: str,
+    payload: Dict[str, Any],
+    source: str,
+    commit: bool = True,
+) -> None:
+    now = utc_now_iso()
+    conn.execute(
+        """
+        INSERT INTO analytics_cache (cache_key, payload_json, updated_at, source)
+        VALUES (?, ?, ?, ?)
+        ON CONFLICT(cache_key) DO UPDATE SET
+            payload_json = excluded.payload_json,
+            updated_at = excluded.updated_at,
+            source = excluded.source
+        """,
+        (cache_key, json.dumps(payload), now, source),
+    )
+    if commit:
+        conn.commit()

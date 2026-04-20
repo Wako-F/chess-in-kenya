@@ -3,124 +3,22 @@ import threading
 from pathlib import Path
 from typing import Dict, List, Literal, Optional
 
-import numpy as np
-import pandas as pd
-
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
+from .analytics import (
+    build_analytics_pack_payload,
+    build_cohort_retention_payload,
+    build_correlation_matrix_payload,
+    build_percentile_bands_payload,
+    build_player_benchmark_payload,
+    build_story_report_payload,
+    get_or_build_cached_payload,
+)
 from .config import Settings
 from .db import get_conn, init_db
 from .quality import compute_quality_report
 from .repository import query_all, query_one
-
-
-RATING_COLUMNS = [
-    "rapid_rating",
-    "blitz_rating",
-    "bullet_rating",
-    "daily_rating",
-    "highest_puzzle_rating",
-]
-
-FORMAT_GAME_COLUMNS = ["total_daily", "total_rapid", "total_blitz", "total_bullet"]
-STORY_NUMERIC_COLUMNS = [
-    "total_games",
-    *FORMAT_GAME_COLUMNS,
-    "daily_rating",
-    "rapid_rating",
-    "blitz_rating",
-    "bullet_rating",
-    "highest_puzzle_rating",
-    "daily_wins",
-    "daily_losses",
-    "daily_draws",
-    "rapid_wins",
-    "rapid_losses",
-    "rapid_draws",
-    "blitz_wins",
-    "blitz_losses",
-    "blitz_draws",
-    "bullet_wins",
-    "bullet_losses",
-    "bullet_draws",
-]
-
-
-def _rows_to_frame(rows: List[object], required_cols: List[str]) -> pd.DataFrame:
-    df = pd.DataFrame([dict(r) for r in rows])
-    for col in required_cols:
-        if col not in df.columns:
-            df[col] = pd.Series(dtype="float64")
-        df[col] = pd.to_numeric(df[col], errors="coerce")
-    return df
-
-
-def _pct(part: float, whole: float) -> float:
-    if not whole:
-        return 0.0
-    return float(part) / float(whole)
-
-
-def _population_frame(settings: Settings) -> pd.DataFrame:
-    with get_conn(settings) as conn:
-        rows = query_all(
-            conn,
-            """
-            SELECT
-                u.username,
-                u.joined_at,
-                u.last_online,
-                u.last_seen_active_at,
-                s.total_games,
-                s.total_daily,
-                s.total_rapid,
-                s.total_blitz,
-                s.total_bullet,
-                s.daily_rating,
-                s.rapid_rating,
-                s.blitz_rating,
-                s.bullet_rating,
-                s.highest_puzzle_rating,
-                s.daily_wins,
-                s.daily_losses,
-                s.daily_draws,
-                s.rapid_wins,
-                s.rapid_losses,
-                s.rapid_draws,
-                s.blitz_wins,
-                s.blitz_losses,
-                s.blitz_draws,
-                s.bullet_wins,
-                s.bullet_losses,
-                s.bullet_draws
-            FROM users u
-            JOIN user_stats_latest s ON s.username = u.username
-            WHERE u.status = 'active'
-            """
-        )
-    df = pd.DataFrame([dict(r) for r in rows])
-    if df.empty:
-        for col in STORY_NUMERIC_COLUMNS:
-            df[col] = pd.Series(dtype="float64")
-        for col in ["username", "joined_at", "last_online", "last_seen_active_at"]:
-            df[col] = pd.Series(dtype="object")
-        return df
-
-    for col in STORY_NUMERIC_COLUMNS:
-        if col not in df.columns:
-            df[col] = 0
-        df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
-    for col in ["joined_at", "last_online", "last_seen_active_at"]:
-        if col not in df.columns:
-            df[col] = pd.NaT
-        df[col] = pd.to_datetime(df[col], errors="coerce", utc=True)
-
-    now = pd.Timestamp.now(tz="UTC")
-    df["days_since_online"] = (now - df["last_online"]).dt.total_seconds().div(86400)
-    df["days_since_join"] = (now - df["joined_at"]).dt.total_seconds().div(86400)
-    df["formats_played"] = (df[FORMAT_GAME_COLUMNS] > 0).sum(axis=1)
-    return df
 
 
 def _env_enabled(name: str, default: bool = True) -> bool:
@@ -475,414 +373,61 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
             )
         return {"items": [dict(r) for r in rows]}
 
+    @app.get("/stats/analytics-pack")
+    def analytics_pack() -> Dict[str, object]:
+        return get_or_build_cached_payload(
+            settings,
+            cache_key="stats:analytics-pack",
+            builder=build_analytics_pack_payload,
+            source="api:analytics-pack",
+        )
+
     @app.get("/stats/correlation-matrix")
     def correlation_matrix() -> Dict[str, List[Dict[str, object]]]:
-        with get_conn(settings) as conn:
-            rows = query_all(
-                conn,
-                """
-                SELECT
-                    s.rapid_rating,
-                    s.blitz_rating,
-                    s.bullet_rating,
-                    s.daily_rating,
-                    s.highest_puzzle_rating
-                FROM users u
-                JOIN user_stats_latest s ON s.username = u.username
-                WHERE u.status='active'
-                """
-            )
-        df = _rows_to_frame(rows, RATING_COLUMNS)
-        corr = df[RATING_COLUMNS].corr(method="pearson").fillna(0.0)
-        matrix: List[Dict[str, object]] = []
-        for r in RATING_COLUMNS:
-            for c in RATING_COLUMNS:
-                matrix.append({"x": r, "y": c, "value": round(float(corr.loc[r, c]), 4)})
-        return {"items": matrix}
+        return get_or_build_cached_payload(
+            settings,
+            cache_key="stats:correlation-matrix",
+            builder=build_correlation_matrix_payload,
+            source="api:correlation-matrix",
+        )
 
     @app.get("/stats/percentile-bands")
     def percentile_bands() -> Dict[str, List[Dict[str, object]]]:
-        with get_conn(settings) as conn:
-            rows = query_all(
-                conn,
-                """
-                SELECT
-                    s.rapid_rating,
-                    s.blitz_rating,
-                    s.bullet_rating,
-                    s.daily_rating,
-                    s.highest_puzzle_rating
-                FROM users u
-                JOIN user_stats_latest s ON s.username = u.username
-                WHERE u.status='active'
-                """
-            )
-        df = _rows_to_frame(rows, RATING_COLUMNS)
-        pct_points = [10, 25, 50, 75, 90, 99]
-        out: List[Dict[str, object]] = []
-        mapping = {
-            "rapid_rating": "rapid",
-            "blitz_rating": "blitz",
-            "bullet_rating": "bullet",
-            "daily_rating": "daily",
-            "highest_puzzle_rating": "puzzle",
-        }
-        for col, name in mapping.items():
-            values = df[col]
-            values = values[values > 0].dropna()
-            if len(values) == 0:
-                continue
-            for p in pct_points:
-                out.append(
-                    {
-                        "format": name,
-                        "percentile": p,
-                        "rating": int(np.percentile(values, p)),
-                    }
-                )
-        return {"items": out}
+        return get_or_build_cached_payload(
+            settings,
+            cache_key="stats:percentile-bands",
+            builder=build_percentile_bands_payload,
+            source="api:percentile-bands",
+        )
 
     @app.get("/stats/cohort-retention")
     def cohort_retention(months: int = Query(default=24, ge=6, le=120)) -> Dict[str, List[Dict[str, object]]]:
-        with get_conn(settings) as conn:
-            rows = query_all(
-                conn,
-                """
-                SELECT joined_at, last_seen_active_at
-                FROM users
-                WHERE status='active' AND joined_at IS NOT NULL
-                """
+        if months == 24:
+            return get_or_build_cached_payload(
+                settings,
+                cache_key="stats:cohort-retention:24",
+                builder=lambda conn: build_cohort_retention_payload(conn, months=24),
+                source="api:cohort-retention",
             )
-        df = pd.DataFrame([dict(r) for r in rows])
-        if df.empty:
-            return {"items": []}
-        df["joined_at"] = pd.to_datetime(df["joined_at"], errors="coerce", utc=True)
-        df["last_seen_active_at"] = pd.to_datetime(df["last_seen_active_at"], errors="coerce", utc=True)
-        df = df.dropna(subset=["joined_at"])
-        cutoff = pd.Timestamp.utcnow() - pd.Timedelta(days=90)
-        df["recent_active"] = df["last_seen_active_at"].fillna(pd.Timestamp("1970-01-01", tz="UTC")) >= cutoff
-        df["cohort"] = df["joined_at"].dt.tz_convert(None).dt.to_period("M").astype(str)
-        grouped = (
-            df.groupby("cohort")
-            .agg(total_players=("cohort", "size"), retained_90d=("recent_active", "sum"))
-            .reset_index()
-            .sort_values("cohort", ascending=False)
-            .head(months)
-            .sort_values("cohort")
-        )
-        grouped["retention_rate"] = (grouped["retained_90d"] / grouped["total_players"]).fillna(0)
-        return {
-            "items": [
-                {
-                    "cohort": str(r["cohort"]),
-                    "total_players": int(r["total_players"]),
-                    "retained_90d": int(r["retained_90d"]),
-                    "retention_rate": round(float(r["retention_rate"]), 4),
-                }
-                for _, r in grouped.iterrows()
-            ]
-        }
+        with get_conn(settings) as conn:
+            return build_cohort_retention_payload(conn, months=months)
 
     @app.get("/stats/story-report")
     def story_report() -> Dict[str, object]:
-        df = _population_frame(settings)
-        if df.empty:
-            return {
-                "snapshot": {},
-                "recency_buckets": [],
-                "concentration": {"top_shares": [], "curve": [], "volume_tiers": []},
-                "format_identity": {
-                    "participation": [],
-                    "dominance": [],
-                    "format_mix": [],
-                    "rapid_blitz_gap": {},
-                },
-                "cohorts": [],
-                "puzzle_culture": {"segments": [], "correlations": []},
-                "archetypes": [],
-                "outcome_style": [],
-            }
-
-        total_players = int(len(df))
-        total_games = float(df["total_games"].sum())
-        nonzero_games = df["total_games"].clip(lower=0)
-
-        recency_defs = [
-            ("Active 7d", (df["days_since_online"] <= 7)),
-            ("Active 30d", (df["days_since_online"] <= 30)),
-            ("Active 90d", (df["days_since_online"] <= 90)),
-            ("Dormant 365d+", (df["days_since_online"] > 365)),
-        ]
-        recency_buckets = [
-            {"label": label, "players": int(mask.fillna(False).sum())}
-            for label, mask in recency_defs
-        ]
-
-        sorted_games = nonzero_games.sort_values().reset_index(drop=True)
-        cumulative_games = sorted_games.cumsum()
-        total_games_safe = float(cumulative_games.iloc[-1]) if len(cumulative_games) else 0.0
-        curve = []
-        for pct in range(10, 101, 10):
-            idx = max(0, int(np.ceil(len(sorted_games) * (pct / 100))) - 1)
-            games_share = _pct(float(cumulative_games.iloc[idx]), total_games_safe) if len(cumulative_games) else 0.0
-            curve.append({"player_percentile": pct, "game_share": round(games_share, 4)})
-
-        top_shares = []
-        for pct in (1, 5, 10):
-            n = max(1, int(np.ceil(total_players * (pct / 100))))
-            share = _pct(float(nonzero_games.nlargest(n).sum()), total_games_safe)
-            top_shares.append({"group": f"Top {pct}%", "share": round(share, 4)})
-
-        tier_bins = [-1, 0, 9, 49, 199, 999, 4999, float("inf")]
-        tier_labels = ["0", "1-9", "10-49", "50-199", "200-999", "1k-4.9k", "5k+"]
-        tier_counts = (
-            pd.cut(df["total_games"], bins=tier_bins, labels=tier_labels)
-            .value_counts()
-            .sort_index()
+        return get_or_build_cached_payload(
+            settings,
+            cache_key="stats:story-report",
+            builder=build_story_report_payload,
+            source="api:story-report",
         )
-        volume_tiers = [
-            {"tier": str(tier), "players": int(count)}
-            for tier, count in tier_counts.items()
-        ]
-
-        participation = [
-            {
-                "format": label,
-                "players": int((df[games_col] > 0).sum()),
-                "share": round(float((df[games_col] > 0).mean()), 4),
-            }
-            for label, games_col in [
-                ("Daily", "total_daily"),
-                ("Rapid", "total_rapid"),
-                ("Blitz", "total_blitz"),
-                ("Bullet", "total_bullet"),
-            ]
-        ]
-
-        format_volume = df[FORMAT_GAME_COLUMNS].copy()
-        format_volume.columns = ["daily", "rapid", "blitz", "bullet"]
-        format_total = format_volume.sum(axis=1)
-        dominant_format = format_volume.idxmax(axis=1)
-        dominant_share = format_volume.max(axis=1).div(format_total.replace(0, np.nan))
-        dominant_df = pd.DataFrame(
-            {
-                "dominant_format": dominant_format,
-                "dominant_share": dominant_share,
-            }
-        )
-        dominant_df = dominant_df[(format_total > 0) & (dominant_df["dominant_share"] >= 0.8)]
-        dominance = [
-            {"format": fmt.title(), "players": int(count)}
-            for fmt, count in dominant_df["dominant_format"].value_counts().reindex(
-                ["rapid", "blitz", "bullet", "daily"], fill_value=0
-            ).items()
-        ]
-
-        format_mix = [
-            {"formats": str(idx), "players": int(count)}
-            for idx, count in df["formats_played"].value_counts().sort_index().items()
-        ]
-
-        rapid_blitz = df[
-            (df["rapid_rating"] > 0)
-            & (df["blitz_rating"] > 0)
-            & (df["total_rapid"] >= 20)
-            & (df["total_blitz"] >= 20)
-        ].copy()
-        rapid_blitz["gap"] = rapid_blitz["blitz_rating"] - rapid_blitz["rapid_rating"]
-        rapid_blitz_gap = {
-            "median_gap": int(rapid_blitz["gap"].median()) if not rapid_blitz.empty else 0,
-            "blitz_200_plus": int((rapid_blitz["gap"] >= 200).sum()) if not rapid_blitz.empty else 0,
-            "rapid_200_plus": int((rapid_blitz["gap"] <= -200).sum()) if not rapid_blitz.empty else 0,
-        }
-
-        cohort_df = df.dropna(subset=["joined_at"]).copy()
-        cohort_df["join_year"] = cohort_df["joined_at"].dt.year.astype("Int64")
-        cohorts = []
-        grouped = (
-            cohort_df.groupby("join_year")
-            .agg(
-                players=("username", "count"),
-                median_games=("total_games", "median"),
-                active_90d=("days_since_online", lambda s: int((s <= 90).sum())),
-            )
-            .reset_index()
-        )
-        for _, row in grouped.tail(8).iterrows():
-            players = int(row["players"])
-            cohorts.append(
-                {
-                    "cohort": str(int(row["join_year"])),
-                    "players": players,
-                    "median_games": int(row["median_games"] or 0),
-                    "active_90d": int(row["active_90d"] or 0),
-                    "active_rate_90d": round(_pct(float(row["active_90d"] or 0), players), 4),
-                }
-            )
-
-        puzzle_rating = df["highest_puzzle_rating"].fillna(0)
-        puzzle_segments = [
-            {
-                "segment": "Puzzle rated",
-                "players": int((puzzle_rating > 0).sum()),
-            },
-            {
-                "segment": "Puzzle rated, <10 games",
-                "players": int(((puzzle_rating > 0) & (df["total_games"] < 10)).sum()),
-            },
-            {
-                "segment": "Top 10% puzzle, <50 games",
-                "players": int(
-                    (
-                        (puzzle_rating >= puzzle_rating[puzzle_rating > 0].quantile(0.9))
-                        & (df["total_games"] < 50)
-                    ).sum()
-                )
-                if (puzzle_rating > 0).any()
-                else 0,
-            },
-            {
-                "segment": "Puzzle rated, 200+ games",
-                "players": int(((puzzle_rating > 0) & (df["total_games"] >= 200)).sum()),
-            },
-        ]
-        puzzle_correlations = []
-        for label, col in [("Rapid", "rapid_rating"), ("Blitz", "blitz_rating"), ("Bullet", "bullet_rating"), ("Daily", "daily_rating")]:
-            sub = df[(df[col] > 0) & (puzzle_rating > 0)]
-            corr = sub[col].corr(sub["highest_puzzle_rating"]) if len(sub) else 0.0
-            puzzle_correlations.append({"format": label, "correlation": round(float(corr or 0.0), 4)})
-
-        now = pd.Timestamp.now(tz="UTC")
-        recent_join_cutoff = now - pd.Timedelta(days=365)
-        veteran_cutoff = now - pd.Timedelta(days=730)
-        share_frame = format_volume.div(format_total.replace(0, np.nan), axis=0)
-        archetypes = [
-            {
-                "name": "New, low volume",
-                "count": int(((df["joined_at"] >= recent_join_cutoff) & (df["total_games"] < 50)).sum()),
-                "description": "Joined within the last year, but still light-touch participants.",
-            },
-            {
-                "name": "New, high volume",
-                "count": int(((df["joined_at"] >= recent_join_cutoff) & (df["total_games"] >= 500)).sum()),
-                "description": "Recent arrivals who converted quickly into committed play.",
-            },
-            {
-                "name": "Veteran, still active",
-                "count": int(((df["joined_at"] < veteran_cutoff) & (df["days_since_online"] <= 90)).sum()),
-                "description": "Longer-tenured players who still appear in the recent activity window.",
-            },
-            {
-                "name": "Veteran, dormant",
-                "count": int(((df["joined_at"] < veteran_cutoff) & (df["days_since_online"] > 365)).sum()),
-                "description": "Older accounts that still expand the talent base but have gone quiet.",
-            },
-            {
-                "name": "Rapid specialists",
-                "count": int(((df["total_games"] >= 200) & (share_frame["rapid"] >= 0.7)).sum()),
-                "description": "Committed players whose game volume is overwhelmingly rapid.",
-            },
-            {
-                "name": "All-rounders",
-                "count": int(((df["formats_played"] >= 3) & (df["total_games"] >= 200)).sum()),
-                "description": "Substantial players with meaningful activity across at least three formats.",
-            },
-        ]
-
-        outcome_style = []
-        for fmt in ["daily", "rapid", "blitz", "bullet"]:
-            total_col = f"total_{fmt}"
-            wins = f"{fmt}_wins"
-            draws = f"{fmt}_draws"
-            subset = df[df[total_col] >= 20]
-            if subset.empty:
-                outcome_style.append({"format": fmt.title(), "median_win_rate": 0.0, "median_draw_rate": 0.0})
-                continue
-            win_rate = subset[wins].div(subset[total_col]).fillna(0)
-            draw_rate = subset[draws].div(subset[total_col]).fillna(0)
-            outcome_style.append(
-                {
-                    "format": fmt.title(),
-                    "median_win_rate": round(float(win_rate.median()), 4),
-                    "median_draw_rate": round(float(draw_rate.median()), 4),
-                }
-            )
-
-        snapshot = {
-            "tracked_players": total_players,
-            "total_games": int(total_games),
-            "median_games": int(nonzero_games.median()),
-            "mean_games": round(float(nonzero_games.mean()), 1),
-            "p90_games": int(nonzero_games.quantile(0.9)),
-            "p99_games": int(nonzero_games.quantile(0.99)),
-            "active_7d": int((df["days_since_online"] <= 7).sum()),
-            "active_30d": int((df["days_since_online"] <= 30).sum()),
-            "active_90d": int((df["days_since_online"] <= 90).sum()),
-            "dormant_365d": int((df["days_since_online"] > 365).sum()),
-            "active_share_90d": round(float((df["days_since_online"] <= 90).mean()), 4),
-        }
-
-        return {
-            "snapshot": snapshot,
-            "recency_buckets": recency_buckets,
-            "concentration": {
-                "top_shares": top_shares,
-                "curve": curve,
-                "volume_tiers": volume_tiers,
-            },
-            "format_identity": {
-                "participation": participation,
-                "dominance": dominance,
-                "format_mix": format_mix,
-                "rapid_blitz_gap": rapid_blitz_gap,
-            },
-            "cohorts": cohorts,
-            "puzzle_culture": {
-                "segments": puzzle_segments,
-                "correlations": puzzle_correlations,
-            },
-            "archetypes": archetypes,
-            "outcome_style": outcome_style,
-        }
 
     @app.get("/players/{username}/benchmark")
     def player_benchmark(username: str) -> Dict[str, object]:
         normalized = username.strip().lower()
         with get_conn(settings) as conn:
-            target = query_one(
-                conn,
-                """
-                SELECT s.rapid_rating, s.blitz_rating, s.bullet_rating, s.daily_rating,
-                       s.highest_puzzle_rating, s.total_games
-                FROM users u
-                JOIN user_stats_latest s ON s.username = u.username
-                WHERE u.username = ? AND u.status='active'
-                """,
-                (normalized,),
-            )
-            if not target:
-                raise HTTPException(status_code=404, detail="Player not found")
-            population = query_all(
-                conn,
-                """
-                SELECT s.rapid_rating, s.blitz_rating, s.bullet_rating, s.daily_rating,
-                       s.highest_puzzle_rating, s.total_games
-                FROM users u
-                JOIN user_stats_latest s ON s.username = u.username
-                WHERE u.status='active'
-                """
-            )
-        pop_df = pd.DataFrame([dict(r) for r in population])
-        tgt = dict(target)
-        out = {}
-        for key in ["rapid_rating", "blitz_rating", "bullet_rating", "daily_rating", "highest_puzzle_rating", "total_games"]:
-            vals = pd.to_numeric(pop_df[key], errors="coerce").dropna()
-            tv = float(tgt.get(key) or 0)
-            if len(vals) == 0:
-                out[key] = {"value": tv, "percentile": None}
-                continue
-            percentile = float((vals <= tv).mean() * 100.0)
-            out[key] = {"value": tv, "percentile": round(percentile, 2)}
-        return {"username": normalized, "metrics": out}
+            payload = build_player_benchmark_payload(conn, normalized)
+        if not payload:
+            raise HTTPException(status_code=404, detail="Player not found")
+        return payload
 
     return app

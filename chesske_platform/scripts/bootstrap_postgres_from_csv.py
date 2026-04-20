@@ -1,11 +1,13 @@
 import argparse
 import os
 from datetime import datetime, timezone
-from typing import Iterable, Optional
+from typing import Optional
 
 import psycopg
 
-from chesske_platform.scripts.bootstrap_from_master_csv import _normalize_columns, _to_iso
+from chesske_platform.chesske.analytics import refresh_cached_analytics
+from chesske_platform.chesske.config import Settings
+from chesske_platform.scripts.bootstrap_from_master_csv import _iter_clean_chunks, _to_iso
 
 import pandas as pd
 
@@ -99,59 +101,8 @@ def _to_int(value: object) -> int:
         return 0
 
 
-def _load_csv(path: str, limit: Optional[int]) -> pd.DataFrame:
-    df = pd.read_csv(path, low_memory=False)
-    df = _normalize_columns(df)
-    required_cols = [
-        "username",
-        "join_date",
-        "last_online",
-        "total_games",
-        "total_daily",
-        "total_rapid",
-        "total_bullet",
-        "total_blitz",
-        "daily_rating",
-        "rapid_rating",
-        "bullet_rating",
-        "blitz_rating",
-        "highest_puzzle_rating",
-        "highest_puzzle_date",
-        "daily_wins",
-        "daily_losses",
-        "daily_draws",
-        "rapid_wins",
-        "rapid_losses",
-        "rapid_draws",
-        "bullet_wins",
-        "bullet_losses",
-        "bullet_draws",
-        "blitz_wins",
-        "blitz_losses",
-        "blitz_draws",
-    ]
-    for col in required_cols:
-        if col not in df.columns:
-            df[col] = None
-
-    df["username"] = df["username"].astype(str).str.strip().str.lower()
-    df = df[df["username"].ne("")]
-    df = df[~df["username"].str.contains(r"<<<<<<<|=======|>>>>>>>", regex=True, na=False)]
-    df["_last_online_sort"] = pd.to_datetime(df["last_online"], errors="coerce", utc=True)
-    df = df.sort_values(["username", "_last_online_sort"], ascending=[True, False])
-    df = df.drop_duplicates(subset=["username"], keep="first")
-    if limit is not None and limit > 0:
-        df = df.head(limit)
-    return df
-
-
-def _chunked_rows(df: pd.DataFrame, chunk_size: int) -> Iterable[pd.DataFrame]:
-    for i in range(0, len(df), chunk_size):
-        yield df.iloc[i : i + chunk_size]
-
-
 def bootstrap_postgres(database_url: str, csv_path: str, limit: Optional[int], reset: bool) -> int:
-    df = _load_csv(csv_path, limit)
+    loaded = 0
     with psycopg.connect(database_url, autocommit=False) as conn:
         with conn.cursor() as cur:
             cur.execute(SCHEMA_SQL)
@@ -159,7 +110,7 @@ def bootstrap_postgres(database_url: str, csv_path: str, limit: Optional[int], r
                 cur.execute("TRUNCATE run_errors, pipeline_runs, country_active_snapshots, user_stats_latest, users")
 
             now = _utc_now_iso()
-            for idx, chunk in enumerate(_chunked_rows(df, 2000), start=1):
+            for idx, chunk in enumerate(_iter_clean_chunks(csv_path, limit, chunk_size=2000), start=1):
                 users_payload = []
                 stats_payload = []
                 for row in chunk.itertuples(index=False):
@@ -262,8 +213,9 @@ def bootstrap_postgres(database_url: str, csv_path: str, limit: Optional[int], r
                     stats_payload,
                 )
                 conn.commit()
+                loaded += len(chunk)
                 if idx % 5 == 0:
-                    print(f"Processed {min(idx * 2000, len(df))}/{len(df)} rows")
+                    print(f"Processed {loaded} rows")
 
             snapshot_date = datetime.now(timezone.utc).date().isoformat()
             inserted_at = _utc_now_iso()
@@ -290,12 +242,13 @@ def bootstrap_postgres(database_url: str, csv_path: str, limit: Optional[int], r
                     _utc_now_iso(),
                     _utc_now_iso(),
                     active_users,
-                    len(df),
+                    loaded,
                     f"bootstrap_postgres_from_csv:{csv_path}",
                 ),
             )
             conn.commit()
-    return len(df)
+    refresh_cached_analytics(Settings(database_url=database_url), source=f"bootstrap-postgres:{os.path.basename(csv_path)}")
+    return loaded
 
 
 def main() -> None:

@@ -83,10 +83,23 @@ CREATE TABLE IF NOT EXISTS country_active_snapshots (
     PRIMARY KEY (snapshot_date, username)
 );
 
+CREATE TABLE IF NOT EXISTS analytics_cache (
+    cache_key TEXT PRIMARY KEY,
+    payload_json TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    source TEXT
+);
+
 CREATE INDEX IF NOT EXISTS idx_users_status ON users(status);
 CREATE INDEX IF NOT EXISTS idx_users_next_refresh ON users(next_refresh_at);
 CREATE INDEX IF NOT EXISTS idx_users_last_online ON users(last_online);
 CREATE INDEX IF NOT EXISTS idx_active_snapshot_date ON country_active_snapshots(snapshot_date);
+CREATE INDEX IF NOT EXISTS idx_stats_total_games ON user_stats_latest(total_games);
+CREATE INDEX IF NOT EXISTS idx_stats_rapid_board ON user_stats_latest(rapid_rating DESC, total_rapid DESC);
+CREATE INDEX IF NOT EXISTS idx_stats_blitz_board ON user_stats_latest(blitz_rating DESC, total_blitz DESC);
+CREATE INDEX IF NOT EXISTS idx_stats_bullet_board ON user_stats_latest(bullet_rating DESC, total_bullet DESC);
+CREATE INDEX IF NOT EXISTS idx_stats_daily_board ON user_stats_latest(daily_rating DESC, total_daily DESC);
+CREATE INDEX IF NOT EXISTS idx_stats_puzzle_board ON user_stats_latest(highest_puzzle_rating DESC, total_games DESC);
 """
 
 
@@ -159,10 +172,23 @@ CREATE TABLE IF NOT EXISTS country_active_snapshots (
     PRIMARY KEY (snapshot_date, username)
 );
 
+CREATE TABLE IF NOT EXISTS analytics_cache (
+    cache_key TEXT PRIMARY KEY,
+    payload_json TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    source TEXT
+);
+
 CREATE INDEX IF NOT EXISTS idx_users_status ON users(status);
 CREATE INDEX IF NOT EXISTS idx_users_next_refresh ON users(next_refresh_at);
 CREATE INDEX IF NOT EXISTS idx_users_last_online ON users(last_online);
 CREATE INDEX IF NOT EXISTS idx_active_snapshot_date ON country_active_snapshots(snapshot_date);
+CREATE INDEX IF NOT EXISTS idx_stats_total_games ON user_stats_latest(total_games);
+CREATE INDEX IF NOT EXISTS idx_stats_rapid_board ON user_stats_latest(rapid_rating DESC, total_rapid DESC);
+CREATE INDEX IF NOT EXISTS idx_stats_blitz_board ON user_stats_latest(blitz_rating DESC, total_blitz DESC);
+CREATE INDEX IF NOT EXISTS idx_stats_bullet_board ON user_stats_latest(bullet_rating DESC, total_bullet DESC);
+CREATE INDEX IF NOT EXISTS idx_stats_daily_board ON user_stats_latest(daily_rating DESC, total_daily DESC);
+CREATE INDEX IF NOT EXISTS idx_stats_puzzle_board ON user_stats_latest(highest_puzzle_rating DESC, total_games DESC);
 """
 
 

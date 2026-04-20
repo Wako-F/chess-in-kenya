@@ -3,6 +3,7 @@ import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Tuple
 
+from .analytics import refresh_cached_analytics
 from .client import ChessComClient
 from .config import Settings
 from .db import get_conn, init_db
@@ -144,7 +145,7 @@ def run_ingestion_pipeline(settings: Settings) -> Dict[str, int]:
 
             refresh_candidates = get_refresh_candidates(
                 conn,
-                exclude_usernames=active_usernames,
+                snapshot_date=snapshot_date,
                 limit=settings.refresh_limit,
             )
             if refresh_candidates:
@@ -183,6 +184,7 @@ def run_ingestion_pipeline(settings: Settings) -> Dict[str, int]:
                 refresh_count=refresh_count,
                 error_count=error_count,
             )
+            refresh_cached_analytics(settings, source=f"pipeline-run:{run_id}")
             return {
                 "run_id": run_id,
                 "active_count": active_count,
