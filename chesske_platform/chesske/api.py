@@ -75,9 +75,12 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
     def start_bootstrap_if_empty() -> None:
         if not _env_enabled("CHESSKE_AUTO_BOOTSTRAP", default=True):
             return
+        min_users_raw = os.getenv("CHESSKE_BOOTSTRAP_MIN_USERS", "1").strip()
+        min_users = int(min_users_raw) if min_users_raw.isdigit() else 1
         with get_conn(settings) as conn:
             row = query_one(conn, "SELECT COUNT(*) AS n FROM users")
-        if row and int(row["n"] or 0) > 0:
+        current_users = int(row["n"] or 0) if row else 0
+        if current_users > min_users:
             return
         csv_path = _resolve_bootstrap_csv(settings)
         if not csv_path:
@@ -91,7 +94,10 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
             try:
                 from chesske_platform.scripts.bootstrap_from_master_csv import bootstrap_from_csv
 
-                print(f"[chesske] Auto-bootstrap started from {csv_path}")
+                print(
+                    f"[chesske] Auto-bootstrap started from {csv_path} "
+                    f"(users={current_users}, min_users={min_users})"
+                )
                 loaded = bootstrap_from_csv(settings, csv_path=str(csv_path), reset_db=False, limit=limit)
                 print(f"[chesske] Auto-bootstrap complete: loaded {loaded} users")
             except Exception as exc:

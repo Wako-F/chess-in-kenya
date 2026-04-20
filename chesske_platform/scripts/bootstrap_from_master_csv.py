@@ -10,6 +10,73 @@ from chesske_platform.chesske.db import get_conn, init_db
 from chesske_platform.chesske.repository import upsert_user_and_stats
 
 
+COLUMN_ALIASES = {
+    "username": "username",
+    "join_date": "join_date",
+    "join date": "join_date",
+    "last_online": "last_online",
+    "last online": "last_online",
+    "total_games": "total_games",
+    "total games played": "total_games",
+    "total_daily": "total_daily",
+    "total daily games": "total_daily",
+    "total_rapid": "total_rapid",
+    "total rapid games": "total_rapid",
+    "total_bullet": "total_bullet",
+    "total bullet games": "total_bullet",
+    "total_blitz": "total_blitz",
+    "total blitz games": "total_blitz",
+    "daily_rating": "daily_rating",
+    "daily rating": "daily_rating",
+    "rapid_rating": "rapid_rating",
+    "rapid rating": "rapid_rating",
+    "bullet_rating": "bullet_rating",
+    "bullet rating": "bullet_rating",
+    "blitz_rating": "blitz_rating",
+    "blitz rating": "blitz_rating",
+    "highest_puzzle_rating": "highest_puzzle_rating",
+    "puzzle_rating": "highest_puzzle_rating",
+    "puzzle rating": "highest_puzzle_rating",
+    "highest_puzzle_date": "highest_puzzle_date",
+    "date": "highest_puzzle_date",
+    "daily_wins": "daily_wins",
+    "daily wins": "daily_wins",
+    "daily_losses": "daily_losses",
+    "daily losses": "daily_losses",
+    "daily_draws": "daily_draws",
+    "daily draws": "daily_draws",
+    "rapid_wins": "rapid_wins",
+    "rapid wins": "rapid_wins",
+    "rapid_losses": "rapid_losses",
+    "rapid losses": "rapid_losses",
+    "rapid_draws": "rapid_draws",
+    "rapid draws": "rapid_draws",
+    "bullet_wins": "bullet_wins",
+    "bullet wins": "bullet_wins",
+    "bullet_losses": "bullet_losses",
+    "bullet losses": "bullet_losses",
+    "bullet_draws": "bullet_draws",
+    "bullet draws": "bullet_draws",
+    "blitz_wins": "blitz_wins",
+    "blitz wins": "blitz_wins",
+    "blitz_losses": "blitz_losses",
+    "blitz losses": "blitz_losses",
+    "blitz_draws": "blitz_draws",
+    "blitz draws": "blitz_draws",
+}
+
+
+def _normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
+    rename_map = {}
+    for col in df.columns:
+        key = str(col).strip().lower().replace("-", "_")
+        key = " ".join(key.split())
+        canonical = COLUMN_ALIASES.get(key) or COLUMN_ALIASES.get(key.replace("_", " "))
+        if canonical:
+            rename_map[col] = canonical
+    return df.rename(columns=rename_map)
+
+
 def _to_iso(value):
     if pd.isna(value):
         return None
@@ -34,6 +101,7 @@ def bootstrap_from_csv(
     init_db(settings)
 
     df = pd.read_csv(csv_path, low_memory=False)
+    df = _normalize_columns(df)
     for col in [
         "username",
         "join_date",
