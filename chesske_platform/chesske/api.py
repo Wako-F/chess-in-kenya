@@ -3,6 +3,7 @@ import threading
 from pathlib import Path
 from typing import Dict, List, Literal, Optional
 
+import pandas as pd
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
