@@ -1,55 +1,55 @@
 Country Code,ISO-3,Country Name,Player Count
 DZ,DZA,Algeria,10000
-AO,AGO,Angola,4787
-BJ,BEN,Benin,1155
+AO,AGO,Angola,4129
+BJ,BEN,Benin,1255
 BW,BWA,Botswana,3452
-BF,BFA,Burkina Faso,815
-BI,BDI,Burundi,353
-CM,CMR,Cameroon,5142
-CV,CPV,Cabo Verde,774
-CF,CAF,Central African Republic,277
-TD,TCD,Chad,842
-KM,COM,Comoros,277
-CG,COG,Congo,685
-CD,COD,Congo (DRC),3167
-CI,CIV,Côte d'Ivoire,3720
-DJ,DJI,Djibouti,834
+BF,BFA,Burkina Faso,889
+BI,BDI,Burundi,302
+CM,CMR,Cameroon,4431
+CV,CPV,Cabo Verde,681
+CF,CAF,Central African Republic,243
+TD,TCD,Chad,715
+KM,COM,Comoros,290
+CG,COG,Congo,776
+CD,COD,Congo (DRC),3386
+CI,CIV,Côte d'Ivoire,3210
+DJ,DJI,Djibouti,723
 EG,EGY,Egypt,10000
-GQ,GNQ,Equatorial Guinea,245
-ER,ERI,Eritrea,500
+GQ,GNQ,Equatorial Guinea,211
+ER,ERI,Eritrea,545
 SZ,SWZ,Eswatini,693
 ET,ETH,Ethiopia,10000
 GA,GAB,Gabon,982
-GM,GMB,Gambia,334
-GH,GHA,Ghana,6513
-GN,GIN,Guinea,356
-GW,GNB,Guinea-Bissau,98
+GM,GMB,Gambia,277
+GH,GHA,Ghana,5630
+GN,GIN,Guinea,310
+GW,GNB,Guinea-Bissau,110
 KE,KEN,Kenya,10000
-LS,LSO,Lesotho,967
-LR,LBR,Liberia,449
+LS,LSO,Lesotho,809
+LR,LBR,Liberia,486
 LY,LBY,Libya,10000
-MG,MDG,Madagascar,8621
-MW,MWI,Malawi,2861
+MG,MDG,Madagascar,7593
+MW,MWI,Malawi,3034
 ML,MLI,Mali,700
-MR,MRT,Mauritania,1567
-MU,MUS,Mauritius,3338
+MR,MRT,Mauritania,1786
+MU,MUS,Mauritius,2992
 MA,MAR,Morocco,10000
-MZ,MOZ,Mozambique,2791
+MZ,MOZ,Mozambique,2951
 NA,NAM,Namibia,2411
-NE,NER,Niger,1195
+NE,NER,Niger,1288
 NG,NGA,Nigeria,10000
-RW,RWA,Rwanda,1098
-ST,STP,Sao Tome and Principe,307
-SN,SEN,Senegal,2829
-SC,SYC,Seychelles,1183
-SL,SLE,Sierra Leone,462
-SO,SOM,Somalia,5150
+RW,RWA,Rwanda,919
+ST,STP,Sao Tome and Principe,272
+SN,SEN,Senegal,2378
+SC,SYC,Seychelles,1255
+SL,SLE,Sierra Leone,379
+SO,SOM,Somalia,4449
 ZA,ZAF,South Africa,10000
-SS,SSD,South Sudan,698
-SD,SDN,Sudan,8966
-TZ,TZA,Tanzania,1797
-TG,TGO,Togo,1120
+SS,SSD,South Sudan,590
+SD,SDN,Sudan,9482
+TZ,TZA,Tanzania,1546
+TG,TGO,Togo,1262
 TN,TUN,Tunisia,10000
 UG,UGA,Uganda,5345
-ZM,ZMB,Zambia,8804
-ZW,ZWE,Zimbabwe,10000
+ZM,ZMB,Zambia,7652
+ZW,ZWE,Zimbabwe,8745
