@@ -1,55 +1,55 @@
 Country Code,ISO-3,Country Name,Player Count
 DZ,DZA,Algeria,10000
-AO,AGO,Angola,4315
-BJ,BEN,Benin,1247
-BW,BWA,Botswana,2943
+AO,AGO,Angola,4877
+BJ,BEN,Benin,1145
+BW,BWA,Botswana,3338
 BF,BFA,Burkina Faso,834
-BI,BDI,Burundi,317
-CM,CMR,Cameroon,4428
-CV,CPV,Cabo Verde,648
+BI,BDI,Burundi,352
+CM,CMR,Cameroon,5018
+CV,CPV,Cabo Verde,756
 CF,CAF,Central African Republic,255
-TD,TCD,Chad,839
-KM,COM,Comoros,246
-CG,COG,Congo,689
-CD,COD,Congo (DRC),3028
-CI,CIV,Côte d'Ivoire,3292
-DJ,DJI,Djibouti,803
+TD,TCD,Chad,936
+KM,COM,Comoros,283
+CG,COG,Congo,774
+CD,COD,Congo (DRC),3434
+CI,CIV,Côte d'Ivoire,3832
+DJ,DJI,Djibouti,879
 EG,EGY,Egypt,10000
-GQ,GNQ,Equatorial Guinea,207
-ER,ERI,Eritrea,513
-SZ,SWZ,Eswatini,639
+GQ,GNQ,Equatorial Guinea,233
+ER,ERI,Eritrea,481
+SZ,SWZ,Eswatini,731
 ET,ETH,Ethiopia,10000
-GA,GAB,Gabon,836
-GM,GMB,Gambia,296
-GH,GHA,Ghana,6733
-GN,GIN,Guinea,378
-GW,GNB,Guinea-Bissau,108
+GA,GAB,Gabon,933
+GM,GMB,Gambia,343
+GH,GHA,Ghana,6171
+GN,GIN,Guinea,339
+GW,GNB,Guinea-Bissau,99
 KE,KEN,Kenya,10000
-LS,LSO,Lesotho,730
-LR,LBR,Liberia,398
+LS,LSO,Lesotho,886
+LR,LBR,Liberia,452
 LY,LBY,Libya,10000
-MG,MDG,Madagascar,7301
-MW,MWI,Malawi,2726
-ML,MLI,Mali,616
-MR,MRT,Mauritania,1669
-MU,MUS,Mauritius,3056
+MG,MDG,Madagascar,8359
+MW,MWI,Malawi,3006
+ML,MLI,Mali,688
+MR,MRT,Mauritania,1921
+MU,MUS,Mauritius,3518
 MA,MAR,Morocco,10000
-MZ,MOZ,Mozambique,2951
+MZ,MOZ,Mozambique,2802
 NA,NAM,Namibia,2256
-NE,NER,Niger,1189
+NE,NER,Niger,1360
 NG,NGA,Nigeria,10000
-RW,RWA,Rwanda,917
-ST,STP,Sao Tome and Principe,298
-SN,SEN,Senegal,2451
-SC,SYC,Seychelles,1205
-SL,SLE,Sierra Leone,404
-SO,SOM,Somalia,4630
+RW,RWA,Rwanda,1076
+ST,STP,Sao Tome and Principe,335
+SN,SEN,Senegal,2793
+SC,SYC,Seychelles,1287
+SL,SLE,Sierra Leone,463
+SO,SOM,Somalia,5489
 ZA,ZAF,South Africa,10000
-SS,SSD,South Sudan,578
-SD,SDN,Sudan,9803
-TZ,TZA,Tanzania,1694
-TG,TGO,Togo,1080
+SS,SSD,South Sudan,670
+SD,SDN,Sudan,9170
+TZ,TZA,Tanzania,1822
+TG,TGO,Togo,1253
 TN,TUN,Tunisia,10000
-UG,UGA,Uganda,5609
-ZM,ZMB,Zambia,7416
-ZW,ZWE,Zimbabwe,9258
+UG,UGA,Uganda,6361
+ZM,ZMB,Zambia,8822
+ZW,ZWE,Zimbabwe,10000
