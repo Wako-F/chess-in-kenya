@@ -1,9 +1,7 @@
 name: Daily Data Processing Pipeline
 
 on:
-  schedule:
-    - cron: '0 0,12 * * *'   # Runs at 00:00 UTC daily and 12:00 UTC daily
-  workflow_dispatch:        # Enables manual triggering
+  workflow_dispatch:        # Manual fallback only; production scheduling now runs on the Contabo VPS.
 
 jobs:
   process-data:
