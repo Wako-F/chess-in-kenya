@@ -24,6 +24,12 @@ function pct(v: number | null | undefined) {
   return `${(v * 100).toFixed(1)}%`;
 }
 
+function displayApiBase() {
+  const configured = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "";
+  if (!configured || configured.includes("chess-in-kenya.onrender.com")) return "/api";
+  return configured;
+}
+
 export default async function Home() {
   const [overview, quality, rapid, blitz, joins, discovery] = await Promise.all([
     getOverview(),
@@ -107,7 +113,7 @@ export default async function Home() {
       <PlayerSearch />
 
       <footer className="foot mono">
-        <span>API base: {process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "http://127.0.0.1:8000"}</span>
+        <span>API base: {displayApiBase()}</span>
         <span>
           If data is empty, start backend with
           {" "}

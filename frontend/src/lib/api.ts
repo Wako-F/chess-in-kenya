@@ -17,10 +17,19 @@ import type {
   TrendResponse,
 } from "@/lib/types";
 
-const API_BASE = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "http://127.0.0.1:8000";
+function getApiBase() {
+  const configured = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "";
+  const usableConfigured = configured.includes("chess-in-kenya.onrender.com") ? "" : configured;
+
+  if (typeof window !== "undefined") {
+    return usableConfigured || "/api";
+  }
+
+  return process.env.CHESSKE_INTERNAL_API_BASE || usableConfigured || "http://38.242.228.254/api";
+}
 
 async function fetchJson<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(`${getApiBase()}${path}`, {
     next: { revalidate: 300 },
   });
   if (!res.ok) {
@@ -154,7 +163,7 @@ export async function getStoryReport(): Promise<StoryReport | null> {
 export async function findPlayer(username: string): Promise<Player | null> {
   if (!username) return null;
   try {
-    const res = await fetch(`${API_BASE}/players/${encodeURIComponent(username.toLowerCase())}`, {
+    const res = await fetch(`${getApiBase()}/players/${encodeURIComponent(username.toLowerCase())}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;

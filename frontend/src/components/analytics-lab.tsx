@@ -45,7 +45,10 @@ type AnalyticsPackResponse = {
   story?: StoryReport | null;
 };
 
-const API_BASE = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "http://127.0.0.1:8000";
+const configuredApiBase = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "";
+const API_BASE = configuredApiBase.includes("chess-in-kenya.onrender.com")
+  ? "/api"
+  : configuredApiBase || "/api";
 
 export function AnalyticsLab() {
   const [data, setData] = useState<AnalyticsPayload>({
