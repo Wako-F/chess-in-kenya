@@ -23,15 +23,17 @@ export default async function LeaderboardsPage() {
   });
 
   return (
-    <main className="atlas-page">
+    <main id="main-content" className="atlas-page">
       <div className="atmosphere" aria-hidden />
       <section className="hero compact">
-        <p className="eyebrow">Competitive Index</p>
-        <h1>Leaderboards</h1>
-        <p className="lead">
-          Multi-format ranking surfaces for quickly understanding where strength, activity,
-          and tactical performance concentrate in the Kenyan ecosystem.
-        </p>
+        <div className="hero-copy">
+          <p className="eyebrow">Competitive index</p>
+          <h1>Leaderboards</h1>
+          <p className="lead">
+            Multi-format ranking surfaces for quickly understanding where strength, activity,
+            and tactical performance concentrate in the Kenyan ecosystem.
+          </p>
+        </div>
       </section>
 
       <LeaderboardMarvel summary={summary} />

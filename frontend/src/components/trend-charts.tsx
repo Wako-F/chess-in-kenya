@@ -33,18 +33,18 @@ export function TrendCharts({ joins, discovery }: TrendChartsProps) {
             <AreaChart data={joins}>
               <defs>
                 <linearGradient id="joinFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#ff8f5a" stopOpacity={0.45} />
-                  <stop offset="100%" stopColor="#ff8f5a" stopOpacity={0.03} />
+                  <stop offset="0%" stopColor="#b64a32" stopOpacity={0.36} />
+                  <stop offset="100%" stopColor="#b64a32" stopOpacity={0.04} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+              <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
               <XAxis dataKey="month" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} />
               <Tooltip />
               <Area
                 type="monotone"
                 dataKey="players"
-                stroke="#d6521f"
+                stroke="#b64a32"
                 strokeWidth={2}
                 fill="url(#joinFill)"
               />
@@ -61,14 +61,14 @@ export function TrendCharts({ joins, discovery }: TrendChartsProps) {
         <div className="chart-wrap">
           <ResponsiveContainer width="100%" height={280}>
             <LineChart data={discovery}>
-              <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+              <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
               <XAxis dataKey="day" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} />
               <Tooltip />
               <Line
                 type="monotone"
                 dataKey="active_players"
-                stroke="#127a66"
+                stroke="#174f3f"
                 strokeWidth={2.5}
                 dot={false}
               />

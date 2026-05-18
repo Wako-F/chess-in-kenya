@@ -16,7 +16,7 @@ import {
 
 import type { StoryReport } from "@/lib/types";
 
-const palette = ["#127a66", "#d6521f", "#f5ab3c", "#39424f", "#8d4fdb", "#c36f00"];
+const palette = ["#174f3f", "#b64a32", "#c18b2f", "#28342f", "#6f9da4", "#688858"];
 
 function fmtInt(value: number | undefined) {
   return (value ?? 0).toLocaleString();
@@ -126,7 +126,7 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={report.recency_buckets}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="label" tick={{ fontSize: 11 }} />
                 <YAxis tick={{ fontSize: 11 }} />
                 <Tooltip />
@@ -161,11 +161,11 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={260}>
               <ComposedChart data={report.concentration.curve}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="player_percentile" tickFormatter={(v) => `${v}%`} />
                 <YAxis tickFormatter={(v) => `${Math.round(v * 100)}%`} />
                 <Tooltip formatter={(value) => tooltipPct(value, 1)} />
-                <Line type="monotone" dataKey="game_share" stroke="#d6521f" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="game_share" stroke="#b64a32" strokeWidth={3} dot={false} />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
@@ -185,11 +185,11 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={report.concentration.volume_tiers}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="tier" tick={{ fontSize: 11 }} />
                 <YAxis tick={{ fontSize: 11 }} />
                 <Tooltip />
-                <Bar dataKey="players" fill="#127a66" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="players" fill="#174f3f" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -206,11 +206,11 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={report.format_identity.dominance}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="format" tick={{ fontSize: 11 }} />
                 <YAxis tick={{ fontSize: 11 }} />
                 <Tooltip />
-                <Bar dataKey="players" fill="#f5ab3c" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="players" fill="#c18b2f" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -244,15 +244,15 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={290}>
               <ComposedChart data={report.cohorts}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="cohort" tick={{ fontSize: 11 }} />
                 <YAxis yAxisId="left" tick={{ fontSize: 11 }} />
                 <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${Math.round(v * 100)}%`} />
                 <Tooltip />
                 <Legend />
-                <Bar yAxisId="left" dataKey="players" fill="#e6b15d" radius={[6, 6, 0, 0]} />
-                <Line yAxisId="left" type="monotone" dataKey="median_games" stroke="#127a66" strokeWidth={2.5} />
-                <Line yAxisId="right" type="monotone" dataKey="active_rate_90d" stroke="#d6521f" strokeWidth={2.5} />
+                <Bar yAxisId="left" dataKey="players" fill="#c18b2f" radius={[6, 6, 0, 0]} />
+                <Line yAxisId="left" type="monotone" dataKey="median_games" stroke="#174f3f" strokeWidth={2.5} />
+                <Line yAxisId="right" type="monotone" dataKey="active_rate_90d" stroke="#b64a32" strokeWidth={2.5} />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
@@ -270,11 +270,11 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={report.puzzle_culture.segments}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="segment" tick={{ fontSize: 10 }} interval={0} angle={-15} textAnchor="end" height={72} />
                 <YAxis tick={{ fontSize: 11 }} />
                 <Tooltip />
-                <Bar dataKey="players" fill="#8d4fdb" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="players" fill="#6f9da4" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -310,13 +310,13 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
         <div className="chart-wrap">
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={report.outcome_style}>
-              <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+              <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
               <XAxis dataKey="format" tick={{ fontSize: 11 }} />
               <YAxis tickFormatter={(v) => `${Math.round(v * 100)}%`} />
               <Tooltip formatter={(value) => tooltipPct(value)} />
               <Legend />
-              <Bar dataKey="median_win_rate" fill="#127a66" radius={[6, 6, 0, 0]} />
-              <Bar dataKey="median_draw_rate" fill="#d6521f" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="median_win_rate" fill="#174f3f" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="median_draw_rate" fill="#b64a32" radius={[6, 6, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>

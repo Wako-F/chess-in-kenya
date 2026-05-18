@@ -11,14 +11,16 @@ export default async function ObservabilityPage() {
 
   const latest = quality?.latest_run;
   return (
-    <main className="atlas-page">
+    <main id="main-content" className="atlas-page">
       <div className="atmosphere" aria-hidden />
       <section className="hero compact">
-        <p className="eyebrow">Operational Clarity</p>
-        <h1>Pipeline Observability</h1>
-        <p className="lead">
-          Live operational view of ingestion reliability, run throughput, and quality drift.
-        </p>
+        <div className="hero-copy">
+          <p className="eyebrow">Operational clarity</p>
+          <h1>Pipeline Observability</h1>
+          <p className="lead">
+            Live operational view of ingestion reliability, run throughput, and quality drift.
+          </p>
+        </div>
       </section>
 
       <section className="metrics-grid">

@@ -1,9 +1,9 @@
 export default function Loading() {
   return (
-    <main className="atlas-page">
+    <main id="main-content" className="atlas-page">
       <section className="hero compact">
         <p className="eyebrow">Loading</p>
-        <h1>Preparing Intelligence Surfaces...</h1>
+        <h1>Preparing intelligence surfaces</h1>
         <p className="lead">Pulling the latest curated API views.</p>
       </section>
       <section className="metrics-grid">

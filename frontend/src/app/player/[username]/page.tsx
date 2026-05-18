@@ -17,19 +17,21 @@ export default async function PlayerPage({
   if (!player) notFound();
 
   return (
-    <main className="atlas-page">
+    <main id="main-content" className="atlas-page">
       <div className="atmosphere" aria-hidden />
       <section className="hero compact">
-        <p className="eyebrow">Player Route</p>
-        <h1>{player.username}</h1>
-        <p className="lead">
-          Individual performance snapshot from the latest production ledger sync.
-        </p>
-        <div className="run-meta">
-          <span className="pill">{player.status.toUpperCase()}</span>
-          <span className="mono">
-            Joined {player.joined_at ? new Date(player.joined_at).toLocaleDateString() : "unknown"}
-          </span>
+        <div className="hero-copy">
+          <p className="eyebrow">Player route</p>
+          <h1>{player.username}</h1>
+          <p className="lead">
+            Individual performance snapshot from the latest production ledger sync.
+          </p>
+          <div className="run-meta">
+            <span className="pill">{player.status.toUpperCase()}</span>
+            <span className="mono">
+              Joined {player.joined_at ? new Date(player.joined_at).toLocaleDateString() : "unknown"}
+            </span>
+          </div>
         </div>
       </section>
 

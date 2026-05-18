@@ -40,30 +40,9 @@ export default async function Home() {
     getDiscoveryTrend(),
   ]);
 
-  const latestRun = overview?.latest_run ?? quality?.latest_run ?? null;
-
   return (
-    <main className="atlas-page">
+    <main id="main-content" className="atlas-page">
       <div className="atmosphere" aria-hidden />
-      <section className="hero">
-        <p className="eyebrow">Kenya Chess Intelligence Platform</p>
-        <h1>ChessKE Atlas</h1>
-        <p className="lead">
-          A production-grade, API-driven intelligence interface that turns Kenya&apos;s online chess data
-          into a readable story about growth, activity, specialization, and competitive depth.
-        </p>
-        <div className="run-meta">
-          <span className="pill">{latestRun ? `RUN #${latestRun.id}` : "NO RUN DATA"}</span>
-          <span className="mono">
-            {latestRun?.ended_at
-              ? `Last sync ${new Date(latestRun.ended_at).toLocaleString()}`
-              : overview || quality
-                ? "No pipeline run recorded yet"
-                : "Backend API offline or not yet synced"}
-          </span>
-        </div>
-      </section>
-
       <section className="metrics-grid">
         <MetricCard label="Tracked Players" value={fmt(overview?.total_players)} accent="sun" />
         <MetricCard label="Total Games" value={fmt(overview?.total_games)} accent="jade" />
@@ -73,14 +52,13 @@ export default async function Home() {
 
       <section className="panel intro stagger">
         <div className="panel-head">
-          <h2>System Snapshot</h2>
-          <span className="pill">LIVE API</span>
+          <h2>System snapshot</h2>
+          <span className="pill">Live API</span>
         </div>
         <p>
-          This frontend is fully decoupled from raw CSV files. It consumes the production API backed
-          by your rolling discovery ledger and refresh queue. The objective is no longer just to show
-          charts. It is to explain what kind of ecosystem Kenya has, who carries it, and where growth
-          is still shallow.
+          The interface reads from the production API behind the rolling discovery ledger and refresh
+          queue. The goal is simple: show where Kenya&apos;s chess activity is expanding, who carries
+          the visible play, and where growth still needs depth.
         </p>
       </section>
 

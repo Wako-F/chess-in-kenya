@@ -8,14 +8,16 @@ export default function PlayerEntryPage() {
   const router = useRouter();
 
   return (
-    <main className="atlas-page">
+    <main id="main-content" className="atlas-page">
       <div className="atmosphere" aria-hidden />
       <section className="hero compact">
-        <p className="eyebrow">Player Route</p>
-        <h1>Open Player Profile</h1>
-        <p className="lead">
-          Jump directly to a player intelligence page by username.
-        </p>
+        <div className="hero-copy">
+          <p className="eyebrow">Player route</p>
+          <h1>Open Player Profile</h1>
+          <p className="lead">
+            Jump directly to a player intelligence page by username.
+          </p>
+        </div>
       </section>
       <section className="panel stagger">
         <div className="search-row">

@@ -22,7 +22,7 @@ import {
 
 import type { ActivityBucketPoint, FormatSummaryPoint, RatingScatterPoint } from "@/lib/types";
 
-const pieColors = ["#127a66", "#d6521f", "#f5ab3c", "#39424f"];
+const pieColors = ["#174f3f", "#b64a32", "#c18b2f", "#28342f"];
 
 function titleCase(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -70,10 +70,10 @@ export function DataMarvel({
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={300}>
               <RadarChart data={radar}>
-                <PolarGrid stroke="#e6d5bf" />
+                <PolarGrid stroke="#d8d4c8" />
                 <PolarAngleAxis dataKey="format" />
                 <Tooltip />
-                <Radar dataKey="rating" stroke="#d6521f" fill="#d6521f" fillOpacity={0.35} />
+                <Radar dataKey="rating" stroke="#b64a32" fill="#b64a32" fillOpacity={0.3} />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -122,11 +122,11 @@ export function DataMarvel({
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={activityData}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="bucket" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="players" fill="#127a66" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="players" fill="#174f3f" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -148,12 +148,12 @@ export function DataMarvel({
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={280}>
               <ScatterChart>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis type="number" dataKey="rapid" name="Rapid" />
                 <YAxis type="number" dataKey="blitz" name="Blitz" />
                 <ZAxis type="number" dataKey="games" range={[14, 140]} />
                 <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-                <Scatter data={scatterData} fill="#d6521f" fillOpacity={0.42} />
+                <Scatter data={scatterData} fill="#b64a32" fillOpacity={0.42} />
               </ScatterChart>
             </ResponsiveContainer>
           </div>

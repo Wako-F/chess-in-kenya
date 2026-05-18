@@ -25,13 +25,13 @@ const labels: Record<string, string> = {
 function colorForCorrelation(v: number) {
   // -1 (red) to +1 (green)
   const clamped = Math.max(-1, Math.min(1, v));
-  if (clamped > 0.75) return "#0d5d4e";
-  if (clamped > 0.45) return "#127a66";
-  if (clamped > 0.15) return "#5c9b8e";
-  if (clamped > -0.15) return "#cbbba6";
-  if (clamped > -0.45) return "#d88f73";
-  if (clamped > -0.75) return "#cc6f4a";
-  return "#b94a1d";
+  if (clamped > 0.75) return "#174f3f";
+  if (clamped > 0.45) return "#688858";
+  if (clamped > 0.15) return "#6f9da4";
+  if (clamped > -0.15) return "#b9b09f";
+  if (clamped > -0.45) return "#c6815d";
+  if (clamped > -0.75) return "#b64a32";
+  return "#8f3325";
 }
 
 export function DeepAnalytics({
@@ -120,16 +120,16 @@ export function DeepAnalytics({
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={300}>
               <ComposedChart data={pctData}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="percentile" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="rapid" stroke="#127a66" dot={false} />
-                <Line type="monotone" dataKey="blitz" stroke="#d6521f" dot={false} />
-                <Line type="monotone" dataKey="bullet" stroke="#f5ab3c" dot={false} />
-                <Line type="monotone" dataKey="daily" stroke="#39424f" dot={false} />
-                <Line type="monotone" dataKey="puzzle" stroke="#8d4fdb" dot={false} />
+                <Line type="monotone" dataKey="rapid" stroke="#174f3f" dot={false} />
+                <Line type="monotone" dataKey="blitz" stroke="#b64a32" dot={false} />
+                <Line type="monotone" dataKey="bullet" stroke="#c18b2f" dot={false} />
+                <Line type="monotone" dataKey="daily" stroke="#28342f" dot={false} />
+                <Line type="monotone" dataKey="puzzle" stroke="#6f9da4" dot={false} />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
@@ -151,15 +151,15 @@ export function DeepAnalytics({
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={300}>
               <ComposedChart data={cohorts}>
-                <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+                <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="cohort" />
                 <YAxis yAxisId="left" />
                 <YAxis yAxisId="right" orientation="right" domain={[0, 1]} />
                 <Tooltip />
                 <Legend />
-                <Bar yAxisId="left" dataKey="total_players" fill="#e6b15d" />
-                <Bar yAxisId="left" dataKey="retained_90d" fill="#127a66" />
-                <Line yAxisId="right" type="monotone" dataKey="retention_rate" stroke="#d6521f" dot={false} />
+                <Bar yAxisId="left" dataKey="total_players" fill="#c18b2f" />
+                <Bar yAxisId="left" dataKey="retained_90d" fill="#174f3f" />
+                <Line yAxisId="right" type="monotone" dataKey="retention_rate" stroke="#b64a32" dot={false} />
               </ComposedChart>
             </ResponsiveContainer>
           </div>

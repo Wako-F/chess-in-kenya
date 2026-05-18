@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChessKE Atlas — Kenya Chess Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700;900&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --paper2: #eee8d5;
+    --rule: rgba(0,0,0,0.12);
+    --ke-green: #006600;
+    --ke-red: #bb0000;
+    --ke-gold: #c8a84b;
+    --text-primary: #1a1a1a;
+    --text-muted: #6b6560;
+    --text-faint: #9c9590;
+    --accent-green: #1a6b2f;
+    --accent-red: #9b1c1c;
+    --chess-dark: #b58863;
+    --chess-light: #f0d9b5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Chess board texture overlay — very subtle */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-conic-gradient(rgba(0,0,0,0.018) 0% 25%, transparent 0% 50%);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    border-bottom: 3px double var(--ink);
+    padding: 1.5rem 0 1rem;
+  }
+  .masthead-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .masthead-left { flex: 1; }
+  .edition-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .edition-line::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--ke-green);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .site-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .site-title span { color: var(--ke-green); }
+  .site-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    letter-spacing: 0.08em;
+  }
+  .masthead-right {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 2;
+  }
+  .sync-badge {
+    display: inline-block;
+    background: var(--ke-green);
+    color: white;
+    font-size: 9px;
+    padding: 2px 8px;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+  }
+
+  /* ─── NAV STRIP ─── */
+  .nav-strip {
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-strip::-webkit-scrollbar { display: none; }
+  .nav-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.2rem;
+    border-right: 1px solid var(--rule);
+    cursor: pointer;
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .nav-item:first-child { border-left: 1px solid var(--rule); }
+  .nav-item.active { background: var(--ink); color: var(--paper); }
+  .nav-item:hover:not(.active) { background: var(--paper2); color: var(--text-primary); }
+
+  /* ─── HEADLINE STATS ROW ─── */
+  .stat-band {
+    border-bottom: 1px solid var(--ink);
+    padding: 1.5rem 0;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat-cell {
+    padding: 0 2rem 0 0;
+    border-right: 1px solid var(--rule);
+    margin-right: 2rem;
+  }
+  .stat-cell:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.3rem;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    counter-reset: none;
+  }
+  .stat-unit {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  /* ─── SECTION HEADER ─── */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* ─── MAIN GRID ─── */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  .col-left { border-right: 1px solid var(--ink); padding: 1.5rem 2rem 1.5rem 0; }
+  .col-right { padding: 1.5rem 0 1.5rem 2rem; }
+
+  /* ─── LEADERBOARD TABLES ─── */
+  .lb-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lb-tab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.15s;
+  }
+  .lb-tab.active { color: var(--ink); border-bottom-color: var(--ke-green); font-weight: 500; }
+  .lb-tab:hover:not(.active) { color: var(--text-primary); }
+
+  .lb-panel { display: none; }
+  .lb-panel.active { display: block; }
+
+  .lb-table { width: 100%; border-collapse: collapse; }
+  .lb-table tr { border-bottom: 1px solid var(--rule); }
+  .lb-table tr:last-child { border-bottom: none; }
+  .lb-table td {
+    padding: 0.55rem 0.5rem;
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  .lb-rank {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    width: 28px;
+    text-align: right;
+    padding-right: 0.75rem;
+  }
+  .lb-rank.gold { color: #b8860b; font-weight: 500; }
+  .lb-rank.silver { color: #808080; font-weight: 500; }
+  .lb-rank.bronze { color: #8b4513; font-weight: 500; }
+  .lb-player {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    color: var(--text-primary);
+    flex: 1;
+  }
+  .lb-player strong { font-weight: 500; }
+  .lb-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: right;
+    color: var(--ink);
+  }
+  .lb-games {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    text-align: right;
+    width: 60px;
+  }
+  .lb-table tr:nth-child(1) .lb-player { font-weight: 500; }
+  .lb-table tr:nth-child(1) .lb-score { color: var(--ke-green); }
+
+  /* ─── ACTIVITY BAR CHART ─── */
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+  .bar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    width: 56px;
+    text-align: right;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 20px;
+    background: var(--paper2);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.8s ease;
+  }
+  .bar-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    width: 48px;
+    flex-shrink: 0;
+  }
+
+  /* ─── RADAR / SPIDER CHART SECTION ─── */
+  .charts-section { padding: 1.5rem 0; border-bottom: 1px solid var(--ink); }
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .chart-block {}
+  .chart-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  /* ─── FORMAT RATING COLUMNS ─── */
+  .format-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+  .format-card {
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .format-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .format-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .format-top {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .format-bar {
+    height: 3px;
+    background: var(--rule);
+    border-radius: 2px;
+    margin-top: 0.6rem;
+    overflow: hidden;
+  }
+  .format-bar-fill { height: 100%; border-radius: 2px; }
+
+  /* ─── PLAYER SEARCH ─── */
+  .search-section { padding: 1.5rem 0; border-bottom: 1px solid var(--ink); }
+  .search-box-wrap { position: relative; max-width: 480px; }
+  .search-box {
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 0.7rem 1rem 0.7rem 2.8rem;
+    border: 1.5px solid var(--ink);
+    background: var(--paper);
+    color: var(--text-primary);
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-box:focus { border-color: var(--ke-green); }
+  .search-icon {
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+  .search-results {
+    margin-top: 1rem;
+    display: none;
+  }
+  .search-results.visible { display: block; }
+  .player-card {
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1rem 1.25rem;
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .player-avatar {
+    width: 48px;
+    height: 48px;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .player-name-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+  .player-handle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .player-formats { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .rating-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+  .pill-rapid { background: rgba(0,102,0,0.12); color: var(--accent-green); }
+  .pill-blitz { background: rgba(155,28,28,0.1); color: var(--accent-red); }
+  .pill-bullet { background: rgba(200,168,75,0.15); color: #7a5c10; }
+  .pill-puzzle { background: rgba(30,80,180,0.1); color: #1e50b4; }
+
+  /* ─── INSIGHT STRIP ─── */
+  .insight-strip {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .insight-card {
+    background: var(--paper2);
+    padding: 1.25rem;
+    position: relative;
+  }
+  .insight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+  }
+  .insight-card.green::before { background: var(--ke-green); }
+  .insight-card.red::before { background: var(--ke-red); }
+  .insight-card.gold::before { background: var(--ke-gold); }
+  .insight-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .insight-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    padding-left: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .insight-body {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding-left: 0.5rem;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-left {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+  }
+  .footer-flag {
+    font-size: 1.2rem;
+  }
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footer-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.15s;
+  }
+  .footer-link:hover { color: var(--ke-green); }
+
+  /* ─── SCATTER PLOT ─── */
+  #scatterCanvas { border-radius: 3px; }
+
+  /* volume bar chart */
+  .vol-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .vol-handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-muted);
+    width: 100px;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .vol-track {
+    flex: 1;
+    height: 14px;
+    background: var(--paper2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .vol-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #555 0%, #1a1a1a 100%);
+    border-radius: 2px;
+  }
+  .vol-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-faint);
+    width: 50px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 900px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .stat-cell { border-right: none; margin-right: 0; padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem; }
+    .stat-cell:nth-child(odd) { border-right: 1px solid var(--rule); padding-right: 1rem; margin-right: 0; }
+    .main-grid { grid-template-columns: 1fr; }
+    .col-left { border-right: none; padding-right: 0; border-bottom: 1px solid var(--ink); padding-bottom: 1.5rem; }
+    .col-right { padding-left: 0; }
+    .charts-grid { grid-template-columns: 1fr; }
+    .format-cols { grid-template-columns: repeat(2, 1fr); }
+    .insights-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .wrapper { padding: 0 1rem; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .format-cols { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-left">
+        <div class="edition-line">
+          Live &nbsp;·&nbsp; RUN #1 &nbsp;·&nbsp; Chess.com API
+        </div>
+        <h1 class="site-title">Chess<span>KE</span> Atlas</h1>
+        <p class="site-subtitle">Kenya Online Chess Intelligence Platform &nbsp;·&nbsp; chesskenya.vercel.app</p>
+      </div>
+      <div class="masthead-right">
+        <div><span class="sync-badge">LIVE</span></div>
+        <div style="margin-top:0.4rem">Last sync: 18 May 2026</div>
+        <div>Run #1 &nbsp;·&nbsp; 100% coverage</div>
+        <div>0 data gaps</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav-strip">
+    <div class="nav-item active" onclick="setNav(this,'overview')">Overview</div>
+    <div class="nav-item" onclick="setNav(this,'leaderboards')">Leaderboards</div>
+    <div class="nav-item" onclick="setNav(this,'volume')">Volume</div>
+    <div class="nav-item" onclick="setNav(this,'players')">Player Lookup</div>
+    <div class="nav-item" onclick="setNav(this,'insights')">Insights</div>
+  </nav>
+
+  <!-- STAT BAND -->
+  <section class="stat-band">
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-label">Tracked Players</div>
+        <div class="stat-number" id="cnt-players">0</div>
+        <div class="stat-unit">Kenyan Chess.com accounts</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Total Games</div>
+        <div class="stat-number" id="cnt-games">0</div>
+        <div class="stat-unit">All formats combined</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Ecosystem Top Rating</div>
+        <div class="stat-number">2,818</div>
+        <div class="stat-unit">pavlovdanila · Bullet</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">Active Coverage</div>
+        <div class="stat-number">100%</div>
+        <div class="stat-unit">0 data gaps this run</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL: OVERVIEW -->
+  <div id="panel-overview">
+    <div class="main-grid">
+      <!-- LEFT: LEADERBOARDS -->
+      <div class="col-left">
+        <div class="section-head">
+          <span class="section-name">Competitive Rankings</span>
+          <span class="section-tag">Top 12 per format</span>
+        </div>
+        <div class="lb-tabs">
+          <div class="lb-tab active" onclick="switchTab(this,'rapid')">Rapid</div>
+          <div class="lb-tab" onclick="switchTab(this,'blitz')">Blitz</div>
+          <div class="lb-tab" onclick="switchTab(this,'bullet')">Bullet</div>
+          <div class="lb-tab" onclick="switchTab(this,'daily')">Daily</div>
+          <div class="lb-tab" onclick="switchTab(this,'puzzle')">Puzzle</div>
+        </div>
+
+        <!-- RAPID -->
+        <div class="lb-panel active" id="tab-rapid">
+          <table class="lb-table">
+            <tr><td class="lb-rank gold">1</td><td class="lb-player"><strong>mcmaestro999</strong></td><td class="lb-score">2,424</td><td class="lb-games">568 g</td></tr>
+            <tr><td class="lb-rank silver">2</td><td class="lb-player">carson-254</td><td class="lb-score">2,378</td><td class="lb-games">1,231 g</td></tr>
+            <tr><td class="lb-rank bronze">3</td><td class="lb-player">atem_n</td><td class="lb-score">2,372</td><td class="lb-games">169 g</td></tr>
+            <tr><td class="lb-rank">4</td><td class="lb-player">jumakay</td><td class="lb-score">2,364</td><td class="lb-games">347 g</td></tr>
+            <tr><td class="lb-rank">5</td><td class="lb-player">duncanus</td><td class="lb-score">2,363</td><td class="lb-games">520 g</td></tr>
+            <tr><td class="lb-rank">6</td><td class="lb-player">manundungu</td><td class="lb-score">2,362</td><td class="lb-games">662 g</td></tr>
+            <tr><td class="lb-rank">7</td><td class="lb-player">aads9</td><td class="lb-score">2,346</td><td class="lb-games">702 g</td></tr>
+            <tr><td class="lb-rank">8</td><td class="lb-player">ellycheru</td><td class="lb-score">2,344</td><td class="lb-games">2,576 g</td></tr>
+            <tr><td class="lb-rank">9</td><td class="lb-player">g_nelson</td><td class="lb-score">2,323</td><td class="lb-games">130 g</td></tr>
+            <tr><td class="lb-rank">10</td><td class="lb-player">mvtuge</td><td class="lb-score">2,319</td><td class="lb-games">3,588 g</td></tr>
+            <tr><td class="lb-rank">11</td><td class="lb-player">slicergamer</td><td class="lb-score">2,318</td><td class="lb-games">245 g</td></tr>
+            <tr><td class="lb-rank">12</td><td class="lb-player">free_faller</td><td class="lb-score">2,313</td><td class="lb-games">379 g</td></tr>
+          </table>
+        </div>
+
+        <!-- BLITZ -->
+        <div class="lb-panel" id="tab-blitz">
+          <table class="lb-table">
+            <tr><td class="lb-rank gold">1</td><td class="lb-player"><strong>flamps8</strong></td><td class="lb-score">2,790</td><td class="lb-games">3,222 g</td></tr>
+            <tr><td class="lb-rank silver">2</td><td class="lb-player">pavlovdanila</td><td class="lb-score">2,746</td><td class="lb-games">1,184 g</td></tr>
+            <tr><td class="lb-rank bronze">3</td><td class="lb-player">chefisin</td><td class="lb-score">2,616</td><td class="lb-games">1,185 g</td></tr>
+            <tr><td class="lb-rank">4</td><td class="lb-player">smoothug</td><td class="lb-score">2,556</td><td class="lb-games">21 g</td></tr>
+            <tr><td class="lb-rank">5</td><td class="lb-player">dr_uptown</td><td class="lb-score">2,550</td><td class="lb-games">149 g</td></tr>
+            <tr><td class="lb-rank">6</td><td class="lb-player">coordinate2chess</td><td class="lb-score">2,536</td><td class="lb-games">1,602 g</td></tr>
+            <tr><td class="lb-rank">7</td><td class="lb-player">ngong_atem</td><td class="lb-score">2,532</td><td class="lb-games">1,095 g</td></tr>
+            <tr><td class="lb-rank">8</td><td class="lb-player">hose-capablanca</td><td class="lb-score">2,517</td><td class="lb-games">148 g</td></tr>
+            <tr><td class="lb-rank">9</td><td class="lb-player">bennjoe055</td><td class="lb-score">2,477</td><td class="lb-games">572 g</td></tr>
+            <tr><td class="lb-rank">10</td><td class="lb-player">ezekielkarani254</td><td class="lb-score">2,452</td><td class="lb-games">2,181 g</td></tr>
+            <tr><td class="lb-rank">11</td><td class="lb-player">giftedcreation</td><td class="lb-score">2,446</td><td class="lb-games">8,480 g</td></tr>
+            <tr><td class="lb-rank">12</td><td class="lb-player">atem_n</td><td class="lb-score">2,441</td><td class="lb-games">1,287 g</td></tr>
+          </table>
+        </div>
+
+        <!-- BULLET -->
+        <div class="lb-panel" id="tab-bullet">
+          <table class="lb-table">
+            <tr><td class="lb-rank gold">1</td><td class="lb-player"><strong>pavlovdanila</strong></td><td class="lb-score">2,818</td><td class="lb-games">2,739 g</td></tr>
+            <tr><td class="lb-rank silver">2</td><td class="lb-player">hose-capablanca</td><td class="lb-score">2,655</td><td class="lb-games">480 g</td></tr>
+            <tr><td class="lb-rank bronze">3</td><td class="lb-player">chefisin</td><td class="lb-score">2,626</td><td class="lb-games">1,389 g</td></tr>
+            <tr><td class="lb-rank">4</td><td class="lb-player">flamps8</td><td class="lb-score">2,576</td><td class="lb-games">231 g</td></tr>
+            <tr><td class="lb-rank">5</td><td class="lb-player">joshdeceives</td><td class="lb-score">2,555</td><td class="lb-games">159 g</td></tr>
+            <tr><td class="lb-rank">6</td><td class="lb-player">medakovic</td><td class="lb-score">2,539</td><td class="lb-games">6,628 g</td></tr>
+            <tr><td class="lb-rank">7</td><td class="lb-player">coordinate2chess</td><td class="lb-score">2,523</td><td class="lb-games">3,151 g</td></tr>
+            <tr><td class="lb-rank">8</td><td class="lb-player">dylan-ndirangu</td><td class="lb-score">2,486</td><td class="lb-games">437 g</td></tr>
+            <tr><td class="lb-rank">9</td><td class="lb-player">brianmuthaa</td><td class="lb-score">2,462</td><td class="lb-games">575 g</td></tr>
+            <tr><td class="lb-rank">10</td><td class="lb-player">demigod_szn</td><td class="lb-score">2,450</td><td class="lb-games">124 g</td></tr>
+            <tr><td class="lb-rank">11</td><td class="lb-player">atem_n</td><td class="lb-score">2,435</td><td class="lb-games">1,657 g</td></tr>
+            <tr><td class="lb-rank">12</td><td class="lb-player">giftedcreation</td><td class="lb-score">2,421</td><td class="lb-games">3,643 g</td></tr>
+          </table>
+        </div>
+
+        <!-- DAILY -->
+        <div class="lb-panel" id="tab-daily">
+          <table class="lb-table">
+            <tr><td class="lb-rank gold">1</td><td class="lb-player"><strong>nairobicc</strong></td><td class="lb-score">2,190</td><td class="lb-games">191 g</td></tr>
+            <tr><td class="lb-rank silver">2</td><td class="lb-player">willysimons</td><td class="lb-score">2,074</td><td class="lb-games">147 g</td></tr>
+            <tr><td class="lb-rank bronze">3</td><td class="lb-player">ksw_player</td><td class="lb-score">2,054</td><td class="lb-games">34 g</td></tr>
+            <tr><td class="lb-rank">4</td><td class="lb-player">flamps8</td><td class="lb-score">2,052</td><td class="lb-games">37 g</td></tr>
+            <tr><td class="lb-rank">5</td><td class="lb-player">greenruth</td><td class="lb-score">2,023</td><td class="lb-games">40 g</td></tr>
+            <tr><td class="lb-rank">6</td><td class="lb-player">ayebs</td><td class="lb-score">2,001</td><td class="lb-games">23 g</td></tr>
+            <tr><td class="lb-rank">7</td><td class="lb-player">lionelcorreia</td><td class="lb-score">1,920</td><td class="lb-games">52 g</td></tr>
+            <tr><td class="lb-rank">8</td><td class="lb-player">atem_n</td><td class="lb-score">1,889</td><td class="lb-games">23 g</td></tr>
+            <tr><td class="lb-rank">9</td><td class="lb-player">ngong_atem</td><td class="lb-score">1,886</td><td class="lb-games">22 g</td></tr>
+            <tr><td class="lb-rank">10</td><td class="lb-player">collins_mburu</td><td class="lb-score">1,876</td><td class="lb-games">47 g</td></tr>
+            <tr><td class="lb-rank">11</td><td class="lb-player">collinstein</td><td class="lb-score">1,876</td><td class="lb-games">47 g</td></tr>
+            <tr><td class="lb-rank">12</td><td class="lb-player">thekiilu</td><td class="lb-score">1,871</td><td class="lb-games">163 g</td></tr>
+          </table>
+        </div>
+
+        <!-- PUZZLE -->
+        <div class="lb-panel" id="tab-puzzle">
+          <table class="lb-table">
+            <tr><td class="lb-rank gold">1</td><td class="lb-player"><strong>firegreendragon</strong></td><td class="lb-score">9,193</td><td class="lb-games">5,159 g</td></tr>
+            <tr><td class="lb-rank silver">2</td><td class="lb-player">free_faller</td><td class="lb-score">6,166</td><td class="lb-games">3,631 g</td></tr>
+            <tr><td class="lb-rank bronze">3</td><td class="lb-player">mintyixz</td><td class="lb-score">5,604</td><td class="lb-games">209 g</td></tr>
+            <tr><td class="lb-rank">4</td><td class="lb-player">nairobicc</td><td class="lb-score">4,864</td><td class="lb-games">535 g</td></tr>
+            <tr><td class="lb-rank">5</td><td class="lb-player">wenani</td><td class="lb-score">4,764</td><td class="lb-games">7,959 g</td></tr>
+            <tr><td class="lb-rank">6</td><td class="lb-player">jaba_limpueza</td><td class="lb-score">4,533</td><td class="lb-games">6,103 g</td></tr>
+            <tr><td class="lb-rank">7</td><td class="lb-player">atomicknightd1</td><td class="lb-score">4,498</td><td class="lb-games">10,222 g</td></tr>
+            <tr><td class="lb-rank">8</td><td class="lb-player">solzom</td><td class="lb-score">4,434</td><td class="lb-games">2,991 g</td></tr>
+            <tr><td class="lb-rank">9</td><td class="lb-player">tastyracy</td><td class="lb-score">4,415</td><td class="lb-games">1,418 g</td></tr>
+            <tr><td class="lb-rank">10</td><td class="lb-player">phlpm</td><td class="lb-score">4,349</td><td class="lb-games">5,907 g</td></tr>
+            <tr><td class="lb-rank">11</td><td class="lb-player">saich254</td><td class="lb-score">4,321</td><td class="lb-games">5,549 g</td></tr>
+            <tr><td class="lb-rank">12</td><td class="lb-player">anyimul</td><td class="lb-score">4,258</td><td class="lb-games">1,481 g</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORMAT SNAPSHOT + TOP FORMAT RATINGS -->
+      <div class="col-right">
+        <div class="section-head">
+          <span class="section-name">Format Ceilings</span>
+          <span class="section-tag">Top rating per format</span>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <!-- Rapid -->
+          <div class="bar-row">
+            <div class="bar-label">Rapid</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 86%; background: #1a6b2f;"></div>
+            </div>
+            <div class="bar-value">2,424</div>
+          </div>
+          <!-- Blitz -->
+          <div class="bar-row">
+            <div class="bar-label">Blitz</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 99%; background: #9b1c1c;"></div>
+            </div>
+            <div class="bar-value">2,790</div>
+          </div>
+          <!-- Bullet -->
+          <div class="bar-row">
+            <div class="bar-label">Bullet</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 100%; background: #1a1a1a;"></div>
+            </div>
+            <div class="bar-value">2,818</div>
+          </div>
+          <!-- Daily -->
+          <div class="bar-row">
+            <div class="bar-label">Daily</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 78%; background: #c8a84b;"></div>
+            </div>
+            <div class="bar-value">2,190</div>
+          </div>
+          <!-- Puzzle -->
+          <div class="bar-row">
+            <div class="bar-label">Puzzle</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 100%; background: #3b3b9b;"></div>
+            </div>
+            <div class="bar-value">9,193</div>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:2rem;">
+          <span class="section-name">Volume Leaders</span>
+          <span class="section-tag">Games played</span>
+        </div>
+        <div id="volume-mini"></div>
+
+        <div class="section-head" style="margin-top:1.5rem;">
+          <span class="section-name">Rating vs. Activity</span>
+          <span class="section-tag">Scatter · Rapid commanders</span>
+        </div>
+        <div style="position: relative; width: 100%; height: 200px;">
+          <canvas id="scatterCanvas" role="img" aria-label="Scatter plot showing rapid rating vs games played for top Kenya players">Rapid rating vs. games played scatter data for top Kenyan players.</canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSIGHT STRIP -->
+    <div class="insight-strip">
+      <div class="section-head" style="margin-bottom:1rem;">
+        <span class="section-name">Ecosystem Story</span>
+        <span class="section-tag">Three reads on the data</span>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card green">
+          <div class="insight-label">Strength</div>
+          <div class="insight-headline">Bullet dominates the ceiling</div>
+          <div class="insight-body">Kenya's highest individual ratings sit in the bullet format — pavlovdanila leads at 2,818. The ecosystem produces time-pressure specialists at a higher ceiling than classical-style rapid play.</div>
+        </div>
+        <div class="insight-card red">
+          <div class="insight-label">Pattern</div>
+          <div class="insight-headline">Multi-format elites are rare</div>
+          <div class="insight-body">atem_n appears in rapid, blitz, bullet, and daily top-12s — a genuinely rare multi-format elite. Most top players are format specialists, confirming deep specialization culture.</div>
+        </div>
+        <div class="insight-card gold">
+          <div class="insight-label">Volume</div>
+          <div class="insight-headline">121K games, one player</div>
+          <div class="insight-body">gussiefink has played 121,738 games — outpacing the next closest by over 22,000. The volume titans show extreme commitment; the top 12 alone account for over a million games combined.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: PLAYER LOOKUP -->
+  <div id="panel-players" style="display:none; padding: 1.5rem 0;">
+    <div class="section-head">
+      <span class="section-name">Player Intelligence</span>
+      <span class="section-tag">Search by username</span>
+    </div>
+    <div class="search-box-wrap">
+      <span class="search-icon">♟</span>
+      <input class="search-box" type="text" id="playerSearch" placeholder="e.g. atem_n, flamps8, mcmaestro999…" oninput="searchPlayer(this.value)" />
+    </div>
+    <div class="search-results" id="searchResults"></div>
+    <div style="margin-top: 2rem;">
+      <div class="section-head">
+        <span class="section-name">Notable Multi-Format Players</span>
+        <span class="section-tag">Appears in 2+ leaderboards</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+        <div class="player-card">
+          <div class="player-avatar">AT</div>
+          <div>
+            <div class="player-name-row"><span class="player-handle">atem_n</span></div>
+            <div class="player-formats">
+              <span class="rating-pill pill-rapid">Rapid 2,372</span>
+              <span class="rating-pill pill-blitz">Blitz 2,441</span>
+              <span class="rating-pill pill-bullet">Bullet 2,435</span>
+            </div>
+          </div>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">FL</div>
+          <div>
+            <div class="player-name-row"><span class="player-handle">flamps8</span></div>
+            <div class="player-formats">
+              <span class="rating-pill pill-blitz">Blitz 2,790</span>
+              <span class="rating-pill pill-bullet">Bullet 2,576</span>
+            </div>
+          </div>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">GC</div>
+          <div>
+            <div class="player-name-row"><span class="player-handle">giftedcreation</span></div>
+            <div class="player-formats">
+              <span class="rating-pill pill-blitz">Blitz 2,446</span>
+              <span class="rating-pill pill-bullet">Bullet 2,421</span>
+            </div>
+          </div>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">C2</div>
+          <div>
+            <div class="player-name-row"><span class="player-handle">coordinate2chess</span></div>
+            <div class="player-formats">
+              <span class="rating-pill pill-blitz">Blitz 2,536</span>
+              <span class="rating-pill pill-bullet">Bullet 2,523</span>
+            </div>
+          </div>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">PV</div>
+          <div>
+            <div class="player-name-row"><span class="player-handle">pavlovdanila</span></div>
+            <div class="player-formats">
+              <span class="rating-pill pill-blitz">Blitz 2,746</span>
+              <span class="rating-pill pill-bullet">Bullet 2,818</span>
+            </div>
+          </div>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">FF</div>
+          <div>
+            <div class="player-name-row"><span class="player-handle">free_faller</span></div>
+            <div class="player-formats">
+              <span class="rating-pill pill-rapid">Rapid 2,313</span>
+              <span class="rating-pill pill-puzzle">Puzzle 6,166</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL: VOLUME -->
+  <div id="panel-volume" style="display:none; padding: 1.5rem 0;">
+    <div class="section-head">
+      <span class="section-name">Volume Titans</span>
+      <span class="section-tag">Games played · All formats</span>
+    </div>
+    <div style="position: relative; width: 100%; height: 540px; margin-bottom: 2rem;">
+      <canvas id="volumeChart" role="img" aria-label="Horizontal bar chart of top Kenyan chess players by total games played">Volume: gussiefink 121738, kingbasil 99201, davig 97065, kaidanz 84094, itskruss 82438, sneelawk 79535, fala_fulani 78951, dmurabula 78468, e-xpizzel 76393, nabangi 75748, mutanyi 75574, jijimiie 71866.</canvas>
+    </div>
+    <div class="section-head" style="margin-top:2rem;">
+      <span class="section-name">Puzzle Masters — Depth vs. Volume</span>
+      <span class="section-tag">Score vs. puzzles attempted</span>
+    </div>
+    <div style="position: relative; width: 100%; height: 300px;">
+      <canvas id="puzzleScatter" role="img" aria-label="Scatter plot of puzzle rating vs puzzles attempted for top Kenya players">Puzzle scatter: firegreendragon 9193/5159, free_faller 6166/3631, mintyixz 5604/209, atomicknightd1 4498/10222, wenani 4764/7959.</canvas>
+    </div>
+  </div>
+
+  <!-- PANEL: LEADERBOARDS (standalone) -->
+  <div id="panel-leaderboards" style="display:none; padding: 1.5rem 0;">
+    <div class="section-head">
+      <span class="section-name">Full Leaderboard View</span>
+      <span class="section-tag">All formats</span>
+    </div>
+    <div class="format-cols">
+      <div class="format-card">
+        <div class="format-name">Rapid</div>
+        <div class="format-top">2,424</div>
+        <div style="font-size:11px; color: var(--text-muted); margin-top:0.25rem;">mcmaestro999</div>
+        <div class="format-bar"><div class="format-bar-fill" style="width:86%; background: #1a6b2f;"></div></div>
+      </div>
+      <div class="format-card">
+        <div class="format-name">Blitz</div>
+        <div class="format-top">2,790</div>
+        <div style="font-size:11px; color: var(--text-muted); margin-top:0.25rem;">flamps8</div>
+        <div class="format-bar"><div class="format-bar-fill" style="width:99%; background: #9b1c1c;"></div></div>
+      </div>
+      <div class="format-card">
+        <div class="format-name">Bullet</div>
+        <div class="format-top">2,818</div>
+        <div style="font-size:11px; color: var(--text-muted); margin-top:0.25rem;">pavlovdanila</div>
+        <div class="format-bar"><div class="format-bar-fill" style="width:100%; background: #1a1a1a;"></div></div>
+      </div>
+      <div class="format-card">
+        <div class="format-name">Puzzle</div>
+        <div class="format-top">9,193</div>
+        <div style="font-size:11px; color: var(--text-muted); margin-top:0.25rem;">firegreendragon</div>
+        <div class="format-bar"><div class="format-bar-fill" style="width:100%; background: #3b3b9b;"></div></div>
+      </div>
+    </div>
+    <div class="section-head" style="margin-top:1rem;">
+      <span class="section-name">Rating Distribution by Format</span>
+      <span class="section-tag">Top-12 spread</span>
+    </div>
+    <div style="position: relative; width: 100%; height: 340px;">
+      <canvas id="distChart" role="img" aria-label="Grouped bar chart showing rating distributions across rapid, blitz, and bullet formats">Format distribution chart for rapid, blitz, and bullet ratings across top 12 players.</canvas>
+    </div>
+  </div>
+
+  <!-- PANEL: INSIGHTS -->
+  <div id="panel-insights" style="display:none; padding: 1.5rem 0;">
+    <div class="section-head">
+      <span class="section-name">Ecosystem Analysis</span>
+      <span class="section-tag">Patterns, anomalies, story</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size:1.1rem; margin-bottom:0.75rem;">The Bullet Ceiling Effect</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height:1.8; margin-bottom:1rem;">Kenya's bullet specialists consistently achieve the highest individual ratings in the ecosystem — 2,818 vs 2,424 for rapid. This isn't unusual globally, but the gap is notable: over 400 points between the bullet and rapid peaks. Time-pressure chess may be the dominant training environment.</p>
+        <h3 style="font-family: 'Playfair Display', serif; font-size:1.1rem; margin-bottom:0.75rem;">The Volume-Quality Paradox</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height:1.8;">The top volume players (gussiefink at 121,738 games) don't appear on any rating leaderboard. The elite raters play far fewer games — mvtuge at 3,588 rapid games makes the rating top-10, while pure volume players have played 40× more without breaking through. Quality of opposition matters.</p>
+      </div>
+      <div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size:1.1rem; margin-bottom:0.75rem;">Puzzle vs. Rated Play</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height:1.8; margin-bottom:1rem;">firegreendragon's puzzle rating of 9,193 is extraordinary — nearly 3× the top rapid rating. Puzzle ratings scale differently, but atomicknightd1 at 4,498 with 10,222 puzzles shows consistent high-volume tactical training. These players may be coaches or dedicated trainers rather than competitive players.</p>
+        <h3 style="font-family: 'Playfair Display', serif; font-size:1.1rem; margin-bottom:0.75rem;">36 Months of Growth</h3>
+        <p style="font-size: 13px; color: var(--text-muted); line-height:1.8;">The join-momentum window shows consistent 36-month growth in ecosystem size. With 155,564 tracked players and 82.8M total games, Kenya represents a significant and active Chess.com country cohort — comparable in scale to several European nations.</p>
+      </div>
+    </div>
+    <div style="position: relative; width: 100%; height: 300px; margin-top: 2rem;">
+      <canvas id="radarChart" role="img" aria-label="Radar chart comparing rating metrics across chess formats">Radar comparison of Kenyan chess metrics across formats.</canvas>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 2px double var(--ink);">
+    <div class="footer">
+      <div class="footer-left">
+        <span class="footer-flag">🇰🇪</span>&nbsp;
+        ChessKE Atlas &nbsp;·&nbsp; Data: Chess.com API &nbsp;·&nbsp; 155,564 players tracked &nbsp;·&nbsp; Run #1 · 18 May 2026
+      </div>
+      <div class="footer-right">
+        <a href="https://chesskenya.vercel.app/" class="footer-link">chesskenya.vercel.app</a>
+        <a href="https://chesskenya.vercel.app/methodology" class="footer-link">Methodology</a>
+        <a href="https://chesskenya.vercel.app/observability" class="footer-link">Observability</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const PANELS = ['overview','leaderboards','volume','players','insights'];
+function setNav(el, panel) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  PANELS.forEach(p => {
+    const el2 = document.getElementById('panel-' + p);
+    if (el2) el2.style.display = 'none';
+  });
+  const target = document.getElementById('panel-' + panel);
+  if (target) target.style.display = '';
+  if (panel === 'volume') buildVolumeChart();
+  if (panel === 'leaderboards') buildDistChart();
+  if (panel === 'insights') buildRadarChart();
+}
+
+function switchTab(el, id) {
+  document.querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.lb-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+// ANIMATED COUNTERS
+function animateCount(id, target, suffix) {
+  const el = document.getElementById(id);
+  let start = 0;
+  const step = target / 80;
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = Math.round(start).toLocaleString() + (suffix || '');
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
+animateCount('cnt-players', 155564);
+animateCount('cnt-games', 82853715);
+
+// SCATTER: Rapid rating vs games (right column)
+const scatterCtx = document.getElementById('scatterCanvas').getContext('2d');
+const rapidData = [
+  {x:568, y:2424, label:'mcmaestro999'},
+  {x:1231, y:2378, label:'carson-254'},
+  {x:169, y:2372, label:'atem_n'},
+  {x:347, y:2364, label:'jumakay'},
+  {x:520, y:2363, label:'duncanus'},
+  {x:662, y:2362, label:'manundungu'},
+  {x:702, y:2346, label:'aads9'},
+  {x:2576, y:2344, label:'ellycheru'},
+  {x:130, y:2323, label:'g_nelson'},
+  {x:3588, y:2319, label:'mvtuge'},
+  {x:245, y:2318, label:'slicergamer'},
+  {x:379, y:2313, label:'free_faller'},
+];
+new Chart(scatterCtx, {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Rapid commanders',
+      data: rapidData.map(d => ({x: d.x, y: d.y})),
+      backgroundColor: 'rgba(26,107,47,0.7)',
+      borderColor: 'rgba(26,107,47,1)',
+      pointRadius: 5,
+      pointHoverRadius: 7,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            const d = rapidData[ctx.dataIndex];
+            return `${d.label}: ${d.y} rating · ${d.x.toLocaleString()} games`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: 'Games played', color: '#9c9590', font: { family: 'JetBrains Mono', size: 10 } },
+        ticks: { color: '#9c9590', font: { family: 'JetBrains Mono', size: 9 } },
+        grid: { color: 'rgba(0,0,0,0.06)' }
+      },
+      y: {
+        title: { display: true, text: 'Rapid rating', color: '#9c9590', font: { family: 'JetBrains Mono', size: 10 } },
+        ticks: { color: '#9c9590', font: { family: 'JetBrains Mono', size: 9 } },
+        grid: { color: 'rgba(0,0,0,0.06)' },
+        min: 2280, max: 2450
+      }
+    }
+  }
+});
+
+// VOLUME MINI (right column)
+const volumeData = [
+  {handle: 'gussiefink', games: 121738},
+  {handle: 'kingbasil', games: 99201},
+  {handle: 'davig', games: 97065},
+  {handle: 'kaidanz', games: 84094},
+  {handle: 'itskruss', games: 82438},
+  {handle: 'sneelawk', games: 79535},
+];
+const volMini = document.getElementById('volume-mini');
+volumeData.forEach(d => {
+  const pct = Math.round((d.games / 121738) * 100);
+  volMini.innerHTML += `<div class="vol-row">
+    <div class="vol-handle">${d.handle}</div>
+    <div class="vol-track"><div class="vol-fill" style="width:${pct}%"></div></div>
+    <div class="vol-num">${(d.games/1000).toFixed(0)}K</div>
+  </div>`;
+});
+
+// VOLUME CHART (panel)
+let volumeBuilt = false;
+function buildVolumeChart() {
+  if (volumeBuilt) return;
+  volumeBuilt = true;
+  const ctx = document.getElementById('volumeChart').getContext('2d');
+  const allVol = [
+    {handle: 'gussiefink', games: 121738},
+    {handle: 'kingbasil', games: 99201},
+    {handle: 'davig', games: 97065},
+    {handle: 'kaidanz', games: 84094},
+    {handle: 'itskruss', games: 82438},
+    {handle: 'sneelawk', games: 79535},
+    {handle: 'fala_fulani', games: 78951},
+    {handle: 'dmurabula', games: 78468},
+    {handle: 'e-xpizzel', games: 76393},
+    {handle: 'nabangi', games: 75748},
+    {handle: 'mutanyi', games: 75574},
+    {handle: 'jijimiie', games: 71866},
+  ];
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: allVol.map(d => d.handle),
+      datasets: [{
+        label: 'Total games',
+        data: allVol.map(d => d.games),
+        backgroundColor: allVol.map((_, i) => i === 0 ? 'rgba(26,107,47,0.85)' : 'rgba(26,26,26,0.7)'),
+        borderRadius: 2,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `${ctx.parsed.x.toLocaleString()} games` } }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#9c9590', font: { family: 'JetBrains Mono', size: 10 }, callback: v => (v/1000).toFixed(0)+'K' },
+          grid: { color: 'rgba(0,0,0,0.06)' }
+        },
+        y: {
+          ticks: { color: '#1a1a1a', font: { family: 'JetBrains Mono', size: 11 } },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+
+  // Puzzle scatter
+  const pCtx = document.getElementById('puzzleScatter').getContext('2d');
+  const puzzleData = [
+    {x:5159, y:9193, label:'firegreendragon'},
+    {x:3631, y:6166, label:'free_faller'},
+    {x:209, y:5604, label:'mintyixz'},
+    {x:535, y:4864, label:'nairobicc'},
+    {x:7959, y:4764, label:'wenani'},
+    {x:6103, y:4533, label:'jaba_limpueza'},
+    {x:10222, y:4498, label:'atomicknightd1'},
+    {x:2991, y:4434, label:'solzom'},
+    {x:1418, y:4415, label:'tastyracy'},
+    {x:5907, y:4349, label:'phlpm'},
+  ];
+  new Chart(pCtx, {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: 'Puzzle masters',
+        data: puzzleData.map(d => ({x:d.x, y:d.y})),
+        backgroundColor: 'rgba(59,59,155,0.7)',
+        pointRadius: 6,
+        pointHoverRadius: 8,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => { const d = puzzleData[ctx.dataIndex]; return `${d.label}: ${d.y.toLocaleString()} rating · ${d.x.toLocaleString()} puzzles`; } } }
+      },
+      scales: {
+        x: { title: { display: true, text: 'Puzzles attempted', color:'#9c9590', font:{family:'JetBrains Mono',size:10} }, ticks:{color:'#9c9590',font:{family:'JetBrains Mono',size:9}}, grid:{color:'rgba(0,0,0,0.06)'} },
+        y: { title: { display: true, text: 'Puzzle rating', color:'#9c9590', font:{family:'JetBrains Mono',size:10} }, ticks:{color:'#9c9590',font:{family:'JetBrains Mono',size:9}}, grid:{color:'rgba(0,0,0,0.06)'} }
+      }
+    }
+  });
+}
+
+// DISTRIBUTION CHART (leaderboards panel)
+let distBuilt = false;
+function buildDistChart() {
+  if (distBuilt) return;
+  distBuilt = true;
+  const ctx = document.getElementById('distChart').getContext('2d');
+  const labels = ['#1','#2','#3','#4','#5','#6','#7','#8','#9','#10','#11','#12'];
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Rapid',
+          data: [2424,2378,2372,2364,2363,2362,2346,2344,2323,2319,2318,2313],
+          borderColor: '#1a6b2f',
+          backgroundColor: 'rgba(26,107,47,0.08)',
+          tension: 0.3,
+          fill: true,
+          pointStyle: 'circle',
+          pointRadius: 4,
+          borderDash: [],
+        },
+        {
+          label: 'Blitz',
+          data: [2790,2746,2616,2556,2550,2536,2532,2517,2477,2452,2446,2441],
+          borderColor: '#9b1c1c',
+          backgroundColor: 'rgba(155,28,28,0.06)',
+          tension: 0.3,
+          fill: true,
+          pointStyle: 'triangle',
+          pointRadius: 4,
+          borderDash: [4,2],
+        },
+        {
+          label: 'Bullet',
+          data: [2818,2655,2626,2576,2555,2539,2523,2486,2462,2450,2435,2421],
+          borderColor: '#1a1a1a',
+          backgroundColor: 'rgba(26,26,26,0.04)',
+          tension: 0.3,
+          fill: true,
+          pointStyle: 'rect',
+          pointRadius: 4,
+          borderDash: [2,2],
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        x: { ticks:{color:'#9c9590',font:{family:'JetBrains Mono',size:10}}, grid:{color:'rgba(0,0,0,0.06)'} },
+        y: { ticks:{color:'#9c9590',font:{family:'JetBrains Mono',size:10}}, grid:{color:'rgba(0,0,0,0.06)'}, min:2280 }
+      }
+    }
+  });
+  const legend = document.createElement('div');
+  legend.style.cssText = 'display:flex;gap:16px;margin-top:8px;font-size:11px;color:#6b6560;font-family:JetBrains Mono,monospace;';
+  legend.innerHTML = `
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:3px;background:#1a6b2f;border-radius:2px;display:inline-block"></span>Rapid</span>
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:3px;background:#9b1c1c;border-radius:2px;display:inline-block"></span>Blitz</span>
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:3px;background:#1a1a1a;border-radius:2px;display:inline-block"></span>Bullet</span>`;
+  document.getElementById('distChart').parentElement.insertAdjacentElement('afterend', legend);
+}
+
+// RADAR CHART (insights panel)
+let radarBuilt = false;
+function buildRadarChart() {
+  if (radarBuilt) return;
+  radarBuilt = true;
+  const ctx = document.getElementById('radarChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['Rapid Depth', 'Blitz Peak', 'Bullet Peak', 'Daily', 'Puzzle', 'Volume'],
+      datasets: [
+        {
+          label: 'Kenya Ecosystem (normalised)',
+          data: [86, 99, 100, 78, 100, 85],
+          borderColor: '#1a6b2f',
+          backgroundColor: 'rgba(26,107,47,0.12)',
+          pointBackgroundColor: '#1a6b2f',
+          pointRadius: 4,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        r: {
+          min: 0, max: 100,
+          ticks: { display: false },
+          grid: { color: 'rgba(0,0,0,0.08)' },
+          pointLabels: { color: '#1a1a1a', font: { family: 'JetBrains Mono', size: 11 } }
+        }
+      }
+    }
+  });
+}
+
+// PLAYER SEARCH
+const allPlayers = [
+  { handle: 'mcmaestro999', ratings: [{f:'Rapid',r:2424}] },
+  { handle: 'carson-254', ratings: [{f:'Rapid',r:2378}] },
+  { handle: 'atem_n', ratings: [{f:'Rapid',r:2372},{f:'Blitz',r:2441},{f:'Bullet',r:2435},{f:'Daily',r:1889}] },
+  { handle: 'flamps8', ratings: [{f:'Blitz',r:2790},{f:'Bullet',r:2576},{f:'Daily',r:2052}] },
+  { handle: 'pavlovdanila', ratings: [{f:'Blitz',r:2746},{f:'Bullet',r:2818}] },
+  { handle: 'chefisin', ratings: [{f:'Blitz',r:2616},{f:'Bullet',r:2626}] },
+  { handle: 'coordinate2chess', ratings: [{f:'Blitz',r:2536},{f:'Bullet',r:2523}] },
+  { handle: 'giftedcreation', ratings: [{f:'Blitz',r:2446},{f:'Bullet',r:2421}] },
+  { handle: 'nairobicc', ratings: [{f:'Daily',r:2190},{f:'Puzzle',r:4864}] },
+  { handle: 'firegreendragon', ratings: [{f:'Puzzle',r:9193}] },
+  { handle: 'free_faller', ratings: [{f:'Rapid',r:2313},{f:'Puzzle',r:6166}] },
+  { handle: 'mvtuge', ratings: [{f:'Rapid',r:2319}] },
+  { handle: 'ellycheru', ratings: [{f:'Rapid',r:2344}] },
+  { handle: 'gussiefink', ratings: [{f:'Games',r:121738}] },
+  { handle: 'ngong_atem', ratings: [{f:'Blitz',r:2532},{f:'Daily',r:1886}] },
+];
+const pillClass = {Rapid:'pill-rapid',Blitz:'pill-blitz',Bullet:'pill-bullet',Daily:'pill-bullet',Puzzle:'pill-puzzle',Games:'pill-puzzle'};
+function searchPlayer(q) {
+  const res = document.getElementById('searchResults');
+  if (!q || q.length < 2) { res.classList.remove('visible'); return; }
+  const matches = allPlayers.filter(p => p.handle.toLowerCase().includes(q.toLowerCase()));
+  if (!matches.length) { res.classList.add('visible'); res.innerHTML = '<p style="font-size:13px;color:var(--text-muted);font-family:JetBrains Mono,monospace;">No player found in top lists.</p>'; return; }
+  res.classList.add('visible');
+  res.innerHTML = matches.map(p => {
+    const initials = p.handle.slice(0,2).toUpperCase();
+    const pills = p.ratings.map(r => `<span class="rating-pill ${pillClass[r.f]||'pill-rapid'}">${r.f} ${r.r.toLocaleString()}</span>`).join('');
+    return `<div class="player-card" style="margin-bottom:0.75rem;"><div class="player-avatar">${initials}</div><div><div class="player-name-row"><span class="player-handle">${p.handle}</span></div><div class="player-formats">${pills}</div></div></div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>

@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "Atlas" },
+  { href: "/", label: "Overview" },
   { href: "/leaderboards", label: "Leaderboards" },
-  { href: "/player", label: "Player" },
+  { href: "/player", label: "Player Lookup" },
   { href: "/methodology", label: "Methodology" },
   { href: "/observability", label: "Observability" },
 ];
@@ -14,12 +14,24 @@ const links = [
 export function SiteNav() {
   const pathname = usePathname();
   return (
-    <header className="site-nav">
-      <Link href="/" className="brand">
-        <span className="brand-mark">♞</span>
-        <span>ChessKE Atlas</span>
-      </Link>
-      <nav>
+    <header className="site-shell">
+      <div className="masthead">
+        <div className="masthead-inner">
+          <Link href="/" className="brand" aria-label="ChessKE Atlas home">
+            <span className="edition-line">Live · Chess.com API</span>
+            <span className="site-title">
+              Chess<span>KE</span> Atlas
+            </span>
+            <span className="site-subtitle">Kenya online chess intelligence platform</span>
+          </Link>
+          <div className="masthead-right">
+            <span className="sync-badge">Live</span>
+            <span>Rolling discovery ledger</span>
+            <span>Production API</span>
+          </div>
+        </div>
+      </div>
+      <nav className="site-nav" aria-label="Primary navigation">
         {links.map((link) => {
           const active = pathname === link.href;
           return (

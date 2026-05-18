@@ -30,11 +30,11 @@ export function RatingDistribution({ points }: { points: DistributionPoint[] }) 
       <div className="chart-wrap">
         <ResponsiveContainer width="100%" height={280}>
           <BarChart data={formatted}>
-            <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+            <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
             <XAxis dataKey="range" tick={{ fontSize: 10 }} interval={2} />
             <YAxis tick={{ fontSize: 11 }} />
             <Tooltip />
-            <Bar dataKey="players" fill="#127a66" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="players" fill="#174f3f" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

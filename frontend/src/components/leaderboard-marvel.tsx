@@ -22,12 +22,12 @@ export function LeaderboardMarvel({
       <div className="chart-wrap">
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={rows}>
-            <CartesianGrid strokeDasharray="3 6" stroke="#e8ddd0" />
+            <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
             <XAxis dataKey="board" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="Top Score" fill="#d6521f" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="Top 15 Avg" fill="#127a66" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="Top Score" fill="#b64a32" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="Top 15 Avg" fill="#174f3f" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

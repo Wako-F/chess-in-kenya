@@ -3,15 +3,17 @@ import { getQuality } from "@/lib/api";
 export default async function MethodologyPage() {
   const quality = await getQuality();
   return (
-    <main className="atlas-page">
+    <main id="main-content" className="atlas-page">
       <div className="atmosphere" aria-hidden />
       <section className="hero compact">
-        <p className="eyebrow">Transparency</p>
-        <h1>Methodology & Data Trust</h1>
-        <p className="lead">
-          This system is intentionally explicit about source constraints and processing logic.
-          It favors explainability and operational reliability over vanity metrics.
-        </p>
+        <div className="hero-copy">
+          <p className="eyebrow">Transparency</p>
+          <h1>Methodology & Data Trust</h1>
+          <p className="lead">
+            This system is intentionally explicit about source constraints and processing logic.
+            It favors explainability and operational reliability over vanity metrics.
+          </p>
+        </div>
       </section>
 
       <section className="panel prose stagger">
