@@ -208,9 +208,13 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
             ORDER BY score DESC
             LIMIT ?
         """
-        with get_conn(settings) as conn:
-            rows = query_all(conn, sql, (min_games, limit))
-        return {"board": board, "items": [dict(r) for r in rows]}
+
+        def build() -> Dict[str, object]:
+            with get_conn(settings) as conn:
+                rows = query_all(conn, sql, (min_games, limit))
+            return {"board": board, "items": [dict(r) for r in rows]}
+
+        return cached_json(settings, f"api:leaderboards:{board}:{limit}:{min_games}", 300, build)
 
     @app.get("/players/{username}")
     def player_detail(username: str) -> Dict[str, object]:
