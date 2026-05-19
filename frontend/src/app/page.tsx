@@ -4,16 +4,9 @@ import { LeaderboardTable } from "@/components/leaderboard-table";
 import { MetricCard } from "@/components/metric-card";
 import { PlayerSearch } from "@/components/player-search";
 import { TrendCharts } from "@/components/trend-charts";
-import {
-  getDiscoveryTrend,
-  getJoinTrend,
-  getLeaderboard,
-  getOverview,
-  getQuality,
-} from "@/lib/api";
+import { getHomePayload } from "@/lib/api";
 
 export const revalidate = 300;
-export const dynamic = "force-dynamic";
 
 function fmt(n: number | null | undefined) {
   if (n === null || n === undefined) return "N/A";
@@ -32,14 +25,13 @@ function displayApiBase() {
 }
 
 export default async function Home() {
-  const [overview, quality, rapid, blitz, joins, discovery] = await Promise.all([
-    getOverview(),
-    getQuality(),
-    getLeaderboard("rapid", 12),
-    getLeaderboard("blitz", 12),
-    getJoinTrend(),
-    getDiscoveryTrend(),
-  ]);
+  const home = await getHomePayload();
+  const overview = home?.overview ?? null;
+  const quality = home?.quality ?? null;
+  const rapid = home?.leaderboards?.rapid ?? null;
+  const blitz = home?.leaderboards?.blitz ?? null;
+  const joins = home?.trends?.joins ?? null;
+  const discovery = home?.trends?.discovery ?? null;
 
   return (
     <main id="main-content" className="atlas-page">

@@ -5,6 +5,7 @@ import type {
   DistributionResponse,
   ErrorResponse,
   FormatSummaryResponse,
+  HomePayload,
   LeaderboardResponse,
   Overview,
   Player,
@@ -49,6 +50,14 @@ async function fetchJson<T>(path: string): Promise<T> {
 export async function getOverview(): Promise<Overview | null> {
   try {
     return await fetchJson<Overview>("/overview");
+  } catch {
+    return null;
+  }
+}
+
+export async function getHomePayload(): Promise<HomePayload | null> {
+  try {
+    return await fetchJson<HomePayload>("/home");
   } catch {
     return null;
   }

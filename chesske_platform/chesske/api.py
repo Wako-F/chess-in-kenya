@@ -304,6 +304,24 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
         return cached_json(settings, f"api:trends:discovery:{days}", 300, build)
 
+    @app.get("/home")
+    def home() -> Dict[str, object]:
+        def build() -> Dict[str, object]:
+            return {
+                "overview": overview(),
+                "quality": quality(),
+                "leaderboards": {
+                    "rapid": leaderboards("rapid", limit=12, min_games=20),
+                    "blitz": leaderboards("blitz", limit=12, min_games=20),
+                },
+                "trends": {
+                    "joins": joins_trend(months=36),
+                    "discovery": discovery_trend(days=60),
+                },
+            }
+
+        return cached_json(settings, "api:home", 120, build)
+
     @app.get("/stats/distribution")
     def rating_distribution(bucket_size: int = Query(default=100, ge=25, le=400)) -> Dict[str, List[Dict[str, object]]]:
         with get_conn(settings) as conn:

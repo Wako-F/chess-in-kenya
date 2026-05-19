@@ -50,6 +50,19 @@ export type LeaderboardResponse = {
   items: LeaderboardItem[];
 };
 
+export type HomePayload = {
+  overview: Overview | null;
+  quality: Quality | null;
+  leaderboards: {
+    rapid?: LeaderboardResponse | null;
+    blitz?: LeaderboardResponse | null;
+  };
+  trends: {
+    joins?: TrendResponse | null;
+    discovery?: TrendResponse | null;
+  };
+};
+
 export type TrendPoint = {
   month?: string;
   day?: string;

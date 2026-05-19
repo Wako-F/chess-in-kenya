@@ -14,6 +14,7 @@ logging.basicConfig(
 BASE_STEPS: List[List[str]] = [
     ["python", "-u", "-m", "chesske_platform.scripts.run_pipeline"],
     ["python", "-u", "-m", "chesske_platform.scripts.export_public_csv"],
+    ["python", "-u", "-m", "chesske_platform.scripts.warm_api_cache"],
 ]
 
 POSTGRES_VERIFY_CODE = """

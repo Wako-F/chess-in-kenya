@@ -23,6 +23,7 @@ def _client(settings: Settings) -> Optional[Any]:
 
 def cached_json(settings: Settings, key: str, ttl_seconds: int, builder: Callable[[], T]) -> T:
     redis_client = _client(settings)
+    stale_key = f"{key}:stale"
     if redis_client is not None:
         try:
             raw = redis_client.get(key)
@@ -31,11 +32,24 @@ def cached_json(settings: Settings, key: str, ttl_seconds: int, builder: Callabl
         except Exception as exc:
             logger.warning("Redis read failed for %s: %s", key, exc)
 
-    payload = builder()
+    try:
+        payload = builder()
+    except Exception:
+        if redis_client is not None:
+            try:
+                stale = redis_client.get(stale_key)
+                if stale:
+                    logger.exception("Serving stale Redis payload for %s", key)
+                    return json.loads(stale)
+            except Exception as exc:
+                logger.warning("Redis stale read failed for %s: %s", key, exc)
+        raise
 
     if redis_client is not None:
         try:
-            redis_client.setex(key, ttl_seconds, json.dumps(payload))
+            encoded = json.dumps(payload)
+            redis_client.setex(key, ttl_seconds, encoded)
+            redis_client.set(stale_key, encoded)
         except Exception as exc:
             logger.warning("Redis write failed for %s: %s", key, exc)
 
