@@ -215,7 +215,11 @@ export async function getLivePlayer(username: string): Promise<Player | null> {
 export async function getPlayerBenchmark(username: string): Promise<PlayerBenchmark | null> {
   if (!username) return null;
   try {
-    return await fetchJson<PlayerBenchmark>(`/players/${encodeURIComponent(username.toLowerCase())}/benchmark`);
+    const res = await fetch(`${getApiBase()}/players/${encodeURIComponent(username.toLowerCase())}/benchmark`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as PlayerBenchmark;
   } catch {
     return null;
   }
