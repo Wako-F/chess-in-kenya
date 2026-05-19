@@ -44,7 +44,8 @@ def _resolve_bootstrap_csv(settings: Settings) -> Optional[Path]:
 
 def create_app(settings: Optional[Settings] = None) -> FastAPI:
     settings = settings or Settings()
-    init_db(settings)
+    if not settings.database_url or _env_enabled("CHESSKE_API_INIT_DB", default=False):
+        init_db(settings)
     app = FastAPI(title="ChessKE Data API", version="1.0.0")
 
     cors_origins = os.getenv("CHESSKE_CORS_ORIGINS", "*").strip()
@@ -250,18 +251,44 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
     def discovery_trend(days: int = Query(default=60, ge=1, le=365)) -> Dict[str, List[Dict[str, object]]]:
         cutoff_date = (pd.Timestamp.utcnow() - pd.Timedelta(days=days)).date().isoformat()
         with get_conn(settings) as conn:
-            rows = query_all(
+            signup_rows = query_all(
                 conn,
                 """
-                SELECT snapshot_date AS day, COUNT(*) AS active_players
-                FROM country_active_snapshots
-                WHERE snapshot_date >= ?
-                GROUP BY snapshot_date
-                ORDER BY snapshot_date
+                SELECT SUBSTR(joined_at, 1, 10) AS day, COUNT(*) AS new_signups
+                FROM users
+                WHERE status='active' AND joined_at IS NOT NULL AND SUBSTR(joined_at, 1, 10) >= ?
+                GROUP BY day
                 """,
                 (cutoff_date,),
             )
-        return {"items": [dict(r) for r in rows]}
+            login_rows = query_all(
+                conn,
+                """
+                SELECT SUBSTR(last_online, 1, 10) AS day, COUNT(*) AS new_logins
+                FROM users
+                WHERE status='active' AND last_online IS NOT NULL AND SUBSTR(last_online, 1, 10) >= ?
+                GROUP BY day
+                """,
+                (cutoff_date,),
+            )
+
+        by_day: Dict[str, Dict[str, object]] = {}
+        for row in signup_rows:
+            day = str(row["day"])
+            by_day.setdefault(day, {"day": day, "new_signups": 0, "new_logins": 0})
+            by_day[day]["new_signups"] = int(row["new_signups"] or 0)
+        for row in login_rows:
+            day = str(row["day"])
+            by_day.setdefault(day, {"day": day, "new_signups": 0, "new_logins": 0})
+            by_day[day]["new_logins"] = int(row["new_logins"] or 0)
+
+        today = pd.Timestamp.utcnow().date()
+        days_index = pd.date_range(start=cutoff_date, end=today, freq="D")
+        items = []
+        for day_ts in days_index:
+            day = day_ts.date().isoformat()
+            items.append(by_day.get(day, {"day": day, "new_signups": 0, "new_logins": 0}))
+        return {"items": items}
 
     @app.get("/stats/distribution")
     def rating_distribution(bucket_size: int = Query(default=100, ge=25, le=400)) -> Dict[str, List[Dict[str, object]]]:

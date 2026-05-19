@@ -55,6 +55,8 @@ export type TrendPoint = {
   day?: string;
   players?: number;
   active_players?: number;
+  new_signups?: number;
+  new_logins?: number;
 };
 
 export type TrendResponse = {

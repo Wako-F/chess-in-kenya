@@ -49,7 +49,12 @@ with tab2:
     discovery = get_json("/trends/discovery?days=90")
     disc_df = pd.DataFrame(discovery["items"])
     if not disc_df.empty:
-        fig2 = px.bar(disc_df, x="day", y="active_players", title="Daily active snapshot size")
+        fig2 = px.line(
+            disc_df,
+            x="day",
+            y=["new_signups", "new_logins"],
+            title="Daily new signups and logins",
+        )
         st.plotly_chart(fig2, use_container_width=True)
 
 with tab3:

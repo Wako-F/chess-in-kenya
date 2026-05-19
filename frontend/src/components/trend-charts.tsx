@@ -13,7 +13,7 @@ import {
 } from "recharts";
 
 type JoinPoint = { month?: string; players?: number };
-type DiscoveryPoint = { day?: string; active_players?: number };
+type DiscoveryPoint = { day?: string; new_signups?: number; new_logins?: number };
 
 type TrendChartsProps = {
   joins: JoinPoint[];
@@ -55,7 +55,7 @@ export function TrendCharts({ joins, discovery }: TrendChartsProps) {
 
       <article className="panel stagger">
         <div className="panel-head">
-          <h3>Daily Active Discovery</h3>
+          <h3>Daily Discovery</h3>
           <span className="pill">60 DAYS</span>
         </div>
         <div className="chart-wrap">
@@ -67,8 +67,17 @@ export function TrendCharts({ joins, discovery }: TrendChartsProps) {
               <Tooltip />
               <Line
                 type="monotone"
-                dataKey="active_players"
+                dataKey="new_signups"
+                name="New signups"
                 stroke="#174f3f"
+                strokeWidth={2.5}
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="new_logins"
+                name="New logins"
+                stroke="#b64a32"
                 strokeWidth={2.5}
                 dot={false}
               />
