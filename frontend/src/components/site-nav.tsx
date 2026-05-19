@@ -7,6 +7,7 @@ const links = [
   { href: "/", label: "Overview" },
   { href: "/leaderboards", label: "Leaderboards" },
   { href: "/player", label: "Player Lookup" },
+  { href: "/data-journey", label: "Data Journey" },
   { href: "/methodology", label: "Methodology" },
   { href: "/observability", label: "Observability" },
 ];

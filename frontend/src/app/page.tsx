@@ -74,6 +74,11 @@ export default async function Home() {
           <h3>Inspect pipeline health</h3>
           <p>Run history, sync reliability, and latest system status in one observability console.</p>
         </Link>
+        <Link href="/data-journey" className="route-card stagger">
+          <p className="route-eyebrow">History Lens</p>
+          <h3>Follow the data journey</h3>
+          <p>From a 4.3k-player scrape to a production ledger with quality checks and live refresh.</p>
+        </Link>
         <Link href="/methodology" className="route-card stagger">
           <p className="route-eyebrow">Trust Lens</p>
           <h3>Read data methodology</h3>
