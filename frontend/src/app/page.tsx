@@ -47,8 +47,16 @@ export default async function Home() {
       <section className="metrics-grid">
         <MetricCard label="Tracked Players" value={fmt(overview?.total_players)} accent="sun" />
         <MetricCard label="Total Games" value={fmt(overview?.total_games)} accent="jade" />
-        <MetricCard label="Active Coverage" value={pct(quality?.latest_active_coverage_ratio)} accent="coral" />
-        <MetricCard label="Data Gaps" value={fmt(quality?.missing_stats_for_active_users)} accent="ink" />
+        <MetricCard
+          label="Active Coverage"
+          value={quality ? pct(quality.latest_active_coverage_ratio) : "Pending"}
+          accent="coral"
+        />
+        <MetricCard
+          label="Data Gaps"
+          value={quality ? fmt(quality.missing_stats_for_active_users) : "Pending"}
+          accent="ink"
+        />
       </section>
 
       <section className="panel intro stagger">
