@@ -1,5 +1,6 @@
 import os
 import threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Dict, List, Literal, Optional
 
@@ -257,48 +258,57 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
         if not normalized:
             raise HTTPException(status_code=400, detail="Username is required")
 
-        client = ChessComClient(settings)
-        profile_status, profile = client.fetch_profile(normalized)
-        if profile_status == "not_found":
-            raise HTTPException(status_code=404, detail="Chess.com player not found")
-        if profile_status != "ok" or not profile:
-            raise HTTPException(status_code=502, detail=f"Chess.com profile fetch failed: {profile_status}")
+        def build() -> Dict[str, object]:
+            client = ChessComClient(settings)
+            with ThreadPoolExecutor(max_workers=2) as executor:
+                profile_future = executor.submit(client.fetch_profile, normalized)
+                stats_future = executor.submit(client.fetch_stats, normalized)
+                profile_status, profile = profile_future.result()
+                stats_status, stats = stats_future.result()
 
-        country_code = _profile_country_code(profile)
-        if country_code != settings.country_code.upper():
-            raise HTTPException(
-                status_code=404,
-                detail=f"Player is listed under {country_code or 'unknown country'}, not {settings.country_code.upper()}",
+            if profile_status == "not_found":
+                raise HTTPException(status_code=404, detail="Chess.com player not found")
+            if profile_status != "ok" or not profile:
+                raise HTTPException(status_code=502, detail=f"Chess.com profile fetch failed: {profile_status}")
+
+            country_code = _profile_country_code(profile)
+            if country_code != settings.country_code.upper():
+                raise HTTPException(
+                    status_code=404,
+                    detail=f"Player is listed under {country_code or 'unknown country'}, not {settings.country_code.upper()}",
+                )
+
+            canonical_username = str(profile.get("username") or normalized).strip().lower()
+            if canonical_username != normalized:
+                stats_status, stats = client.fetch_stats(canonical_username)
+            if stats_status not in {"ok", "not_found"}:
+                raise HTTPException(status_code=502, detail=f"Chess.com stats fetch failed: {stats_status}")
+
+            record = _build_user_record(profile, stats or {})
+            with get_conn(settings) as conn:
+                upsert_user_and_stats(conn, canonical_username, record, seen_in_active=False)
+                payload = _player_payload(conn, canonical_username)
+
+            delete_by_pattern(settings, "api:home*")
+            delete_by_pattern(settings, "api:overview*")
+            delete_by_pattern(settings, "api:leaderboards:*")
+            delete_by_pattern(settings, "api:trends:*")
+
+            if not payload:
+                raise HTTPException(status_code=500, detail="Player refreshed but could not be read back")
+
+            payload.update(
+                {
+                    "lookup_source": "chess.com-live",
+                    "lookup_country": country_code,
+                    "lookup_refreshed": True,
+                    "profile_url": profile.get("url"),
+                    "avatar": profile.get("avatar"),
+                }
             )
+            return payload
 
-        canonical_username = str(profile.get("username") or normalized).strip().lower()
-        stats_status, stats = client.fetch_stats(canonical_username)
-        if stats_status not in {"ok", "not_found"}:
-            raise HTTPException(status_code=502, detail=f"Chess.com stats fetch failed: {stats_status}")
-
-        record = _build_user_record(profile, stats or {})
-        with get_conn(settings) as conn:
-            upsert_user_and_stats(conn, canonical_username, record, seen_in_active=False)
-            payload = _player_payload(conn, canonical_username)
-
-        delete_by_pattern(settings, "api:home*")
-        delete_by_pattern(settings, "api:overview*")
-        delete_by_pattern(settings, "api:leaderboards:*")
-        delete_by_pattern(settings, "api:trends:*")
-
-        if not payload:
-            raise HTTPException(status_code=500, detail="Player refreshed but could not be read back")
-
-        payload.update(
-            {
-                "lookup_source": "chess.com-live",
-                "lookup_country": country_code,
-                "lookup_refreshed": True,
-                "profile_url": profile.get("url"),
-                "avatar": profile.get("avatar"),
-            }
-        )
-        return payload
+        return cached_json(settings, f"api:player-lookup:{normalized}", 300, build)
 
     @app.get("/trends/joins")
     def joins_trend(months: int = Query(default=48, ge=1, le=240)) -> Dict[str, List[Dict[str, object]]]:

@@ -199,6 +199,19 @@ export async function getPlayer(username: string): Promise<Player | null> {
   }
 }
 
+export async function getLivePlayer(username: string): Promise<Player | null> {
+  if (!username) return null;
+  try {
+    const res = await fetch(`${getApiBase()}/players/${encodeURIComponent(username.toLowerCase())}/lookup`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as Player;
+  } catch {
+    return null;
+  }
+}
+
 export async function getPlayerBenchmark(username: string): Promise<PlayerBenchmark | null> {
   if (!username) return null;
   try {

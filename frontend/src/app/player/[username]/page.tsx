@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getPlayer, getPlayerBenchmark } from "@/lib/api";
+import { PlayerInsights } from "@/components/player-insights";
+import { getLivePlayer, getPlayer, getPlayerBenchmark } from "@/lib/api";
 
 function stat(v: number | null | undefined) {
   return (v ?? 0).toLocaleString();
+}
+
+function dt(v: string | null | undefined) {
+  return v ? new Date(v).toLocaleString() : "N/A";
 }
 
 export default async function PlayerPage({
@@ -13,24 +18,38 @@ export default async function PlayerPage({
   params: Promise<{ username: string }>;
 }) {
   const { username } = await params;
-  const [player, benchmark] = await Promise.all([getPlayer(username), getPlayerBenchmark(username)]);
+  const player = (await getLivePlayer(username)) ?? (await getPlayer(username));
   if (!player) notFound();
+  const benchmark = await getPlayerBenchmark(player.username);
 
   return (
     <main id="main-content" className="atlas-page">
       <div className="atmosphere" aria-hidden />
       <section className="hero compact">
-        <div className="hero-copy">
-          <p className="eyebrow">Player route</p>
-          <h1>{player.username}</h1>
-          <p className="lead">
-            Individual performance snapshot from the latest production ledger sync.
-          </p>
-          <div className="run-meta">
-            <span className="pill">{player.status.toUpperCase()}</span>
-            <span className="mono">
-              Joined {player.joined_at ? new Date(player.joined_at).toLocaleDateString() : "unknown"}
-            </span>
+        <div className="profile-hero">
+          <div className="avatar-frame profile-avatar">
+            {player.avatar ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={player.avatar} alt="" />
+            ) : (
+              <span>{player.username.slice(0, 2).toUpperCase()}</span>
+            )}
+          </div>
+          <div className="hero-copy">
+            <p className="eyebrow">Live player route</p>
+            <h1>{player.username}</h1>
+            <p className="lead">
+              Fresh Chess.com profile refresh with local Kenya percentile context and format-level
+              performance shape.
+            </p>
+            <div className="run-meta">
+              <span className="pill">{player.lookup_refreshed ? "LIVE REFRESHED" : player.status.toUpperCase()}</span>
+              <span className="pill">{player.lookup_country ?? "KE"}</span>
+              <span className="mono">
+                Joined {player.joined_at ? new Date(player.joined_at).toLocaleDateString() : "unknown"}
+              </span>
+              <span className="mono">Last online {dt(player.last_online)}</span>
+            </div>
           </div>
         </div>
       </section>
@@ -56,8 +75,8 @@ export default async function PlayerPage({
 
       <section className="panel stagger">
         <div className="panel-head">
-          <h3>Format Breakdown</h3>
-          <span className="pill">DETAIL</span>
+          <h3>Current Format Snapshot</h3>
+          <span className="pill">LIVE DETAIL</span>
         </div>
         <div className="player-grid">
           <div>
@@ -85,16 +104,18 @@ export default async function PlayerPage({
             <p className="v">{stat(player.total_daily)}</p>
           </div>
           <div>
-            <p className="k">Last Online</p>
-            <p className="v">{player.last_online ? new Date(player.last_online).toLocaleString() : "N/A"}</p>
+            <p className="k">Ledger Updated</p>
+            <p className="v">{dt(player.ledger_updated_at ?? player.last_online)}</p>
           </div>
         </div>
       </section>
 
+      <PlayerInsights player={player} benchmark={benchmark} />
+
       <section className="panel stagger">
         <div className="panel-head">
-          <h3>Population Percentiles</h3>
-          <span className="pill">BENCHMARK</span>
+          <h3>Raw Population Percentiles</h3>
+          <span className="pill">BENCHMARK TABLE</span>
         </div>
         {benchmark ? (
           <div className="player-grid">
@@ -114,7 +135,16 @@ export default async function PlayerPage({
       </section>
 
       <p className="mono" style={{ marginTop: "0.8rem" }}>
-        <Link href="/">← Back to atlas</Link>
+        <Link href="/">Back to atlas</Link>
+        {player.profile_url ? (
+          <>
+            {" "}
+            /{" "}
+            <a href={player.profile_url} target="_blank" rel="noreferrer">
+              Chess.com profile
+            </a>
+          </>
+        ) : null}
       </p>
     </main>
   );
