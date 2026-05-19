@@ -794,6 +794,100 @@ button:disabled {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.lookup-card {
+  margin-top: 1.1rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 1.1rem;
+}
+
+.lookup-hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.avatar-frame {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper2);
+  color: var(--ink);
+  font-family: var(--font-display), serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  overflow: hidden;
+}
+
+.avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lookup-hero h4 {
+  margin: 0.22rem 0 0.45rem;
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.6rem, 3vw, 2.35rem);
+  line-height: 1;
+}
+
+.lookup-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2px;
+  margin-top: 1rem;
+}
+
+.lookup-metrics > div {
+  min-width: 0;
+  background: var(--paper2);
+  padding: 1rem;
+}
+
+.lookup-metrics .small {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+.format-table {
+  display: grid;
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.format-row {
+  display: grid;
+  grid-template-columns: 0.9fr repeat(3, 1fr);
+  gap: 0.8rem;
+  align-items: center;
+  border-bottom: 1px solid var(--rule);
+  padding: 0.7rem 0;
+}
+
+.format-row strong {
+  font-family: var(--font-display), serif;
+  font-size: 1rem;
+}
+
+.format-row span {
+  color: var(--text-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.lookup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 .profile-link,
 .prose a,
 .mono a {
@@ -963,6 +1057,11 @@ button:disabled {
   .player-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .lookup-metrics,
+  .format-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 560px) {
@@ -994,6 +1093,12 @@ button:disabled {
   .archetype-grid,
   .status-grid,
   .player-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lookup-hero,
+  .lookup-metrics,
+  .format-row {
     grid-template-columns: 1fr;
   }
 

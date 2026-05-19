@@ -16,11 +16,13 @@ from .analytics import (
     build_story_report_payload,
     get_or_build_cached_payload,
 )
-from .cache import cached_json
+from .cache import cached_json, delete_by_pattern
+from .client import ChessComClient
 from .config import Settings
 from .db import get_conn, init_db
+from .pipeline import _build_user_record
 from .quality import compute_quality_report
-from .repository import query_all, query_one
+from .repository import query_all, query_one, upsert_user_and_stats
 
 
 def _env_enabled(name: str, default: bool = True) -> bool:
@@ -41,6 +43,30 @@ def _resolve_bootstrap_csv(settings: Settings) -> Optional[Path]:
         if p.exists():
             return p
     return None
+
+
+def _profile_country_code(profile: Dict[str, object]) -> str:
+    country = str(profile.get("country") or "").rstrip("/")
+    if not country:
+        return ""
+    return country.rsplit("/", 1)[-1].upper()
+
+
+def _player_payload(conn, username: str) -> Optional[Dict[str, object]]:
+    row = query_one(
+        conn,
+        """
+        SELECT
+            u.username, u.joined_at, u.last_online, u.status, u.first_seen_at, u.last_seen_active_at,
+            u.next_refresh_at, u.updated_at AS ledger_updated_at,
+            s.*
+        FROM users u
+        LEFT JOIN user_stats_latest s ON s.username = u.username
+        WHERE u.username = ?
+        """,
+        (username,),
+    )
+    return dict(row) if row else None
 
 
 def create_app(settings: Optional[Settings] = None) -> FastAPI:
@@ -220,21 +246,58 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
     def player_detail(username: str) -> Dict[str, object]:
         normalized = username.strip().lower()
         with get_conn(settings) as conn:
-            row = query_one(
-                conn,
-                """
-                SELECT
-                    u.username, u.joined_at, u.last_online, u.status, u.first_seen_at, u.last_seen_active_at,
-                    s.*
-                FROM users u
-                LEFT JOIN user_stats_latest s ON s.username = u.username
-                WHERE u.username = ?
-                """,
-                (normalized,),
-            )
-        if not row:
+            payload = _player_payload(conn, normalized)
+        if not payload:
             raise HTTPException(status_code=404, detail="Player not found")
-        payload = dict(row)
+        return payload
+
+    @app.get("/players/{username}/lookup")
+    def player_live_lookup(username: str) -> Dict[str, object]:
+        normalized = username.strip().lower()
+        if not normalized:
+            raise HTTPException(status_code=400, detail="Username is required")
+
+        client = ChessComClient(settings)
+        profile_status, profile = client.fetch_profile(normalized)
+        if profile_status == "not_found":
+            raise HTTPException(status_code=404, detail="Chess.com player not found")
+        if profile_status != "ok" or not profile:
+            raise HTTPException(status_code=502, detail=f"Chess.com profile fetch failed: {profile_status}")
+
+        country_code = _profile_country_code(profile)
+        if country_code != settings.country_code.upper():
+            raise HTTPException(
+                status_code=404,
+                detail=f"Player is listed under {country_code or 'unknown country'}, not {settings.country_code.upper()}",
+            )
+
+        canonical_username = str(profile.get("username") or normalized).strip().lower()
+        stats_status, stats = client.fetch_stats(canonical_username)
+        if stats_status not in {"ok", "not_found"}:
+            raise HTTPException(status_code=502, detail=f"Chess.com stats fetch failed: {stats_status}")
+
+        record = _build_user_record(profile, stats or {})
+        with get_conn(settings) as conn:
+            upsert_user_and_stats(conn, canonical_username, record, seen_in_active=False)
+            payload = _player_payload(conn, canonical_username)
+
+        delete_by_pattern(settings, "api:home*")
+        delete_by_pattern(settings, "api:overview*")
+        delete_by_pattern(settings, "api:leaderboards:*")
+        delete_by_pattern(settings, "api:trends:*")
+
+        if not payload:
+            raise HTTPException(status_code=500, detail="Player refreshed but could not be read back")
+
+        payload.update(
+            {
+                "lookup_source": "chess.com-live",
+                "lookup_country": country_code,
+                "lookup_refreshed": True,
+                "profile_url": profile.get("url"),
+                "avatar": profile.get("avatar"),
+            }
+        )
         return payload
 
     @app.get("/trends/joins")

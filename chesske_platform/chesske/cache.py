@@ -54,3 +54,16 @@ def cached_json(settings: Settings, key: str, ttl_seconds: int, builder: Callabl
             logger.warning("Redis write failed for %s: %s", key, exc)
 
     return payload
+
+
+def delete_by_pattern(settings: Settings, pattern: str) -> int:
+    redis_client = _client(settings)
+    if redis_client is None:
+        return 0
+    deleted = 0
+    try:
+        for key in redis_client.scan_iter(match=pattern, count=100):
+            deleted += int(redis_client.delete(key))
+    except Exception as exc:
+        logger.warning("Redis delete failed for %s: %s", pattern, exc)
+    return deleted
