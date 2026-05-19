@@ -111,7 +111,7 @@ def upsert_user_and_stats(
             now if seen_in_active else None,
             next_refresh_at,
             now,
-            1 if seen_in_active else 0,
+            seen_in_active,
         ),
     )
 

@@ -207,6 +207,7 @@ def run_ingestion_pipeline(settings: Settings) -> Dict[str, int]:
             raise
         except Exception as exc:
             logger.exception("Pipeline failed")
+            conn.rollback()
             log_run_error(conn, run_id, "pipeline", str(exc))
             finish_run(
                 conn,
