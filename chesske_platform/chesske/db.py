@@ -212,7 +212,8 @@ class DBConn:
 
     def executemany(self, sql: str, params_seq: Sequence[Sequence[Any]]) -> Any:
         if self.backend == "postgres":
-            return self._raw.executemany(_to_postgres_placeholders(sql), params_seq)
+            with self._raw.cursor() as cur:
+                return cur.executemany(_to_postgres_placeholders(sql), params_seq)
         return self._raw.executemany(sql, params_seq)
 
     def executescript(self, sql: str) -> None:
