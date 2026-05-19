@@ -42,7 +42,7 @@ function getApiBase() {
 
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(`${getApiBase()}${path}`, {
-    next: { revalidate: 300 },
+    cache: "no-store",
   });
   if (!res.ok) {
     throw new Error(`API ${path} failed with ${res.status}`);
@@ -176,7 +176,7 @@ export async function findPlayer(username: string): Promise<Player | null> {
   if (!username) return null;
   try {
     const res = await fetch(`${getApiBase()}/players/${encodeURIComponent(username.toLowerCase())}`, {
-      next: { revalidate: 300 },
+      cache: "no-store",
     });
     if (!res.ok) return null;
     return (await res.json()) as Player;
