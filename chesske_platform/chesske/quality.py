@@ -5,7 +5,8 @@ from .db import get_conn, init_db
 
 
 def compute_quality_report(settings: Settings) -> Dict[str, object]:
-    init_db(settings)
+    if not settings.database_url:
+        init_db(settings)
     with get_conn(settings) as conn:
         total_users = conn.execute("SELECT COUNT(*) AS c FROM users").fetchone()["c"]
         active_users = conn.execute("SELECT COUNT(*) AS c FROM users WHERE status='active'").fetchone()["c"]

@@ -7,6 +7,7 @@ from pathlib import Path
 class Settings:
     base_dir: Path = field(default_factory=lambda: Path(__file__).resolve().parents[2])
     database_url: str = field(default_factory=lambda: os.getenv("DATABASE_URL", "").strip())
+    redis_url: str = field(default_factory=lambda: os.getenv("REDIS_URL", "").strip())
     db_path: Path = field(default_factory=lambda: Path(os.getenv("CHESSKE_DB_PATH", "data/chesske.db")))
     country_code: str = field(default_factory=lambda: os.getenv("CHESSKE_COUNTRY_CODE", "KE"))
     refresh_limit: int = field(default_factory=lambda: int(os.getenv("CHESSKE_REFRESH_LIMIT", "500")))

@@ -16,6 +16,7 @@ from .analytics import (
     build_story_report_payload,
     get_or_build_cached_payload,
 )
+from .cache import cached_json
 from .config import Settings
 from .db import get_conn, init_db
 from .quality import compute_quality_report
@@ -101,7 +102,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
     @app.get("/meta/quality")
     def quality() -> Dict[str, object]:
-        return compute_quality_report(settings)
+        return cached_json(settings, "api:meta:quality", 300, lambda: compute_quality_report(settings))
 
     @app.get("/meta/runs")
     def runs(limit: int = Query(default=20, ge=1, le=200)) -> Dict[str, List[Dict[str, object]]]:
@@ -135,43 +136,46 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
     @app.get("/overview")
     def overview() -> Dict[str, object]:
-        with get_conn(settings) as conn:
-            row = query_one(
-                conn,
-                """
-                SELECT
-                    COUNT(*) AS total_players,
-                    SUM(COALESCE(s.total_games, 0)) AS total_games,
-                    AVG(CASE WHEN s.rapid_rating > 0 THEN s.rapid_rating END) AS avg_rapid,
-                    AVG(CASE WHEN s.blitz_rating > 0 THEN s.blitz_rating END) AS avg_blitz,
-                    AVG(CASE WHEN s.bullet_rating > 0 THEN s.bullet_rating END) AS avg_bullet,
-                    AVG(CASE WHEN s.daily_rating > 0 THEN s.daily_rating END) AS avg_daily,
-                    AVG(CASE WHEN s.highest_puzzle_rating > 0 THEN s.highest_puzzle_rating END) AS avg_puzzle
-                FROM users u
-                LEFT JOIN user_stats_latest s ON s.username = u.username
-                WHERE u.status = 'active'
-                """,
-            )
-            latest_run = query_one(
-                conn,
-                """
-                SELECT id, started_at, ended_at, status, active_count, updated_count, error_count
-                FROM pipeline_runs
-                ORDER BY id DESC LIMIT 1
-                """,
-            )
-        return {
-            "total_players": int(row["total_players"] or 0),
-            "total_games": int(row["total_games"] or 0),
-            "average_ratings": {
-                "rapid": round(float(row["avg_rapid"]), 2) if row["avg_rapid"] is not None else None,
-                "blitz": round(float(row["avg_blitz"]), 2) if row["avg_blitz"] is not None else None,
-                "bullet": round(float(row["avg_bullet"]), 2) if row["avg_bullet"] is not None else None,
-                "daily": round(float(row["avg_daily"]), 2) if row["avg_daily"] is not None else None,
-                "puzzle": round(float(row["avg_puzzle"]), 2) if row["avg_puzzle"] is not None else None,
-            },
-            "latest_run": dict(latest_run) if latest_run else None,
-        }
+        def build() -> Dict[str, object]:
+            with get_conn(settings) as conn:
+                row = query_one(
+                    conn,
+                    """
+                    SELECT
+                        COUNT(*) AS total_players,
+                        SUM(COALESCE(s.total_games, 0)) AS total_games,
+                        AVG(CASE WHEN s.rapid_rating > 0 THEN s.rapid_rating END) AS avg_rapid,
+                        AVG(CASE WHEN s.blitz_rating > 0 THEN s.blitz_rating END) AS avg_blitz,
+                        AVG(CASE WHEN s.bullet_rating > 0 THEN s.bullet_rating END) AS avg_bullet,
+                        AVG(CASE WHEN s.daily_rating > 0 THEN s.daily_rating END) AS avg_daily,
+                        AVG(CASE WHEN s.highest_puzzle_rating > 0 THEN s.highest_puzzle_rating END) AS avg_puzzle
+                    FROM users u
+                    LEFT JOIN user_stats_latest s ON s.username = u.username
+                    WHERE u.status = 'active'
+                    """,
+                )
+                latest_run = query_one(
+                    conn,
+                    """
+                    SELECT id, started_at, ended_at, status, active_count, updated_count, error_count
+                    FROM pipeline_runs
+                    ORDER BY id DESC LIMIT 1
+                    """,
+                )
+            return {
+                "total_players": int(row["total_players"] or 0),
+                "total_games": int(row["total_games"] or 0),
+                "average_ratings": {
+                    "rapid": round(float(row["avg_rapid"]), 2) if row["avg_rapid"] is not None else None,
+                    "blitz": round(float(row["avg_blitz"]), 2) if row["avg_blitz"] is not None else None,
+                    "bullet": round(float(row["avg_bullet"]), 2) if row["avg_bullet"] is not None else None,
+                    "daily": round(float(row["avg_daily"]), 2) if row["avg_daily"] is not None else None,
+                    "puzzle": round(float(row["avg_puzzle"]), 2) if row["avg_puzzle"] is not None else None,
+                },
+                "latest_run": dict(latest_run) if latest_run else None,
+            }
+
+        return cached_json(settings, "api:overview", 120, build)
 
     @app.get("/leaderboards/{board}")
     def leaderboards(
@@ -231,64 +235,70 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
     @app.get("/trends/joins")
     def joins_trend(months: int = Query(default=48, ge=1, le=240)) -> Dict[str, List[Dict[str, object]]]:
-        with get_conn(settings) as conn:
-            rows = query_all(
-                conn,
-                """
-                SELECT SUBSTR(joined_at, 1, 7) AS month, COUNT(*) AS players
-                FROM users
-                WHERE status='active' AND joined_at IS NOT NULL
-                GROUP BY month
-                ORDER BY month DESC
-                LIMIT ?
-                """,
-                (months,),
-            )
-        data = [dict(r) for r in reversed(rows)]
-        return {"items": data}
+        def build() -> Dict[str, List[Dict[str, object]]]:
+            with get_conn(settings) as conn:
+                rows = query_all(
+                    conn,
+                    """
+                    SELECT SUBSTR(joined_at, 1, 7) AS month, COUNT(*) AS players
+                    FROM users
+                    WHERE status='active' AND joined_at IS NOT NULL
+                    GROUP BY month
+                    ORDER BY month DESC
+                    LIMIT ?
+                    """,
+                    (months,),
+                )
+            data = [dict(r) for r in reversed(rows)]
+            return {"items": data}
+
+        return cached_json(settings, f"api:trends:joins:{months}", 300, build)
 
     @app.get("/trends/discovery")
     def discovery_trend(days: int = Query(default=60, ge=1, le=365)) -> Dict[str, List[Dict[str, object]]]:
-        cutoff_date = (pd.Timestamp.utcnow() - pd.Timedelta(days=days)).date().isoformat()
-        with get_conn(settings) as conn:
-            signup_rows = query_all(
-                conn,
-                """
-                SELECT SUBSTR(joined_at, 1, 10) AS day, COUNT(*) AS new_signups
-                FROM users
-                WHERE status='active' AND joined_at IS NOT NULL AND SUBSTR(joined_at, 1, 10) >= ?
-                GROUP BY day
-                """,
-                (cutoff_date,),
-            )
-            login_rows = query_all(
-                conn,
-                """
-                SELECT SUBSTR(last_online, 1, 10) AS day, COUNT(*) AS new_logins
-                FROM users
-                WHERE status='active' AND last_online IS NOT NULL AND SUBSTR(last_online, 1, 10) >= ?
-                GROUP BY day
-                """,
-                (cutoff_date,),
-            )
+        def build() -> Dict[str, List[Dict[str, object]]]:
+            cutoff_date = (pd.Timestamp.utcnow() - pd.Timedelta(days=days)).date().isoformat()
+            with get_conn(settings) as conn:
+                signup_rows = query_all(
+                    conn,
+                    """
+                    SELECT SUBSTR(joined_at, 1, 10) AS day, COUNT(*) AS new_signups
+                    FROM users
+                    WHERE status='active' AND joined_at IS NOT NULL AND SUBSTR(joined_at, 1, 10) >= ?
+                    GROUP BY day
+                    """,
+                    (cutoff_date,),
+                )
+                login_rows = query_all(
+                    conn,
+                    """
+                    SELECT SUBSTR(last_online, 1, 10) AS day, COUNT(*) AS new_logins
+                    FROM users
+                    WHERE status='active' AND last_online IS NOT NULL AND SUBSTR(last_online, 1, 10) >= ?
+                    GROUP BY day
+                    """,
+                    (cutoff_date,),
+                )
 
-        by_day: Dict[str, Dict[str, object]] = {}
-        for row in signup_rows:
-            day = str(row["day"])
-            by_day.setdefault(day, {"day": day, "new_signups": 0, "new_logins": 0})
-            by_day[day]["new_signups"] = int(row["new_signups"] or 0)
-        for row in login_rows:
-            day = str(row["day"])
-            by_day.setdefault(day, {"day": day, "new_signups": 0, "new_logins": 0})
-            by_day[day]["new_logins"] = int(row["new_logins"] or 0)
+            by_day: Dict[str, Dict[str, object]] = {}
+            for row in signup_rows:
+                day = str(row["day"])
+                by_day.setdefault(day, {"day": day, "new_signups": 0, "new_logins": 0})
+                by_day[day]["new_signups"] = int(row["new_signups"] or 0)
+            for row in login_rows:
+                day = str(row["day"])
+                by_day.setdefault(day, {"day": day, "new_signups": 0, "new_logins": 0})
+                by_day[day]["new_logins"] = int(row["new_logins"] or 0)
 
-        today = pd.Timestamp.utcnow().date()
-        days_index = pd.date_range(start=cutoff_date, end=today, freq="D")
-        items = []
-        for day_ts in days_index:
-            day = day_ts.date().isoformat()
-            items.append(by_day.get(day, {"day": day, "new_signups": 0, "new_logins": 0}))
-        return {"items": items}
+            today = pd.Timestamp.utcnow().date()
+            days_index = pd.date_range(start=cutoff_date, end=today, freq="D")
+            items = []
+            for day_ts in days_index:
+                day = day_ts.date().isoformat()
+                items.append(by_day.get(day, {"day": day, "new_signups": 0, "new_logins": 0}))
+            return {"items": items}
+
+        return cached_json(settings, f"api:trends:discovery:{days}", 300, build)
 
     @app.get("/stats/distribution")
     def rating_distribution(bucket_size: int = Query(default=100, ge=25, le=400)) -> Dict[str, List[Dict[str, object]]]:
