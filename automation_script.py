@@ -14,7 +14,6 @@ logging.basicConfig(
 BASE_STEPS: List[List[str]] = [
     ["python", "-u", "-m", "chesske_platform.scripts.run_pipeline"],
     ["python", "-u", "-m", "chesske_platform.scripts.export_public_csv"],
-    ["python", "-u", "-m", "chesske_platform.scripts.warm_api_cache"],
 ]
 
 POSTGRES_VERIFY_CODE = """
@@ -56,7 +55,12 @@ def build_steps() -> List[List[str]]:
                 ["python", "-u", "-c", "import os\n" + POSTGRES_VERIFY_CODE],
             ]
         )
-    steps.append(["python", "-u", "africa_count.py"])
+    steps.extend(
+        [
+            ["python", "-u", "-m", "chesske_platform.scripts.warm_api_cache"],
+            ["python", "-u", "africa_count.py"],
+        ]
+    )
     return steps
 
 
