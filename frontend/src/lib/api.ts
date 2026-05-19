@@ -33,10 +33,6 @@ function getApiBase() {
     return usableConfigured;
   }
 
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}/api`;
-  }
-
   return "http://38.242.228.254/api";
 }
 
