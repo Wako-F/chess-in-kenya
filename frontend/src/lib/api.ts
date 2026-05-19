@@ -25,7 +25,19 @@ function getApiBase() {
     return usableConfigured || "/api";
   }
 
-  return process.env.CHESSKE_INTERNAL_API_BASE || usableConfigured || "http://38.242.228.254/api";
+  if (process.env.CHESSKE_INTERNAL_API_BASE) {
+    return process.env.CHESSKE_INTERNAL_API_BASE;
+  }
+
+  if (usableConfigured) {
+    return usableConfigured;
+  }
+
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}/api`;
+  }
+
+  return "http://38.242.228.254/api";
 }
 
 async function fetchJson<T>(path: string): Promise<T> {

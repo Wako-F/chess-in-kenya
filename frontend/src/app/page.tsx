@@ -13,6 +13,7 @@ import {
 } from "@/lib/api";
 
 export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 function fmt(n: number | null | undefined) {
   if (n === null || n === undefined) return "N/A";
