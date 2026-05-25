@@ -83,6 +83,13 @@ CREATE TABLE IF NOT EXISTS country_active_snapshots (
     PRIMARY KEY (snapshot_date, username)
 );
 
+CREATE TABLE IF NOT EXISTS discovery_metric_overrides (
+    day TEXT PRIMARY KEY,
+    newly_discovered_active INTEGER NOT NULL DEFAULT 0,
+    source TEXT,
+    updated_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS analytics_cache (
     cache_key TEXT PRIMARY KEY,
     payload_json TEXT NOT NULL,
@@ -170,6 +177,13 @@ CREATE TABLE IF NOT EXISTS country_active_snapshots (
     username TEXT NOT NULL,
     inserted_at TEXT NOT NULL,
     PRIMARY KEY (snapshot_date, username)
+);
+
+CREATE TABLE IF NOT EXISTS discovery_metric_overrides (
+    day TEXT PRIMARY KEY,
+    newly_discovered_active INTEGER NOT NULL DEFAULT 0,
+    source TEXT,
+    updated_at TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS analytics_cache (
