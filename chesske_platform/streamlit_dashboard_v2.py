@@ -52,8 +52,8 @@ with tab2:
         fig2 = px.line(
             disc_df,
             x="day",
-            y=["new_signups", "new_logins"],
-            title="Daily new signups and logins",
+            y=["new_signups", "new_logins", "newly_discovered_active"],
+            title="Daily signups, logins, and discovery",
         )
         st.plotly_chart(fig2, use_container_width=True)
 

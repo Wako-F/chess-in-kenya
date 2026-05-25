@@ -70,6 +70,7 @@ export type TrendPoint = {
   active_players?: number;
   new_signups?: number;
   new_logins?: number;
+  newly_discovered_active?: number;
 };
 
 export type TrendResponse = {
