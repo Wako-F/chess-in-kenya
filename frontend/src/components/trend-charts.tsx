@@ -4,7 +4,6 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
-  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -69,17 +68,9 @@ export function TrendCharts({ joins, discovery }: TrendChartsProps) {
             <LineChart data={discovery}>
               <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
               <XAxis dataKey="day" tick={{ fontSize: 11 }} />
-              <YAxis yAxisId="volume" tick={{ fontSize: 11 }} />
-              <YAxis
-                yAxisId="discovery"
-                orientation="right"
-                allowDecimals={false}
-                tick={{ fontSize: 11 }}
-              />
+              <YAxis tick={{ fontSize: 11 }} />
               <Tooltip />
-              <Legend verticalAlign="top" height={28} />
               <Line
-                yAxisId="volume"
                 type="monotone"
                 dataKey="new_signups"
                 name="New signups"
@@ -88,7 +79,6 @@ export function TrendCharts({ joins, discovery }: TrendChartsProps) {
                 dot={false}
               />
               <Line
-                yAxisId="volume"
                 type="monotone"
                 dataKey="new_logins"
                 name="New logins"
@@ -97,7 +87,6 @@ export function TrendCharts({ joins, discovery }: TrendChartsProps) {
                 dot={false}
               />
               <Line
-                yAxisId="discovery"
                 type="monotone"
                 dataKey="newly_discovered_active"
                 name="Newly discovered active"
