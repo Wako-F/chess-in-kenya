@@ -374,15 +374,6 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
                     """,
                     (cutoff_date,),
                 )
-                override_rows = query_all(
-                    conn,
-                    """
-                    SELECT day, newly_discovered_active
-                    FROM discovery_metric_overrides
-                    WHERE day >= ?
-                    """,
-                    (cutoff_date,),
-                )
 
             by_day: Dict[str, Dict[str, object]] = {}
             for row in signup_rows:
@@ -400,13 +391,6 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
                 )
                 by_day[day]["new_logins"] = int(row["new_logins"] or 0)
             for row in newly_discovered_active_rows:
-                day = str(row["day"])
-                by_day.setdefault(
-                    day,
-                    {"day": day, "new_signups": 0, "new_logins": 0, "newly_discovered_active": 0},
-                )
-                by_day[day]["newly_discovered_active"] = int(row["newly_discovered_active"] or 0)
-            for row in override_rows:
                 day = str(row["day"])
                 by_day.setdefault(
                     day,
