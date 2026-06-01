@@ -356,59 +356,23 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
                     """,
                     (cutoff_date,),
                 )
-                newly_discovered_active_rows = query_all(
-                    conn,
-                    """
-                    SELECT SUBSTR(first_seen_at, 1, 10) AS day, COUNT(*) AS newly_discovered_active
-                    FROM users
-                    WHERE status='active'
-                      AND first_seen_at IS NOT NULL
-                      AND last_online IS NOT NULL
-                      AND SUBSTR(first_seen_at, 1, 10) >= ?
-                      AND SUBSTR(first_seen_at, 1, 10) = SUBSTR(last_online, 1, 10)
-                      AND (
-                        joined_at IS NULL
-                        OR SUBSTR(joined_at, 1, 10) != SUBSTR(first_seen_at, 1, 10)
-                      )
-                    GROUP BY day
-                    """,
-                    (cutoff_date,),
-                )
 
             by_day: Dict[str, Dict[str, object]] = {}
             for row in signup_rows:
                 day = str(row["day"])
-                by_day.setdefault(
-                    day,
-                    {"day": day, "new_signups": 0, "new_logins": 0, "newly_discovered_active": 0},
-                )
+                by_day.setdefault(day, {"day": day, "new_signups": 0, "new_logins": 0})
                 by_day[day]["new_signups"] = int(row["new_signups"] or 0)
             for row in login_rows:
                 day = str(row["day"])
-                by_day.setdefault(
-                    day,
-                    {"day": day, "new_signups": 0, "new_logins": 0, "newly_discovered_active": 0},
-                )
+                by_day.setdefault(day, {"day": day, "new_signups": 0, "new_logins": 0})
                 by_day[day]["new_logins"] = int(row["new_logins"] or 0)
-            for row in newly_discovered_active_rows:
-                day = str(row["day"])
-                by_day.setdefault(
-                    day,
-                    {"day": day, "new_signups": 0, "new_logins": 0, "newly_discovered_active": 0},
-                )
-                by_day[day]["newly_discovered_active"] = int(row["newly_discovered_active"] or 0)
 
             today = pd.Timestamp.utcnow().date()
             days_index = pd.date_range(start=cutoff_date, end=today, freq="D")
             items = []
             for day_ts in days_index:
                 day = day_ts.date().isoformat()
-                items.append(
-                    by_day.get(
-                        day,
-                        {"day": day, "new_signups": 0, "new_logins": 0, "newly_discovered_active": 0},
-                    )
-                )
+                items.append(by_day.get(day, {"day": day, "new_signups": 0, "new_logins": 0}))
             return {"items": items}
 
         return cached_json(settings, f"api:trends:discovery:{days}", 300, build)

@@ -13,12 +13,7 @@ import {
 } from "recharts";
 
 type JoinPoint = { month?: string; players?: number };
-type DiscoveryPoint = {
-  day?: string;
-  new_signups?: number;
-  new_logins?: number;
-  newly_discovered_active?: number;
-};
+type DiscoveryPoint = { day?: string; new_signups?: number; new_logins?: number };
 
 type TrendChartsProps = {
   joins: JoinPoint[];
@@ -83,14 +78,6 @@ export function TrendCharts({ joins, discovery }: TrendChartsProps) {
                 dataKey="new_logins"
                 name="New logins"
                 stroke="#b64a32"
-                strokeWidth={2.5}
-                dot={false}
-              />
-              <Line
-                type="monotone"
-                dataKey="newly_discovered_active"
-                name="Newly discovered active"
-                stroke="#4c6f91"
                 strokeWidth={2.5}
                 dot={false}
               />
