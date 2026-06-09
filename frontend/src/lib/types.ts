@@ -60,6 +60,7 @@ export type HomePayload = {
   trends: {
     joins?: TrendResponse | null;
     discovery?: TrendResponse | null;
+    ledger_adds?: TrendResponse | null;
   };
 };
 
@@ -70,6 +71,8 @@ export type TrendPoint = {
   active_players?: number;
   new_signups?: number;
   new_logins?: number;
+  new_tracked_players?: number;
+  cumulative_tracked_players?: number;
 };
 
 export type TrendResponse = {

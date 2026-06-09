@@ -377,6 +377,65 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
         return cached_json(settings, f"api:trends:discovery:{days}", 300, build)
 
+    @app.get("/trends/ledger-adds")
+    def ledger_adds_trend(
+        start: str = Query(default="2026-05-18", pattern=r"^\d{4}-\d{2}-\d{2}$"),
+    ) -> Dict[str, List[Dict[str, object]]]:
+        def build() -> Dict[str, List[Dict[str, object]]]:
+            today = pd.Timestamp.utcnow().date()
+            start_date = pd.to_datetime(start, errors="coerce", utc=True)
+            if pd.isna(start_date):
+                raise HTTPException(status_code=400, detail="start must be YYYY-MM-DD")
+            cutoff_date = start_date.date().isoformat()
+
+            with get_conn(settings) as conn:
+                rows = query_all(
+                    conn,
+                    """
+                    SELECT SUBSTR(first_seen_at, 1, 10) AS day, COUNT(*) AS new_tracked_players
+                    FROM users
+                    WHERE status='active'
+                      AND first_seen_at IS NOT NULL
+                      AND SUBSTR(first_seen_at, 1, 10) >= ?
+                    GROUP BY day
+                    """,
+                    (cutoff_date,),
+                )
+                baseline_row = query_one(
+                    conn,
+                    """
+                    SELECT COUNT(*) AS players
+                    FROM users
+                    WHERE status='active'
+                      AND first_seen_at IS NOT NULL
+                      AND SUBSTR(first_seen_at, 1, 10) < ?
+                    """,
+                    (cutoff_date,),
+                )
+
+            by_day = {str(row["day"]): int(row["new_tracked_players"] or 0) for row in rows}
+            # CSV/Postgres reboots reset first_seen_at; keep the VPS bootstrap cohort anchored.
+            if cutoff_date not in by_day and len(by_day) == 1:
+                only_day, only_count = next(iter(by_day.items()))
+                if only_day > cutoff_date and only_count >= 10000:
+                    by_day = {cutoff_date: only_count}
+            cumulative = int(baseline_row["players"] or 0) if baseline_row else 0
+            items = []
+            for day_ts in pd.date_range(start=cutoff_date, end=today, freq="D"):
+                day = day_ts.date().isoformat()
+                added = by_day.get(day, 0)
+                cumulative += added
+                items.append(
+                    {
+                        "day": day,
+                        "new_tracked_players": added,
+                        "cumulative_tracked_players": cumulative,
+                    }
+                )
+            return {"items": items}
+
+        return cached_json(settings, f"api:trends:ledger-adds:{start}", 300, build)
+
     @app.get("/home")
     def home() -> Dict[str, object]:
         def build() -> Dict[str, object]:
@@ -390,6 +449,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
                 "trends": {
                     "joins": joins_trend(months=36),
                     "discovery": discovery_trend(days=60),
+                    "ledger_adds": ledger_adds_trend(start="2026-05-18"),
                 },
             }
 

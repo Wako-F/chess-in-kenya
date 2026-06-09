@@ -453,6 +453,12 @@ a:focus-visible {
   padding-right: 2rem;
 }
 
+.charts-grid .trend-wide {
+  grid-column: 1 / -1;
+  border-right: 0;
+  padding-right: 0;
+}
+
 .deep-full {
   grid-column: 1 / -1;
   border-top: 1px solid var(--ink);

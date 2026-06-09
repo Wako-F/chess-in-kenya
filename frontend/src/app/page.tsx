@@ -32,6 +32,7 @@ export default async function Home() {
   const blitz = home?.leaderboards?.blitz ?? null;
   const joins = home?.trends?.joins ?? null;
   const discovery = home?.trends?.discovery ?? null;
+  const ledgerAdds = home?.trends?.ledger_adds ?? null;
 
   return (
     <main id="main-content" className="atlas-page">
@@ -86,7 +87,11 @@ export default async function Home() {
         </Link>
       </section>
 
-      <TrendCharts joins={joins?.items ?? []} discovery={discovery?.items ?? []} />
+      <TrendCharts
+        joins={joins?.items ?? []}
+        discovery={discovery?.items ?? []}
+        ledgerAdds={ledgerAdds?.items ?? []}
+      />
       <AnalyticsLab />
 
       <section className="boards-grid">
