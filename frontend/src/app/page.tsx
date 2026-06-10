@@ -32,7 +32,7 @@ export default async function Home() {
   const blitz = home?.leaderboards?.blitz ?? null;
   const joins = home?.trends?.joins ?? null;
   const discovery = home?.trends?.discovery ?? null;
-  const ledgerAdds = home?.trends?.ledger_adds ?? null;
+  const ledgerGrowth = home?.trends?.ledger_growth ?? null;
 
   return (
     <main id="main-content" className="atlas-page">
@@ -90,7 +90,7 @@ export default async function Home() {
       <TrendCharts
         joins={joins?.items ?? []}
         discovery={discovery?.items ?? []}
-        ledgerAdds={ledgerAdds?.items ?? []}
+        ledgerGrowth={ledgerGrowth?.items ?? []}
       />
       <AnalyticsLab />
 

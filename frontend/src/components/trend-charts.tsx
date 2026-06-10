@@ -16,49 +16,56 @@ import {
 
 type JoinPoint = { month?: string; players?: number };
 type DiscoveryPoint = { day?: string; new_signups?: number; new_logins?: number };
-type LedgerAddPoint = {
-  day?: string;
-  new_tracked_players?: number;
-  cumulative_tracked_players?: number;
+type LedgerGrowthPoint = {
+  date?: string;
+  tracked_players?: number;
+  daily_added?: number;
+  source?: string;
 };
 
 type TrendChartsProps = {
   joins: JoinPoint[];
   discovery: DiscoveryPoint[];
-  ledgerAdds: LedgerAddPoint[];
+  ledgerGrowth: LedgerGrowthPoint[];
 };
 
-export function TrendCharts({ joins, discovery, ledgerAdds }: TrendChartsProps) {
+export function TrendCharts({ joins, discovery, ledgerGrowth }: TrendChartsProps) {
   return (
     <section className="charts-grid">
       <article className="panel stagger trend-wide">
         <div className="panel-head">
-          <h3>New Tracked Players</h3>
-          <span className="pill">SINCE VPS START</span>
+          <h3>Tracked Player Growth</h3>
+          <span className="pill">PROJECT HISTORY</span>
         </div>
         <div className="chart-wrap">
           <ResponsiveContainer width="100%" height={280}>
-            <ComposedChart data={ledgerAdds}>
+            <ComposedChart data={ledgerGrowth}>
+              <defs>
+                <linearGradient id="ledgerFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#174f3f" stopOpacity={0.32} />
+                  <stop offset="100%" stopColor="#174f3f" stopOpacity={0.04} />
+                </linearGradient>
+              </defs>
               <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
-              <XAxis dataKey="day" tick={{ fontSize: 11 }} />
+              <XAxis dataKey="date" tick={{ fontSize: 11 }} minTickGap={34} />
               <YAxis yAxisId="left" tick={{ fontSize: 11 }} />
               <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 11 }} />
               <Tooltip />
               <Bar
-                yAxisId="left"
-                dataKey="new_tracked_players"
-                name="New tracked players"
-                fill="#174f3f"
-                radius={[3, 3, 0, 0]}
-              />
-              <Line
                 yAxisId="right"
+                dataKey="daily_added"
+                name="Daily added"
+                fill="#c18b2f"
+                opacity={0.36}
+              />
+              <Area
+                yAxisId="left"
                 type="monotone"
-                dataKey="cumulative_tracked_players"
-                name="Cumulative tracked players"
-                stroke="#b64a32"
+                dataKey="tracked_players"
+                name="Tracked players"
+                stroke="#174f3f"
                 strokeWidth={2.5}
-                dot={false}
+                fill="url(#ledgerFill)"
               />
             </ComposedChart>
           </ResponsiveContainer>

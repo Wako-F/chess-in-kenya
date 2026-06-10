@@ -105,6 +105,14 @@ export async function getLedgerAddsTrend(): Promise<TrendResponse | null> {
   }
 }
 
+export async function getLedgerGrowthTrend(): Promise<TrendResponse | null> {
+  try {
+    return await fetchJson<TrendResponse>("/trends/ledger-growth");
+  } catch {
+    return null;
+  }
+}
+
 export async function getRuns(limit = 20): Promise<RunResponse | null> {
   try {
     return await fetchJson<RunResponse>(`/meta/runs?limit=${limit}`);

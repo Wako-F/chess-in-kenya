@@ -1,6 +1,7 @@
 import os
 import threading
 from concurrent.futures import ThreadPoolExecutor
+from datetime import timedelta
 from pathlib import Path
 from typing import Dict, List, Literal, Optional
 
@@ -24,6 +25,26 @@ from .db import get_conn, init_db
 from .pipeline import _build_user_record
 from .quality import compute_quality_report
 from .repository import query_all, query_one, upsert_user_and_stats
+
+
+HISTORICAL_LEDGER_POINTS = [
+    ("2024-12-04", 4337, "First country scrape"),
+    ("2024-12-06", 6080, "Stats expansion"),
+    ("2024-12-14", 11044, "Ledger crossed 10k"),
+    ("2024-12-22", 18460, "Automation begins compounding"),
+    ("2025-01-01", 25286, "New year base"),
+    ("2025-02-01", 41852, "February base"),
+    ("2025-03-01", 55405, "March base"),
+    ("2025-04-01", 68921, "April base"),
+    ("2025-05-01", 78080, "May base"),
+    ("2025-06-01", 88595, "June base"),
+    ("2025-07-01", 101093, "Six-figure ledger"),
+    ("2025-08-01", 110749, "August base"),
+    ("2025-09-01", 118367, "Duplicate-adjusted users"),
+    ("2025-12-01", 133436, "Winter ledger"),
+    ("2026-04-19", 143238, "Canonical refresh"),
+    ("2026-05-19", 155972, "VPS production API"),
+]
 
 
 def _env_enabled(name: str, default: bool = True) -> bool:
@@ -436,6 +457,60 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
         return cached_json(settings, f"api:trends:ledger-adds:{start}", 300, build)
 
+    @app.get("/trends/ledger-growth")
+    def ledger_growth_trend() -> Dict[str, List[Dict[str, object]]]:
+        def build() -> Dict[str, List[Dict[str, object]]]:
+            with get_conn(settings) as conn:
+                row = query_one(conn, "SELECT COUNT(*) AS players FROM users WHERE status='active'")
+
+            current_players = int(row["players"] or 0) if row else 0
+            checkpoints = list(HISTORICAL_LEDGER_POINTS)
+            if current_players:
+                today = pd.Timestamp.utcnow().date().isoformat()
+                if checkpoints and checkpoints[-1][0] == today:
+                    checkpoints[-1] = (today, current_players, "Production API now")
+                else:
+                    checkpoints.append((today, current_players, "Production API now"))
+
+            items = []
+            previous_players = 0
+            for idx, (date, players, source) in enumerate(checkpoints):
+                if idx == 0:
+                    items.append(
+                        {
+                            "date": date,
+                            "tracked_players": players,
+                            "daily_added": players,
+                            "source": source,
+                        }
+                    )
+                    previous_players = players
+                    continue
+
+                prev_date, prev_players, _ = checkpoints[idx - 1]
+                start_date = pd.to_datetime(prev_date).date()
+                end_date = pd.to_datetime(date).date()
+                span_days = max((end_date - start_date).days, 1)
+
+                for day_offset in range(1, span_days + 1):
+                    day = start_date + timedelta(days=day_offset)
+                    progress = day_offset / span_days
+                    interpolated_players = int(round(prev_players + ((players - prev_players) * progress)))
+                    exact_checkpoint = day_offset == span_days
+                    daily_added = max(0, interpolated_players - previous_players)
+                    items.append(
+                        {
+                            "date": day.isoformat(),
+                            "tracked_players": interpolated_players,
+                            "daily_added": daily_added,
+                            "source": source if exact_checkpoint else "Daily interpolation between observed checkpoints",
+                        }
+                    )
+                    previous_players = interpolated_players
+            return {"items": items}
+
+        return cached_json(settings, "api:trends:ledger-growth", 300, build)
+
     @app.get("/home")
     def home() -> Dict[str, object]:
         def build() -> Dict[str, object]:
@@ -450,6 +525,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
                     "joins": joins_trend(months=36),
                     "discovery": discovery_trend(days=60),
                     "ledger_adds": ledger_adds_trend(start="2026-05-18"),
+                    "ledger_growth": ledger_growth_trend(),
                 },
             }
 

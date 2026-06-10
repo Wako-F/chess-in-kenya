@@ -61,10 +61,12 @@ export type HomePayload = {
     joins?: TrendResponse | null;
     discovery?: TrendResponse | null;
     ledger_adds?: TrendResponse | null;
+    ledger_growth?: TrendResponse | null;
   };
 };
 
 export type TrendPoint = {
+  date?: string;
   month?: string;
   day?: string;
   players?: number;
@@ -73,6 +75,9 @@ export type TrendPoint = {
   new_logins?: number;
   new_tracked_players?: number;
   cumulative_tracked_players?: number;
+  tracked_players?: number;
+  daily_added?: number;
+  source?: string;
 };
 
 export type TrendResponse = {
