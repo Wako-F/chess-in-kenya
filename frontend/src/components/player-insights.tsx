@@ -4,7 +4,6 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Cell,
   Legend,
   PolarAngleAxis,
   PolarGrid,
@@ -113,6 +112,9 @@ function benchmarkRows(benchmark: PlayerBenchmark | null) {
       label: labels[key],
       value: metric.value,
       percentile: metric.percentile ?? 0,
+      rank: metric.rank ?? null,
+      totalRanked: metric.total_ranked ?? 0,
+      rankMinGames: metric.rank_min_games ?? 20,
     }));
 }
 
@@ -194,14 +196,19 @@ export function PlayerInsights({
       <article className="panel stagger">
         <div className="panel-head">
           <h3>Population Standing</h3>
-          <span className="pill">LOCAL PERCENTILE</span>
+          <span className="pill">LOCAL RANK</span>
         </div>
         <div className="percentile-stack">
           {rows.map((row) => (
             <div key={row.key} className="percentile-row">
               <div>
                 <strong>{row.label}</strong>
-                <span>{fmt(row.value)}</span>
+                <span>
+                  {fmt(row.value)}
+                  {row.rank !== null && row.totalRanked > 0
+                    ? ` · #${fmt(row.rank)} of ${fmt(row.totalRanked)}`
+                    : ` · not ranked`}
+                </span>
               </div>
               <div className="percentile-track" aria-hidden>
                 <span style={{ width: `${Math.max(2, Math.min(100, row.percentile))}%` }} />

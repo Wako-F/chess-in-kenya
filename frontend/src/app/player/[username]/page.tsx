@@ -39,7 +39,7 @@ export default async function PlayerPage({
             <p className="eyebrow">Live player route</p>
             <h1>{player.username}</h1>
             <p className="lead">
-              Fresh Chess.com profile refresh with local Kenya percentile context and format-level
+              Fresh Chess.com profile refresh with local Kenya rank context and format-level
               performance shape.
             </p>
             <div className="run-meta">
@@ -114,7 +114,7 @@ export default async function PlayerPage({
 
       <section className="panel stagger">
         <div className="panel-head">
-          <h3>Raw Population Percentiles</h3>
+          <h3>Raw Population Standing</h3>
           <span className="pill">BENCHMARK TABLE</span>
         </div>
         {benchmark ? (
@@ -125,6 +125,7 @@ export default async function PlayerPage({
                 <p className="v">
                   {m.value.toLocaleString()}{" "}
                   {m.percentile !== null ? `(P${m.percentile.toFixed(1)})` : ""}
+                  {m.rank && m.total_ranked ? ` #${m.rank.toLocaleString()} / ${m.total_ranked.toLocaleString()}` : ""}
                 </p>
               </div>
             ))}

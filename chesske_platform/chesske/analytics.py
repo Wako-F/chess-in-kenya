@@ -23,6 +23,7 @@ FORMAT_COLUMNS = {
 }
 
 PERCENTILE_POINTS = [10, 25, 50, 75, 90, 99]
+PROFILE_RANK_MIN_GAMES = 20
 
 
 def _iso_days_ago(days: int) -> str:
@@ -613,6 +614,10 @@ def build_player_benchmark_payload(conn: Any, username: str) -> Optional[Dict[st
             s.bullet_rating,
             s.daily_rating,
             s.highest_puzzle_rating,
+            s.total_rapid,
+            s.total_blitz,
+            s.total_bullet,
+            s.total_daily,
             s.total_games
         FROM users u
         JOIN user_stats_latest s ON s.username = u.username
@@ -623,15 +628,57 @@ def build_player_benchmark_payload(conn: Any, username: str) -> Optional[Dict[st
     if not target:
         return None
 
+    rank_rules = {
+        "rapid_rating": ("s.rapid_rating", "s.total_rapid", PROFILE_RANK_MIN_GAMES),
+        "blitz_rating": ("s.blitz_rating", "s.total_blitz", PROFILE_RANK_MIN_GAMES),
+        "bullet_rating": ("s.bullet_rating", "s.total_bullet", PROFILE_RANK_MIN_GAMES),
+        "daily_rating": ("s.daily_rating", "s.total_daily", PROFILE_RANK_MIN_GAMES),
+        "highest_puzzle_rating": ("s.highest_puzzle_rating", "s.total_games", PROFILE_RANK_MIN_GAMES),
+        "total_games": ("s.total_games", "s.total_games", PROFILE_RANK_MIN_GAMES),
+    }
+
     metrics: Dict[str, Dict[str, Optional[float]]] = {}
-    for key in ["rapid_rating", "blitz_rating", "bullet_rating", "daily_rating", "highest_puzzle_rating", "total_games"]:
+    for key in rank_rules:
         value = float(target[key] or 0)
         count_row = query_one(conn, f"SELECT COUNT(*) AS c FROM user_stats_latest WHERE {key} IS NOT NULL")
         le_row = query_one(conn, f"SELECT COUNT(*) AS c FROM user_stats_latest WHERE COALESCE({key}, 0) <= ?", (value,))
         total = int(count_row["c"] or 0) if count_row else 0
         le_count = int(le_row["c"] or 0) if le_row else 0
         percentile = round((le_count / total) * 100.0, 2) if total else None
-        metrics[key] = {"value": value, "percentile": percentile}
+
+        score_col, games_col, min_games = rank_rules[key]
+        rank_row = query_one(
+            conn,
+            f"""
+            SELECT
+                CASE
+                    WHEN ? > 0 AND ? >= ? THEN
+                        1 + SUM(CASE WHEN COALESCE({score_col}, 0) > ? THEN 1 ELSE 0 END)
+                    ELSE NULL
+                END AS rank,
+                SUM(
+                    CASE
+                        WHEN COALESCE({score_col}, 0) > 0
+                         AND COALESCE({games_col}, 0) >= ?
+                        THEN 1 ELSE 0
+                    END
+                ) AS total_ranked
+            FROM users u
+            JOIN user_stats_latest s ON s.username = u.username
+            WHERE u.status = 'active'
+            """,
+            (value, float(target[games_col.replace("s.", "")] or 0), min_games, value, min_games),
+        )
+        rank = int(rank_row["rank"]) if rank_row and rank_row["rank"] is not None else None
+        total_ranked = int(rank_row["total_ranked"] or 0) if rank_row else 0
+
+        metrics[key] = {
+            "value": value,
+            "percentile": percentile,
+            "rank": rank,
+            "total_ranked": total_ranked,
+            "rank_min_games": min_games,
+        }
     return {"username": username, "metrics": metrics}
 
 

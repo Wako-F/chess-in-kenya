@@ -276,6 +276,9 @@ export type StoryReport = {
 export type PlayerBenchmarkMetric = {
   value: number;
   percentile: number | null;
+  rank?: number | null;
+  total_ranked?: number;
+  rank_min_games?: number;
 };
 
 export type PlayerBenchmark = {
