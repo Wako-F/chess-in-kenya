@@ -1,0 +1,16 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  PYTHON_VERSION = "3.11"
+  CHESSKE_INTERNAL_API_BASE = "http://38.242.228.254/api"
+  NEXT_PUBLIC_CHESSKE_API_BASE = "/api"
+
+[[redirects]]
+  from = "/api/*"
+  to = "http://38.242.228.254/api/:splat"
+  status = 200
+  force = true
