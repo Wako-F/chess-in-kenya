@@ -30,6 +30,8 @@ const SCAN_PATH_PATTERNS = [
   /^\/xmlrpc\.php/i,
 ];
 
+const STATIC_PATH_PATTERN = /\.(css|js|map|svg|png|jpg|jpeg|gif|webp|ico|txt|woff|woff2)$/i;
+
 function blockedResponse(status = 403) {
   return new Response("Forbidden", {
     status,
@@ -44,6 +46,16 @@ async function botGuard(request, context) {
   const url = new URL(request.url);
   const pathname = url.pathname;
   const userAgent = request.headers.get("user-agent")?.toLowerCase() ?? "";
+
+  if (
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml" ||
+    pathname.startsWith("/_next/static/") ||
+    pathname.startsWith("/_next/image") ||
+    STATIC_PATH_PATTERN.test(pathname)
+  ) {
+    return context.next();
+  }
 
   if (SCAN_PATH_PATTERNS.some((pattern) => pattern.test(pathname))) {
     return blockedResponse(404);

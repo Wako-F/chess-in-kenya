@@ -2,6 +2,7 @@
   base = "frontend"
   command = "npm run build"
   publish = ".next"
+  edge_functions = "netlify/edge-functions"
 
 [build.environment]
   NODE_VERSION = "22"
@@ -35,14 +36,6 @@
 [[edge_functions]]
   path = "/*"
   function = "bot-guard"
-  excludedPattern = [
-    "^/_next/static/.*",
-    "^/_next/image.*",
-    "^/favicon\\.ico$",
-    "^/robots\\.txt$",
-    "^/sitemap\\.xml$",
-    ".*\\.(css|js|map|svg|png|jpg|jpeg|gif|webp|ico|txt)$"
-  ]
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
