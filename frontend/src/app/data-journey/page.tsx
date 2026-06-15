@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MetricCard } from "@/components/metric-card";
 import { getOverview, getQuality } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 const ledgerGrowth = [
   ["2024-12-04", "2bf7165", "First draft", "4,337", "4,336", "8 cols", "Raw country scrape: username, title, join date, last online, bullet, blitz, rapid, FIDE."],

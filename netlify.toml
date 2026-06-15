@@ -15,5 +15,34 @@
   status = 200
   force = true
 
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
+[[headers]]
+  for = "/player/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+
+[[edge_functions]]
+  path = "/*"
+  function = "bot-guard"
+  excludedPattern = [
+    "^/_next/static/.*",
+    "^/_next/image.*",
+    "^/favicon\\.ico$",
+    "^/robots\\.txt$",
+    "^/sitemap\\.xml$",
+    ".*\\.(css|js|map|svg|png|jpg|jpeg|gif|webp|ico|txt)$"
+  ]
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"

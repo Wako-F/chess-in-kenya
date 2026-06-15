@@ -1,6 +1,6 @@
 import { getQuality } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function MethodologyPage() {
   const quality = await getQuality();

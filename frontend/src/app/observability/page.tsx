@@ -2,7 +2,7 @@ import { RunHistory } from "@/components/run-history";
 import { MetricCard } from "@/components/metric-card";
 import { getErrors, getQuality, getRuns } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function ObservabilityPage() {
   const [quality, runs, errors] = await Promise.all([
