@@ -21,6 +21,7 @@ import type {
 function getApiBase() {
   const configured = process.env.NEXT_PUBLIC_CHESSKE_API_BASE ?? "";
   const usableConfigured = configured.includes("chess-in-kenya.onrender.com") ? "" : configured;
+  const isRelativeConfigured = usableConfigured.startsWith("/");
 
   if (typeof window !== "undefined") {
     return usableConfigured || "/api";
@@ -30,7 +31,7 @@ function getApiBase() {
     return process.env.CHESSKE_INTERNAL_API_BASE;
   }
 
-  if (usableConfigured) {
+  if (usableConfigured && !isRelativeConfigured) {
     return usableConfigured;
   }
 

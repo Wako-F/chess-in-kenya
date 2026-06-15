@@ -2,6 +2,8 @@ import Link from "next/link";
 import { MetricCard } from "@/components/metric-card";
 import { getOverview, getQuality } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
+
 const ledgerGrowth = [
   ["2024-12-04", "2bf7165", "First draft", "4,337", "4,336", "8 cols", "Raw country scrape: username, title, join date, last online, bullet, blitz, rapid, FIDE."],
   ["2024-12-06", "7a9b300", "Stats expansion", "6,080", "6,080", "24 cols", "Per-format totals and records arrived; the dataset stopped being only ratings."],

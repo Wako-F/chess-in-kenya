@@ -6,6 +6,7 @@ import { PlayerSearch } from "@/components/player-search";
 import { TrendCharts } from "@/components/trend-charts";
 import { getHomePayload } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
 export const revalidate = 300;
 
 function fmt(n: number | null | undefined) {

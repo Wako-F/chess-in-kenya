@@ -2,6 +2,8 @@ import { LeaderboardTable } from "@/components/leaderboard-table";
 import { LeaderboardMarvel } from "@/components/leaderboard-marvel";
 import { getLeaderboard } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
+
 const boards = [
   { key: "rapid", title: "Rapid Commanders" },
   { key: "blitz", title: "Blitz Specialists" },
