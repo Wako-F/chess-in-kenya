@@ -22,7 +22,7 @@ export default async function LeaderboardsPage() {
       ? items.reduce((acc, cur) => acc + (cur.score ?? 0), 0) / items.length
       : 0;
     return { board: board.key, topScore, avgTopScore };
-  });
+  }).filter((row) => row.board !== "games");
 
   return (
     <main id="main-content" className="atlas-page">

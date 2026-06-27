@@ -88,10 +88,9 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
           <span className="pill">IMPORTANT</span>
         </div>
         <p>
-          Recent-activity views are currently conservative. This repository had a pipeline gap of roughly four
-          months before April 20, 2026, and Chess.com&apos;s country endpoint is recency-ordered and capped.
-          That means active-window counts are useful for story shape and comparison, but they understate the
-          true current ecosystem until the pipeline fully rehydrates.
+          Recent-activity views are activity proxies, not retention proofs. They use Chess.com profile
+          last-online timestamps from the refreshed active Kenya roster, so they are useful for comparing
+          shape and direction but should not be read as a complete behavioral census.
         </p>
       </section>
 
@@ -238,8 +237,8 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
             <span className="pill">COHORT TENSION</span>
           </div>
           <p>
-            Growth accelerated sharply, but newer cohorts have much shallower game depth. This is where the
-            project should talk about conversion, not just acquisition.
+            Complete join-year cohorts show how growth and game depth move together. The active-rate line is
+            current 90-day profile activity by join year, not literal retention from signup.
           </p>
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height={290}>
@@ -250,9 +249,9 @@ export function StoryMarvel({ report }: { report: StoryReport | null }) {
                 <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${Math.round(v * 100)}%`} />
                 <Tooltip />
                 <Legend />
-                <Bar yAxisId="left" dataKey="players" fill="#c18b2f" radius={[6, 6, 0, 0]} />
-                <Line yAxisId="left" type="monotone" dataKey="median_games" stroke="#174f3f" strokeWidth={2.5} />
-                <Line yAxisId="right" type="monotone" dataKey="active_rate_90d" stroke="#b64a32" strokeWidth={2.5} />
+                <Bar yAxisId="left" dataKey="players" name="Join-year players" fill="#c18b2f" radius={[6, 6, 0, 0]} />
+                <Line yAxisId="left" type="monotone" dataKey="median_games" name="Median games" stroke="#174f3f" strokeWidth={2.5} />
+                <Line yAxisId="right" type="monotone" dataKey="active_rate_90d" name="Active 90d rate" stroke="#b64a32" strokeWidth={2.5} />
               </ComposedChart>
             </ResponsiveContainer>
           </div>

@@ -486,6 +486,7 @@ def build_story_report_payload(conn: Any) -> Dict[str, object]:
         "rapid_200_plus": _count(conn, "(COALESCE(total_rapid, 0) >= 20 AND COALESCE(total_blitz, 0) >= 20 AND (blitz_rating - rapid_rating) <= -200)"),
     }
 
+    current_year = datetime.now(timezone.utc).strftime("%Y")
     cohort_rows = query_all(
         conn,
         """
@@ -496,11 +497,12 @@ def build_story_report_payload(conn: Any) -> Dict[str, object]:
         FROM users
         WHERE status = 'active'
           AND joined_at IS NOT NULL
+          AND SUBSTR(joined_at, 1, 4) < ?
         GROUP BY SUBSTR(joined_at, 1, 4)
         ORDER BY cohort DESC
         LIMIT 8
         """,
-        (active_90d,),
+        (active_90d, current_year),
     )
     cohorts = []
     for row in reversed(cohort_rows):

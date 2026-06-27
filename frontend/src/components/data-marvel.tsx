@@ -141,8 +141,8 @@ export function DataMarvel({
           <span className="pill">SCATTER MAP</span>
         </div>
         <p>
-          Each point maps a player with both rapid and blitz ratings. The visible tilt below the diagonal
-          supports the same story seen in the gap metrics: rapid tends to outperform blitz for most dual-format players.
+          Each visible point maps a high-volume player with both rapid and blitz ratings. This is a
+          committed-player sample, not every dual-format account, so read the tilt alongside the broader gap metrics.
         </p>
         {scatterData.length ? (
           <div className="chart-wrap">
