@@ -140,13 +140,13 @@ export function DeepAnalytics({
 
       <article className="panel stagger deep-full">
         <div className="panel-head">
-          <h3>Cohort Activity (last online 90d)</h3>
+          <h3>Mature Cohort Activity (last online 90d)</h3>
           <span className="pill">LONGITUDINAL</span>
         </div>
         <p>
-          This groups accounts by Chess.com join month, then shows how many have a profile
-          last-online timestamp inside the last 90 days. It is an activity proxy, not a formal
-          retention cohort study.
+          This groups accounts by Chess.com join month, excludes cohorts that have not had a full
+          90 days to age, then shows how many have a profile last-online timestamp inside the last
+          90 days.
         </p>
         {cohorts.length ? (
           <div className="chart-wrap">

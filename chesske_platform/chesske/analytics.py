@@ -135,6 +135,7 @@ def build_percentile_bands_payload(conn: Any) -> Dict[str, List[Dict[str, object
 
 def build_cohort_retention_payload(conn: Any, months: int = 24) -> Dict[str, List[Dict[str, object]]]:
     cutoff = _iso_days_ago(90)
+    mature_cohort_month = (datetime.now(timezone.utc) - timedelta(days=90)).strftime("%Y-%m")
     rows = query_all(
         conn,
         """
@@ -145,11 +146,12 @@ def build_cohort_retention_payload(conn: Any, months: int = 24) -> Dict[str, Lis
         FROM users
         WHERE status = 'active'
           AND joined_at IS NOT NULL
+          AND SUBSTR(joined_at, 1, 7) < ?
         GROUP BY SUBSTR(joined_at, 1, 7)
         ORDER BY cohort DESC
         LIMIT ?
         """,
-        (cutoff, months),
+        (cutoff, mature_cohort_month, months),
     )
     items = []
     for row in reversed(rows):
