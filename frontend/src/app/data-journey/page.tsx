@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MetricCard } from "@/components/metric-card";
-import { getOverview, getQuality } from "@/lib/api";
+import { getOverview, getQuality, getStoryReport } from "@/lib/api";
 
 export const revalidate = 300;
 
@@ -43,7 +43,6 @@ const ledgerChart = [
   ["Jul 2025", 101093],
   ["Dec 2025", 133436],
   ["Apr 2026", 143238],
-  ["VPS now", 155972],
 ];
 
 const automationCadence = [
@@ -73,47 +72,12 @@ const quietGaps = [
   ["2025-12-30 -> 2026-04-20", "110 days", "The long winter/spring pause before the production-platform revival."],
 ];
 
-const productionFacts = [
-  ["Active users", "155,972", "VPS Postgres/API, not the checked-in CSV."],
-  ["Total games", "82,951,536", "Current production sum across rapid, blitz, bullet, and daily."],
-  ["Median games", "10", "The normal tracked player remains very light-touch."],
-  ["Mean games", "531.8", "The mean is far higher because volume is extremely concentrated."],
-  ["Rapid players", "126,311", "81.0% of production active users have rapid data."],
-  ["Puzzle players", "149,532", "95.9% have puzzle rating data, the broadest skill signal."],
-  ["Blitz players", "47,210", "30.3% have blitz data."],
-  ["Bullet players", "35,154", "22.5% have bullet data."],
-];
-
 const productionOps = [
   ["2026-05-18 15:49 UTC", "Initial VPS/Postgres bootstrap", "155,564 users loaded from cleaned_master_chess_players.csv."],
   ["2026-05-19 00:01 UTC", "First rolling run failed", "10,000 active users were fetched, then the run failed on a Postgres executemany wrapper issue."],
   ["2026-05-19 12:06-15:10 UTC", "Long rolling run succeeded", "10,000 active users processed; 9,990 updated, 1 deleted, 9 errors."],
   ["2026-05-19 17:10 UTC", "Export and rebootstrap tension", "CSV export reached 155,972 total, but verification later saw csv_rows=155,564 vs db_users=155,972."],
   ["Current timer", "VPS owns ingestion", "chesske-pipeline.timer is enabled and scheduled twice daily; GitHub Actions no longer owns production data."],
-];
-
-const activityTiers = [
-  ["0 games", "26,317", "16.9%"],
-  ["1-9 games", "49,748", "31.9%"],
-  ["10-49 games", "28,752", "18.4%"],
-  ["50-199 games", "18,944", "12.1%"],
-  ["200-999 games", "16,410", "10.5%"],
-  ["1k-4.9k games", "11,853", "7.6%"],
-  ["5k+ games", "3,948", "2.5%"],
-];
-
-const concentrationFacts = [
-  ["Top 1%", "35.1% of games", "1,559 users account for 29.1M games."],
-  ["Top 5%", "71.3% of games", "7,798 users account for 59.1M games."],
-  ["Top 10%", "86.8% of games", "15,597 users account for 72.0M games."],
-];
-
-const formatCoverage = [
-  ["Puzzle", 149532, "95.9%"],
-  ["Rapid", 126311, "81.0%"],
-  ["Blitz", 47210, "30.3%"],
-  ["Bullet", 35154, "22.5%"],
-  ["Daily", 34299, "22.0%"],
 ];
 
 const phases = [
@@ -164,7 +128,7 @@ const phases = [
     date: "May 2026",
     body:
       "Production data now lives on the Contabo VPS in PostgreSQL, served through FastAPI and consumed by the Next.js frontend. The API, not the checked-in CSV, is the accurate current data source.",
-    evidence: "VPS API currently reports 155,972 active users and 82,951,536 games.",
+    evidence: "The live cards on this page are read from the VPS API and update as production data changes.",
   },
 ];
 
@@ -182,8 +146,53 @@ function barWidth(value: number, max: number) {
   return `${Math.max(3, Math.round((value / max) * 100))}%`;
 }
 
+function share(players: number, total: number) {
+  if (!total) return "N/A";
+  return `${((players / total) * 100).toFixed(1)}%`;
+}
+
+function pctText(value: number | undefined) {
+  return `${(((value ?? 0) * 100)).toFixed(1)}%`;
+}
+
 export default async function DataJourneyPage() {
-  const [overview, quality] = await Promise.all([getOverview(), getQuality()]);
+  const [overview, quality, story] = await Promise.all([getOverview(), getQuality(), getStoryReport()]);
+  const currentPlayers = overview?.total_players ?? story?.snapshot.tracked_players ?? 0;
+  const currentGames = overview?.total_games ?? story?.snapshot.total_games ?? 0;
+  const maxLedgerPlayers = Math.max(currentPlayers, ...ledgerChart.map(([, value]) => Number(value)));
+  const liveLedgerChart = [...ledgerChart, ["Now", currentPlayers]] as Array<[string, number]>;
+  const findParticipation = (format: string) =>
+    story?.format_identity.participation.find((item) => item.format === format)?.players ?? 0;
+  const puzzlePlayers =
+    story?.puzzle_culture.segments.find((item) => item.segment === "Puzzle rated")?.players ?? 0;
+  const productionFacts = [
+    ["Active users", fmt(currentPlayers), "Current VPS Postgres/API active dataset."],
+    ["Total games", fmt(currentGames), "Current production sum across rapid, blitz, bullet, and daily."],
+    ["Median games", fmt(story?.snapshot.median_games), "The normal tracked player remains very light-touch."],
+    ["Mean games", story?.snapshot.mean_games?.toFixed(1) ?? "N/A", "The mean is higher because volume is concentrated."],
+    ["Rapid players", fmt(findParticipation("Rapid")), `${share(findParticipation("Rapid"), currentPlayers)} of active users have rapid games.`],
+    ["Puzzle players", fmt(puzzlePlayers), `${share(puzzlePlayers, currentPlayers)} have puzzle rating data.`],
+    ["Blitz players", fmt(findParticipation("Blitz")), `${share(findParticipation("Blitz"), currentPlayers)} have blitz games.`],
+    ["Bullet players", fmt(findParticipation("Bullet")), `${share(findParticipation("Bullet"), currentPlayers)} have bullet games.`],
+  ];
+  const activityTiers = story?.concentration.volume_tiers.map((tier) => [
+    `${tier.tier} games`,
+    fmt(tier.players),
+    share(tier.players, currentPlayers),
+  ]) ?? [];
+  const concentrationFacts = story?.concentration.top_shares.map((item) => [
+    item.group,
+    `${pctText(item.share)} of games`,
+    "Share of all recorded games in the current active dataset.",
+  ]) ?? [];
+  const formatCoverage = [
+    ["Puzzle", puzzlePlayers, share(puzzlePlayers, currentPlayers)],
+    ["Rapid", findParticipation("Rapid"), share(findParticipation("Rapid"), currentPlayers)],
+    ["Blitz", findParticipation("Blitz"), share(findParticipation("Blitz"), currentPlayers)],
+    ["Bullet", findParticipation("Bullet"), share(findParticipation("Bullet"), currentPlayers)],
+    ["Daily", findParticipation("Daily"), share(findParticipation("Daily"), currentPlayers)],
+  ] as Array<[string, number, string]>;
+  const maxFormatPlayers = Math.max(currentPlayers, ...formatCoverage.map(([, value]) => value));
 
   return (
     <main id="main-content" className="atlas-page">
@@ -199,7 +208,7 @@ export default async function DataJourneyPage() {
           </p>
           <div className="run-meta mono">
             <span className="pill">VPS-verified</span>
-            <span>Current production users: {fmt(overview?.total_players ?? 155972)}</span>
+            <span>Current production users: {fmt(currentPlayers)}</span>
             <span>Latest coverage: {quality ? pct(quality.latest_active_coverage_ratio) : "API pending"}</span>
           </div>
         </div>
@@ -208,8 +217,8 @@ export default async function DataJourneyPage() {
       <section className="metrics-grid">
         <MetricCard label="First Snapshot" value="4,337" accent="sun" />
         <MetricCard label="Endpoint Hit 10k" value="Jul 23, 2025" accent="jade" />
-        <MetricCard label="Production Users" value={fmt(overview?.total_players ?? 155972)} accent="coral" />
-        <MetricCard label="Production Games" value={fmt(overview?.total_games ?? 82951536)} accent="ink" />
+        <MetricCard label="Production Users" value={fmt(currentPlayers)} accent="coral" />
+        <MetricCard label="Production Games" value={fmt(currentGames)} accent="ink" />
       </section>
 
       <section className="panel intro stagger">
@@ -266,18 +275,18 @@ export default async function DataJourneyPage() {
           </div>
           <p>
             The endpoint cap is only the daily discovery window. The ledger kept accumulating
-            observed users across runs, which is how a 10k active window became a 155k production
-            registry.
+            observed users across runs, which is how a 10k active window became a much larger
+            production registry.
           </p>
           <div className="bar-chart">
-            {ledgerChart.map(([label, value]) => (
+            {liveLedgerChart.map(([label, value]) => (
               <div className="bar-row" key={label}>
                 <div className="bar-label">
                   <strong>{label}</strong>
                   <span>canonical users</span>
                 </div>
                 <div className="bar-track">
-                  <span style={{ width: barWidth(Number(value), 155972) }} />
+                  <span style={{ width: barWidth(Number(value), maxLedgerPlayers) }} />
                 </div>
                 <em>{Number(value).toLocaleString()}</em>
               </div>
@@ -449,7 +458,7 @@ export default async function DataJourneyPage() {
               <div className="coverage-row" key={label}>
                 <span>{label}</span>
                 <div className="bar-track">
-                  <span style={{ width: barWidth(Number(value), 155972) }} />
+                  <span style={{ width: barWidth(Number(value), maxFormatPlayers) }} />
                 </div>
                 <strong>{share}</strong>
               </div>

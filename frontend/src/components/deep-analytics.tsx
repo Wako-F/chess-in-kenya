@@ -140,12 +140,13 @@ export function DeepAnalytics({
 
       <article className="panel stagger deep-full">
         <div className="panel-head">
-          <h3>Cohort Retention (90-day active)</h3>
+          <h3>Cohort Activity (last online 90d)</h3>
           <span className="pill">LONGITUDINAL</span>
         </div>
         <p>
-          Read this as a proxy for observed recency, not a definitive retention measure. It is directionally useful,
-          but it is sensitive to pipeline freshness and to Chess.com&apos;s recency-capped country roster.
+          This groups accounts by Chess.com join month, then shows how many have a profile
+          last-online timestamp inside the last 90 days. It is an activity proxy, not a formal
+          retention cohort study.
         </p>
         {cohorts.length ? (
           <div className="chart-wrap">
@@ -154,12 +155,12 @@ export function DeepAnalytics({
                 <CartesianGrid strokeDasharray="3 6" stroke="#d8d4c8" />
                 <XAxis dataKey="cohort" />
                 <YAxis yAxisId="left" />
-                <YAxis yAxisId="right" orientation="right" domain={[0, 1]} />
+                <YAxis yAxisId="right" orientation="right" domain={[0, 1]} tickFormatter={(v) => `${Math.round(Number(v) * 100)}%`} />
                 <Tooltip />
                 <Legend />
-                <Bar yAxisId="left" dataKey="total_players" fill="#c18b2f" />
-                <Bar yAxisId="left" dataKey="retained_90d" fill="#174f3f" />
-                <Line yAxisId="right" type="monotone" dataKey="retention_rate" stroke="#b64a32" dot={false} />
+                <Bar yAxisId="left" dataKey="total_players" name="Cohort players" fill="#c18b2f" />
+                <Bar yAxisId="left" dataKey="retained_90d" name="Active 90d" fill="#174f3f" />
+                <Line yAxisId="right" type="monotone" dataKey="retention_rate" name="Active rate" stroke="#b64a32" dot={false} />
               </ComposedChart>
             </ResponsiveContainer>
           </div>

@@ -45,9 +45,11 @@ def _calc_correlation(conn: Any, left: str, right: str) -> float:
             SUM(CAST({left} AS REAL) * CAST({left} AS REAL)) AS sum_x2,
             SUM(CAST({right} AS REAL) * CAST({right} AS REAL)) AS sum_y2,
             SUM(CAST({left} AS REAL) * CAST({right} AS REAL)) AS sum_xy
-        FROM user_stats_latest
-        WHERE COALESCE({left}, 0) > 0
-          AND COALESCE({right}, 0) > 0
+        FROM users u
+        JOIN user_stats_latest s ON s.username = u.username
+        WHERE u.status = 'active'
+          AND COALESCE(s.{left}, 0) > 0
+          AND COALESCE(s.{right}, 0) > 0
         """,
     )
     if not row or int(row["n"] or 0) < 2:
@@ -71,7 +73,13 @@ def _calc_correlation(conn: Any, left: str, right: str) -> float:
 def _select_percentile(conn: Any, column: str, pct: int) -> Optional[int]:
     count_row = query_one(
         conn,
-        f"SELECT COUNT(*) AS c FROM user_stats_latest WHERE COALESCE({column}, 0) > 0",
+        f"""
+        SELECT COUNT(*) AS c
+        FROM users u
+        JOIN user_stats_latest s ON s.username = u.username
+        WHERE u.status = 'active'
+          AND COALESCE(s.{column}, 0) > 0
+        """,
     )
     count = int(count_row["c"] or 0) if count_row else 0
     if count == 0:
@@ -80,10 +88,12 @@ def _select_percentile(conn: Any, column: str, pct: int) -> Optional[int]:
     row = query_one(
         conn,
         f"""
-        SELECT {column} AS value
-        FROM user_stats_latest
-        WHERE COALESCE({column}, 0) > 0
-        ORDER BY {column}
+        SELECT s.{column} AS value
+        FROM users u
+        JOIN user_stats_latest s ON s.username = u.username
+        WHERE u.status = 'active'
+          AND COALESCE(s.{column}, 0) > 0
+        ORDER BY s.{column}
         LIMIT 1 OFFSET ?
         """,
         (offset,),
@@ -131,7 +141,7 @@ def build_cohort_retention_payload(conn: Any, months: int = 24) -> Dict[str, Lis
         SELECT
             SUBSTR(joined_at, 1, 7) AS cohort,
             COUNT(*) AS total_players,
-            SUM(CASE WHEN COALESCE(last_seen_active_at, '') >= ? THEN 1 ELSE 0 END) AS retained_90d
+            SUM(CASE WHEN COALESCE(last_online, '') >= ? THEN 1 ELSE 0 END) AS retained_90d
         FROM users
         WHERE status = 'active'
           AND joined_at IS NOT NULL
@@ -164,7 +174,13 @@ def _count(conn: Any, where_sql: str = "1=1", params: Iterable[object] = ()) -> 
 def _median_ratio(conn: Any, wins_col: str, draws_col: str, total_col: str) -> Dict[str, float]:
     count_row = query_one(
         conn,
-        f"SELECT COUNT(*) AS c FROM user_stats_latest WHERE COALESCE({total_col}, 0) >= 20",
+        f"""
+        SELECT COUNT(*) AS c
+        FROM users u
+        JOIN user_stats_latest s ON s.username = u.username
+        WHERE u.status = 'active'
+          AND COALESCE(s.{total_col}, 0) >= 20
+        """,
     )
     count = int(count_row["c"] or 0) if count_row else 0
     if count == 0:
@@ -173,9 +189,11 @@ def _median_ratio(conn: Any, wins_col: str, draws_col: str, total_col: str) -> D
     win_row = query_one(
         conn,
         f"""
-        SELECT CAST({wins_col} AS REAL) / NULLIF({total_col}, 0) AS value
-        FROM user_stats_latest
-        WHERE COALESCE({total_col}, 0) >= 20
+        SELECT CAST(s.{wins_col} AS REAL) / NULLIF(s.{total_col}, 0) AS value
+        FROM users u
+        JOIN user_stats_latest s ON s.username = u.username
+        WHERE u.status = 'active'
+          AND COALESCE(s.{total_col}, 0) >= 20
         ORDER BY value
         LIMIT 1 OFFSET ?
         """,
@@ -184,9 +202,11 @@ def _median_ratio(conn: Any, wins_col: str, draws_col: str, total_col: str) -> D
     draw_row = query_one(
         conn,
         f"""
-        SELECT CAST({draws_col} AS REAL) / NULLIF({total_col}, 0) AS value
-        FROM user_stats_latest
-        WHERE COALESCE({total_col}, 0) >= 20
+        SELECT CAST(s.{draws_col} AS REAL) / NULLIF(s.{total_col}, 0) AS value
+        FROM users u
+        JOIN user_stats_latest s ON s.username = u.username
+        WHERE u.status = 'active'
+          AND COALESCE(s.{total_col}, 0) >= 20
         ORDER BY value
         LIMIT 1 OFFSET ?
         """,
@@ -349,9 +369,11 @@ def build_story_report_payload(conn: Any) -> Dict[str, object]:
             conn,
             f"""
             SELECT
-                SUM(CASE WHEN COALESCE({total_col}, 0) > 0 THEN 1 ELSE 0 END) AS players,
+                SUM(CASE WHEN COALESCE(s.{total_col}, 0) > 0 THEN 1 ELSE 0 END) AS players,
                 COUNT(*) AS total_players
-            FROM user_stats_latest
+            FROM users u
+            JOIN user_stats_latest s ON s.username = u.username
+            WHERE u.status = 'active'
             """,
         )
         players = int(row["players"] or 0) if row else 0
@@ -374,7 +396,9 @@ def build_story_report_payload(conn: Any) -> Dict[str, object]:
                 total_blitz,
                 total_bullet,
                 (COALESCE(total_daily, 0) + COALESCE(total_rapid, 0) + COALESCE(total_blitz, 0) + COALESCE(total_bullet, 0)) AS format_total
-            FROM user_stats_latest
+            FROM users u
+            JOIN user_stats_latest s ON s.username = u.username
+            WHERE u.status = 'active'
         )
         SELECT dominant_format, COUNT(*) AS players
         FROM (
@@ -406,7 +430,9 @@ def build_story_report_payload(conn: Any) -> Dict[str, object]:
                 (CASE WHEN COALESCE(total_rapid, 0) > 0 THEN 1 ELSE 0 END) +
                 (CASE WHEN COALESCE(total_blitz, 0) > 0 THEN 1 ELSE 0 END) +
                 (CASE WHEN COALESCE(total_bullet, 0) > 0 THEN 1 ELSE 0 END) AS formats_played
-            FROM user_stats_latest
+            FROM users u
+            JOIN user_stats_latest s ON s.username = u.username
+            WHERE u.status = 'active'
         )
         GROUP BY formats_played
         ORDER BY formats_played
@@ -420,11 +446,13 @@ def build_story_report_payload(conn: Any) -> Dict[str, object]:
             conn,
             """
             SELECT COUNT(*) AS c
-            FROM user_stats_latest
-            WHERE COALESCE(rapid_rating, 0) > 0
-              AND COALESCE(blitz_rating, 0) > 0
-              AND COALESCE(total_rapid, 0) >= 20
-              AND COALESCE(total_blitz, 0) >= 20
+            FROM users u
+            JOIN user_stats_latest s ON s.username = u.username
+            WHERE u.status = 'active'
+              AND COALESCE(s.rapid_rating, 0) > 0
+              AND COALESCE(s.blitz_rating, 0) > 0
+              AND COALESCE(s.total_rapid, 0) >= 20
+              AND COALESCE(s.total_blitz, 0) >= 20
             """,
         )
         count = int(count_row["c"] or 0) if count_row else 0
@@ -435,12 +463,14 @@ def build_story_report_payload(conn: Any) -> Dict[str, object]:
         row = query_one(
             conn,
             """
-            SELECT (blitz_rating - rapid_rating) AS gap
-            FROM user_stats_latest
-            WHERE COALESCE(rapid_rating, 0) > 0
-              AND COALESCE(blitz_rating, 0) > 0
-              AND COALESCE(total_rapid, 0) >= 20
-              AND COALESCE(total_blitz, 0) >= 20
+            SELECT (s.blitz_rating - s.rapid_rating) AS gap
+            FROM users u
+            JOIN user_stats_latest s ON s.username = u.username
+            WHERE u.status = 'active'
+              AND COALESCE(s.rapid_rating, 0) > 0
+              AND COALESCE(s.blitz_rating, 0) > 0
+              AND COALESCE(s.total_rapid, 0) >= 20
+              AND COALESCE(s.total_blitz, 0) >= 20
             ORDER BY gap
             LIMIT 1 OFFSET ?
             """,
@@ -515,10 +545,12 @@ def build_story_report_payload(conn: Any) -> Dict[str, object]:
         conn,
         """
         SELECT
-            SUM(CASE WHEN COALESCE(highest_puzzle_rating, 0) > 0 THEN 1 ELSE 0 END) AS puzzle_rated,
-            SUM(CASE WHEN COALESCE(highest_puzzle_rating, 0) > 0 AND COALESCE(total_games, 0) < 10 THEN 1 ELSE 0 END) AS puzzle_under_10_games,
-            SUM(CASE WHEN COALESCE(highest_puzzle_rating, 0) > 0 AND COALESCE(total_games, 0) >= 200 THEN 1 ELSE 0 END) AS puzzle_200_plus_games
-        FROM user_stats_latest
+            SUM(CASE WHEN COALESCE(s.highest_puzzle_rating, 0) > 0 THEN 1 ELSE 0 END) AS puzzle_rated,
+            SUM(CASE WHEN COALESCE(s.highest_puzzle_rating, 0) > 0 AND COALESCE(s.total_games, 0) < 10 THEN 1 ELSE 0 END) AS puzzle_under_10_games,
+            SUM(CASE WHEN COALESCE(s.highest_puzzle_rating, 0) > 0 AND COALESCE(s.total_games, 0) >= 200 THEN 1 ELSE 0 END) AS puzzle_200_plus_games
+        FROM users u
+        JOIN user_stats_latest s ON s.username = u.username
+        WHERE u.status = 'active'
         """,
     )
     top_puzzle_cutoff = _select_percentile(conn, "highest_puzzle_rating", 90) or 0
@@ -640,8 +672,27 @@ def build_player_benchmark_payload(conn: Any, username: str) -> Optional[Dict[st
     metrics: Dict[str, Dict[str, Optional[float]]] = {}
     for key in rank_rules:
         value = float(target[key] or 0)
-        count_row = query_one(conn, f"SELECT COUNT(*) AS c FROM user_stats_latest WHERE {key} IS NOT NULL")
-        le_row = query_one(conn, f"SELECT COUNT(*) AS c FROM user_stats_latest WHERE COALESCE({key}, 0) <= ?", (value,))
+        count_row = query_one(
+            conn,
+            f"""
+            SELECT COUNT(*) AS c
+            FROM users u
+            JOIN user_stats_latest s ON s.username = u.username
+            WHERE u.status = 'active'
+              AND s.{key} IS NOT NULL
+            """,
+        )
+        le_row = query_one(
+            conn,
+            f"""
+            SELECT COUNT(*) AS c
+            FROM users u
+            JOIN user_stats_latest s ON s.username = u.username
+            WHERE u.status = 'active'
+              AND COALESCE(s.{key}, 0) <= ?
+            """,
+            (value,),
+        )
         total = int(count_row["c"] or 0) if count_row else 0
         le_count = int(le_row["c"] or 0) if le_row else 0
         percentile = round((le_count / total) * 100.0, 2) if total else None
